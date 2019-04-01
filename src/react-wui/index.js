@@ -12,6 +12,8 @@ import Input from "./Input";
 import Icon from "./Icon";
 import InputGroup from "./InputGroup.js";
 import {addWindowEventListener, removeWindowEventListener, preventEvent} from "./event/EventFuntions"
+import NavBar from "./navbar";
+
 
 export {default as Dropdown} from "./dropdown";
 // export {default as WindowEventHandler} from "./event";
@@ -26,6 +28,8 @@ export {
     Input,
     Icon,
     InputGroup,
+    NavBar,
+
 
     addWindowEventListener,
     removeWindowEventListener,

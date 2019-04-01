@@ -1,0 +1,48 @@
+import React from "react";
+import BaseComponent from "../BaseComponent";
+import classnames from "classnames";
+import PropTypes from 'prop-types';
+import {NavBarFixedTypes} from "../common/Constants";
+import {isNil} from "lodash";
+
+export default class NavBar extends BaseComponent {
+
+  static defaultProps = {
+    className: 'link',
+    type: "",
+  };
+
+  static propTypes = {
+    type: PropTypes.oneOf(["primary", ""]),   //it can only be blank or 'button' and it has nothing to do with native html type
+    className: PropTypes.string, //the class name of button
+    fixed: PropTypes.string, //fixed top or bottom
+  };
+
+  render() {
+    const {
+      children,
+      type,
+      className,
+      fixed,
+      ...otherProps
+    } = this.props;
+
+    let fixedType = this.computeFixedType(fixed);
+
+    let clsName = classnames(className, {
+      [type]: type,
+      fixedType
+    });
+
+    return (
+        <ul className={clsName}>
+          {children}
+        </ul>
+    );
+  }
+
+  computeFixedType = (fixed) => {
+    let fixedType = NavBarFixedTypes.find(type => type === fixed);
+    return isNil(fixedType) ? "" : "fixed " + fixedType;
+  }
+}

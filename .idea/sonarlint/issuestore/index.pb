@@ -52,3 +52,5 @@ R
 "src/react-wui/dropdown/Dropdown.js,8/f/8fc076bfd52d1eff8e72ab829cd5a8e2c22e293f
 N
 src/react-wui/button/Button.js,f/0/f08f72dc06b4079f1eba9a848e01a87d999a7fd5
+I
+src/react-wui/card/Row.js,8/e/8eab49868f38c55f6400d1fe0268be9f9993300e
