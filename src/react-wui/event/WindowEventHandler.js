@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import shallowEqual from 'fbjs/lib/shallowEqual';
+import shallowEqual from 'shallowequal';
 import {addWindowEventListener, removeWindowEventListener} from "./EventFuntions";
 
 export default class WindowEventHandler extends React.Component {

@@ -14,7 +14,7 @@ import InputGroup from "./InputGroup.js";
 import {addWindowEventListener, removeWindowEventListener, preventEvent} from "./event/EventFuntions"
 
 export {default as Dropdown} from "./dropdown";
-export {default as WindowEventHandler} from "./event";
+// export {default as WindowEventHandler} from "./event";
 export {default as Menu} from "./menu";
 export {default as Divider} from "./divider";
 export {default as Card} from "./card";

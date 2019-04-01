@@ -21,6 +21,7 @@ export default class Dropdown extends Component {
         this.state = {
             currentDpClassName: null
         }
+        this.handleClick  = this.handleClick.bind(this);
     }
 
     isTriggeredByMouseHover() {
@@ -74,7 +75,7 @@ export default class Dropdown extends Component {
 //dp hover active/close
         return (
             <div className={this.getDpClassName()}
-                 onClick={::this.handleClick}>
+                 onClick={this.handleClick}>
                 <WindowEventHandler onClick={this.closeMenu.bind(this)}/>
                 {children}
             </div>

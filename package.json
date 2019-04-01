@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
+    "connected-react-router": "^6.3.2",
+    "es6-promise": "^4.2.6",
+    "history": "^4.9.0",
+    "moment": "^2.24.0",
+    "rc-hammerjs": "^0.6.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "shallowequal": "^1.1.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

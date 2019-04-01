@@ -20,7 +20,7 @@ export default class DateTimePicker extends PureComponent {
                     value={value}
                     defaultDate={defaultDate}
                     isInline={true}
-                    onChange={::onDateChange.bind(this)}
+                    onChange={onDateChange.bind(this)}
                 />
                 <TimePicker
                     value={value}
