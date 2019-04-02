@@ -1,27 +1,19 @@
 import React, {Component} from "react";
-import classnames from "classnames";
+import BaseComponent from "../BaseComponent";
 
-export default class Title extends Component {
+export default class Title extends BaseComponent {
   static defaultProps = {
-    className: 'title',
-    hasBackground: true,
-    active: false
+    className: 'title'
   };
 
   render() {
     const {
       children,
       className,
-      active,
-      onClick,
-      hasBackground,
       ...otherProps
     } = this.props;
 
-    let clsName = classnames(className, {
-      "with-bg": hasBackground,
-      active: active
-    });
+    let clsName = this.getClass();
 
     return <li className={clsName} {...otherProps}>{children}</li>;
   }

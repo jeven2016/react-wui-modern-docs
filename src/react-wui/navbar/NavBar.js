@@ -1,6 +1,5 @@
 import React from "react";
 import BaseComponent from "../BaseComponent";
-import classnames from "classnames";
 import PropTypes from 'prop-types';
 import {NavBarFixedTypes} from "../common/Constants";
 import {isNil} from "lodash";
@@ -8,7 +7,7 @@ import {isNil} from "lodash";
 export default class NavBar extends BaseComponent {
 
   static defaultProps = {
-    className: 'link',
+    className: 'navbar',
     type: "",
   };
 
@@ -24,14 +23,14 @@ export default class NavBar extends BaseComponent {
       type,
       className,
       fixed,
+      appendClass,
       ...otherProps
     } = this.props;
 
     let fixedType = this.computeFixedType(fixed);
-
-    let clsName = classnames(className, {
+    let clsName = this.getClass({
       [type]: type,
-      fixedType
+      [fixedType]: fixedType
     });
 
     return (

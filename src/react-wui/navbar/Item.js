@@ -9,10 +9,17 @@ export default class Item extends Component {
     const {
       children,
       className,
+      hasBackground,
+      active,
       ...otherProps
     } = this.props;
 
-    return <li className={className} {...otherProps}>{children}</li>;
+    let clsName = this.getClass({
+      "with-bg": hasBackground,
+      active: active
+    });
+
+    return <li className={clsName} {...otherProps}>{children}</li>;
   }
 
 }

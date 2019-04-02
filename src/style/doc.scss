@@ -1,0 +1,80 @@
+body {
+  background-color: #fff;
+}
+
+.doc {
+  &.header {
+    height: 4rem;
+
+    .title {
+      svg {
+        font-size: 1rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  &.title-link {
+    margin-left: 1rem;
+  }
+
+  &.home {
+    margin-top: 4rem;
+  }
+
+
+}
+
+
+.banner-container {
+  margin-top: 3rem;
+  width: 100%;
+  background-color: #333;
+}
+
+.banner {
+  display: block;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  border: 0;
+  padding: 2rem 0 0 0;
+  color: #ffffff;
+
+  > * {
+    margin-top: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .banner-icon {
+    display: inline-block;
+    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 4.5rem;
+    border-radius: 50rem;
+    border-top: 0.4rem solid #a57036;
+    border-right: 0.4rem solid #e02c94;
+    border-bottom: 0.4rem solid #9a2ec8;
+    border-left: 0.4rem solid #06806C;
+    box-shadow: 1px 1px 20px 0 rgb(255, 255, 255), -1px -1px 20px 0 rgb(255, 255, 255);
+    font-style: italic;
+  }
+
+  .content {
+    font-size: 1rem;
+    text-align: center;
+    text-indent: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .line {
+    text-align: center;
+  }
+}
