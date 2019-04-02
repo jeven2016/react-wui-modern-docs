@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-import {NavBar} from "../../react-wui";
-import {
-  faBars
-} from "@fortawesome/free-solid-svg-icons";
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import intl from 'react-intl-universal';
+import {faBook} from "@fortawesome/free-solid-svg-icons";
 
 export default class Home extends Component {
 
@@ -18,16 +17,16 @@ export default class Home extends Component {
             W
           </div>
           <div className="content">
-            <p>一个支持响应式布局并致力于提供丰富Web体验的前端框架</p>
-            <p>With MIT License</p>
+            <p>{intl.get("briefDescription")}</p>
+            <p>{intl.get("licenseInfo")}</p>
           </div>
           <div className="line">
             <a className="button teal" to="/components">
-              <i className="fa fa-book"/>
-              Get Started
+              <FontAwesomeIcon icon={faBook}/>&nbsp;&nbsp;
+              {intl.get("home.btn.start")}
             </a>
-            <button className="button purple ">
-              <i className="fa fa-github"/> Download
+            <button className="button purple">
+              <FontAwesomeIcon icon={faGithub}/>&nbsp;&nbsp;Github
             </button>
           </div>
           <div className="line">

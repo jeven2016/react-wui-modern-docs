@@ -3,7 +3,35 @@ import Header from "./doc/common/Header";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from "./doc/common/Home";
 
+import intl from 'react-intl-universal';
+
+// locale data
+const locales = {
+  "en_US": require('./doc/i18n/en_US.json'),
+  "zh_CN": require('./doc/i18n/zh_CN.json'),
+};
+
 class App extends Component {
+
+  state = {initDone: false}
+
+  componentDidMount() {
+    this.loadLocales();
+  }
+
+  loadLocales() {
+    // init method will load CLDR locale data according to currentLocale
+    // react-intl-universal is singleton, so you should init it only once in your app
+    intl.init({
+      currentLocale: 'zh_CN',
+      locales,
+    })
+    .then(() => {
+      // After loading CLDR locale data, start to render
+      this.setState({initDone: true});
+    });
+  }
+
   render() {
     return (
         <Router>
