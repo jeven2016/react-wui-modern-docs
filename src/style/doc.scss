@@ -20,8 +20,16 @@ body {
 
   &.home {
     margin-top: 4rem;
+    background-image: url("back2.jpg") ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
+  &.link-text{
+    font-size: 1rem;
+    font-weight: bold;
+  }
 
 }
 
@@ -29,7 +37,6 @@ body {
 .banner-container {
   margin-top: 3rem;
   width: 100%;
-  background-color: #333;
 }
 
 .banner {
@@ -39,14 +46,14 @@ body {
   margin: 0 auto;
   border: 0;
   padding: 2rem 0 0 0;
-  color: #ffffff;
+  color: #fff;
 
   > * {
     margin-top: 1.5rem;
   }
 
   .title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: bold;
   }
 
@@ -68,10 +75,9 @@ body {
   }
 
   .content {
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-align: center;
     text-indent: 0.5rem;
-    font-size: 1rem;
   }
 
   .line {

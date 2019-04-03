@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from "./doc/common/Header";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from "./doc/common/Home";
+import MainPage from "./doc/docs/MainPage";
 
 import intl from 'react-intl-universal';
 
@@ -38,7 +39,7 @@ class App extends Component {
           <div>
             <Header/>
             <Route exact path="/" component={Home}/>
-            {/*<Route path="/movie" component={MainMovie}/>*/}
+            <Route path="/main" component={MainPage}/>
           </div>
         </Router>
     );

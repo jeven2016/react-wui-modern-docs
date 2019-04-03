@@ -3,6 +3,7 @@ import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import intl from 'react-intl-universal';
 import {faBook} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 export default class Home extends Component {
 
@@ -18,13 +19,13 @@ export default class Home extends Component {
           </div>
           <div className="content">
             <p>{intl.get("briefDescription")}</p>
-            <p>{intl.get("licenseInfo")}</p>
+            <p style={{marginTop: "1rem"}}>{intl.get("licenseInfo")}</p>
           </div>
           <div className="line">
-            <a className="button teal" to="/components">
+            <Link to="/main" className="button green">
               <FontAwesomeIcon icon={faBook}/>&nbsp;&nbsp;
               {intl.get("home.btn.start")}
-            </a>
+            </Link>
             <button className="button purple">
               <FontAwesomeIcon icon={faGithub}/>&nbsp;&nbsp;Github
             </button>

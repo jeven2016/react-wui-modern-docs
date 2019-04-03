@@ -10,6 +10,7 @@ export default class Link extends BaseComponent {
     const {
       children,
       className,
+      appendClass,
       ...otherProps
     } = this.props;
     let clsName = this.getClass();

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-import {NavBar} from "../../react-wui";
-import {
-  faBars
-} from "@fortawesome/free-solid-svg-icons";
+import {Button, NavBar} from "../../react-wui";
+import {faBars, faBook, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import intl from 'react-intl-universal';
 
 export default class Header extends Component {
 
@@ -12,10 +11,22 @@ export default class Header extends Component {
       <NavBar.Title>
         <FontAwesomeIcon icon={faBars}/>
         <NavBar.Link appendClass="doc title-link">
-          <h3>React Wui</h3>
+          <h3>{intl.get("home.title")}</h3>
         </NavBar.Link>
       </NavBar.Title>
-    </NavBar>
+      <NavBar.List align="right">
+        <NavBar.Item hasBackground={true}>
+          <NavBar.Link><FontAwesomeIcon
+              icon={faBook}/>&nbsp;&nbsp;{intl.get(
+              "home.title.about.documentation")}</NavBar.Link>
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          <NavBar.Link><FontAwesomeIcon
+              icon={faUser}/>&nbsp;&nbsp;{intl.get("home.title.about.me")}
+          </NavBar.Link>
+        </NavBar.Item>
+      </NavBar.List>
+    </NavBar>;
   }
 
 }

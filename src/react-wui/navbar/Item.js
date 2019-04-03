@@ -1,6 +1,7 @@
 import React, {Component} from "react";
+import BaseComponent from "../BaseComponent";
 
-export default class Item extends Component {
+export default class Item extends BaseComponent {
   static defaultProps = {
     className: 'item'
   };
