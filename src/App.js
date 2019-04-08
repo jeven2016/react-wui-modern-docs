@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header from "./doc/common/Header";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route} from "react-router-dom";
 import Home from "./doc/common/Home";
 import MainPage from "./doc/docs/MainPage";
 
@@ -14,7 +14,7 @@ const locales = {
 
 class App extends Component {
 
-  state = {initDone: false}
+  state = {initDone: false, appliedLocale: "zh_CN"}
 
   componentDidMount() {
     this.loadLocales();
@@ -24,7 +24,7 @@ class App extends Component {
     // init method will load CLDR locale data according to currentLocale
     // react-intl-universal is singleton, so you should init it only once in your app
     intl.init({
-      currentLocale: 'zh_CN',
+      currentLocale: this.state.appliedLocale,
       locales,
     })
     .then(() => {
