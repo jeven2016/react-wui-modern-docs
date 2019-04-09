@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import BaseComponent from "../BaseComponent";
 
 export default class Item extends BaseComponent {
@@ -8,15 +8,19 @@ export default class Item extends BaseComponent {
 
   render() {
     const {
+      block,
       children,
       className,
       hasBackground,
+      hasBar,
       active,
       ...otherProps
     } = this.props;
 
     let clsName = this.getClass({
       "with-bg": hasBackground,
+      block,
+      "with-bar": hasBar,
       active: active
     });
 

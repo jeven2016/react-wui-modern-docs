@@ -3,6 +3,7 @@ import {Button, NavBar} from "../../react-wui";
 import {faBars, faBook, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import intl from 'react-intl-universal';
+import {Link} from "react-router-dom";
 
 export default class Header extends Component {
 
@@ -10,20 +11,19 @@ export default class Header extends Component {
     return <NavBar fixed="top" type="primary" appendClass="doc header">
       <NavBar.Title>
         <FontAwesomeIcon icon={faBars}/>
-        <NavBar.Link appendClass="doc title-link">
-          <h3>{intl.get("home.title")}</h3>
-        </NavBar.Link>
+        <div class="doc title-link">
+          <h3><Link to="/">{intl.get("home.title")}</Link></h3>
+        </div>
       </NavBar.Title>
       <NavBar.List align="right">
-        <NavBar.Item hasBackground={true}>
-          <NavBar.Link><FontAwesomeIcon
+        <NavBar.Item hasBackground={true} hasBar={true}>
+          <FontAwesomeIcon
               icon={faBook}/>&nbsp;&nbsp;{intl.get(
-              "home.title.about.documentation")}</NavBar.Link>
+              "home.title.about.documentation")}
         </NavBar.Item>
-        <NavBar.Item hasBackground={true}>
-          <NavBar.Link><FontAwesomeIcon
+        <NavBar.Item hasBackground={true}  hasBar={true}>
+          <FontAwesomeIcon
               icon={faUser}/>&nbsp;&nbsp;{intl.get("home.title.about.me")}
-          </NavBar.Link>
         </NavBar.Item>
       </NavBar.List>
     </NavBar>;
