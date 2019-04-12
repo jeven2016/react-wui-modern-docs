@@ -8,10 +8,12 @@
     "@fortawesome/free-regular-svg-icons": "^5.8.1",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.3.2",
     "es6-promise": "^4.2.6",
     "history": "^4.9.0",
+    "import": "0.0.6",
     "moment": "^2.24.0",
     "rc-hammerjs": "^0.6.9",
     "react": "^16.8.6",
@@ -39,6 +41,7 @@
   ],
   "devDependencies": {
     "lodash": "^4.17.11",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "react-app-polyfill": "^0.2.2"
   }
 }

@@ -2,10 +2,12 @@ body {
   background-color: #fff;
 }
 
+$header-height: 4rem;
+
 .doc {
 
   &.header {
-    height: 4rem;
+    height: $header-height;
 
     .title {
       svg {
@@ -15,19 +17,27 @@ body {
     }
   }
 
+
+  .left-menu-fixed{
+    height: calc(100vh - 4rem);
+    position: sticky;
+    overflow: auto;
+    border-right: 1px solid #333;
+  }
+
   &.title-link {
     font-weight: bold;
     margin-left: 1rem;
   }
 
   &.home {
-    background-image: url("back2.jpg") ;
+    background-image: url("back2.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
   }
 
-  &.link-text{
+  &.link-text {
     font-size: 1rem;
     font-weight: bold;
   }

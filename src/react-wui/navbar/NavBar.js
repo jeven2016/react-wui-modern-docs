@@ -41,7 +41,8 @@ export default class NavBar extends BaseComponent {
   }
 
   computeFixedType = (fixed) => {
-    let fixedType = NavBarFixedTypes.find(type => type === fixed);
-    return isNil(fixedType) ? "" : "fixed " + fixedType;
+    let fixedType = NavBarFixedTypes.filter(type => type === fixed);
+    return isNil(fixedType) || fixedType.length === 0 ? "" : "fixed "
+        + fixedType[0];
   }
 }
