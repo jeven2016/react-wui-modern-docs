@@ -8,5 +8,7 @@
   "home.btn.start": "Get Stated",
   "home.title": "React Wui",
   "home.title.about.me": "关于我",
-  "home.title.about.documentation": "文档中心"
+  "home.title.about.documentation": "文档中心",
+
+  "main.navbar.button": "Button 按钮"
 }

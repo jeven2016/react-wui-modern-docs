@@ -1,3 +1,7 @@
+html {
+  font-size: 14px;
+}
+
 body {
   background-color: #fff;
 }
@@ -5,6 +9,10 @@ body {
 $header-height: 4rem;
 
 .doc {
+
+  .menu-header {
+    font-weight: 600;
+  }
 
   &.header {
     height: $header-height;
@@ -17,38 +25,31 @@ $header-height: 4rem;
     }
   }
 
-  .grid-row{
+  &.grid-row {
     display: flex;
+    margin: 0 1rem;
   }
 
-  .left-nav-col{
-    width: 20rem;
+  &.left-nav-col {
+    top: 4rem;
+    padding-top: 2rem;
     height: calc(100vh - 4rem);
     position: sticky;
-    border-right: 1px solid #333;
+    border-right: 1px solid #ccc;
   }
 
-  .center-col{
-    height: calc(100vh - 4rem);
+  &.center-col {
+    padding-left: 1rem;
     display: block;
     overflow-y: auto;
   }
 
-  .right-col{
+  &.right-col {
+    top: 4rem;
+    padding-top: 1rem;
     background-color: red;
-    width: 10rem;
-    height: calc(100vh - 4rem);
+    //width: 10rem;
     position: sticky;
-    border-right: 1px solid #333;
-  }
-
-
-
-
-  .left-menu-fixed{
-    height: calc(100vh - 4rem);
-    position: sticky;
-    overflow: auto;
     border-right: 1px solid #333;
   }
 

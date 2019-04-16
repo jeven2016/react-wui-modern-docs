@@ -38,7 +38,7 @@ class App extends Component {
         <Router>
           <div>
             <Header/>
-            <div style={{marginTop: "4rem"}}>
+            <div>
             <Route exact path="/" component={Home}/>
             <Route path="/main" component={MainPage}/>
             </div>
