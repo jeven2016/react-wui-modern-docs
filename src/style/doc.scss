@@ -17,6 +17,33 @@ $header-height: 4rem;
     }
   }
 
+  .grid-row{
+    display: flex;
+  }
+
+  .left-nav-col{
+    width: 20rem;
+    height: calc(100vh - 4rem);
+    position: sticky;
+    border-right: 1px solid #333;
+  }
+
+  .center-col{
+    height: calc(100vh - 4rem);
+    display: block;
+    overflow-y: auto;
+  }
+
+  .right-col{
+    background-color: red;
+    width: 10rem;
+    height: calc(100vh - 4rem);
+    position: sticky;
+    border-right: 1px solid #333;
+  }
+
+
+
 
   .left-menu-fixed{
     height: calc(100vh - 4rem);
