@@ -1,12 +1,11 @@
 import React, {Component} from "react";
 import {Link, Route} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBook} from "@fortawesome/free-solid-svg-icons";
 import intl from "react-intl-universal";
 import ButtonIndex from "./button/ButtonIndex";
 
 export default class MainPage extends Component {
   render() {
+    const {match} = this.props;
     return (
         <div className="doc grid-row row">
           <div className="doc left-nav-col col-md-2">
@@ -25,7 +24,7 @@ export default class MainPage extends Component {
                   </div>
                   <div className="menu-list">
                     <div className="item">
-                      <Link to="/components/button">
+                      <Link to={`${match.url}/components/button`}>
                         {intl.get("main.navbar.button")}
                       </Link>
                     </div>
@@ -42,7 +41,14 @@ export default class MainPage extends Component {
 
           </div>
           <div className="doc center-col col-md-8">
-            <Route path="/components/button" component={ButtonIndex}/>
+
+            <div style={{height: "300px"}}></div>
+            <div style={{height: "300px"}}></div>
+            <div style={{height: "300px"}}></div>
+            <div style={{height: "300px"}}></div>
+            <div style={{height: "300px"}}></div>
+            <Route path={`${match.url}/components/button`}
+                   component={ButtonIndex}/>
           </div>
           <div className="doc right-col col-md-2">
 

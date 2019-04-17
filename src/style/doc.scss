@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 body {
@@ -33,9 +33,11 @@ $header-height: 4rem;
   &.left-nav-col {
     top: 4rem;
     padding-top: 2rem;
+    box-shadow:  1rem 0 2rem -1rem rgba(0, 0, 0, 0.1);
     height: calc(100vh - 4rem);
     position: sticky;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #fff;
+    overflow-y: auto;
   }
 
   &.center-col {

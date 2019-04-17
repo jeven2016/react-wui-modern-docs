@@ -88,4 +88,8 @@ export default class Button extends BaseComponent {
         </button>
     );
   }
+
+  getElementType(){
+    const {nativeType} = this.props;
+  }
 }
