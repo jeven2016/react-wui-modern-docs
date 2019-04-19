@@ -49,10 +49,10 @@ $header-height: 4rem;
   &.right-col {
     top: 4rem;
     padding-top: 1rem;
-    background-color: red;
+    //background-color: red;
     //width: 10rem;
     position: sticky;
-    border-right: 1px solid #333;
+    border-left: 1px dotted rgba(0,0,0,.1);
   }
 
   &.title-link {
