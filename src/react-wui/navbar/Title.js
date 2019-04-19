@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import BaseComponent from "../BaseComponent";
+import React, {Component} from 'react';
+import BaseComponent from '../BaseComponent';
 
 export default class Title extends BaseComponent {
   static defaultProps = {
-    className: 'title'
+    className: 'title',
   };
 
   render() {

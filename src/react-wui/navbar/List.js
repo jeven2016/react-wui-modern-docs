@@ -1,11 +1,11 @@
-import React from "react";
-import BaseComponent from "../BaseComponent";
-import {NavBarListAlign} from "../common/Constants";
+import React from 'react';
+import BaseComponent from '../BaseComponent';
+import {NavBarListAlign} from '../common/Constants';
 
 export default class List extends BaseComponent {
   static defaultProps = {
     className: 'list',
-    align: "left"
+    align: 'left',
   };
 
   render() {

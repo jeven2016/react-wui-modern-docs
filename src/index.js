@@ -10,7 +10,7 @@ import './style/wui-bundle-min.css';
 import './style/doc.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {library} from '@fortawesome/fontawesome-svg-core'
+import {library} from '@fortawesome/fontawesome-svg-core';
 
 library.add();
 

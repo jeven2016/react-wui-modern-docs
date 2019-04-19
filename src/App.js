@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
-import Header from "./doc/common/Header";
-import {HashRouter as Router, Route} from "react-router-dom";
-import Home from "./doc/common/Home";
-import MainPage from "./doc/docs/MainPage";
+import Header from './doc/common/Header';
+import {HashRouter as Router, Route} from 'react-router-dom';
+import Home from './doc/common/Home';
+import MainPage from './doc/docs/MainPage';
 
 import intl from 'react-intl-universal';
 
 // locale data
 const locales = {
-  "en_US": require('./doc/i18n/en_US.json'),
-  "zh_CN": require('./doc/i18n/zh_CN.json'),
+  'en_US': require('./doc/i18n/en_US.json'),
+  'zh_CN': require('./doc/i18n/zh_CN.json'),
 };
 
 class App extends Component {
 
-  state = {initDone: false, appliedLocale: "zh_CN"}
+  state = {initDone: false, appliedLocale: 'zh_CN'};
 
   componentDidMount() {
     this.loadLocales();
@@ -26,8 +26,7 @@ class App extends Component {
     intl.init({
       currentLocale: this.state.appliedLocale,
       locales,
-    })
-    .then(() => {
+    }).then(() => {
       // After loading CLDR locale data, start to render
       this.setState({initDone: true});
     });
@@ -39,8 +38,8 @@ class App extends Component {
           <div>
             <Header/>
             <div>
-            <Route exact path="/" component={Home}/>
-            <Route path="/main" component={MainPage}/>
+              <Route exact path="/" component={Home}/>
+              <Route path="/main" component={MainPage}/>
             </div>
           </div>
         </Router>

@@ -1,7 +1,6 @@
 {
   "briefDescription": "一个支持响应式布局并致力于提供丰富Web体验的前端框架",
   "licenseInfo": "With MIT License",
-
   "home.btn.github": "Github",
   "home.btn.start": "Get Stated",
   "home.title": "React Wui",

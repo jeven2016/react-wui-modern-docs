@@ -1,24 +1,28 @@
-import React, {Component} from "react";
-import classnames from "classnames";
-import {generateClassName} from "../Utils";
+import React, {Component} from 'react';
+import classnames from 'classnames';
+import BaseComponent from '../BaseComponent';
 
-export default class Menu extends Component {
-    static defaultProps = {
-        className: "menu"
-    };
+export default class Menu extends BaseComponent {
+  static defaultProps = {
+    className: 'menu',
+    hasBorder: true
+  };
 
-    render() {
-        const {className, children, active, onChange, position} = this.props;
-        console.log("menu=" + position)
-        let newClassName = classnames(className, {active: active, [position]: position});
-        return (
-            <div className={newClassName}>
-                {
-                    React.Children.map(children, elem => {
-                        return React.cloneElement(elem, {onChange: onChange});
-                    })
-                }
-            </div>
-        )
-    }
+  render() {
+    const {className, hasBorder, children, onClick} = this.props;
+    let clsName = this.getClass({
+      'clear-border': !hasBorder,
+    });
+
+    return (
+        <div className={clsName}>
+          {children}
+          {/* {
+            React.Children.map(children, elem => {
+              return React.cloneElement(elem, {onChange: onChange});
+            })
+          }*/}
+        </div>
+    );
+  }
 }

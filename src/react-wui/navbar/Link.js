@@ -1,9 +1,9 @@
-import React from "react";
-import BaseComponent from "../BaseComponent";
+import React from 'react';
+import BaseComponent from '../BaseComponent';
 
 export default class Link extends BaseComponent {
   static defaultProps = {
-    className: 'link'
+    className: 'link',
   };
 
   render() {

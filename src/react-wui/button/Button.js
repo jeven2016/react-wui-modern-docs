@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from "classnames";
+import classnames from 'classnames';
 import {preventEvent} from '../event/EventFuntions';
-import BaseComponent from "../BaseComponent";
+import BaseComponent from '../BaseComponent';
 
 /**
  * Button component
@@ -11,19 +11,19 @@ export default class Button extends BaseComponent {
   static defaultProps = {
     disabled: false,
     className: 'button',
-    withinGroup: false
+    withinGroup: false,
   };
 
   static propTypes = {
     type: PropTypes.string,   //it can only be blank or 'button' and it has nothing to do with native html type
-    nativeType: PropTypes.oneOf(["button", "reset", "submit", "a"]), //the native html type, like 'button', 'reset' or 'submit'
+    nativeType: PropTypes.oneOf(['button', 'reset', 'submit', 'a']), //the native html type, like 'button', 'reset' or 'submit'
     block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
     color: PropTypes.string, //the color, like "primary", "red"
     className: PropTypes.string, //the class name of button
     disabled: PropTypes.bool, //disable this button
     active: PropTypes.bool, // active this button
     onClick: PropTypes.func, //the click callback provided
-    size: PropTypes.oneOf(["large", "medium", "small", ""]), //the size of the button
+    size: PropTypes.oneOf(['large', 'medium', 'small', '']), //the size of the button
     outline: PropTypes.bool,
     circle: PropTypes.bool,
     withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
@@ -39,7 +39,7 @@ export default class Button extends BaseComponent {
     if (disabled) {
       clickCallback = (e) => {
         preventEvent(e);
-      }
+      };
     }
     if (!clickCallback) {
       clickCallback = (e) => {
@@ -76,20 +76,20 @@ export default class Button extends BaseComponent {
       active: active,
       outline: outline,
       circle: circle,
-      label: withinGroup
+      label: withinGroup,
     });
 
     return (
         <button className={clsName}
                 onClick={this.getCallback(disabled, onClick)}
-                type={nativeType ? nativeType : "button"}
+                type={nativeType ? nativeType : 'button'}
                 style={style} {...otherProps}>
           {children}
         </button>
     );
   }
 
-  getElementType(){
+  getElementType() {
     const {nativeType} = this.props;
   }
 }

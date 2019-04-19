@@ -1,7 +1,8 @@
-import React, {Component} from "react";
-import {Link, Route} from "react-router-dom";
-import intl from "react-intl-universal";
-import ButtonIndex from "./button/ButtonIndex";
+import React, {Component} from 'react';
+import {Link, Route} from 'react-router-dom';
+import intl from 'react-intl-universal';
+import ButtonIndex from './button/ButtonIndex';
+import {Menu} from '../../react-wui';
 
 export default class MainPage extends Component {
   render() {
@@ -9,45 +10,39 @@ export default class MainPage extends Component {
     return (
         <div className="doc grid-row row">
           <div className="doc left-nav-col col-md-2">
-            <div className="submenu">
-              <div className="menu-header">Geting Started</div>
-              <div className="menu-list">
-                <div className="item">
-                  Install
-                </div>
-                <div className="item">
-                  Basic
-                </div>
-                <div className="submenu">
-                  <div className="menu-header">
-                    Components
-                  </div>
-                  <div className="menu-list">
-                    <div className="item">
+            <Menu hasBorder={false}>
+              <Menu.Header>Geting Started</Menu.Header>
+              <Menu.List>
+                <Menu.Item>Install</Menu.Item>
+                <Menu.Item>Basic</Menu.Item>
+                <Menu.SubMenu>
+                  <Menu.Header>Components</Menu.Header>
+                  <Menu.List>
+                    <Menu.Item>
                       <Link to={`${match.url}/components/button`}>
-                        {intl.get("main.navbar.button")}
+                        {intl.get('main.navbar.button')}
                       </Link>
-                    </div>
-                    <div className="item">
+                    </Menu.Item>
+                    <Menu.Item>
                       Input
-                    </div>
-                  </div>
-                </div>
-                <div className="item">
+                    </Menu.Item>
+                  </Menu.List>
+                </Menu.SubMenu>
+                <Menu.Item>
                   Layout
-                </div>
-              </div>
-            </div>
+                </Menu.Item>
+              </Menu.List>
+            </Menu>
 
           </div>
           <div className="doc center-col col-md-8">
 
-            <div style={{height: "300px"}}></div>
-            <div style={{height: "300px"}}></div>
-            <div style={{height: "300px"}}></div>
-            <div style={{height: "300px"}}></div>
-            <div style={{height: "300px"}}></div>
-            <Route path={`${match.url}/components/button`}
+            <div style={{height: '300px'}}></div>
+            <div style={{height: '300px'}}></div>
+            <div style={{height: '300px'}}></div>
+            <div style={{height: '300px'}}></div>
+            <div style={{height: '300px'}}></div>
+            <Route exact={true} path={`${match.url}/components/button`}
                    component={ButtonIndex}/>
           </div>
           <div className="doc right-col col-md-2">

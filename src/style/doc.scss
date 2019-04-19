@@ -33,7 +33,7 @@ $header-height: 4rem;
   &.left-nav-col {
     top: 4rem;
     padding-top: 2rem;
-    box-shadow:  1rem 0 2rem -1rem rgba(0, 0, 0, 0.1);
+    box-shadow: 1rem 0 2rem -1rem rgba(0, 0, 0, 0.1);
     height: calc(100vh - 4rem);
     position: sticky;
     border-right: 1px solid #fff;
@@ -44,6 +44,7 @@ $header-height: 4rem;
     padding-left: 1rem;
     display: block;
     overflow-y: auto;
+    flex: 1 0 auto;
   }
 
   &.right-col {
@@ -52,7 +53,7 @@ $header-height: 4rem;
     //background-color: red;
     //width: 10rem;
     position: sticky;
-    border-left: 1px dotted rgba(0,0,0,.1);
+    border-left: 1px dotted rgba(0, 0, 0, .1);
   }
 
   &.title-link {
