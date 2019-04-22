@@ -1,7 +1,6 @@
 //if you import the IE9 entry point, this will include IE10 and IE11 support.
 //https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill
-import 'babel-polyfill';
-import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/ie11';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

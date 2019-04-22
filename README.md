@@ -67,3 +67,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 # react-wui-modern
+
+### `npm run serve` 
+Build this project and run in production mode,   
+```npm install serve -g```    
+```serve -s build``` 
