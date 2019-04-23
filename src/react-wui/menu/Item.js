@@ -7,8 +7,11 @@ export default class Item extends BaseComponent {
   };
 
   render() {
-    const {className,children} = this.props;
-    let clsName = this.getClass({});
+    const {className, active, disabled, children} = this.props;
+    let clsName = this.getClass({
+      active,
+      disabled,
+    });
 
     return (
         <div className={clsName}>

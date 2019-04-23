@@ -11,7 +11,7 @@ export default class MainPage extends Component {
         <div className="doc grid-row row">
           <div className="doc left-nav-col col-md-2">
             <Menu hasBorder={false}>
-              <Menu.Header>Geting Started</Menu.Header>
+              <Menu.Header key="header">Geting Started</Menu.Header>
               <Menu.List>
                 <Menu.Item>Install</Menu.Item>
                 <Menu.Item>Basic</Menu.Item>
@@ -23,7 +23,7 @@ export default class MainPage extends Component {
                         {intl.get('main.navbar.button')}
                       </Link>
                     </Menu.Item>
-                    <Menu.Item>
+                    <Menu.Item active={true} disabled={false}>
                       Input
                     </Menu.Item>
                   </Menu.List>
