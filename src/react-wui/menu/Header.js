@@ -7,6 +7,10 @@ export default class Header extends BaseComponent {
     className: 'menu-header',
   };
 
+  clickHeader(){
+
+  }
+
   render() {
     const {children} = this.props;
     let clsName = this.getClass({});

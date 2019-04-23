@@ -13,22 +13,25 @@ export default class MainPage extends Component {
             <Menu hasBorder={false}>
               <Menu.Header key="header">Geting Started</Menu.Header>
               <Menu.List>
-                <Menu.Item>Install</Menu.Item>
-                <Menu.Item>Basic</Menu.Item>
+                <Menu.Item key="installItem">Install</Menu.Item>
+                <Menu.Item key="basicItem">Basic</Menu.Item>
                 <Menu.SubMenu>
                   <Menu.Header>Components</Menu.Header>
                   <Menu.List>
-                    <Menu.Item>
+                    <Menu.Item key="buttonItem">
                       <Link to={`${match.url}/components/button`}>
                         {intl.get('main.navbar.button')}
                       </Link>
                     </Menu.Item>
                     <Menu.Item active={true} disabled={false}>
+                      Button
+                    </Menu.Item>
+                    <Menu.Item key="inputItem">
                       Input
                     </Menu.Item>
                   </Menu.List>
                 </Menu.SubMenu>
-                <Menu.Item>
+                <Menu.Item key="layoutItem">
                   Layout
                 </Menu.Item>
               </Menu.List>
@@ -36,12 +39,6 @@ export default class MainPage extends Component {
 
           </div>
           <div className="doc center-col col-md-8">
-
-            <div style={{height: '300px'}}></div>
-            <div style={{height: '300px'}}></div>
-            <div style={{height: '300px'}}></div>
-            <div style={{height: '300px'}}></div>
-            <div style={{height: '300px'}}></div>
             <Route exact={true} path={`${match.url}/components/button`}
                    component={ButtonIndex}/>
           </div>
