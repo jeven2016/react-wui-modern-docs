@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
+import {GlobalClickContext} from './Menu';
 
 export default class List extends BaseComponent {
   static defaultProps = {
@@ -7,13 +8,20 @@ export default class List extends BaseComponent {
   };
 
   render() {
-    const {className,children} = this.props;
-    let clsName = this.getClass({});
+    const {className, children, key} = this.props;
+    let clsName = this.getClass({
+    });
+
+
 
     return (
-        <div className={clsName}>
-          {children}
-        </div>
+        <GlobalClickContext.Consumer>
+          {({onClick, activeItem}) => (
+              <button>
+                Toggle Theme
+              </button>
+          )}
+        </GlobalClickContext.Consumer>
     );
   }
 
