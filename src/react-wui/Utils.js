@@ -129,3 +129,5 @@ export const getRandomInt = (min, max) => {
 
 
 ///////////////////////////////////////
+
+export {isNil, isObject} from 'lodash';

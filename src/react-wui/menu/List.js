@@ -12,14 +12,12 @@ export default class List extends BaseComponent {
     let clsName = this.getClass({
     });
 
-
-
     return (
         <GlobalClickContext.Consumer>
           {({onClick, activeItem}) => (
-              <button>
-                Toggle Theme
-              </button>
+              <div className={clsName}>
+                {children}
+              </div>
           )}
         </GlobalClickContext.Consumer>
     );

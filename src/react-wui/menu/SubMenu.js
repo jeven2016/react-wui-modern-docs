@@ -1,6 +1,16 @@
 import React from 'react';
-import Menu from './Menu';
+import BaseComponent from '../BaseComponent';
 
-export default class SubMenu extends Menu {
+export default class SubMenu extends BaseComponent{
+  static defaultProps = {
+    className: 'submenu',
+  };
 
+  render() {
+    const {className, children} = this.props;
+    let clsName = this.getClass();
+    return <div className={clsName}>
+      {children}
+    </div>;
+  }
 }

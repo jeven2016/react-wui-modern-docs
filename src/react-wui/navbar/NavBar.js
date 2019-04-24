@@ -2,7 +2,7 @@ import React from 'react';
 import BaseComponent from '../BaseComponent';
 import PropTypes from 'prop-types';
 import {NavBarFixedTypes} from '../common/Constants';
-import {isNil} from 'lodash';
+import {isNil} from '../Utils';
 
 export default class NavBar extends BaseComponent {
 

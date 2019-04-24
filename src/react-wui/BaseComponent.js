@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import shallowEqual from 'shallowequal';
-import {isNil, isObject} from 'lodash';
+import {isNil, isObject} from './Utils';
 import classnames from 'classnames';
 
 export default class BaseComponent extends Component {
