@@ -1,16 +1,28 @@
 import React from 'react';
-import BaseComponent from '../BaseComponent';
+import BaseMenu from './BaseMenu';
 
-export default class SubMenu extends BaseComponent{
+export default class SubMenu extends BaseMenu {
   static defaultProps = {
     className: 'submenu',
   };
 
+  constructor(args) {
+    super(args);
+    this.state = {
+      showMenuList: true
+    };
+  }
+
   render() {
     const {className, children} = this.props;
-    let clsName = this.getClass();
+    let clsName = this.getClass({
+      'close': !this.state.showMenuList,
+    });
+
+    let updatedChildren = this.updateChildren(children);
+
     return <div className={clsName}>
-      {children}
+      {updatedChildren}
     </div>;
   }
 }

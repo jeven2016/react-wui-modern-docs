@@ -12,7 +12,7 @@ export default class MainPage extends Component {
     return (
         <div className="doc grid-row row">
           <div className="doc left-nav-col col-xs-12 col-md-2">
-            <Menu type="primary" hasBorder={false}>
+            <Menu block type="dark" hasBorder={false}>
               <Menu.Header id="header">Geting Started</Menu.Header>
               <Menu.List>
                 <Menu.Item id="installItem">Install</Menu.Item>

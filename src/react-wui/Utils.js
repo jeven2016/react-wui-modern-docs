@@ -6,46 +6,7 @@ export const isArray = (value) => {
   return Array.isArray(value);
 };
 
-export const updateChildrenBySetting = (children, newSettings) => {
-  let newChildren = React.Children.map(children, elem =>
-      React.cloneElement(elem, newSettings),
-  );
-  return newChildren;
-};
 
-export const updateChildren = (children, map, newSettings) => {
-  let newChildren = children;
-  if (children && isArray(children) && map.size > 0) {
-    newChildren = updateChildrenBySetting(children, newSettings);
-  }
-  return newChildren;
-};
-
-export const updateChildrenByCallback = (children, callback) => {
-  let newChildren = children;
-  if (children && isArray(children)) {
-    newChildren = React.Children.map(children, callback);
-  }
-  return newChildren;
-};
-
-export const setValueInMap = (map, key, value) => {
-  if (!key || !value) {
-    return;
-  }
-  map.set(key, value);
-};
-
-export const generateClassName = (map, classNameSuffix) => {
-//get the final class to set
-  let finalClassName = classNameSuffix ? classNameSuffix : '';
-  map.forEach((val, key) => {
-    if (val) {
-      finalClassName += ' ' + val;
-    }
-  });
-  return finalClassName;
-};
 
 //split the class by blank space
 const _splitClassName = (className) => {

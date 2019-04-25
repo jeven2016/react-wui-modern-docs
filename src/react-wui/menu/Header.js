@@ -1,24 +1,24 @@
-import React, {Component} from 'react';
-import {getRandomValue} from '../Utils';
+import React from 'react';
 import BaseComponent from '../BaseComponent';
+import {GlobalClickContext} from './Menu';
 
 export default class Header extends BaseComponent {
   static defaultProps = {
     className: 'menu-header',
   };
 
-  clickHeader(){
-
-  }
-
   render() {
-    const {children} = this.props;
-    let clsName = this.getClass({});
-
+    const {id, className, children, clickHeader} = this.props;
+    let clsName = this.getClass();
     return (
-        <div className={clsName}>
-          {children}
-        </div>
+        <GlobalClickContext.Consumer>
+          {({onItemClick}) => {
+            return <div className={clsName}
+                        onClick={clickHeader}>
+              {children}
+            </div>;
+          }}
+        </GlobalClickContext.Consumer>
     );
   }
 }

@@ -11,21 +11,28 @@ export default class Item extends BaseComponent {
     onClick(this.props.id);
   }
 
-  render() {
-    const {className, active, disabled, children} = this.props;
+  getClassName(activeItem) {
+    const {active, disabled, id} = this.props;
+
     let clsName = this.getClass({
-      active,
+      active: activeItem != null && activeItem === id,
       disabled,
     });
+
+    return clsName;
+  }
+
+  render() {
+    const {className, active, disabled, children} = this.props;
 
     return (
         <GlobalClickContext.Consumer>
           {({activeItem, onItemClick}) => {
             console.log(this.props.id + '=' + activeItem);
-            return <div className={clsName}
+            return <div className={this.getClassName(activeItem)}
                         onClick={this.itemClick.bind(this, onItemClick)}>
               {children}
-            </div>
+            </div>;
           }}
 
         </GlobalClickContext.Consumer>
