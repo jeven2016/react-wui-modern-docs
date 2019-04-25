@@ -1,6 +1,8 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import Header from './Header';
+import List from './List';
+import SubMenu from './SubMenu';
 
 export default class BaseMenu extends BaseComponent {
   constructor(args) {
@@ -36,14 +38,36 @@ export default class BaseMenu extends BaseComponent {
   }
 
   updateChildren(children) {
+    let initPaddingLeft = 2.5;
+    let increment = 1;
+    let unit = 'rem';
     let updatedChildren = React.Children.map(children, (child) => {
-      if (child.type === Header) {
+      let childType = child.type;
+      if (childType === Header) {
         return React.cloneElement(child, {
           clickHeader: this.clickHeader,
         });
       }
+
+      if (childType === List) {
+
+//the listIem is list instead of item....
+        return React.Children.map(child, (listItem) => {
+          console.log("listItem="+listItem.type);
+          return React.cloneElement(listItem,
+              {paddingLeft: initPaddingLeft + unit});
+        });
+      }
+
+      if (childType === SubMenu) {
+
+      }
       return child;
     });
     return updatedChildren;
+  }
+
+  travelChildren() {
+
   }
 }

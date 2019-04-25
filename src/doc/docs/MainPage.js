@@ -34,7 +34,34 @@ export default class MainPage extends Component {
                   Layout
                 </Menu.Item>
               </Menu.List>
+              <Menu.SubMenu>
+                <Menu.Header>Components</Menu.Header>
+                <Menu.List>
+                  <Menu.Item id="buttonItem2">
+                    <Link to={`${match.url}/components/button`}>
+                      {intl.get('main.navbar.button')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="inputItem2">
+                    Input
+                  </Menu.Item>
+                </Menu.List>
+              </Menu.SubMenu>
+              <Menu.SubMenu>
+                <Menu.Header>Components</Menu.Header>
+                <Menu.List>
+                  <Menu.Item id="buttonItem3">
+                    <Link to={`${match.url}/components/button`}>
+                      {intl.get('main.navbar.button')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="inputItem3">
+                    Input
+                  </Menu.Item>
+                </Menu.List>
+              </Menu.SubMenu>
             </Menu>
+
 
           </div>
           <div className="doc center-col col-xs-12 col-md-8">

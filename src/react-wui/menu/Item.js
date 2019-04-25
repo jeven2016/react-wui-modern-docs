@@ -23,13 +23,14 @@ export default class Item extends BaseComponent {
   }
 
   render() {
-    const {className, active, disabled, children} = this.props;
+    const {className, active, disabled, children, paddingLeft} = this.props;
 
     return (
         <GlobalClickContext.Consumer>
           {({activeItem, onItemClick}) => {
             console.log(this.props.id + '=' + activeItem);
             return <div className={this.getClassName(activeItem)}
+                        style={{paddingLeft: paddingLeft}}
                         onClick={this.itemClick.bind(this, onItemClick)}>
               {children}
             </div>;

@@ -8,13 +8,14 @@ export default class Header extends BaseComponent {
   };
 
   render() {
-    const {id, className, children, clickHeader} = this.props;
+    const {id, className, children, clickHeader, paddingLeft} = this.props;
     let clsName = this.getClass();
     return (
         <GlobalClickContext.Consumer>
           {({onItemClick}) => {
             return <div className={clsName}
-                        onClick={clickHeader}>
+                        onClick={clickHeader}
+                        style={{paddingLeft: paddingLeft}}>
               {children}
             </div>;
           }}
