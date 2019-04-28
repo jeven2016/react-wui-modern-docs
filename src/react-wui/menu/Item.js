@@ -29,11 +29,11 @@ export default class Item extends BaseComponent {
         <GlobalClickContext.Consumer>
           {({activeItem, onItemClick}) => {
             console.log(this.props.id + '=' + activeItem);
-            return <div className={this.getClassName(activeItem)}
+            return <li className={this.getClassName(activeItem)}
                         style={{paddingLeft: paddingLeft}}
                         onClick={this.itemClick.bind(this, onItemClick)}>
               {children}
-            </div>;
+            </li>;
           }}
 
         </GlobalClickContext.Consumer>

@@ -7,12 +7,12 @@ import Image from './Image';
 import OverlayTitle from './OverlayTitle';
 import Row from './Row';
 
-Card.body = Body;
-Card.cardImage = CardImage;
-Card.footer = Footer;
-Card.header = Header;
-Card.image = Image;
-Card.overlayTitle = OverlayTitle;
-Card.row = Row;
+Card.Body = Body;
+Card.CardImage = CardImage;
+Card.Footer = Footer;
+Card.Header = Header;
+Card.Image = Image;
+Card.OverlayTitle = OverlayTitle;
+Card.Row = Row;
 
 export default Card;

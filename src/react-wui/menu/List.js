@@ -15,9 +15,9 @@ export default class List extends BaseComponent {
     return (
         <GlobalClickContext.Consumer>
           {({onClick, activeItem}) => (
-              <div className={clsName}>
+              <ul className={clsName}>
                 {children}
-              </div>
+              </ul>
           )}
         </GlobalClickContext.Consumer>
     );

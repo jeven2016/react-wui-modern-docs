@@ -13,7 +13,7 @@ export default class Menu extends BaseMenu {
     className: 'menu',
     hasBorder: true,
     activeItem: null,
-    openMenu: [], //set menu id
+    openMenu: ['all'], // menu id array or 'all'
     onItemClick: null,
     onHeaderClick: null,
     type: null, //primary, dark
@@ -45,7 +45,7 @@ export default class Menu extends BaseMenu {
 
   render() {
     const {
-     block, className, hasBorder, children, onClick, onHeaderClick,
+      block, className, hasBorder, children, onClick, onHeaderClick,
       type,
       activeItem,
       openMenu,
@@ -67,9 +67,9 @@ export default class Menu extends BaseMenu {
               onItemClick: this.clickItem,
               openMenu: openMenu,
             }}>
-          <div className={clsName}>
+          <ul className={clsName}>
             {updatedChildren}
-          </div>
+          </ul>
         </GlobalClickContext.Provider>
     );
   }

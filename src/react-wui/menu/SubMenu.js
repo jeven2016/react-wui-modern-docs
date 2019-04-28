@@ -21,8 +21,9 @@ export default class SubMenu extends BaseMenu {
 
     let updatedChildren = this.updateChildren(children);
 
-    return <div className={clsName}>
+    return <ul className={clsName}>
       {updatedChildren}
-    </div>;
+    </ul>;
   }
+
 }

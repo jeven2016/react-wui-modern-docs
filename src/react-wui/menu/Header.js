@@ -13,11 +13,11 @@ export default class Header extends BaseComponent {
     return (
         <GlobalClickContext.Consumer>
           {({onItemClick}) => {
-            return <div className={clsName}
+            return <li className={clsName}
                         onClick={clickHeader}
                         style={{paddingLeft: paddingLeft}}>
               {children}
-            </div>;
+            </li>;
           }}
         </GlobalClickContext.Consumer>
     );
