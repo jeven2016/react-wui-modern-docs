@@ -17,7 +17,7 @@ export default class Menu extends BaseMenu {
     openMenu: ['all'], // menu id array or 'all'
     onItemClick: null,
     onHeaderClick: null,
-    type: null, //primary, dark
+    type: null, //primary, dark, float
   };
 
   static Header = Header;

@@ -16,5 +16,6 @@
   "content.menu.sample.menuB": "拥有Border、Box背景的菜单",
   "content.menu.sample.menuC": "在Item之间添加分隔线",
   "content.menu.sample.menuD": "子菜单",
-  "content.menu.sample.menuE": "黑色皮肤"
+  "content.menu.sample.menuE": "黑色皮肤",
+  "content.menu.sample.menuF": "Float Menu"
 }

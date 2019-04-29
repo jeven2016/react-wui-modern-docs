@@ -2,7 +2,7 @@ import React from 'react';
 import intl from "react-intl-universal";
 import {Menu} from "../../../react-wui";
 import DocComponent from "../DocComponent";
-import {MenuA, MenuB, MenuC, MenuD, MenuE} from "./Menus";
+import {MenuA, MenuB, MenuC, MenuD, MenuE, MenuFloat} from './Menus';
 
 export default class MenuIndex extends DocComponent {
   constructor(args) {
@@ -48,6 +48,11 @@ export default class MenuIndex extends DocComponent {
         <section>
           <h3 id="menuE"> {intl.get('content.menu.sample.menuE')}</h3>
           <MenuE/>
+        </section>
+
+        <section>
+          <h3 id="menuFloat"> {intl.get('content.menu.sample.menuF')}</h3>
+          <MenuFloat/>
         </section>
 
       </div>
