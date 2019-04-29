@@ -1,8 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
+import BaseComponent from './BaseComponent';
 
-export default class Icon extends Component {
+export default class Icon extends BaseComponent {
+  static defaultProps = {
+    className: 'icon',
+  };
+
   render() {
-    const {className, color} = this.props;
-    return (<i className={className}/>);
+    const {className, appendClass, color, children} = this.props;
+    let clsName = this.getClass({
+      [appendClass]: appendClass,
+    });
+    return (<i className={clsName}>{children}</i>);
   }
 }
