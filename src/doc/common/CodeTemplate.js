@@ -1,0 +1,12 @@
+import React, {Component} from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import {ocean as sty} from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+export default class CodeTemplate extends Component {
+
+  render() {
+    return <SyntaxHighlighter language='jsx'
+                              style={sty}>{this.props.code}</SyntaxHighlighter>;
+  }
+
+}

@@ -11,5 +11,10 @@
 
 
   "content.menu.title": "Menu 菜单",
-  "content.menu.simple.desc": "Menu控件中包含一组可选的导航选项，您可以使用该控件进行导航的切换。"
+  "content.menu.simple.desc": "Menu控件中包含一组可选的导航选项，您可以使用该控件进行导航的切换。",
+  "content.menu.sample.menu": "一个极简的菜单",
+  "content.menu.sample.menuB": "拥有Border、Box背景的菜单",
+  "content.menu.sample.menuC": "在Item之间添加分隔线",
+  "content.menu.sample.menuD": "子菜单",
+  "content.menu.sample.menuE": "黑色皮肤"
 }
