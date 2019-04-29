@@ -1,13 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
+import BaseComponent from "../BaseComponent";
 
-export default class Card extends Component {
+export default class Card extends BaseComponent {
   static defaultProps = {
     className: 'card',
+    block: false,
+    apppendClass: null
   };
 
   render() {
-    const {className, children} = this.props;
-    return <div className={className}>
+    const {className, block, children, apppendClass} = this.props;
+    let clsName = this.getClass({
+      [apppendClass]: apppendClass,
+      block
+    });
+    return <div className={clsName}>
       {children}
     </div>;
   }

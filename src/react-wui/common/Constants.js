@@ -5,3 +5,7 @@ export const NavBarListAlign = {
   right: 'align-right',
   center: 'align-center',
 };
+
+export const openMenuType = {
+  all: 'all'
+};

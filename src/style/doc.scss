@@ -4,11 +4,22 @@ html {
 
 body {
   background-color: #fff;
+  color: rgba(0, 0, 0, .8);
 }
 
 $header-height: 4rem;
 
 .doc {
+
+  section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  h1, h2, h3, h4, h5, p {
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+  }
 
   .menu-header {
     font-weight: 600;
@@ -32,7 +43,7 @@ $header-height: 4rem;
 
   &.left-nav-col {
     top: 4rem;
-    padding-top: 6rem;
+    padding-top: 2rem;
     box-shadow: 1rem 0 2rem -1rem rgba(0, 0, 0, 0.1);
     height: calc(100vh - 4rem);
     position: sticky;
@@ -41,8 +52,9 @@ $header-height: 4rem;
     overflow-x: hidden;
   }
 
+
   &.center-col {
-    padding-left: 1rem;
+    padding: 7rem 3rem 0rem;
     display: block;
     overflow-y: auto;
     flex: 1 0 auto;
@@ -50,7 +62,7 @@ $header-height: 4rem;
 
   &.right-col {
     top: 4rem;
-    padding-top: 1rem;
+    padding-top: 7rem;
     //background-color: red;
     //width: 10rem;
     position: sticky;
@@ -74,6 +86,36 @@ $header-height: 4rem;
     font-weight: bold;
   }
 
+  .submenu > .menu-list > .item, .menu > .menu-list > .item {
+    padding-left: 2rem;
+  }
+
+
+  .doc-sample-panel {
+    margin-bottom: 3rem;
+    .doc-title {
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      color: #ababab;
+
+      &:hover{
+        color: #277ed0;
+      }
+    }
+
+    .doc-title-item{
+      display: flex;
+      font-size: 2rem;
+
+      flex-direction: column;
+    }
+
+    .doc-code{
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
 }
 
 

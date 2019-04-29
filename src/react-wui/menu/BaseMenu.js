@@ -11,23 +11,30 @@ export default class BaseMenu extends BaseComponent {
     this.clickHeader = this.clickHeader.bind(this);
   }
 
+  getItemClickCallback() {
+    return null;
+  }
+
+  getHeaderClickCallback() {
+    return null;
+  }
+
   clickItem(id, isHeaderClick) {
-    if (isHeaderClick) {
-      this.setState({
-        showMenuList: !this.state.showMenuList,
-      });
-      return;
-    }
     this.setState({
       clickedItem: id,
     });
+
+    let callback = this.getItemClickCallback();
+    if (callback) {
+      callback(id);
+    }
   }
 
   clickHeader(headerId) {
-    const {onHeaderClick} = this.props;
     let openMenuList = true;
-    if (onHeaderClick) {
-      openMenuList = onHeaderClick(headerId);
+    let callback = this.getHeaderClickCallback();
+    if (callback) {
+      callback(headerId);
     }
 
     if (openMenuList) {
@@ -53,7 +60,7 @@ export default class BaseMenu extends BaseComponent {
 
 //the listIem is list instead of item....
         return React.Children.map(child, (listItem) => {
-          console.log("listItem="+listItem.type);
+          console.log("listItem=" + listItem.type);
           return React.cloneElement(listItem,
               {paddingLeft: initPaddingLeft + unit});
         });
