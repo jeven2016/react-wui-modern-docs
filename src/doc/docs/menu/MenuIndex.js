@@ -58,7 +58,7 @@ export default class MenuIndex extends DocComponent {
       </div>
 
       <div className="doc right-col col-md-2">
-        <Menu onItemClick={this.clickLink} hasBorder={false}
+        <Menu onClickItem={this.clickLink} hasBorder={false}
               style={{position: "fixed"}}>
           <Menu.List>
             <Menu.Item id="#menu_title">

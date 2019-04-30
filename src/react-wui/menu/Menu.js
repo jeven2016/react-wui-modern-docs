@@ -15,8 +15,8 @@ export default class Menu extends BaseMenu {
     hasBox: false,
     activeItem: null,
     openMenu: ['all'], // menu id array or 'all'
-    onItemClick: null,
-    onHeaderClick: null,
+    onClickItem: null,
+    onClickHeader: null,
     type: null, //primary, dark, float
   };
 
@@ -32,14 +32,10 @@ export default class Menu extends BaseMenu {
       clickedItem: null,
       showMenuList: true,
     };
-  }
 
-  getItemClickCallback() {
-    return this.props.onItemClick;
-  }
-
-  getHeaderClickCallback() {
-    return this.props.onHeaderClick;
+    //associate the methods with a Menu instance
+    this.handleHeader = this.handleHeader.bind(this);
+    this.handleItem = this.handleItem.bind(this);
   }
 
   getCurrentActiveIem() {
@@ -54,9 +50,10 @@ export default class Menu extends BaseMenu {
 
   render() {
     const {
-      block, className, hasBorder, children, onClick, onHeaderClick,
+      block, className, hasBorder, children,
       type,
-      onItemClick,
+      onClickHeader,
+      onClickItem,
       activeItem,
       openMenu,
       hasBox,
@@ -79,8 +76,9 @@ export default class Menu extends BaseMenu {
         <GlobalClickContext.Provider
             value={{
               activeItem: this.getCurrentActiveIem(),
-              onItemClick: this.clickItem,
+              clickItem: this.handleItem,
               openMenu: openMenu,
+              menuType: type
             }}>
           <ul className={clsName} {...otherProps}>
             {updatedChildren}

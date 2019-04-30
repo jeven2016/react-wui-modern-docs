@@ -11,6 +11,9 @@ export default class SubMenu extends BaseMenu {
     this.state = {
       showMenuList: true
     };
+
+    //associate the methods with a Menu instance
+    this.handleHeader = this.handleHeader.bind(this);
   }
 
   render() {
@@ -21,9 +24,8 @@ export default class SubMenu extends BaseMenu {
 
     let updatedChildren = this.updateChildren(children);
 
-    return <ul className={clsName}>
+    return <div className={clsName}>
       {updatedChildren}
-    </ul>;
+    </div>;
   }
-
 }

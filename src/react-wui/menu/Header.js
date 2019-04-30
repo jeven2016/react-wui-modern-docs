@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import {GlobalClickContext} from './Menu';
+import {MenuType} from "../common/Constants";
 
 export default class Header extends BaseComponent {
   static defaultProps = {
@@ -13,6 +14,16 @@ export default class Header extends BaseComponent {
     this.state = {
       activeHeader: false,
     };
+    this.headerClick = this.headerClick.bind(this);
+  }
+
+  headerClick(clickHeader, menuType) {
+    clickHeader(this.props.id);
+    if (menuType === MenuType.float) {
+      this.setState({
+        activeHeader: !this.state.activeHeader
+      });
+    }
   }
 
   render() {
@@ -22,9 +33,10 @@ export default class Header extends BaseComponent {
     });
     return (
         <GlobalClickContext.Consumer>
-          {({onItemClick}) => {
+          {({menuType}) => {
             return <li className={clsName}
-                       onClick={clickHeader}
+                       onClick={this.headerClick.bind(this, clickHeader,
+                           menuType)}
                        style={{paddingLeft: paddingLeft}}>
               {children}
             </li>;

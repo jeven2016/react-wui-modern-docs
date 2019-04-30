@@ -6,6 +6,11 @@ export const NavBarListAlign = {
   center: 'align-center',
 };
 
+export const MenuType = {
+  float: "float",
+  primary: "primary"
+};
+
 export const openMenuType = {
   all: 'all'
 };
