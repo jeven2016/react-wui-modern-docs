@@ -1849,7 +1849,25 @@ h6 {
       display: none; }
   .menu.float {
     flex-direction: row; }
-    .menu.float .submenu.active > .menu-header:after, .menu.float .active.menu > .menu-header:after {
+    .menu.float > .submenu .menu-header, .menu.float > .menu .menu-header {
+      flex: 0 0 auto;
+      align-self: center;
+      align-items: stretch;
+      flex-direction: row;
+      transition: all .3s; }
+      .menu.float > .submenu .menu-header:after, .menu.float > .menu .menu-header:after {
+        content: none;
+        border: none; }
+    .menu.float > .submenu > .menu-list, .menu.float > .menu > .menu-list {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      z-index: 100;
+      left: 0;
+      top: 2.625rem;
+      background-color: #fff;
+      box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.45); }
+    .menu.float > .submenu.active > .menu-header:after, .menu.float > .active.menu > .menu-header:after {
       position: absolute;
       display: block;
       left: 0;
@@ -1860,28 +1878,9 @@ h6 {
       background-color: #277ed0;
       transition: width 0.5s;
       animation: change-width-smoothly 0.3s; }
-    .menu.float .submenu.active > .menu-list, .menu.float .active.menu > .menu-list {
+    .menu.float > .submenu.active > .menu-list, .menu.float > .active.menu > .menu-list {
       display: block;
       animation: show-menu-list .5s; }
-    .menu.float .menu-header {
-      flex: 0 0 auto;
-      min-width: unset;
-      align-self: center;
-      align-items: stretch;
-      flex-direction: row;
-      transition: all .3s; }
-      .menu.float .menu-header:after {
-        content: none;
-        border: none; }
-      .menu.float .menu-header + .menu-list {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        z-index: 100;
-        left: 0;
-        top: 2.625rem;
-        background-color: #fff;
-        box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.45); }
     .menu.float > .menu-list {
       display: -ms-flexbox;
       display: -webkit-flex;

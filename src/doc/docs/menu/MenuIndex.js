@@ -55,6 +55,22 @@ export default class MenuIndex extends DocComponent {
           <MenuFloat/>
         </section>
 
+        <section>
+          <h3 id="menuFloatItems"> {intl.get('content.menu.sample.float.items')}</h3>
+        </section>
+
+        <section>
+          <h3 id="menuFloatRight"> {intl.get('content.menu.sample.float.right')}</h3>
+        </section>
+
+        <section>
+          <h3 id="menuFloatLeft"> {intl.get('content.menu.sample.float.left')}</h3>
+        </section>
+
+        <section>
+          <h3 id="menuFloatColors"> {intl.get('content.menu.sample.float.colors')}</h3>
+        </section>
+
       </div>
 
       <div className="doc right-col col-md-2">

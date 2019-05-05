@@ -1,6 +1,8 @@
 import React from 'react';
-import {Divider, Menu} from '../../../react-wui';
+import {Divider, Icon, Menu} from '../../../react-wui';
 import SamplePannel from '../../common/SamplePannel';
+import {faList} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export const MenuA = () => {
   let comp = <Menu style={{width: '15rem'}}>
@@ -240,33 +242,39 @@ export const MenuE = () => {
 export const MenuFloat = () => {
   let comp = <Menu type="float" hasBorder={true}>
     <Menu.SubMenu>
-      <Menu.Header paddingLeft="2rem">Submenu2</Menu.Header>
+      <Menu.Header>
+        <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>
+        <span>Submenu2</span>
+      </Menu.Header>
       <Menu.List>
-        <Menu.Item id="item1" paddingLeft="3rem">item1</Menu.Item>
-        <Menu.Item id="item2" paddingLeft="3rem">item2</Menu.Item>
-        <Menu.Item id="item3" paddingLeft="3rem">item3</Menu.Item>
+        <Menu.Item id="item1">item1</Menu.Item>
+        <Menu.Item id="item2">item2</Menu.Item>
+        <Menu.Item id="item3">item3</Menu.Item>
         <Menu.SubMenu>
-          <Menu.Header paddingLeft="3rem">Submenu3</Menu.Header>
+          <Menu.Header>Submenu3</Menu.Header>
           <Menu.List>
-            <Menu.Item id="item1_1" paddingLeft="4rem">item4</Menu.Item>
-            <Menu.Item id="item2_1" paddingLeft="4rem">item5</Menu.Item>
-            <Menu.Item id="item3_1" paddingLeft="4rem">item6</Menu.Item>
+            <Menu.Item id="item1_1">item4</Menu.Item>
+            <Menu.Item id="item2_1">item5</Menu.Item>
+            <Menu.Item id="item3_1">item6</Menu.Item>
           </Menu.List>
         </Menu.SubMenu>
       </Menu.List>
     </Menu.SubMenu>
     <Menu.SubMenu>
-      <Menu.Header paddingLeft="2rem">Submenu3</Menu.Header>
+      <Menu.Header>
+        <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>
+        <span>Submenu3</span>
+      </Menu.Header>
       <Menu.List>
-        <Menu.Item id="item7" paddingLeft="3rem">item7</Menu.Item>
-        <Menu.Item id="item8" paddingLeft="3rem">item8</Menu.Item>
-        <Menu.Item id="item9" paddingLeft="3rem">item9</Menu.Item>
+        <Menu.Item id="item7">item7</Menu.Item>
+        <Menu.Item id="item8">item8</Menu.Item>
+        <Menu.Item id="item9">item9</Menu.Item>
         <Menu.SubMenu>
-          <Menu.Header paddingLeft="3rem">Submenu3</Menu.Header>
+          <Menu.Header>Submenu3</Menu.Header>
           <Menu.List>
-            <Menu.Item id="item7_1" paddingLeft="4rem">item10</Menu.Item>
-            <Menu.Item id="item8_1" paddingLeft="4rem">item11</Menu.Item>
-            <Menu.Item id="item9_1" paddingLeft="4rem">item12</Menu.Item>
+            <Menu.Item id="item7_1">item10</Menu.Item>
+            <Menu.Item id="item8_1">item11</Menu.Item>
+            <Menu.Item id="item9_1">item12</Menu.Item>
           </Menu.List>
         </Menu.SubMenu>
       </Menu.List>
@@ -276,33 +284,51 @@ export const MenuFloat = () => {
   let code = `
   import React, {Component} from "react";
   import {Menu} from "react-wui";
+  import {faList} from '@fortawesome/free-solid-svg-icons';
+  import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
   
   export default class MenuSample extends Component{
   
     render(){
-      return  <Menu hasBox={true} type="dark" style={{width: "15rem"}}>
-                <Menu.Header>用户管理</Menu.Header>
-                <Menu.List>
-                  <Menu.Item id="user">用户</Menu.Item>
-                  <Menu.Item id="role">角色</Menu.Item>
-                  <Menu.Item id="authority">权限</Menu.Item>
-                  <Menu.SubMenu>
-                    <Menu.Header paddingLeft="2rem">Submenu2</Menu.Header>
-                    <Menu.List>
-                      <Menu.Item id="item1" paddingLeft="3rem">item1</Menu.Item>
-                      <Menu.Item id="item2" paddingLeft="3rem">item2</Menu.Item>
-                      <Menu.Item id="item3" paddingLeft="3rem">item3</Menu.Item>
-                      <Menu.SubMenu>
-                        <Menu.Header paddingLeft="3rem">Submenu3</Menu.Header>
-                        <Menu.List>
-                          <Menu.Item id="item1_1" paddingLeft="4rem">item4</Menu.Item>
-                          <Menu.Item id="item2_1" paddingLeft="4rem">item5</Menu.Item>
-                          <Menu.Item id="item3_1" paddingLeft="4rem">item6</Menu.Item>
-                        </Menu.List>
-                      </Menu.SubMenu>
-                    </Menu.List>
-                  </Menu.SubMenu>
-                </Menu.List>
+      return  <Menu type="float" hasBorder={true}>
+                <Menu.SubMenu>
+                  <Menu.Header>
+                    <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>
+                    <span>Submenu2</span>
+                  </Menu.Header>
+                  <Menu.List>
+                    <Menu.Item id="item1">item1</Menu.Item>
+                    <Menu.Item id="item2">item2</Menu.Item>
+                    <Menu.Item id="item3">item3</Menu.Item>
+                    <Menu.SubMenu>
+                      <Menu.Header>Submenu3</Menu.Header>
+                      <Menu.List>
+                        <Menu.Item id="item1_1">item4</Menu.Item>
+                        <Menu.Item id="item2_1">item5</Menu.Item>
+                        <Menu.Item id="item3_1">item6</Menu.Item>
+                      </Menu.List>
+                    </Menu.SubMenu>
+                  </Menu.List>
+                </Menu.SubMenu>
+                <Menu.SubMenu>
+                  <Menu.Header>
+                    <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>
+                    <span>Submenu3</span>
+                  </Menu.Header>
+                  <Menu.List>
+                    <Menu.Item id="item7">item7</Menu.Item>
+                    <Menu.Item id="item8">item8</Menu.Item>
+                    <Menu.Item id="item9">item9</Menu.Item>
+                    <Menu.SubMenu>
+                      <Menu.Header>Submenu3</Menu.Header>
+                      <Menu.List>
+                        <Menu.Item id="item7_1">item10</Menu.Item>
+                        <Menu.Item id="item8_1">item11</Menu.Item>
+                        <Menu.Item id="item9_1">item12</Menu.Item>
+                      </Menu.List>
+                    </Menu.SubMenu>
+                  </Menu.List>
+                </Menu.SubMenu>
               </Menu>;
     }
   }

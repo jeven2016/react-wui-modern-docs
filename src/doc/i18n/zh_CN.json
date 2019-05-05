@@ -17,5 +17,10 @@
   "content.menu.sample.menuC": "在Item之间添加分隔线",
   "content.menu.sample.menuD": "子菜单",
   "content.menu.sample.menuE": "黑色皮肤",
-  "content.menu.sample.menuF": "Float Menu"
+  "content.menu.sample.menuF": "Float Menu",
+  "content.menu.sample.float.items": "添加不同的Item到菜单",
+  "content.menu.sample.float.right": "右侧Item占据剩余空间",
+  "content.menu.sample.float.left": "左侧Item占据剩余空间",
+  "content.menu.sample.float.colors": "Item中的文字显示不同颜色的文字"
+
 }
