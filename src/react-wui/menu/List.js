@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
-import {GlobalClickContext} from './Menu';
+import {MenuContext} from "../Utils";
 
 export default class List extends BaseComponent {
   static defaultProps = {
@@ -13,13 +13,13 @@ export default class List extends BaseComponent {
     });
 
     return (
-        <GlobalClickContext.Consumer>
+        <MenuContext.Consumer>
           {({onClick, activeItem}) => (
               <ul className={clsName}>
                 {children}
               </ul>
           )}
-        </GlobalClickContext.Consumer>
+        </MenuContext.Consumer>
     );
   }
 

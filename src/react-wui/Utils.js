@@ -1,12 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {isString} from 'lodash';
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
   return Array.isArray(value);
 };
-
-
 
 //split the class by blank space
 const _splitClassName = (className) => {
@@ -88,7 +86,11 @@ export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-
 ///////////////////////////////////////
 
 export {isNil, isObject} from 'lodash';
+
+// https://github.com/facebook/react/issues/13969
+// context should be placed in a individual file
+export const MenuContext = React.createContext({});
+

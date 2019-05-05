@@ -1,12 +1,11 @@
 import React from 'react';
-import {isNil} from '../Utils';
+import {isNil, MenuContext} from '../Utils';
 import SubMenu from './SubMenu';
 import Header from './Header';
 import List from './List';
 import Item from './Item';
 import BaseMenu from './BaseMenu';
-
-export const GlobalClickContext = React.createContext();
+import {MenuType} from "../common/Constants";
 
 export default class Menu extends BaseMenu {
   static defaultProps = {
@@ -48,6 +47,22 @@ export default class Menu extends BaseMenu {
     return propsItem;
   }
 
+  updateChildren(children) {
+    const {type} = this.props;
+    let chd = children;
+    if (type === MenuType.float) {
+      chd = React.Children.map(children, child => {
+        if (child.type === SubMenu) {
+          return React.cloneElement(child, {
+            isTopSubMenu: true,
+          });
+        }
+
+      });
+    }
+    return super.updateChildren(chd);
+  }
+
   render() {
     const {
       block, className, hasBorder, children,
@@ -73,7 +88,7 @@ export default class Menu extends BaseMenu {
     let updatedChildren = this.updateChildren(children);
 
     return (
-        <GlobalClickContext.Provider
+        <MenuContext.Provider
             value={{
               activeItem: this.getCurrentActiveIem(),
               clickItem: this.handleItem,
@@ -83,7 +98,7 @@ export default class Menu extends BaseMenu {
           <ul className={clsName} {...otherProps}>
             {updatedChildren}
           </ul>
-        </GlobalClickContext.Provider>
+        </MenuContext.Provider>
     );
   }
 

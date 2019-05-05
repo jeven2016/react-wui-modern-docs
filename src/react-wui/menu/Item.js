@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
-import {GlobalClickContext} from './Menu';
+import {MenuContext} from "../Utils";
 
 export default class Item extends BaseComponent {
   static defaultProps = {
@@ -17,7 +17,7 @@ export default class Item extends BaseComponent {
     const {className, active, hasBox, disabled, children, paddingLeft, id, hasBackground} = this.props;
 
     return (
-        <GlobalClickContext.Consumer>
+        <MenuContext.Consumer>
           {({activeItem, clickItem}) => {
             let clsName = this.getClass({
               "with-box": hasBox,
@@ -33,7 +33,7 @@ export default class Item extends BaseComponent {
             </li>;
           }}
 
-        </GlobalClickContext.Consumer>
+        </MenuContext.Consumer>
     );
   }
 }

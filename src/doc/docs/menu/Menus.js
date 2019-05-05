@@ -238,7 +238,7 @@ export const MenuE = () => {
 };
 
 export const MenuFloat = () => {
-  let comp = <Menu type="float" hasBorder={false}>
+  let comp = <Menu type="float" hasBorder={true}>
     <Menu.SubMenu>
       <Menu.Header paddingLeft="2rem">Submenu2</Menu.Header>
       <Menu.List>

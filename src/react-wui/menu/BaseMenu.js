@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import Header from './Header';
+import Menu from "./Menu";
 
 export default class BaseMenu extends BaseComponent {
   constructor(args) {
@@ -45,6 +46,7 @@ export default class BaseMenu extends BaseComponent {
       }
       return child;
     });
+
     return updatedChildren;
   }
 
