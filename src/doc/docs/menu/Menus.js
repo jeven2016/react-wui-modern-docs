@@ -240,7 +240,7 @@ export const MenuE = () => {
 };
 
 export const MenuFloat = () => {
-  let comp = <Menu type="float" hasBorder={true}>
+  let comp = <Menu type="float" hasBorder={true} onClickItem={()=>{alert('yes'); return false;}}>
     <Menu.SubMenu>
       <Menu.Header>
         <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>

@@ -19,6 +19,7 @@ export default class Item extends BaseComponent {
       return;
     }
     let closeMenu = clickItem(this.props.id);
+    console.log(clickItem);
 
     if (clickFloatMenuItem) {
       clickFloatMenuItem(this.props.id, closeMenu, evt);
