@@ -8,8 +8,6 @@
   "home.title.about.documentation": "文档中心",
   "main.navbar.button": "Button 按钮",
   "main.navbar.menu": "Menu 菜单",
-
-
   "content.menu.title": "Menu 菜单",
   "content.menu.simple.desc": "Menu控件中包含一组可选的导航选项，您可以使用该控件进行导航的切换。",
   "content.menu.sample.menu": "一个极简的菜单",
@@ -17,10 +15,12 @@
   "content.menu.sample.menuC": "在Item之间添加分隔线",
   "content.menu.sample.menuD": "子菜单",
   "content.menu.sample.menuE": "黑色皮肤",
-  "content.menu.sample.menuF": "Float Menu",
-  "content.menu.sample.float.items": "添加不同的Item到菜单",
+  "content.menu.sample.menuF": "水平展示的菜单",
+  "content.menu.sample.float.items": "水平展示的Item",
   "content.menu.sample.float.right": "右侧Item占据剩余空间",
   "content.menu.sample.float.left": "左侧Item占据剩余空间",
-  "content.menu.sample.float.colors": "Item中的文字显示不同颜色的文字"
-
+  "content.menu.sample.float.colors": "Item中的文字显示不同颜色的文字",
+  "content.menu.sample.float.components": "在Item中放置其他组件",
+  "content.menu.sample.float.disabled.menu": "禁用菜单",
+  "content.menu.sample.float.disabled.menu.item": "禁用菜单Item"
 }

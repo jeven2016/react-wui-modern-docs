@@ -1,8 +1,9 @@
 import React from 'react';
 import BaseMenu from './BaseMenu';
-import {MenuContext} from "../Utils";
-import {MenuType} from "../common/Constants";
+import {FloatMenuContext, isFloatMenu, MenuContext} from "../Utils";
 import {WindowEventHandler} from "../event";
+import Header from "./Header";
+import List from "./List";
 
 export default class SubMenu extends BaseMenu {
   static defaultProps = {
@@ -23,6 +24,7 @@ export default class SubMenu extends BaseMenu {
 
     //associate the methods with a Menu instance
     this.handleHeader = this.handleHeader.bind(this);
+    this.handleFloatMenuItem = this.handleFloatMenuItem.bind(this);
 
     this.ref = React.createRef();
   }
@@ -55,35 +57,71 @@ export default class SubMenu extends BaseMenu {
 
   handleHeader(headerId, evt) {
     const {isTopSubMenu} = this.props;
-    if (isTopSubMenu && this.isFloatMenu()) {
+    if (isTopSubMenu && this.checkMenu()) {
       this.updateActiveStatus(true);
     } else {
       super.handleHeader(headerId, evt);
     }
   }
 
-  isFloatMenu() {
-    return this.context.menuType === MenuType.float;
+  handleFloatMenuItem(id, closeMenu = true, evt) {
+    if (this.checkMenu()) {
+      this.updateActiveStatus(!closeMenu);
+    }
+  }
+
+  checkMenu() {
+    return isFloatMenu(this.context.menuType);
+  }
+
+  updateChildren(children) {
+    let chd = React.Children.map(children, (child) => {
+      let childType = child.type;
+      if (childType === Header) {
+        return React.cloneElement(child, {
+          clickHeader: this.handleHeader,
+        });
+      }
+
+      if (this.checkMenu() && childType === List) {
+        return React.cloneElement(child, {
+          clickFloatMenuItem: this.handleFloatMenuItem,
+        });
+      }
+      return child;
+    });
+
+    return chd;
   }
 
   render() {
     const {className, children, isTopSubMenu} = this.props;
     let clsName = this.getClass({
-      'close': !this.isFloatMenu()
+      'close': !this.checkMenu()
           && !this.state.showMenuList,
-      active: this.isFloatMenu()
+      active: this.checkMenu()
           && this.state.activeFloatMenu
     });
 
     console.log("isTopSubMenu=" + isTopSubMenu);
     let updatedChildren = this.updateChildren(children);
 
-    let evtHandler = isTopSubMenu && this.isFloatMenu() ?
+    let evtHandler = isTopSubMenu && this.checkMenu() ?
         <WindowEventHandler onClick={this.closeFloatMenu.bind(this)}/> : null;
 
-    return <div className={clsName} ref={this.ref}>
+    let content = <div className={clsName} ref={this.ref}>
       {evtHandler}
       {updatedChildren}
     </div>;
+
+    // create a submenu context for float menu
+    if (isTopSubMenu) {
+      return <FloatMenuContext.Provider value={{
+        clickFloatMenuItem: this.handleFloatMenuItem
+      }}>
+        {content}
+      </FloatMenuContext.Provider>
+    }
+    return content;
   }
 }

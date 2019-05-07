@@ -10,13 +10,14 @@ import {MenuType} from "../common/Constants";
 export default class Menu extends BaseMenu {
   static defaultProps = {
     className: 'menu',
+    disabled: false,
     hasBorder: true,
     hasBox: false,
     activeItem: null,
     openMenu: ['all'], // menu id array or 'all'
     onClickItem: null,
     onClickHeader: null,
-    type: null, //primary, dark, float
+    type: null //primary, dark, float
   };
 
   static Header = Header;
@@ -54,18 +55,25 @@ export default class Menu extends BaseMenu {
       chd = React.Children.map(children, child => {
         if (child.type === SubMenu) {
           return React.cloneElement(child, {
+            //mark this menu is SubMenu and can be folded
             isTopSubMenu: true,
           });
         }
-
+        if (child.type === Header) {
+          return React.cloneElement(child, {
+            clickHeader: this.handleHeader,
+          });
+        }
+        return child;
       });
     }
-    return super.updateChildren(chd);
+    return chd;
   }
 
   render() {
     const {
       block, className, hasBorder, children,
+      disabled,
       type,
       onClickHeader,
       onClickItem,
@@ -85,7 +93,7 @@ export default class Menu extends BaseMenu {
       'close': !this.state.showMenuList,
     });
 
-    let updatedChildren = this.updateChildren(children);
+    let updatedChildren = this.updateChildren(children, type);
 
     return (
         <MenuContext.Provider
@@ -93,7 +101,8 @@ export default class Menu extends BaseMenu {
               activeItem: this.getCurrentActiveIem(),
               clickItem: this.handleItem,
               openMenu: openMenu,
-              menuType: type
+              menuType: type,
+              menuDisabled: disabled
             }}>
           <ul className={clsName} {...otherProps}>
             {updatedChildren}

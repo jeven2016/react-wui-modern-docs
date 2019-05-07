@@ -67,6 +67,15 @@ $header-height: 4rem;
     //width: 10rem;
     position: sticky;
     border-left: 1px dotted rgba(0, 0, 0, .1);
+
+    .menu {
+      font-size: 0.875rem;
+      color: #838383;
+
+      .item {
+        padding: 0.2rem 1rem;
+      }
+    }
   }
 
   &.title-link {
@@ -86,32 +95,33 @@ $header-height: 4rem;
     font-weight: bold;
   }
 
-  .submenu > .menu-list > .item, .menu > .menu-list > .item {
-    padding-left: 2rem;
-  }
+  /*  .submenu > .menu-list > .item, .menu > .menu-list > .item {
+      padding-left: 2rem;
+    }*/
 
 
   .doc-sample-panel {
     margin-bottom: 3rem;
+
     .doc-title {
       display: flex;
       justify-content: flex-end;
       cursor: pointer;
       color: #ababab;
 
-      &:hover{
+      &:hover {
         color: #277ed0;
       }
     }
 
-    .doc-title-item{
+    .doc-title-item {
       display: flex;
       font-size: 2rem;
 
       flex-direction: column;
     }
 
-    .doc-code{
+    .doc-code {
       font-size: 1rem;
       font-weight: 400;
     }

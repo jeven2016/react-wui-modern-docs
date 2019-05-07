@@ -1,5 +1,6 @@
 import React from 'react';
 import {isString} from 'lodash';
+import {MenuType} from "./common/Constants";
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
@@ -93,4 +94,9 @@ export {isNil, isObject} from 'lodash';
 // https://github.com/facebook/react/issues/13969
 // context should be placed in a individual file
 export const MenuContext = React.createContext({});
+export const FloatMenuContext = React.createContext({});
+
+export const isFloatMenu = (type) => {
+  return type === MenuType.float;
+};
 

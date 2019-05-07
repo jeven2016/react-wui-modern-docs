@@ -1,7 +1,8 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import Header from './Header';
-import Menu from "./Menu";
+import {isFloatMenu} from "../Utils";
+import {isNil} from "lodash";
 
 export default class BaseMenu extends BaseComponent {
   constructor(args) {
@@ -31,23 +32,19 @@ export default class BaseMenu extends BaseComponent {
     });
 
     let callback = this.props.onClickItem;
-    if (callback) {
-      callback(id);
+    let value = callback ? callback(id) : null;
+   /* if (!isFloatMenu(this.props.type)) {
+      return;
     }
-  }
 
-  updateChildren(children) {
-    let updatedChildren = React.Children.map(children, (child) => {
-      let childType = child.type;
-      if (childType === Header) {
-        return React.cloneElement(child, {
-          clickHeader: this.handleHeader,
-        });
-      }
-      return child;
-    });
-
-    return updatedChildren;
+    //if 'false' returned from onClick method
+    if (!isNil(value) && !value) {
+      //do not close the float menu list
+      return;
+    }
+    this.setState({
+      showMenuList: false,
+    });*/
   }
 
 }

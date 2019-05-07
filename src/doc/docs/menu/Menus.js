@@ -1,7 +1,7 @@
 import React from 'react';
-import {Divider, Icon, Menu} from '../../../react-wui';
+import {Button, Divider, Dropdown, Icon, Input, Menu} from '../../../react-wui';
 import SamplePannel from '../../common/SamplePannel';
-import {faList} from '@fortawesome/free-solid-svg-icons';
+import {faList, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export const MenuA = () => {
@@ -330,6 +330,377 @@ export const MenuFloat = () => {
                   </Menu.List>
                 </Menu.SubMenu>
               </Menu>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const MenuFloatItems = () => {
+  let comp = <>
+        <div>
+          <Menu type="float">
+            <Menu.List>
+              <Menu.Item id="user">用户</Menu.Item>
+              <Menu.Item id="role">角色</Menu.Item>
+              <Menu.Item id="authority">权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+        <div>
+          <Menu hasBox={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
+              <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+              <Menu.Item id="authority" hasBox={true}
+                         hasBackground={true}>权限</Menu.Item>
+              <Menu.Item id="setting" hasBox={true}
+                         hasBackground={true}>设置</Menu.Item>
+              <Menu.Item id="security" hasBox={true}
+                         hasBackground={true}>安全</Menu.Item>
+              <Menu.Item id="mgnt" hasBox={true}
+                         hasBackground={true}>管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+      </>
+  ;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class MenuSample extends Component{
+  
+    render(){
+      return  <>
+                <div>
+                  <Menu hasBox={true} type="float">
+                    <Menu.List>
+                      <Menu.Item id="user">用户</Menu.Item>
+                      <Menu.Item id="role">角色</Menu.Item>
+                      <Menu.Item id="authority">权限</Menu.Item>
+                      <Menu.Item id="setting">设置</Menu.Item>
+                      <Menu.Item id="security">安全</Menu.Item>
+                      <Menu.Item id="mgnt">管理</Menu.Item>
+                    </Menu.List>
+                  </Menu>
+                </div>
+                <div>
+                  <Menu hasBox={true} type="float" style={{marginTop: "2rem"}}>
+                    <Menu.List>
+                      <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
+                      <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+                      <Menu.Item id="authority" hasBox={true}
+                                 hasBackground={true}>权限</Menu.Item>
+                      <Menu.Item id="setting" hasBox={true}
+                                 hasBackground={true}>设置</Menu.Item>
+                      <Menu.Item id="security" hasBox={true}
+                                 hasBackground={true}>安全</Menu.Item>
+                      <Menu.Item id="mgnt" hasBox={true}
+                                 hasBackground={true}>管理</Menu.Item>
+                    </Menu.List>
+                  </Menu>
+                </div>
+              </>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const MenuFloatRight = () => {
+  let comp = <>
+        <div>
+          <Menu type="float" block={true}>
+            <Menu.List>
+              <Menu.Item id="user">用户</Menu.Item>
+              <Menu.Item id="role">角色</Menu.Item>
+              <Menu.Item id="authority">权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+        <div>
+          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
+              <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+              <Menu.Item id="authority" hasBox={true}
+                         hasBackground={true}>权限</Menu.Item>
+              <Menu.Item id="setting" hasBox={true}
+                         hasBackground={true}>设置</Menu.Item>
+              <Menu.Item id="security" hasBox={true}
+                         hasBackground={true}>安全</Menu.Item>
+              <Menu.Item id="mgnt" hasBox={true}
+                         hasBackground={true} align="right">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+      </>
+  ;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class MenuSample extends Component{
+  
+    render(){
+      return  <>
+        <div>
+          <Menu type="float" block={true}>
+            <Menu.List>
+              <Menu.Item id="user">用户</Menu.Item>
+              <Menu.Item id="role">角色</Menu.Item>
+              <Menu.Item id="authority">权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+        <div>
+          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
+              <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+              <Menu.Item id="authority" hasBox={true}
+                         hasBackground={true}>权限</Menu.Item>
+              <Menu.Item id="setting" hasBox={true}
+                         hasBackground={true}>设置</Menu.Item>
+              <Menu.Item id="security" hasBox={true}
+                         hasBackground={true}>安全</Menu.Item>
+              <Menu.Item id="mgnt" hasBox={true}
+                         hasBackground={true} align="right">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+      </>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const MenuFloatLeft = () => {
+  let comp = <>
+        <div>
+          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="user" hasBox={true} hasBackground={true}
+                         align="left">用户</Menu.Item>
+              <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+              <Menu.Item id="authority" hasBox={true}
+                         hasBackground={true}>权限</Menu.Item>
+              <Menu.Item id="setting" hasBox={true}
+                         hasBackground={true}>设置</Menu.Item>
+              <Menu.Item id="security" hasBox={true}
+                         hasBackground={true}>安全</Menu.Item>
+              <Menu.Item id="mgnt" hasBox={true} hasBackground={true}>管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+      </>
+  ;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class MenuSample extends Component{
+  
+    render(){
+      return  <div>
+          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="user" hasBox={true} hasBackground={true} align="left">用户</Menu.Item>
+              <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+              <Menu.Item id="authority" hasBox={true}
+                         hasBackground={true}>权限</Menu.Item>
+              <Menu.Item id="setting" hasBox={true}
+                         hasBackground={true}>设置</Menu.Item>
+              <Menu.Item id="security" hasBox={true}
+                         hasBackground={true}>安全</Menu.Item>
+              <Menu.Item id="mgnt" hasBox={true} hasBackground={true} >管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const MenuFloatComponents = () => {
+  let comp = <>
+        <div>
+          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="button">
+                <Button color="green">Button</Button>
+              </Menu.Item>
+              <Menu.Item id="input">
+                <Input.IconInput>
+                  <Input placeholder="Icon input..."/>
+                  <Icon>
+                    <FontAwesomeIcon icon={faSearch}/>
+                  </Icon>
+                </Input.IconInput>
+              </Menu.Item>
+              <Menu.Item id="">
+                <Dropdown type="button">
+                  <Button>Dropdown</Button>
+                  <Menu position="right">
+                    <Menu.List>
+                      <Menu.Item>Action 1</Menu.Item>
+                      <Menu.Item>Action 2</Menu.Item>
+                      <Menu.Item>Action 3</Menu.Item>
+                      <Menu.Item>Action 4</Menu.Item>
+                    </Menu.List>
+                  </Menu>
+                </Dropdown>
+              </Menu.Item>
+
+            </Menu.List>
+          </Menu>
+        </div>
+      </>
+  ;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Button, Dropdown, Icon, Input, Menu}  from "react-wui";
+  
+  export default class MenuSample extends Component{
+  
+    render(){
+      return   <div>
+          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+            <Menu.List>
+              <Menu.Item id="button">
+                <Button color="green">Button</Button>
+              </Menu.Item>
+              <Menu.Item id="input">
+                <Input.IconInput>
+                  <Input placeholder="Icon input..."/>
+                  <Icon>
+                    <FontAwesomeIcon icon={faSearch}/>
+                  </Icon>
+                </Input.IconInput>
+              </Menu.Item>
+              <Menu.Item id="">
+                <Dropdown type="button">
+                  <Button>Dropdown</Button>
+                  <Menu position="right">
+                    <Menu.List>
+                      <Menu.Item>Action 1</Menu.Item>
+                      <Menu.Item>Action 2</Menu.Item>
+                      <Menu.Item>Action 3</Menu.Item>
+                      <Menu.Item>Action 4</Menu.Item>
+                    </Menu.List>
+                  </Menu>
+                </Dropdown>
+              </Menu.Item>
+
+            </Menu.List>
+          </Menu>
+        </div>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const MenuDisabled = () => {
+  let comp = <>
+        <div>
+          <Menu type="float" block={true} disabled={true}>
+            <Menu.List>
+              <Menu.Item id="user">用户</Menu.Item>
+              <Menu.Item id="role">角色</Menu.Item>
+              <Menu.Item id="authority">权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+      </>
+  ;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class MenuSample extends Component{
+  
+    render(){
+      return <div>
+          <Menu type="float" block={true} disabled={true}>
+            <Menu.List>
+              <Menu.Item id="user">用户</Menu.Item>
+              <Menu.Item id="role">角色</Menu.Item>
+              <Menu.Item id="authority">权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const MenuItemDisabled = () => {
+  let comp = <>
+        <div>
+          <Menu type="float">
+            <Menu.List>
+              <Menu.Item id="user" disabled={true}>用户</Menu.Item>
+              <Menu.Item id="role" disabled={true}>角色</Menu.Item>
+              <Menu.Item id="authority" disabled={true}>权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
+      </>
+  ;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class MenuSample extends Component{
+  
+    render(){
+      return  <div>
+          <Menu type="float">
+            <Menu.List>
+              <Menu.Item id="user" disabled={true}>用户</Menu.Item>
+              <Menu.Item id="role" disabled={true}>角色</Menu.Item>
+              <Menu.Item id="authority" disabled={true}>权限</Menu.Item>
+              <Menu.Item id="setting">设置</Menu.Item>
+              <Menu.Item id="security">安全</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
+            </Menu.List>
+          </Menu>
+        </div>
     }
   }
   `;
