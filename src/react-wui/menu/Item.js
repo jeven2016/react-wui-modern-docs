@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import {FloatMenuContext, MenuContext} from "../Utils";
+import PropTypes from "prop-types";
 
 export default class Item extends BaseComponent {
   static defaultProps = {
@@ -11,14 +12,21 @@ export default class Item extends BaseComponent {
     align: null, //left or right
   };
 
+  static propsType = {
+    className: PropTypes.string,
+    hasBox: PropTypes.bool, //make the item show a box
+    hasBackground: PropTypes.bool, // show a background for menu items
+    disabled: PropTypes.bool, //disable this Menu
+    align: PropTypes.oneOf(["left", "right"]), // align this item to left or right position
+  };
+
   static contextType = MenuContext;
 
   itemClick(clickItem, clickFloatMenuItem, evt) {
     if (this.props.disabled || this.context.menuDisabled) {
-      console.log("this item is disabled");
       return;
     }
-    let closeMenu = clickItem(this.props.id);
+    let closeMenu = clickItem(this.props.id, evt);
     console.log(clickItem);
 
     if (clickFloatMenuItem) {
@@ -36,7 +44,8 @@ export default class Item extends BaseComponent {
       children,
       paddingLeft,
       id,
-      hasBackground
+      hasBackground,
+      ...otherProps
     } = this.props;
 
     return (
@@ -49,7 +58,8 @@ export default class Item extends BaseComponent {
                         id={id}
                         style={{paddingLeft: paddingLeft}}
                         onClick={this.itemClick.bind(this, clickItem,
-                            clickFloatMenuItem)}>
+                            clickFloatMenuItem)}
+                        {...otherProps}>
                       {children}
                     </li>
                 }

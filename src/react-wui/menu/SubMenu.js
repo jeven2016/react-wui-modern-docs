@@ -4,11 +4,17 @@ import {FloatMenuContext, isFloatMenu, MenuContext} from "../Utils";
 import {WindowEventHandler} from "../event";
 import Header from "./Header";
 import List from "./List";
+import PropTypes from "prop-types";
 
 export default class SubMenu extends BaseMenu {
   static defaultProps = {
     className: 'submenu',
     isTopSubMenu: false //only for internal use
+  };
+
+  static propTypes = {
+    className: PropTypes.string, //the class name of menu
+    isTopSubMenu: PropTypes.bool //whether this submenu is direct child of a menu and can be folded
   };
 
   // Assign a contextType to read the current theme context.
@@ -29,13 +35,16 @@ export default class SubMenu extends BaseMenu {
     this.ref = React.createRef();
   }
 
+  /**
+   * Close the submenu if the menu's type is float
+   * @param evt
+   */
   closeFloatMenu(evt) {
     const {isTopSubMenu} = this.props;
     if (!isTopSubMenu) {
       return;
     }
 
-    // let subMenu= ReactDOM.findDOMNode(this);
     let inside = this.ref.current.contains(evt.target);
 
     // if the header is one child of current sub-menu, the menu list cannot be closed
@@ -45,6 +54,10 @@ export default class SubMenu extends BaseMenu {
     this.updateActiveStatus(false);
   }
 
+  /**
+   * Display submenu or not
+   * @param value status
+   */
   updateActiveStatus(value) {
     if (this.state.activeFloatMenu === value) {
       return;
@@ -55,6 +68,11 @@ export default class SubMenu extends BaseMenu {
     });
   }
 
+  /**
+   * Handle the click event
+   * @param headerId
+   * @param evt
+   */
   handleHeader(headerId, evt) {
     const {isTopSubMenu} = this.props;
     if (isTopSubMenu && this.checkMenu()) {
@@ -70,6 +88,10 @@ export default class SubMenu extends BaseMenu {
     }
   }
 
+  /**
+   * Check whether the menu is float
+   * @returns boolean
+   */
   checkMenu() {
     return isFloatMenu(this.context.menuType);
   }
@@ -103,7 +125,6 @@ export default class SubMenu extends BaseMenu {
           && this.state.activeFloatMenu
     });
 
-    console.log("isTopSubMenu=" + isTopSubMenu);
     let updatedChildren = this.updateChildren(children);
 
     let evtHandler = isTopSubMenu && this.checkMenu() ?

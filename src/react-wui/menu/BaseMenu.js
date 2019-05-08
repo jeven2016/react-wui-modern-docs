@@ -4,23 +4,20 @@ import BaseComponent from '../BaseComponent';
 export default class BaseMenu extends BaseComponent {
   constructor(args) {
     super(args);
-    // this.clickItem = this.clickItem.bind(this);
-    // this.clickHeader = this.clickHeader.bind(this);
-    //
-    console.log("target=" + new.target.name);
+    // console.log("target=" + new.target.name);
   }
 
   handleHeader(headerId, evt) {
+    debugger;
     let callback = this.props.onClickHeader;
     if (callback) {
-      callback(headerId);
+      callback(headerId, evt);
     }
 
     this.setState({
       showMenuList: !this.state.showMenuList,
     });
 
-    // preventEvent(evt);
   }
 
   handleItem(id, isHeaderClick) {

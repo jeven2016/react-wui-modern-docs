@@ -21,10 +21,6 @@ $header-height: 4rem;
     margin-bottom: 1rem;
   }
 
-  .menu-header {
-    font-weight: 600;
-  }
-
   &.header {
     height: $header-height;
 
@@ -50,6 +46,10 @@ $header-height: 4rem;
     border-right: 1px solid #fff;
     overflow-y: auto;
     overflow-x: hidden;
+
+    .menu-header {
+      font-weight: 500;
+    }
   }
 
 
@@ -172,7 +172,6 @@ $header-height: 4rem;
   .content {
     font-size: 1.5rem;
     text-align: center;
-    text-indent: 0.5rem;
   }
 
   .line {

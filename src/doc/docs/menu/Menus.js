@@ -240,24 +240,20 @@ export const MenuE = () => {
 };
 
 export const MenuFloat = () => {
-  let comp = <Menu type="float" hasBorder={true} onClickItem={()=>{alert('yes'); return false;}}>
+  let comp = <Menu type="float" hasBorder={true} onClickItem={(id, evt) => {
+    if (id === "item1") {
+      return false;
+    }
+  }}>
     <Menu.SubMenu>
       <Menu.Header>
         <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>
         <span>Submenu2</span>
       </Menu.Header>
       <Menu.List>
-        <Menu.Item id="item1">item1</Menu.Item>
-        <Menu.Item id="item2">item2</Menu.Item>
-        <Menu.Item id="item3">item3</Menu.Item>
-        <Menu.SubMenu>
-          <Menu.Header>Submenu3</Menu.Header>
-          <Menu.List>
-            <Menu.Item id="item1_1">item4</Menu.Item>
-            <Menu.Item id="item2_1">item5</Menu.Item>
-            <Menu.Item id="item3_1">item6</Menu.Item>
-          </Menu.List>
-        </Menu.SubMenu>
+        <Menu.Item id="item1">不会关闭菜单</Menu.Item>
+        <Menu.Item id="item2">关闭菜单1</Menu.Item>
+        <Menu.Item id="item3">关闭菜单2</Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
     <Menu.SubMenu>
@@ -290,24 +286,20 @@ export const MenuFloat = () => {
   export default class MenuSample extends Component{
   
     render(){
-      return  <Menu type="float" hasBorder={true}>
+      return  <Menu type="float" hasBorder={true} onClickItem={(id, evt) => {
+                if (id === "item1") {
+                  return false;
+                }
+              }}>
                 <Menu.SubMenu>
                   <Menu.Header>
                     <FontAwesomeIcon icon={faList} style={{marginRight: '0.5rem'}}/>
                     <span>Submenu2</span>
                   </Menu.Header>
                   <Menu.List>
-                    <Menu.Item id="item1">item1</Menu.Item>
-                    <Menu.Item id="item2">item2</Menu.Item>
-                    <Menu.Item id="item3">item3</Menu.Item>
-                    <Menu.SubMenu>
-                      <Menu.Header>Submenu3</Menu.Header>
-                      <Menu.List>
-                        <Menu.Item id="item1_1">item4</Menu.Item>
-                        <Menu.Item id="item2_1">item5</Menu.Item>
-                        <Menu.Item id="item3_1">item6</Menu.Item>
-                      </Menu.List>
-                    </Menu.SubMenu>
+                    <Menu.Item id="item1">不会关闭菜单</Menu.Item>
+                    <Menu.Item id="item2">关闭菜单1</Menu.Item>
+                    <Menu.Item id="item3">关闭菜单2</Menu.Item>
                   </Menu.List>
                 </Menu.SubMenu>
                 <Menu.SubMenu>

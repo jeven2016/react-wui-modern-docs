@@ -14,7 +14,10 @@ const locales = {
 
 class App extends Component {
 
-  state = {initDone: false, appliedLocale: 'zh_CN'};
+  constructor(args) {
+    super(args);
+    this.state = {initDone: false, appliedLocale: 'zh_CN'};
+  }
 
   componentDidMount() {
     this.loadLocales();
@@ -24,8 +27,8 @@ class App extends Component {
     // init method will load CLDR locale data according to currentLocale
     // react-intl-universal is singleton, so you should init it only once in your app
     intl.init({
-      currentLocale: this.state.appliedLocale,
       locales,
+      currentLocale: this.state.appliedLocale
     }).then(() => {
       // After loading CLDR locale data, start to render
       this.setState({initDone: true});

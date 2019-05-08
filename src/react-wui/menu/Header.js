@@ -2,11 +2,18 @@ import React from 'react';
 import BaseComponent from '../BaseComponent';
 import {MenuContext} from "../Utils";
 import {MenuType} from "../common/Constants";
+import PropTypes from "prop-types";
 
+/**
+ * Header Component
+ */
 export default class Header extends BaseComponent {
   static defaultProps = {
-    className: 'menu-header',
-    active: false,
+    className: 'menu-header'
+  };
+
+  static propTypes = {
+    className: PropTypes.string, //the class name of Header
   };
 
   constructor(args) {
@@ -18,7 +25,9 @@ export default class Header extends BaseComponent {
   }
 
   headerClick(clickHeader, menuType, evt) {
-    clickHeader(this.props.id, evt);
+    if (clickHeader) {
+      clickHeader(this.props.id, evt);
+    }
     if (menuType === MenuType.float) {
       this.setState({
         activeHeader: !this.state.activeHeader
@@ -28,9 +37,7 @@ export default class Header extends BaseComponent {
 
   render() {
     const {id, className, children, clickHeader, paddingLeft} = this.props;
-    let clsName = this.getClass({
-      // active: this.state.activeHeader
-    });
+    let clsName = this.getClass();
     return (
         <MenuContext.Consumer>
           {({menuType}) => {
