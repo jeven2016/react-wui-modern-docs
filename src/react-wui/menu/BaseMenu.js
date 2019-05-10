@@ -8,25 +8,26 @@ export default class BaseMenu extends BaseComponent {
   }
 
   handleHeader(headerId, evt) {
-    debugger;
     let callback = this.props.onClickHeader;
     if (callback) {
       callback(headerId, evt);
     }
 
-    this.setState({
-      showMenuList: !this.state.showMenuList,
-    });
+    if (this.props.canClose) {
+      this.setState({
+        showMenuList: !this.state.showMenuList,
+      });
+    }
 
   }
 
-  handleItem(id, isHeaderClick) {
+  handleItem(id, evt) {
     this.setState({
       clickedItem: id,
     });
 
     let callback = this.props.onClickItem;
-    return callback ? callback(id) : null;
+    return callback ? callback(id, evt) : null;
   }
 
 }

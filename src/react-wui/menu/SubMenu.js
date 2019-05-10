@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 export default class SubMenu extends BaseMenu {
   static defaultProps = {
     className: 'submenu',
+    canClose: true, // only for float menu type
     isTopSubMenu: false //only for internal use
   };
 
@@ -117,7 +118,7 @@ export default class SubMenu extends BaseMenu {
   }
 
   render() {
-    const {className, children, isTopSubMenu} = this.props;
+    const {className, canClose, children, isTopSubMenu} = this.props;
     let clsName = this.getClass({
       'close': !this.checkMenu()
           && !this.state.showMenuList,

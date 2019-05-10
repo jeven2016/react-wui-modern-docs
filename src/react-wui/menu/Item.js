@@ -22,8 +22,9 @@ export default class Item extends BaseComponent {
 
   static contextType = MenuContext;
 
-  itemClick(clickItem, clickFloatMenuItem, evt) {
-    if (this.props.disabled || this.context.menuDisabled) {
+  itemClick(clickItem, clickFloatMenuItem, autoCloseFloatSubMenu, evt) {
+    if (!autoCloseFloatSubMenu || this.props.disabled
+        || this.context.menuDisabled) {
       return;
     }
     let closeMenu = clickItem(this.props.id, evt);
@@ -50,7 +51,7 @@ export default class Item extends BaseComponent {
 
     return (
         <MenuContext.Consumer>
-          {({activeItem, clickItem, menuDisabled}) =>
+          {({activeItem, clickItem, menuDisabled, autoCloseFloatSubMenu}) =>
               <FloatMenuContext.Consumer>
                 {({clickFloatMenuItem}) =>
                     <li className={this.extracted(activeItem, clickItem,
@@ -58,7 +59,7 @@ export default class Item extends BaseComponent {
                         id={id}
                         style={{paddingLeft: paddingLeft}}
                         onClick={this.itemClick.bind(this, clickItem,
-                            clickFloatMenuItem)}
+                            clickFloatMenuItem, autoCloseFloatSubMenu)}
                         {...otherProps}>
                       {children}
                     </li>

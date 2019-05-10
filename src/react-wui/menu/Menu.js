@@ -19,10 +19,14 @@ export default class Menu extends BaseMenu {
     hasBox: false,
     hasBackground: false,
     activeItem: null,
+    setItemPaddingLeft: true,
+    canClose: true, // only for float menu type
+    autoCloseFloatSubMenu: true, //automatically close the float menu after clicked the item
     openMenu: ['all'], // menu id array or 'all'
     onClickItem: null,
     onClickHeader: null,
-    type: null //primary, dark, float
+    type: null, //primary, dark, float
+    id:null
   };
 
   static Header = Header;
@@ -52,9 +56,53 @@ export default class Menu extends BaseMenu {
       showMenuList: true,
     };
 
+    this.menuRef = React.createRef();
+
     //associate the methods with this Menu instance
     this.handleHeader = this.handleHeader.bind(this);
     this.handleItem = this.handleItem.bind(this);
+  }
+
+  componentDidMount() {
+    let menuDiv = this.menuRef.current;
+    let childNodes = menuDiv.childNodes;
+
+    let index = 1;
+    let initValue = 2;
+    let unit = "rem";
+
+    const{id}=this.props;
+    if(id!=="testMenu"){
+      return;
+    }
+    debugger;
+    childNodes.forEach(chd => {
+      /* if (!isNil(clsName) && clsName.includes("menu-list")) {
+         this.updateItem(chd.childNodes, index, initValue, unit);
+         return;
+       }*/
+      if (chd.className.includes("menu-list")) {
+        chd.childNodes.forEach(grandChd => {
+          if (grandChd.className.includes("submenu")) {
+            this.handleSubMenu(grandChd, index, initValue, unit);
+          }
+        });
+      }
+      if (chd.className.includes("submenu")) {
+        this.handleSubMenu(chd, index, initValue, unit);
+      }
+    });
+  }
+
+  handleSubMenu(chd, index, initValue, unit) {
+    chd.childNodes.forEach(childNode => {
+      if (childNode.className.includes("menu-list")) {
+        this.updateItem(childNode.childNodes, index + 1, initValue, unit);
+      }
+    });
+  }
+
+  componentDidUpdate() {
   }
 
   getCurrentActiveIem() {
@@ -69,7 +117,16 @@ export default class Menu extends BaseMenu {
 
   updateChildren(children) {
     const {type} = this.props;
-    let chd = children;
+    let chd = React.Children.map(children, child => {
+      //pass the click handler to header
+      if (child.type === Header) {
+        return React.cloneElement(child, {
+          clickHeader: this.handleHeader,
+        });
+      }
+      return child;
+    });
+
     if (type === MenuType.float) {
       chd = React.Children.map(children, child => {
         //mark this menu is SubMenu (in top level) and can be folded
@@ -79,15 +136,10 @@ export default class Menu extends BaseMenu {
           });
         }
 
-        //pass the click handler to header
-        if (child.type === Header) {
-          return React.cloneElement(child, {
-            clickHeader: this.handleHeader,
-          });
-        }
         return child;
       });
     }
+
     return chd;
   }
 
@@ -99,9 +151,13 @@ export default class Menu extends BaseMenu {
       onClickHeader,
       onClickItem,
       activeItem,
+      canClose,
       openMenu,
+      setItemPaddingLeft,
+      autoCloseFloatSubMenu,
       hasBox,
       hasBackground,
+        id,
       ...otherProps
     } = this.props;
 
@@ -123,13 +179,21 @@ export default class Menu extends BaseMenu {
               clickItem: this.handleItem,
               openMenu: openMenu,
               menuType: type,
-              menuDisabled: disabled
+              menuDisabled: disabled,
+              autoCloseFloatSubMenu: autoCloseFloatSubMenu
             }}>
-          <ul className={clsName} {...otherProps}>
+          <ul className={clsName} ref={this.menuRef} {...otherProps}>
             {updatedChildren}
           </ul>
         </MenuContext.Provider>
     );
   }
 
+  updateItem(itemNodes, index, initValue, unit) {
+    itemNodes.forEach(item => {
+      let clsName = item.className;
+      item.style.paddingLeft = `${index + initValue}${unit}`;
+      item.style.background = "red";
+    });
+  }
 }
