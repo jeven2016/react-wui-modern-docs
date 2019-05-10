@@ -4,6 +4,7 @@ import intl from 'react-intl-universal';
 import ButtonIndex from './button/ButtonIndex';
 import MenuIndex from './menu/MenuIndex';
 import {Menu} from '../../react-wui';
+import DropdownIndex from './dropdown/DropdownIndex';
 
 export default class MainPage extends Component {
 
@@ -42,7 +43,9 @@ export default class MainPage extends Component {
                     Dialog 对话框
                   </Menu.Item>
                   <Menu.Item id="DropdownItem">
-                    Dropdown 下拉框
+                    <Link to={`${match.url}/components/dropdown`}>
+                      {intl.get('main.navbar.dropdown')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="InputItem">
                     Input 输入框
@@ -104,6 +107,8 @@ export default class MainPage extends Component {
                  component={ButtonIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}
                  component={MenuIndex}/>
+          <Route exact={true} path={`${match.url}/components/dropdown`}
+                 component={DropdownIndex}/>
 
         </div>
     );

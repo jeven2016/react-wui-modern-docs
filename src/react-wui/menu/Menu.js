@@ -5,7 +5,7 @@ import Header from './Header';
 import List from './List';
 import Item from './Item';
 import BaseMenu from './BaseMenu';
-import {MenuType} from "../common/Constants";
+import {MenuClassName, MenuType} from '../common/Constants';
 import PropTypes from 'prop-types';
 
 /**
@@ -20,13 +20,14 @@ export default class Menu extends BaseMenu {
     hasBackground: false,
     activeItem: null,
     setItemPaddingLeft: true,
+    paddingLeftUnit: 'rem',
+    paddingLeftIncrement: 1,
     canClose: true, // only for float menu type
     autoCloseFloatSubMenu: true, //automatically close the float menu after clicked the item
     openMenu: ['all'], // menu id array or 'all'
     onClickItem: null,
     onClickHeader: null,
     type: null, //primary, dark, float
-    id:null
   };
 
   static Header = Header;
@@ -44,7 +45,7 @@ export default class Menu extends BaseMenu {
     openMenu: PropTypes.array, // an array includes the menu id should open by default, default value is ["all"]
     onClickItem: PropTypes.func, // a callback triggered by clicking a item
     onClickHeader: PropTypes.func, // a callback triggered by clicking a header
-    type: PropTypes.oneOf(["primary", "dark", "float"]) // menu type
+    type: PropTypes.oneOf(['primary', 'dark', 'float']), // menu type
     // type: PropTypes.arrayOf(["primary", "dark", "float"]) // menu type
   };
 
@@ -64,45 +65,32 @@ export default class Menu extends BaseMenu {
   }
 
   componentDidMount() {
-    let menuDiv = this.menuRef.current;
-    let childNodes = menuDiv.childNodes;
-
-    let index = 1;
-    let initValue = 2;
-    let unit = "rem";
-
-    const{id}=this.props;
-    if(id!=="testMenu"){
-      return;
-    }
-    debugger;
-    childNodes.forEach(chd => {
-      /* if (!isNil(clsName) && clsName.includes("menu-list")) {
-         this.updateItem(chd.childNodes, index, initValue, unit);
-         return;
-       }*/
-      if (chd.className.includes("menu-list")) {
-        chd.childNodes.forEach(grandChd => {
-          if (grandChd.className.includes("submenu")) {
-            this.handleSubMenu(grandChd, index, initValue, unit);
-          }
-        });
-      }
-      if (chd.className.includes("submenu")) {
-        this.handleSubMenu(chd, index, initValue, unit);
-      }
-    });
-  }
-
-  handleSubMenu(chd, index, initValue, unit) {
-    chd.childNodes.forEach(childNode => {
-      if (childNode.className.includes("menu-list")) {
-        this.updateItem(childNode.childNodes, index + 1, initValue, unit);
-      }
-    });
+    this.updatePaddingLeft(this.menuRef.current, 0);
   }
 
   componentDidUpdate() {
+    this.updatePaddingLeft(this.menuRef.current, 0);
+  }
+
+  updatePaddingLeft(menu, index = 0) {
+    if (!this.props.setItemPaddingLeft) {
+      return;
+    }
+    if (menu.hasChildNodes()) {
+      let menuChildNodes = menu.childNodes;
+      menuChildNodes.forEach(childNode => {
+        if (this.hasClass(childNode, MenuClassName.list)) {
+          this.updateItem(childNode.childNodes, index + 1, index);
+        }
+        if (this.hasClass(childNode, MenuClassName.header)) {
+          this.updateItem([childNode], index === 0 ? 1 : index, index);
+        }
+        if (this.hasClass(childNode, MenuClassName.submenu)) {
+          this.updatePaddingLeft(childNode, index + 1);
+        }
+      });
+    }
+
   }
 
   getCurrentActiveIem() {
@@ -143,6 +131,23 @@ export default class Menu extends BaseMenu {
     return chd;
   }
 
+  updateItem(itemNodes, next, index) {
+    const {paddingLeftIncrement, paddingLeftUnit} = this.props;
+    itemNodes.forEach(item => {
+      if (this.hasClass(item, MenuClassName.submenu)) {
+        this.updatePaddingLeft(item, ++index);
+      }
+      if (this.hasClass(item, MenuClassName.item)
+          || this.hasClass(item, MenuClassName.header)) {
+        item.style.paddingLeft = `${next *
+        paddingLeftIncrement}${paddingLeftUnit}`;
+      }
+    });
+  }
+
+  hasClass = (node, className) => !isNil(node.className) &&
+      node.className.includes(className);
+
   render() {
     const {
       block, className, hasBorder, children,
@@ -154,17 +159,18 @@ export default class Menu extends BaseMenu {
       canClose,
       openMenu,
       setItemPaddingLeft,
+      paddingLeftUnit,
+      paddingLeftIncrement,
       autoCloseFloatSubMenu,
       hasBox,
       hasBackground,
-        id,
       ...otherProps
     } = this.props;
 
     let clsName = this.getClass({
       'clear-border': !hasBorder,
-      "with-box": hasBox,
-      "with-bg": hasBackground,
+      'with-box': hasBox,
+      'with-bg': hasBackground,
       [type]: type,
       block,
       'close': !this.state.showMenuList,
@@ -180,7 +186,7 @@ export default class Menu extends BaseMenu {
               openMenu: openMenu,
               menuType: type,
               menuDisabled: disabled,
-              autoCloseFloatSubMenu: autoCloseFloatSubMenu
+              autoCloseFloatSubMenu: autoCloseFloatSubMenu,
             }}>
           <ul className={clsName} ref={this.menuRef} {...otherProps}>
             {updatedChildren}
@@ -189,11 +195,4 @@ export default class Menu extends BaseMenu {
     );
   }
 
-  updateItem(itemNodes, index, initValue, unit) {
-    itemNodes.forEach(item => {
-      let clsName = item.className;
-      item.style.paddingLeft = `${index + initValue}${unit}`;
-      item.style.background = "red";
-    });
-  }
 }

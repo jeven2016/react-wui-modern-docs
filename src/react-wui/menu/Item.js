@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
-import {FloatMenuContext, MenuContext} from "../Utils";
-import PropTypes from "prop-types";
+import {FloatMenuContext, MenuContext} from '../Utils';
+import PropTypes from 'prop-types';
 
 export default class Item extends BaseComponent {
   static defaultProps = {
@@ -17,7 +17,7 @@ export default class Item extends BaseComponent {
     hasBox: PropTypes.bool, //make the item show a box
     hasBackground: PropTypes.bool, // show a background for menu items
     disabled: PropTypes.bool, //disable this Menu
-    align: PropTypes.oneOf(["left", "right"]), // align this item to left or right position
+    align: PropTypes.oneOf(['left', 'right']), // align this item to left or right position
   };
 
   static contextType = MenuContext;
@@ -80,14 +80,14 @@ export default class Item extends BaseComponent {
       children,
       paddingLeft,
       id,
-      hasBackground
+      hasBackground,
     } = this.props;
     let clsName = this.getClass({
       [align]: align,
-      "with-box": hasBox,
-      "with-bg": hasBackground,
+      'with-box': hasBox,
+      'with-bg': hasBackground,
       active: activeItem != null && activeItem === this.props.id,
-      disabled: disabled || menuDisabled
+      disabled: disabled || menuDisabled,
     });
     return clsName;
   }

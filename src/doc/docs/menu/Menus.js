@@ -109,7 +109,7 @@ export const MenuC = () => {
 };
 
 export const MenuD = () => {
-  let comp = <Menu id="testMenu" hasBox={true} type="primary" style={{width: '15rem'}}>
+  let comp = <Menu hasBox={true} type="primary" style={{width: '15rem'}}>
     <Menu.Header>用户管理</Menu.Header>
     <Menu.List>
       <Menu.Item id="user">用户</Menu.Item>
@@ -330,7 +330,7 @@ export const MenuFloat = () => {
     render(){
       return  <Menu type="float" hasBorder={true} onClickItem={(id, evt) => {
                 if (id === "item1") {
-                  return false;
+                  return false
                 }
               }}>
                 <Menu.SubMenu>

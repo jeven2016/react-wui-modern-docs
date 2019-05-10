@@ -7,10 +7,17 @@ export const NavBarListAlign = {
 };
 
 export const MenuType = {
-  float: "float",
-  primary: "primary"
+  float: 'float',
+  primary: 'primary',
 };
 
 export const openMenuType = {
-  all: 'all'
+  all: 'all',
+};
+
+export const MenuClassName = {
+  header: 'menu-header',
+  list: 'menu-list',
+  submenu: 'submenu',
+  item: 'item',
 };
