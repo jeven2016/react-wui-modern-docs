@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
-import {FloatMenuContext, MenuContext} from '../Utils';
+import {FloatMenuContext, isNil, MenuContext} from '../Utils';
 import PropTypes from 'prop-types';
 
 export default class Item extends BaseComponent {
@@ -27,8 +27,12 @@ export default class Item extends BaseComponent {
         || this.context.menuDisabled) {
       return;
     }
-    let closeMenu = clickItem(this.props.id, evt);
-    console.log(clickItem);
+    const itemInfo = {
+      id: this.props.id,
+      value: this.props.value,
+      text: !isNil(this.props.text) ? this.props.text : this.props.children,
+    };
+    let closeMenu = clickItem(itemInfo, evt);
 
     if (clickFloatMenuItem) {
       clickFloatMenuItem(this.props.id, closeMenu, evt);
@@ -46,6 +50,8 @@ export default class Item extends BaseComponent {
       paddingLeft,
       id,
       hasBackground,
+      value,
+      text,
       ...otherProps
     } = this.props;
 
@@ -61,7 +67,7 @@ export default class Item extends BaseComponent {
                         onClick={this.itemClick.bind(this, clickItem,
                             clickFloatMenuItem, autoCloseFloatSubMenu)}
                         {...otherProps}>
-                      {children}
+                      {!isNil(text) ? text : children}
                     </li>
                 }
               </FloatMenuContext.Consumer>

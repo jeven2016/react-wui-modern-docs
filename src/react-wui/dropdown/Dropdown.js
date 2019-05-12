@@ -1,86 +1,88 @@
-import React, {Component} from 'react';
-import classnames from 'classnames';
-import {removeClass, toggleClass} from '../Utils';
-import {preventEvent, WindowEventHandler} from '../event';
-import {Menu} from '../menu';
+import React from 'react';
+import {WindowEventHandler} from '../event';
+import Menu from '../menu';
+import BaseComponent from '../BaseComponent';
+import PropTypes from 'prop-types';
 
-export default class Dropdown extends Component {
+export default class Dropdown extends BaseComponent {
   static defaultProps = {
+    type: 'normal', //simple, button, normal
+    triggerBy: 'click', /*trigger showing the menu by click or hover event*/
+    onItemClick: null,
+
     className: 'dropdown',
     buttonDpClassName: 'button-dropdown',
     textDpClassName: 'simple dropdown',
 
-    triggerBy: 'click', /*trigger showing the menu by click or hover event*/
-
     hover_id: 'hover',
+  };
+  static propTypes = {
+    type: PropTypes.oneOf(['simple', 'button', 'normal']),
+
   };
 
   constructor(args) {
     super(args);
+    this.dpRef = React.createRef();
+    this.clickItem = this.clickItem.bind(this);
     this.state = {
-      currentDpClassName: null,
+      active: false,
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  isTriggeredByMouseHover() {
-    const {triggerBy, hover_id} = this.props;
-    if (triggerBy !== hover_id) {
-      return false;
+  clickItem(itemInfo, evt) {
+    console.log(itemInfo);
+    let closeMenu = this.onItemClick ? this.onItemClick(itemInfo, evt) : true;
+    if (closeMenu) {
+      this.setState({active: false});
     }
-    return true;
   }
 
-  handleClick(evt) {
-    if (this.isTriggeredByMouseHover()) {
-      return;
-    }
-    this.toggleMenuStatus();
-    preventEvent(evt);
-  }
-
-  toggleMenuStatus() {
-    const {children, className} = this.props;
-    let dpCls = toggleClass(this.getDpClassName(), 'active');
-    this.setState({currentDpClassName: dpCls});
-  }
-
-  closeMenu() {
-    // let dp = findDOMNode(this);
-    this.setState({
-      currentDpClassName: removeClass(this.state.currentDpClassName, 'active'),
+  updateChildren() {
+    const {children} = this.props;
+    return React.Children.map(children, child => {
+      let childType = child.type;
+      if (childType === Menu) {
+        return React.cloneElement(child, {
+          onClickItem: this.clickItem,
+        });
+      }
+      return child;
     });
   }
 
-  getDpClassName() {
-    const {className, type, triggerBy, buttonDpClassName, textDpClassName} = this.props;
-    let clsName = className;
-    if (type === 'button') {
-      clsName = buttonDpClassName;
+  handleHover(activeMenu) {
+    const {triggerBy} = this.props;
+    if (triggerBy !== 'hover') {
+      return;
     }
-    if (type === 'text') {
-      clsName = textDpClassName;
-    }
-    let dpClsName = this.state.currentDpClassName
-        ? this.state.currentDpClassName
-        : clsName;
-    return classnames(dpClsName, {hover: this.isTriggeredByMouseHover()});
+    this.setState({
+      active: activeMenu,
+    });
   }
 
   render() {
     const {
-      onChange,
-      openMenu,
-      children,
       className,
-      alignMenu,
+      type,
+      triggerBy,
+      onItemClick,
+      children,
     } = this.props;
-//dp hover active/close
+
+    let clsName = this.getClass({
+      [type]: type,
+      active: this.state.active,
+      // [triggerBy]: triggerBy,
+    });
+
     return (
-        <div className={this.getDpClassName()}
-             onClick={this.handleClick}>
-          <WindowEventHandler onClick={this.closeMenu.bind(this)}/>
-          {children}
+        <div onMouseEnter={this.handleHover.bind(this, true)}
+             onMouseLeave={this.handleHover.bind(this, false)}
+             className={clsName}
+             ref={this.dpRef}>
+          <WindowEventHandler/>
+          {this.updateChildren()}
         </div>
     );
   }

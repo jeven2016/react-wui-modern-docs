@@ -21,13 +21,17 @@ export default class BaseMenu extends BaseComponent {
 
   }
 
-  handleItem(id, evt) {
+  /**
+   * itemInfo = {id, value, text}
+   */
+  handleItem(itemInfo, evt) {
+    const id = itemInfo.id;
     this.setState({
       clickedItem: id,
     });
 
     let callback = this.props.onClickItem;
-    return callback ? callback(id, evt) : null;
+    return callback ? callback(itemInfo, evt) : null;
   }
 
 }
