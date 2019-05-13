@@ -1,7 +1,7 @@
 import React from 'react';
-import intl from "react-intl-universal";
-import {Menu} from "../../../react-wui";
-import DocComponent from "../DocComponent";
+import intl from 'react-intl-universal';
+import {Menu} from '../../../react-wui';
+import DocComponent from '../DocComponent';
 import {
   MenuA,
   MenuB,
@@ -12,7 +12,7 @@ import {
   MenuFloatComponents,
   MenuFloatItems,
   MenuFloatLeft,
-  MenuFloatRight, MenuItemDisabled
+  MenuFloatRight, MenuItemDisabled,
 } from './Menus';
 
 export default class MenuIndex extends DocComponent {
@@ -25,8 +25,8 @@ export default class MenuIndex extends DocComponent {
     return this.content();
   }
 
-  clickLink(id) {
-    this.scrollTo(id);
+  clickLink(itemInfo) {
+    this.scrollTo(itemInfo.id);
   }
 
   content() {
@@ -110,7 +110,7 @@ export default class MenuIndex extends DocComponent {
 
       <div className="doc right-col col-md-2">
         <Menu onClickItem={this.clickLink} hasBorder={false}
-              style={{position: "fixed"}}>
+              style={{position: 'fixed'}}>
           <Menu.List>
             <Menu.Item id="#menu_title">
               {intl.get('content.menu.title')}

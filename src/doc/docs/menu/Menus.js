@@ -3,7 +3,7 @@ import {Button, Divider, Dropdown, Icon, Input, Menu} from '../../../react-wui';
 import SamplePannel from '../../common/SamplePannel';
 import {faList, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faWindowClose} from "@fortawesome/free-regular-svg-icons";
+import {faWindowClose} from '@fortawesome/free-regular-svg-icons';
 
 export const MenuA = () => {
   let comp = <Menu style={{width: '15rem'}}>
@@ -242,7 +242,7 @@ export const MenuE = () => {
 
 export const MenuFloat = () => {
   let comp = <Menu type="float" hasBorder={true} onClickItem={(id, evt) => {
-    if (id === "item1") {
+    if (id === 'item1') {
       return false;
     }
   }}>
@@ -390,7 +390,7 @@ export const MenuFloatItems = () => {
           </Menu>
         </div>
         <div>
-          <Menu hasBox={true} type="float" style={{marginTop: "2rem"}}>
+          <Menu hasBox={true} type="float" style={{marginTop: '2rem'}}>
             <Menu.List>
               <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
               <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
@@ -467,7 +467,7 @@ export const MenuFloatRight = () => {
           </Menu>
         </div>
         <div>
-          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+          <Menu block={true} type="float" style={{marginTop: '2rem'}}>
             <Menu.List>
               <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
               <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
@@ -532,7 +532,7 @@ export const MenuFloatRight = () => {
 export const MenuFloatLeft = () => {
   let comp = <>
         <div>
-          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+          <Menu block={true} type="float" style={{marginTop: '2rem'}}>
             <Menu.List>
               <Menu.Item id="user" hasBox={true} hasBackground={true}
                          align="left">用户</Menu.Item>
@@ -582,7 +582,7 @@ export const MenuFloatLeft = () => {
 export const MenuFloatComponents = () => {
   let comp = <>
         <div>
-          <Menu block={true} type="float" style={{marginTop: "2rem"}}>
+          <Menu block={true} type="float" style={{marginTop: '2rem'}}>
             <Menu.List>
               <Menu.Item id="button">
                 <Button color="green">Button</Button>
@@ -596,8 +596,10 @@ export const MenuFloatComponents = () => {
                 </Input.IconInput>
               </Menu.Item>
               <Menu.Item id="">
-                <Dropdown type="button">
-                  <Button>Dropdown</Button>
+                <Dropdown type="simple">
+                  <Dropdown.Title>
+                    Dropdown
+                  </Dropdown.Title>
                   <Menu position="right">
                     <Menu.List>
                       <Menu.Item>Action 1</Menu.Item>

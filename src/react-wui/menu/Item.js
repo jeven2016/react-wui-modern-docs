@@ -60,7 +60,7 @@ export default class Item extends BaseComponent {
           {({activeItem, clickItem, menuDisabled, autoCloseFloatSubMenu}) =>
               <FloatMenuContext.Consumer>
                 {({clickFloatMenuItem}) =>
-                    <li className={this.extracted(activeItem, clickItem,
+                    <li className={this.getClassName(activeItem, clickItem,
                         menuDisabled)}
                         id={id}
                         style={{paddingLeft: paddingLeft}}
@@ -76,7 +76,8 @@ export default class Item extends BaseComponent {
     );
   }
 
-  extracted(activeItem, clickItem, menuDisabled) {
+  getClassName(activeItem, clickItem, menuDisabled) {
+    console.log('activeItem=' + activeItem);
     const {
       className,
       active,
@@ -92,7 +93,7 @@ export default class Item extends BaseComponent {
       [align]: align,
       'with-box': hasBox,
       'with-bg': hasBackground,
-      active: activeItem != null && activeItem === this.props.id,
+      active: !isNil(activeItem) && activeItem === this.props.id,
       disabled: disabled || menuDisabled,
     });
     return clsName;
