@@ -26,4 +26,12 @@ export default class BaseComponent extends Component {
     let clsName = classnames(appendClass, this.props.className, data);
     return clsName;
   }
+
+  getValue(Class, property) {
+    let existed = Class.hasOwnProperty(property);
+    if (!existed) {
+      throw new Error(`the property(${property}) is invalid.`);
+    }
+    return Class[property];
+  }
 }

@@ -164,6 +164,7 @@ export default class Menu extends BaseMenu {
       autoCloseFloatSubMenu,
       hasBox,
       hasBackground,
+      appendClass,
       ...otherProps
     } = this.props;
 

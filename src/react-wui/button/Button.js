@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {preventEvent} from '../event/EventFuntions';
 import BaseComponent from '../BaseComponent';
 
@@ -12,6 +11,7 @@ export default class Button extends BaseComponent {
     disabled: false,
     className: 'button',
     withinGroup: false,
+    role: null  //only for internal use
   };
 
   static propTypes = {
@@ -64,10 +64,12 @@ export default class Button extends BaseComponent {
       onClick,
       disabled = false,
       withinGroup,
+      appendClass,
+      role,
       ...otherProps
     } = this.props;
 
-    let clsName = classnames(className, {
+    let clsName = this.getClass({
       [type]: type,
       [size]: size,
       [color]: color,
@@ -91,5 +93,9 @@ export default class Button extends BaseComponent {
 
   getElementType() {
     const {nativeType} = this.props;
+  }
+
+  getRole() {
+    return this.props.role;
   }
 }
