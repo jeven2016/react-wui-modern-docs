@@ -34,7 +34,7 @@ export default class NavBar extends BaseComponent {
     });
 
     return (
-        <ul className={clsName}>
+        <ul className={clsName} {...otherProps}>
           {children}
         </ul>
     );

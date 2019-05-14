@@ -4,6 +4,7 @@ import BaseComponent from '../BaseComponent';
 export default class Item extends BaseComponent {
   static defaultProps = {
     className: 'item',
+    alignRight: false
   };
 
   render() {
@@ -14,6 +15,7 @@ export default class Item extends BaseComponent {
       hasBackground,
       hasBar,
       active,
+      alignRight,
       ...otherProps
     } = this.props;
 
@@ -22,6 +24,7 @@ export default class Item extends BaseComponent {
       block,
       'with-bar': hasBar,
       active: active,
+      "pull-right": alignRight
     });
 
     return <li className={clsName} {...otherProps}>{children}</li>;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export default class Item extends BaseComponent {
   static defaultProps = {
-    className: 'item',
+    className: 'menu-item',
     hasBox: false,
     hasBackground: false,
     disabled: false,
@@ -62,7 +62,6 @@ export default class Item extends BaseComponent {
                 {({clickFloatMenuItem}) =>
                     <li className={this.getClassName(activeItem, clickItem,
                         menuDisabled)}
-                        id={id}
                         style={{paddingLeft: paddingLeft}}
                         onClick={this.itemClick.bind(this, clickItem,
                             clickFloatMenuItem, autoCloseFloatSubMenu)}

@@ -5,6 +5,7 @@ import ButtonIndex from './button/ButtonIndex';
 import MenuIndex from './menu/MenuIndex';
 import {Menu} from '../../react-wui';
 import DropdownIndex from './dropdown/DropdownIndex';
+import NavbarIndex from "./navbar/NavbarIndex";
 
 export default class MainPage extends Component {
 
@@ -51,7 +52,9 @@ export default class MainPage extends Component {
                     Input 输入框
                   </Menu.Item>
                   <Menu.Item id="NavbarItem">
-                    Navbar 导航栏
+                    <Link to={`${match.url}/components/navbar`}>
+                      {intl.get('main.navbar.navbar')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="MenuItem">
                     <Link to={`${match.url}/components/menu`}>
@@ -109,6 +112,8 @@ export default class MainPage extends Component {
                  component={MenuIndex}/>
           <Route exact={true} path={`${match.url}/components/dropdown`}
                  component={DropdownIndex}/>
+          <Route exact={true} path={`${match.url}/components/navbar`}
+                 component={NavbarIndex}/>
 
         </div>
     );

@@ -9,6 +9,7 @@
   "main.navbar.button": "Button 按钮",
   "main.navbar.dropdown": "Dropdown 下拉框",
   "main.navbar.menu": "Menu 菜单",
+  "main.navbar.navbar": "Navbar 导航栏",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -29,5 +30,13 @@
   "content.menu.sample.float.colors": "Item中的文字显示不同颜色的文字",
   "content.menu.sample.float.components": "在Item中放置其他组件",
   "content.menu.sample.float.disabled.menu": "禁用菜单",
-  "content.menu.sample.float.disabled.menu.item": "禁用菜单Item"
+  "content.menu.sample.float.disabled.menu.item": "禁用菜单Item",
+  "content.navbar.title": "Navbar 导航栏",
+  "content.navbar.simple.desc": "Navbar导航栏示例",
+  "content.navbar.sample.navbar": "一个极简的导航栏",
+  "content.navbar.sample.navbarB": "primary 导航栏",
+  "content.navbar.sample.navbarC": "在导航栏中放置其他组件",
+  "content.navbar.sample.navbarD": "显示背景颜色和下边框",
+  "content.navbar.sample.navbarE": "设置背景色",
+  "content.navbar.sample.navbarF": "Item靠右排列"
 }

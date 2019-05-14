@@ -10,7 +10,6 @@ import {
   DropdownTriggerType,
   DropdownType
 } from "../common/Constants";
-import {isNil} from "../Utils";
 
 export default class Dropdown extends BaseComponent {
   static defaultProps = {
@@ -72,9 +71,6 @@ export default class Dropdown extends BaseComponent {
           clickTitle: this.clickTitle
         });
       }
-      /*  if (childType === ButtonGroup) {
-          return this.handleButtonGroup(child);
-        }*/
       return child;
     });
   }
@@ -86,21 +82,6 @@ export default class Dropdown extends BaseComponent {
     }
     this.setState({
       active: activeMenu,
-    });
-  }
-
-  handleButtonGroup(btnGroup) {
-    return React.cloneElement(btnGroup, {
-      children: React.Children.map(btnGroup.children, child => {
-        if (!isNil(child.getRole()) && child.getRole() === "toggle") {
-          return React.cloneElement(child, {
-            style: {
-              paddingLeft: "3rem"
-            }
-          });
-        }
-        return child;
-      })
     });
   }
 
@@ -125,6 +106,7 @@ export default class Dropdown extends BaseComponent {
       onItemClick,
       children,
       position,
+      appendClass,
       ...otherProps
     } = this.props;
 
