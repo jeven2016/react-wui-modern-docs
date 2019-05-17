@@ -38,5 +38,6 @@
   "content.navbar.sample.navbarC": "在导航栏中放置其他组件",
   "content.navbar.sample.navbarD": "显示背景颜色和下边框",
   "content.navbar.sample.navbarE": "设置背景色",
-  "content.navbar.sample.navbarF": "Item靠右排列"
+  "content.navbar.sample.navbarF": "Item靠右排列",
+  "content.navbar.sample.navbarG": "响应式布局排列"
 }

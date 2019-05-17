@@ -1,7 +1,15 @@
 import React from 'react';
 import DocComponent from "../DocComponent";
 import intl from "react-intl-universal";
-import {NavbarA, NavbarB, NavbarC, NavbarD, NavbarE, NavbarF} from "./Navbars";
+import {
+  NavbarA,
+  NavbarB,
+  NavbarC,
+  NavbarD,
+  NavbarE,
+  NavbarF,
+  NavbarG
+} from "./Navbars";
 
 export default class NavbarIndex extends DocComponent {
   constructor(args) {
@@ -51,8 +59,13 @@ export default class NavbarIndex extends DocComponent {
         </section>
 
         <section>
-          <h3 id="navbar_F"> {intl.get('content.navbar.sample.navbarF')}</h3>
+          <h3 id="navbar_E"> {intl.get('content.navbar.sample.navbarF')}</h3>
           <NavbarF/>
+        </section>
+
+        <section>
+          <h3 id="navbar_F"> {intl.get('content.navbar.sample.navbarG')}</h3>
+          <NavbarG/>
         </section>
 
       </div>

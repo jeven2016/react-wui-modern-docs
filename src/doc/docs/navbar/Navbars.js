@@ -2,7 +2,12 @@ import React from 'react';
 import {Button, Dropdown, Icon, Input, Menu, NavBar} from "../../../react-wui";
 import SamplePannel from "../../common/SamplePannel";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faList, faMusic, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {
+  faAlignJustify,
+  faList,
+  faMusic,
+  faSearch
+} from "@fortawesome/free-solid-svg-icons";
 import {faUser} from "@fortawesome/free-regular-svg-icons";
 
 export const NavbarA = () => {
@@ -13,22 +18,36 @@ export const NavbarA = () => {
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item>
-          <NavBar.Link href="javascript:void(0);">
-            用户
-          </NavBar.Link>
+          用户
         </NavBar.Item>
         <NavBar.Item>
           角色
         </NavBar.Item>
         <NavBar.Item>
-          <NavBar.Link href="#">
-            权限
-          </NavBar.Link>
+          权限
         </NavBar.Item>
         <NavBar.Item>
-          <NavBar.Link href="#">
-            安全
-          </NavBar.Link>
+          安全
+        </NavBar.Item>
+      </NavBar.List>
+    </NavBar>
+
+    <NavBar style={{marginTop: "2rem"}}>
+      <NavBar.Title>
+        Navbar
+      </NavBar.Title>
+      <NavBar.List>
+        <NavBar.Item hasBackground={true}>
+          用户
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          角色
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          权限
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          安全
         </NavBar.Item>
       </NavBar.List>
     </NavBar>
@@ -346,38 +365,84 @@ export const NavbarF = () => {
   import React, {Component} from "react";
   import {Menu} from "react-wui";
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+ 
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const NavbarG = () => {
+  let comp = <>
+    <NavBar>
+      <NavBar.Title>
+        <NavBar.Switch>
+          <FontAwesomeIcon icon={faAlignJustify}/>
+        </NavBar.Switch>
+        <NavBar.Link href="javascript:void(0);">
+          <FontAwesomeIcon icon={faMusic}
+                           style={{marginRight: "0.5rem"}}/>
+          音乐网站
+        </NavBar.Link>
+      </NavBar.Title>
+      <NavBar.List>
+        <NavBar.Item hasBackground={true}>
+          用户
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          角色
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          权限
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          我的信息
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          系统设置
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          全局配置
+        </NavBar.Item>
+      </NavBar.List>
+    </NavBar>
+
+    <NavBar type="primary" style={{marginTop: "2rem"}}>
+      <NavBar.Title>
+        <NavBar.Switch>
+          <FontAwesomeIcon icon={faAlignJustify}/>
+        </NavBar.Switch>
+        <NavBar.Link href="javascript:void(0);">
+          <FontAwesomeIcon icon={faMusic}
+                           style={{marginRight: "0.5rem"}}/>
+          音乐网站
+        </NavBar.Link>
+      </NavBar.Title>
+      <NavBar.List>
+        <NavBar.Item hasBackground={true}>
+          用户
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          角色
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          权限
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          我的信息
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          系统设置
+        </NavBar.Item>
+        <NavBar.Item hasBackground={true}>
+          全局配置
+        </NavBar.Item>
+      </NavBar.List>
+    </NavBar>
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
   
  
   `;

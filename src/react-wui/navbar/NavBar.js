@@ -2,13 +2,14 @@ import React from 'react';
 import BaseComponent from '../BaseComponent';
 import PropTypes from 'prop-types';
 import {NavBarFixedTypes} from '../common/Constants';
-import {isNil} from '../Utils';
+import {isNil, NavbarContext} from '../Utils';
 
 export default class NavBar extends BaseComponent {
 
   static defaultProps = {
     className: 'navbar',
     type: '',
+    expand: false  // expand the menu list
   };
 
   static propTypes = {
@@ -17,6 +18,23 @@ export default class NavBar extends BaseComponent {
     fixed: PropTypes.string, //fixed top or bottom
   };
 
+  constructor(args) {
+    super(args);
+    this.state = {
+      expandList: null
+    };
+
+    this.toggleList = this.toggleList.bind(this);
+  }
+
+  toggleList() {
+    console.log("clicked ");
+    let current = this.state.expandList;
+    this.setState({
+      expandList: isNil(current) ? !this.props.expand : !current
+    });
+  }
+
   render() {
     const {
       children,
@@ -24,6 +42,7 @@ export default class NavBar extends BaseComponent {
       className,
       fixed,
       appendClass,
+      expand,
       ...otherProps
     } = this.props;
 
@@ -31,12 +50,18 @@ export default class NavBar extends BaseComponent {
     let clsName = this.getClass({
       [type]: type,
       [fixedType]: fixedType,
+      expand: isNil(this.state.expandList) ? expand : this.state.expandList
     });
 
     return (
-        <ul className={clsName} {...otherProps}>
-          {children}
-        </ul>
+        <NavbarContext.Provider
+            value={{
+              toggleList: this.toggleList
+            }}>
+          <ul className={clsName} {...otherProps}>
+            {children}
+          </ul>
+        </NavbarContext.Provider>
     );
   }
 

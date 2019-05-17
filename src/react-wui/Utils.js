@@ -96,6 +96,8 @@ export {isNil, isObject} from 'lodash';
 export const MenuContext = React.createContext({});
 export const FloatMenuContext = React.createContext({});
 
+export const NavbarContext = React.createContext({});
+
 export const isFloatMenu = (type) => {
   return type === MenuType.float;
 };
