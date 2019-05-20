@@ -1,17 +1,20 @@
 import React from 'react';
-import BaseComponent from "./BaseComponent";
-import * as ReactDOM from "react-dom";
-import {isNil, place} from "./Utils";
-import {preventEvent, WindowEventHandler} from "./event";
-import {PopoverTriggerType, Position} from "./common/Constants";
+import BaseComponent from './BaseComponent';
+import * as ReactDOM from 'react-dom';
+import {isNil, place} from './Utils';
+import {preventEvent, WindowEventHandler} from './event';
+import {PopoverTriggerType, Position} from './common/Constants';
+import Card from './card';
+import Divider from './divider';
 
 export default class Popover extends BaseComponent {
   static defaultProps = {
-    className: 'button',
+    className: 'popover',
     header: null,
     body: null,
+    getContent: null, //a callback that subclass can override it to generate the content
     position: Position.bottom,
-    triggerBy: PopoverTriggerType.click
+    triggerBy: PopoverTriggerType.click,
   };
 
   static propTypes = {};
@@ -39,8 +42,8 @@ export default class Popover extends BaseComponent {
       const {position} = this.props;
       let popoverNode = this.popoverDomNodeRef.current;
 
-      popoverNode.style.display = "inline-block";
-      place(popoverNode, this.getCtrlNode(), position, 16)
+      popoverNode.style.display = 'inline-block';
+      place(popoverNode, this.getCtrlNode(), position, 10);
     }
   }
 
@@ -49,7 +52,7 @@ export default class Popover extends BaseComponent {
       return;
     }
     this.setState({
-      active: !this.state.active
+      active: !this.state.active,
     });
   }
 
@@ -59,7 +62,7 @@ export default class Popover extends BaseComponent {
       return;
     }
     this.setState({
-      active: activePopover
+      active: activePopover,
     });
   }
 
@@ -82,15 +85,14 @@ export default class Popover extends BaseComponent {
     }
   }
 
-
   render() {
-    const {children, body, header, position} = this.props;
+    const {className, children, body, header, position, getContent} = this.props;
     if (isNil(children) || children.length === 0) {
-      throw new Error("No child found in this popover.")
+      throw new Error('No child found in this popover.');
     }
 
     if (children.length > 1) {
-      throw new Error("only one child can be set as body of popover.")
+      throw new Error('only one child can be set as body of popover.');
     }
 
     let chd = React.Children.map(children, child => {
@@ -100,7 +102,7 @@ export default class Popover extends BaseComponent {
         onMouseLeave: this.handleHover.bind(this, false),
         onFocus: this.handleHover.bind(this, true),
         onBlur: this.handleHover.bind(this, false),
-        ref: this.ctrlRef //a reference to Child component instead of a specific dom node
+        ref: this.ctrlRef, //a reference to Child component instead of a specific dom node
       });
     });
 
@@ -108,7 +110,9 @@ export default class Popover extends BaseComponent {
         <>
           {chd}
           {
-            this.isActive() ? <PopoverWrapper ref={this.popoverDomNodeRef}
+            this.isActive() ? <PopoverWrapper className={className}
+                                              ref={this.popoverDomNodeRef}
+                                              getContent={getContent}
                                               body={body}
                                               position={position}
                                               header={header}
@@ -128,7 +132,7 @@ export default class Popover extends BaseComponent {
 class PopoverModal extends BaseComponent {
   constructor(args) {
     super(args);
-    this.container = document.createElement("div");
+    this.container = document.createElement('div');
     document.body.appendChild(this.container);
   }
 
@@ -140,32 +144,48 @@ class PopoverModal extends BaseComponent {
 
   //make sure the popover won't be closed while the body or header is clicked
   preventClose(evt) {
-    preventEvent(evt)
+    preventEvent(evt);
   }
 
   render() {
-    const {header, body, active, forwardedRef, position} = this.props;
+    const {className, getContent, header, body, active, forwardedRef, position} = this.props;
     let positionClassName = `${Position[position]} popover-arrow`;
 
-    this.popoverContent =
-        <div onClick={this.preventClose} className="popover" ref={forwardedRef}>
-          <div className={positionClassName}
-               style={{display: active ? "" : "none"}}/>
-          <div className="card">
-            {
-              isNil(header) ? null :
-                  <div className="card-header">{header}</div>
-            }
-            <div className="card-body">
-              {body}
-            </div>
-          </div>
-        </div>;
+    let content;
+    if (!isNil(getContent)) {
+      content = getContent({
+        ref: forwardedRef,
+        position: position,
+        onClick: this.preventClose,
+        active: active,
+        header: header,
+        body: body,
+      });
+    } else {
+      content =
+          <div onClick={this.preventClose} className={className}
+               ref={forwardedRef}>
+            <div className={positionClassName}
+                 style={{display: active ? '' : 'none'}}/>
+            <Card>
+              {
+                isNil(header) ? null :
+                    <>
+                      <Card.Header>{header}</Card.Header>
+                      <Divider/>
+                    </>
+              }
+              <Card.Body>
+                {body}
+              </Card.Body>
+            </Card>
+          </div>;
+    }
 
-    return ReactDOM.createPortal(this.popoverContent, this.container);
+    return ReactDOM.createPortal(content, this.container);
   }
 }
 
 const PopoverWrapper = React.forwardRef((props, ref) => {
-  return <PopoverModal {...props} forwardedRef={ref}/>
+  return <PopoverModal {...props} forwardedRef={ref}/>;
 });

@@ -5,8 +5,9 @@ import ButtonIndex from './button/ButtonIndex';
 import MenuIndex from './menu/MenuIndex';
 import {Menu} from '../../react-wui';
 import DropdownIndex from './dropdown/DropdownIndex';
-import NavbarIndex from "./navbar/NavbarIndex";
-import PopoverIndex from "./popover/PopoverIndex";
+import NavbarIndex from './navbar/NavbarIndex';
+import PopoverIndex from './popover/PopoverIndex';
+import TooltipIndex from './tooltip/TooltipIndex';
 
 export default class MainPage extends Component {
 
@@ -70,17 +71,22 @@ export default class MainPage extends Component {
                   <Menu.Item id="FormItem">
                     Form 表单
                   </Menu.Item>
-                  <Menu.Item id="TableItem">
-                    Table 表格
-                  </Menu.Item>
                   <Menu.Item id="LoadingItem">
                     Loading 加载
+                  </Menu.Item>
+                  <Menu.Item id="SlidershowItem">
+                    Slidershow 幻灯片
+                  </Menu.Item>
+                  <Menu.Item id="TableItem">
+                    Table 表格
                   </Menu.Item>
                   <Menu.Item id="ToggleItem">
                     Toggle 开关
                   </Menu.Item>
-                  <Menu.Item id="SlidershowItem">
-                    Slidershow 幻灯片
+                  <Menu.Item id="TooltipItem">
+                    <Link to={`${match.url}/components/tooltip`}>
+                      {intl.get('main.navbar.tooltip')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="LayoutItem">
                     Layout 布局
@@ -119,6 +125,8 @@ export default class MainPage extends Component {
                  component={NavbarIndex}/>
           <Route exact={true} path={`${match.url}/components/popover`}
                  component={PopoverIndex}/>
+          <Route exact={true} path={`${match.url}/components/tooltip`}
+                 component={TooltipIndex}/>
 
         </div>
     );

@@ -1,27 +1,27 @@
 import React from 'react';
-import {Button, Popover} from "../../../react-wui";
-import SamplePannel from "../../common/SamplePannel";
+import {Button, Popover} from '../../../react-wui';
+import SamplePannel from '../../common/SamplePannel';
 
 export const PopoverA = () => {
   let comp = <>
     <div>
-      <Popover position="topLeft" header="Header"
+      <Popover position="topLeft"
                body={<span>This is a sample</span>}>
         <Button outline={true} color="blue">Top Left</Button>
       </Popover>
 
-      <Popover position="top" header="Header"
+      <Popover position="top"
                body={<span>This is a sample</span>}>
         <Button outline={true} color="blue">Top</Button>
       </Popover>
 
-      <Popover position="topRight" header="Header"
+      <Popover position="topRight"
                body={<span>This is a sample</span>}>
         <Button outline={true} color="blue">Top Right</Button>
       </Popover>
     </div>
 
-    <div style={{marginTop: "2rem"}}>
+    <div style={{marginTop: '2rem'}}>
       <Popover position="bottomLeft" header="Header"
                body={<span>This is a sample</span>}>
         <Button outline={true} color="blue">Bottom Left</Button>

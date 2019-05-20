@@ -11,6 +11,7 @@
   "main.navbar.menu": "Menu 菜单",
   "main.navbar.navbar": "Navbar 导航栏",
   "main.navbar.popover": "Popover 弹出框",
+  "main.navbar.tooltip": "Tooltip 提示",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -45,5 +46,8 @@
   "content.popover.simple.desc": "Popover 弹出框示例",
   "content.popover.sample.popoverA": "在上下两处显示",
   "content.popover.sample.popoverB": "在左右两侧显示",
-  "content.popover.sample.popoverC": "默认显示的Popover"
+  "content.popover.sample.popoverC": "默认显示的Popover",
+
+  "content.tooltip.title": "Tooltip 提示",
+  "content.tooltip.simple.desc": "Tooltip 示例"
 }
