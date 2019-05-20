@@ -1,5 +1,4 @@
 import React from 'react';
-import {isString} from 'lodash';
 import {MenuType} from "./common/Constants";
 
 export const isArray = (value) => {
@@ -48,39 +47,6 @@ export const appendClassIfAbsent = (elem, className) => {
   return elem.props.className;
 };
 
-export const removeClass = (className, classToRemove) => {
-  if (!className) {
-    return '';
-  }
-  return className.replace(classToRemove, '');
-};
-
-/**
- * Toggle the class and return it
- * @param elem NodeElement or className string
- * @param className
- * @return {string|*}
- */
-export const toggleClass = (elem, className) => {
-  if (!className) {
-    throw  new Error(`The className parameter(${className}) is invalid.`);
-  }
-
-  let cls = isString(elem) ? elem : elem.props.className;
-  let clsArray = _splitClassName(cls);
-  if (hasClass(elem, className, clsArray)) {
-    clsArray = clsArray.filter(value => value !== className);
-  } else {
-    clsArray.push(className);
-  }
-
-  return clsArray.join(' ');
-};
-
-export const getRandomValue = () => {
-  return Math.random();
-};
-
 export const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -100,5 +66,81 @@ export const NavbarContext = React.createContext({});
 
 export const isFloatMenu = (type) => {
   return type === MenuType.float;
+};
+
+/**
+ * place a component to somewhere
+ */
+export const place = (destComponent, ctrl, type, topOffset = 0) => {
+  var scrollTop = document.documentElement.scrollTop || window.pageYOffset
+      || document.body.scrollTop;
+  var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset
+      || document.body.scrollLeft;
+
+  var pos = ctrl.getBoundingClientRect();
+  if (type === 'bottom') {
+    destComponent.style.left = scrollLeft + (pos.left
+        - (destComponent.offsetWidth
+            - ctrl.offsetWidth)
+        / 2) + 'px';
+    destComponent.style.top = (pos.bottom + topOffset) + scrollTop + 'px';
+  }
+
+  if (type === 'top') {
+    destComponent.style.left = scrollLeft + (pos.left
+        - (destComponent.offsetWidth
+            - ctrl.offsetWidth)
+        / 2) + 'px';
+    destComponent.style.top = (pos.top - destComponent.offsetHeight
+        - topOffset)
+        + scrollTop + 'px';
+  }
+
+  if (type === 'left') {
+    destComponent.style.left = scrollLeft + pos.left - destComponent.offsetWidth
+        - topOffset + 'px';
+    destComponent.style.top = pos.top - (destComponent.offsetHeight
+        - ctrl.offsetHeight) / 2
+        + scrollTop
+        + 'px';
+  }
+
+  if (type === 'right') {
+    destComponent.style.left = scrollLeft + pos.right + topOffset + 'px';
+    destComponent.style.top = pos.top - (destComponent.offsetHeight
+        - ctrl.offsetHeight) / 2
+        + scrollTop
+        + 'px';
+  }
+
+  if (type === 'topLeft') {
+    destComponent.style.left = scrollLeft + pos.left + 'px';
+    destComponent.style.top = pos.top - destComponent.offsetHeight - topOffset
+        + scrollTop
+        + 'px';
+  }
+
+  if (type === 'topRight') {
+    destComponent.style.left = scrollLeft + pos.right
+        - destComponent.offsetWidth + 'px';
+    destComponent.style.top = pos.top - destComponent.offsetHeight - topOffset
+        + scrollTop
+        + 'px';
+  }
+
+  if (type === 'bottomLeft') {
+    destComponent.style.left = scrollLeft + pos.left + 'px';
+    destComponent.style.top = pos.bottom + topOffset
+        + scrollTop
+        + 'px';
+  }
+
+  if (type === 'bottomRight') {
+    destComponent.style.left = scrollLeft + pos.right
+        - destComponent.offsetWidth + 'px';
+    destComponent.style.top = pos.bottom + topOffset
+        + scrollTop
+        + 'px';
+  }
 };
 

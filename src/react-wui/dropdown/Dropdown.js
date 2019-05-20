@@ -87,15 +87,13 @@ export default class Dropdown extends BaseComponent {
 
   closeMenu(evt) {
     //ensure the menu won't be closed while clicking title
-    let inside = this.dpRef.current.contains(evt.target);
-    if (inside) {
+    if (this.dpRef.current.contains(evt.target)) {
       return;
     }
-    if (this.state.active) {
-      this.setState({
-        active: false,
-      });
-    }
+    this.state.active && this.setState({
+      active: false,
+    });
+
   }
 
   render() {

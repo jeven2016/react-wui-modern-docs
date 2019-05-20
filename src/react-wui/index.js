@@ -23,6 +23,8 @@ export {default as Dropdown} from './dropdown';
 export {default as Menu} from './menu';
 export {default as Divider} from './divider';
 export {default as Card} from './card';
+export {default as Popover} from './Popover';
+export {default as Tooltip} from './Tooltip';
 
 export {
   Button,

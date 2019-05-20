@@ -10,6 +10,7 @@
   "main.navbar.dropdown": "Dropdown 下拉框",
   "main.navbar.menu": "Menu 菜单",
   "main.navbar.navbar": "Navbar 导航栏",
+  "main.navbar.popover": "Popover 弹出框",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -39,5 +40,10 @@
   "content.navbar.sample.navbarD": "显示背景颜色和下边框",
   "content.navbar.sample.navbarE": "设置背景色",
   "content.navbar.sample.navbarF": "Item靠右排列",
-  "content.navbar.sample.navbarG": "响应式布局排列"
+  "content.navbar.sample.navbarG": "响应式布局排列",
+  "content.popover.title": "Popover 弹出框",
+  "content.popover.simple.desc": "Popover 弹出框示例",
+  "content.popover.sample.popoverA": "在上下两处显示",
+  "content.popover.sample.popoverB": "在左右两侧显示",
+  "content.popover.sample.popoverC": "默认显示的Popover"
 }

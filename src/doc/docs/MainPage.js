@@ -6,6 +6,7 @@ import MenuIndex from './menu/MenuIndex';
 import {Menu} from '../../react-wui';
 import DropdownIndex from './dropdown/DropdownIndex';
 import NavbarIndex from "./navbar/NavbarIndex";
+import PopoverIndex from "./popover/PopoverIndex";
 
 export default class MainPage extends Component {
 
@@ -62,7 +63,9 @@ export default class MainPage extends Component {
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="PopoverItem">
-                    Popover 弹出框
+                    <Link to={`${match.url}/components/popover`}>
+                      {intl.get('main.navbar.popover')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="FormItem">
                     Form 表单
@@ -114,6 +117,8 @@ export default class MainPage extends Component {
                  component={DropdownIndex}/>
           <Route exact={true} path={`${match.url}/components/navbar`}
                  component={NavbarIndex}/>
+          <Route exact={true} path={`${match.url}/components/popover`}
+                 component={PopoverIndex}/>
 
         </div>
     );
