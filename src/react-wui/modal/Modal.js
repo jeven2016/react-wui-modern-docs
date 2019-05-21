@@ -1,23 +1,23 @@
 import React from 'react';
-import BaseComponent from "../BaseComponent";
-import * as ReactDOM from "react-dom";
-import {ModalContext, placeCenter} from "../Utils";
+import BaseComponent from '../BaseComponent';
+import * as ReactDOM from 'react-dom';
+import {ModalContext, placeCenter} from '../Utils';
 
 export default class Modal extends BaseComponent {
   static defaultProps = {
     className: 'dialog',
-    type: "", // simple, primary
+    type: 'normal', // simple, primary
     active: null,
     onCancel: null, //close callback,
     autoClose: true,
-    alignCenter: false
+    alignCenter: false,
   };
 
   constructor(args) {
     super(args);
     this.cancelModal = this.cancelModal.bind(this);
     this.state = {
-      closeModal: false
+      closeModal: false,
     };
     this.modalRef = React.createRef();
 
@@ -35,18 +35,21 @@ export default class Modal extends BaseComponent {
   updatePosition() {
     if (this.isActive() && this.props.alignCenter) {
       let modelNode = this.modalRef.current;
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
       placeCenter(modelNode.childNodes[0], modelNode);
       return;
     }
 
     let bodyOverflow = document.body.style.overflow;
-    if (bodyOverflow === "hidden") {
-      document.body.style.overflow = "unset";
+    if (bodyOverflow === 'hidden') {
+      document.body.style.overflow = 'unset';
     }
   }
 
   componentWillUnmount() {
+    if (this.container) {
+      this.container.remove();
+    }
   }
 
   cancelModal(evt) {
@@ -67,7 +70,7 @@ export default class Modal extends BaseComponent {
     }
 
     this.setState({
-      closeModal: true
+      closeModal: true,
     });
 
   }
@@ -78,13 +81,14 @@ export default class Modal extends BaseComponent {
   }
 
   render() {
-    const {autoClose, children, onCancel, className, appendClass, active, alignCenter} = this.props;
+    const {type, autoClose, children, onCancel, className, appendClass, active, alignCenter} = this.props;
     let clsName = this.getClass({
-      show: this.isActive()
+      show: this.isActive(),
+      [type]: type,
     });
 
     let modal = <ModalContext.Provider value={{
-      onCancel: onCancel
+      onCancel: onCancel,
     }}>
       <div className={clsName} onClick={this.cancelModal} ref={this.modalRef}>
         <div className="content">

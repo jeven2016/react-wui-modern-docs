@@ -23,41 +23,47 @@ export const MenuClassName = {
 };
 
 export const DropdownTriggerType = {
-  hover: "hover",
-  click: "click"
+  hover: 'hover',
+  click: 'click',
 };
 
 export const DropdownType = {
-  button: "button",
-  normal: "normal",
-  simple: "simple"
+  button: 'button',
+  normal: 'normal',
+  simple: 'simple',
 };
 
 export const DropdownClass = {
-  button: "button-dropdown",
-  simple: "simple dropdown",
-  normal: "dropdown"
+  button: 'button-dropdown',
+  simple: 'simple dropdown',
+  normal: 'dropdown',
 };
 
 export const DropdownPosition = {
-  topLeft: "top",
-  topRight: "top right",
-  bottomLeft: "",
-  bottomRight: "right"
+  topLeft: 'top',
+  topRight: 'top right',
+  bottomLeft: '',
+  bottomRight: 'right',
 };
 
 export const Position = {
-  top: "top",
-  bottom: "bottom",
-  left: "left",
-  right: "right",
-  topLeft: "top-left",
-  topRight: "top-right",
-  bottomLeft: "bottom-left",
-  bottomRight: "bottom-right"
+  top: 'top',
+  bottom: 'bottom',
+  left: 'left',
+  right: 'right',
+  topLeft: 'top-left',
+  topRight: 'top-right',
+  bottomLeft: 'bottom-left',
+  bottomRight: 'bottom-right',
 };
 
 export const PopoverTriggerType = {
-  hover: "hover",
-  click: "click"
-}
+  hover: 'hover',
+  click: 'click',
+};
+
+export const FlexAlign = {
+  left: 'flex-align left',
+  right: 'flex-align right',
+  center: 'flex-align center',
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {ModalA, ModalB} from './Modals';
+import {ModalA, ModalB, ModalC, ModalD, ModalE} from './Modals';
 
 export default class ModalIndex extends DocComponent {
   constructor(args) {
@@ -34,6 +34,22 @@ export default class ModalIndex extends DocComponent {
           <h3 id="modalB">{intl.get('content.modal.simple.modalB')}</h3>
           <ModalB/>
         </section>
+
+        <section>
+          <h3 id="modalC">{intl.get('content.modal.simple.modalC')}</h3>
+          <ModalC/>
+        </section>
+
+        <section>
+          <h3 id="modalD">{intl.get('content.modal.simple.modalD')}</h3>
+          <ModalD/>
+        </section>
+
+        <section>
+          <h3 id="modalE">{intl.get('content.modal.simple.modalE')}</h3>
+          <ModalE/>
+        </section>
+
       </div>
 
       <div className="doc right-col col-md-2">

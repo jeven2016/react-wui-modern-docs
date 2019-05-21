@@ -4,3 +4,4 @@ refer to the implementation of NavBar
  
  * dropdown, popover, handler for onfocus , onblur event :  open/close the widget
  * default selected/active for dropdown,menu,popover
+ * by default , all modals will be initially inserted => should be lazily loaded 

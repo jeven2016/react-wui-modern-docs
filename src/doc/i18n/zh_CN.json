@@ -55,5 +55,8 @@
   "content.modal.title": "Modal 对话框",
   "content.modal.simple.desc": "Modal 对话框示例",
   "content.modal.simple.modalA": "第一个对话框",
-  "content.modal.simple.modalB": "垂直居中"
+  "content.modal.simple.modalB": "垂直居中",
+  "content.modal.simple.modalC": "点击背景后不自动关闭",
+  "content.modal.simple.modalD": "黑色背景色的对话框",
+  "content.modal.simple.modalE": "自定义背景色"
 }
