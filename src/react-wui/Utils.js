@@ -63,6 +63,7 @@ export const MenuContext = React.createContext({});
 export const FloatMenuContext = React.createContext({});
 
 export const NavbarContext = React.createContext({});
+export const ModalContext = React.createContext({});
 
 export const isFloatMenu = (type) => {
   return type === MenuType.float;
@@ -142,5 +143,22 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
         + scrollTop
         + 'px';
   }
+};
+
+export const placeCenter = (destComponent, ctrl) => {
+  var scrollTop = document.documentElement.scrollTop || window.pageYOffset
+      || document.body.scrollTop;
+
+  var ctrlPos = ctrl.getBoundingClientRect();
+  var destPos = destComponent.getBoundingClientRect();
+
+  let destAvaliableHeight = Math.max(destPos.height,
+      destComponent.offsetHeight);
+
+  console.log(scrollTop + "," + ctrlPos.height + "," + destAvaliableHeight)
+  destComponent.style.top = Math.floor(
+      (ctrlPos.height - destAvaliableHeight) / 2) + "px";
+  destComponent.style.margin = "0 auto";
+
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import BaseComponent from './BaseComponent';
 import {PopoverTriggerType, Position} from './common/Constants';
 import Popover from './Popover';
-import {isNil} from './Utils';
 
 export default class Tooltip extends BaseComponent {
   static defaultProps = {
@@ -22,9 +21,9 @@ export default class Tooltip extends BaseComponent {
     const {className} = this.props;
     let positionClassName = `${Position[position]} popover-arrow`;
     return <div onClick={onClick} className={className}
+                style={{display: active ? 'inline-flex' : 'none'}}
                 ref={ref}>
-      <div className={positionClassName}
-           style={{display: active ? 'inline-flex' : 'none'}}/>
+      <div className={positionClassName}/>
       <div>
         {body}
       </div>

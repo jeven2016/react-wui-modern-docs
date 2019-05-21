@@ -24,13 +24,10 @@ export default class Popover extends BaseComponent {
     this.onClick = this.onClick.bind(this);
     this.closePopover = this.closePopover.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
-    this.state = {active: false};
+    this.state = {active: false, insertDomNode: false};
     this.ctrlRef = React.createRef();
     this.popoverDomNodeRef = React.createRef(); //reference to popover dom node
 
-  }
-
-  componentDidMount() {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -53,6 +50,13 @@ export default class Popover extends BaseComponent {
     }
     this.setState({
       active: !this.state.active,
+
+      //only insert the dom node to body while 'active' is changed.
+      //this cause:
+      // 1. the popover won't be initially inserted into dom tree.
+      // 2. but once it is inserted the dom node won't be removed even though if it is invisible.
+      // 3. the dom node can only be removed while popover is unmounted.
+      insertDomNode: true
     });
   }
 
@@ -63,6 +67,7 @@ export default class Popover extends BaseComponent {
     }
     this.setState({
       active: activePopover,
+      insertDomNode: true
     });
   }
 
@@ -109,15 +114,16 @@ export default class Popover extends BaseComponent {
     return (
         <>
           {chd}
-          {
-            this.isActive() ? <PopoverWrapper className={className}
-                                              ref={this.popoverDomNodeRef}
-                                              getContent={getContent}
-                                              body={body}
-                                              position={position}
-                                              header={header}
-                                              active={this.state.active}/>
-                : null
+
+          {this.state.insertDomNode ? <PopoverWrapper className={className}
+                                                      ref={this.popoverDomNodeRef}
+                                                      getContent={getContent}
+                                                      active={this.isActive()}
+                                                      body={body}
+                                                      position={position}
+                                                      header={header}
+                                                      active={this.state.active}/>
+              : null
           }
           <WindowEventHandler onClick={this.closePopover}
                               onResize={this.updatePosition}/>
@@ -164,9 +170,9 @@ class PopoverModal extends BaseComponent {
     } else {
       content =
           <div onClick={this.preventClose} className={className}
+               style={{display: active ? '' : 'none'}}
                ref={forwardedRef}>
-            <div className={positionClassName}
-                 style={{display: active ? '' : 'none'}}/>
+            <div className={positionClassName}/>
             <Card>
               {
                 isNil(header) ? null :

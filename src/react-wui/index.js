@@ -3,8 +3,6 @@ import TimePicker from './TimePicker';
 import DatePicker from './DatePicker';
 import Tab from './Tab';
 import Pagination from './Pagination.js';
-
-
 //new
 import Button from './button/Button';
 import ButtonGroup from './ButtonGroup';
@@ -13,8 +11,8 @@ import Icon from './Icon';
 import InputGroup from './InputGroup.js';
 import {
   addWindowEventListener,
-  removeWindowEventListener,
   preventEvent,
+  removeWindowEventListener,
 } from './event/EventFuntions';
 import NavBar from './navbar';
 
@@ -25,6 +23,7 @@ export {default as Divider} from './divider';
 export {default as Card} from './card';
 export {default as Popover} from './Popover';
 export {default as Tooltip} from './Tooltip';
+export {default as Modal} from './modal';
 
 export {
   Button,

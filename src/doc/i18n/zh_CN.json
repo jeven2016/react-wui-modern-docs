@@ -9,6 +9,7 @@
   "main.navbar.button": "Button 按钮",
   "main.navbar.dropdown": "Dropdown 下拉框",
   "main.navbar.menu": "Menu 菜单",
+  "main.navbar.modal": "Modal 对话框",
   "main.navbar.navbar": "Navbar 导航栏",
   "main.navbar.popover": "Popover 弹出框",
   "main.navbar.tooltip": "Tooltip 提示",
@@ -49,5 +50,10 @@
   "content.popover.sample.popoverC": "默认显示的Popover",
 
   "content.tooltip.title": "Tooltip 提示",
-  "content.tooltip.simple.desc": "Tooltip 示例"
+  "content.tooltip.simple.desc": "Tooltip 示例",
+
+  "content.modal.title": "Modal 对话框",
+  "content.modal.simple.desc": "Modal 对话框示例",
+  "content.modal.simple.modalA": "第一个对话框",
+  "content.modal.simple.modalB": "垂直居中"
 }

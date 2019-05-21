@@ -8,6 +8,7 @@ import DropdownIndex from './dropdown/DropdownIndex';
 import NavbarIndex from './navbar/NavbarIndex';
 import PopoverIndex from './popover/PopoverIndex';
 import TooltipIndex from './tooltip/TooltipIndex';
+import ModalIndex from "./modal/ModalIndex";
 
 export default class MainPage extends Component {
 
@@ -42,9 +43,6 @@ export default class MainPage extends Component {
                   < Menu.Item id="DrawerItem">
                     Drawer 抽屉
                   </Menu.Item>
-                  <Menu.Item id="DialogItem">
-                    Dialog 对话框
-                  </Menu.Item>
                   <Menu.Item id="DropdownItem">
                     <Link to={`${match.url}/components/dropdown`}>
                       {intl.get('main.navbar.dropdown')}
@@ -53,14 +51,19 @@ export default class MainPage extends Component {
                   <Menu.Item id="InputItem">
                     Input 输入框
                   </Menu.Item>
-                  <Menu.Item id="NavbarItem">
-                    <Link to={`${match.url}/components/navbar`}>
-                      {intl.get('main.navbar.navbar')}
-                    </Link>
-                  </Menu.Item>
                   <Menu.Item id="MenuItem">
                     <Link to={`${match.url}/components/menu`}>
                       {intl.get('main.navbar.menu')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="ModalItem">
+                    <Link to={`${match.url}/components/modal`}>
+                      {intl.get('main.navbar.modal')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="NavbarItem">
+                    <Link to={`${match.url}/components/navbar`}>
+                      {intl.get('main.navbar.navbar')}
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="PopoverItem">
@@ -119,6 +122,8 @@ export default class MainPage extends Component {
                  component={ButtonIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}
                  component={MenuIndex}/>
+          <Route exact={true} path={`${match.url}/components/modal`}
+                 component={ModalIndex}/>
           <Route exact={true} path={`${match.url}/components/dropdown`}
                  component={DropdownIndex}/>
           <Route exact={true} path={`${match.url}/components/navbar`}
@@ -127,7 +132,6 @@ export default class MainPage extends Component {
                  component={PopoverIndex}/>
           <Route exact={true} path={`${match.url}/components/tooltip`}
                  component={TooltipIndex}/>
-
         </div>
     );
 
