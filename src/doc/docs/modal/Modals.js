@@ -34,8 +34,8 @@ export class ModalA extends Component {
           。全市下辖11个区，总面积6587平方千米，2017年建成区面积1398.69平方千米，常住人口833.5万人，城镇人口685.89万人，城镇化率82.3%，是长三角及华东唯一的特大城市。
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.closeModal}>OK</Button>
-          <Button onClick={this.closeModal}>Cancel</Button>
+          <Button hasMinWidth={true} onClick={this.closeModal}>OK</Button>
+          <Button hasMinWidth={true} onClick={this.closeModal}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>;
@@ -83,8 +83,9 @@ export class ModalB extends Component {
           。全市下辖11个区，总面积6587平方千米，2017年建成区面积1398.69平方千米，常住人口833.5万人，城镇人口685.89万人，城镇化率82.3%，是长三角及华东唯一的特大城市。
         </Modal.Body>
         <Modal.Footer align="center">
-          <Button color="green" onClick={this.closeModal}>OK</Button>
-          <Button onClick={this.closeModal}>Cancel</Button>
+          <Button hasMinWidth={true} color="green"
+                  onClick={this.closeModal}>OK</Button>
+          <Button hasMinWidth={true} onClick={this.closeModal}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>;
@@ -132,8 +133,9 @@ export class ModalC extends Component {
           This is a modal sample.
         </Modal.Body>
         <Modal.Footer>
-          <Button color="green" onClick={this.closeModal}>OK</Button>
-          <Button onClick={this.closeModal}>Cancel</Button>
+          <Button hasMinWidth={true} color="green"
+                  onClick={this.closeModal}>OK</Button>
+          <Button hasMinWidth={true} onClick={this.closeModal}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>;
@@ -181,8 +183,10 @@ export class ModalD extends Component {
           This is a modal sample.
         </Modal.Body>
         <Modal.Footer>
-          <Button color="green" onClick={this.closeModal}>OK</Button>
-          <Button color="red" onClick={this.closeModal}>Cancel</Button>
+          <Button hasMinWidth={true} color="green"
+                  onClick={this.closeModal}>OK</Button>
+          <Button hasMinWidth={true} color="red"
+                  onClick={this.closeModal}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>;
@@ -236,8 +240,9 @@ export class ModalE extends Component {
           This is a modal sample.
         </Modal.Body>
         <Modal.Footer appendClass={this.state.backGroundClass}>
-          <Button color="green" onClick={this.closeModal}>OK</Button>
-          <Button onClick={this.closeModal}>Cancel</Button>
+          <Button hasMinWidth={true} color="green"
+                  onClick={this.closeModal}>OK</Button>
+          <Button hasMinWidth={true} onClick={this.closeModal}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>;

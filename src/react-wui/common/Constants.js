@@ -1,3 +1,10 @@
+export const TransparentbtnStyle = {
+  background: "transparent",
+  border: "none",
+  outline: "none",
+  cursor: "pointer"
+};
+
 export const NavBarFixedTypes = ['top', 'bottom'];
 
 export const NavBarListAlign = {

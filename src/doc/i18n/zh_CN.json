@@ -13,6 +13,7 @@
   "main.navbar.navbar": "Navbar 导航栏",
   "main.navbar.popover": "Popover 弹出框",
   "main.navbar.tooltip": "Tooltip 提示",
+  "main.navbar.toggle": "Toggle 开关",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -48,15 +49,17 @@
   "content.popover.sample.popoverA": "在上下两处显示",
   "content.popover.sample.popoverB": "在左右两侧显示",
   "content.popover.sample.popoverC": "默认显示的Popover",
-
   "content.tooltip.title": "Tooltip 提示",
   "content.tooltip.simple.desc": "Tooltip 示例",
-
   "content.modal.title": "Modal 对话框",
   "content.modal.simple.desc": "Modal 对话框示例",
   "content.modal.simple.modalA": "第一个对话框",
   "content.modal.simple.modalB": "垂直居中",
   "content.modal.simple.modalC": "点击背景后不自动关闭",
   "content.modal.simple.modalD": "黑色背景色的对话框",
-  "content.modal.simple.modalE": "自定义背景色"
+  "content.modal.simple.modalE": "自定义背景色",
+  "content.toggle.title": "Toggle 开关",
+  "content.toggle.simple.desc": "Toggle 开关示例",
+  "content.toggle.sample.toggleA": "基本的开关",
+  "content.toggle.sample.toggleB": "Primary 类型"
 }

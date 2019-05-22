@@ -9,6 +9,7 @@ import NavbarIndex from './navbar/NavbarIndex';
 import PopoverIndex from './popover/PopoverIndex';
 import TooltipIndex from './tooltip/TooltipIndex';
 import ModalIndex from "./modal/ModalIndex";
+import ToggleIndex from "./toggle/ToggleIndex";
 
 export default class MainPage extends Component {
 
@@ -84,7 +85,9 @@ export default class MainPage extends Component {
                     Table 表格
                   </Menu.Item>
                   <Menu.Item id="ToggleItem">
-                    Toggle 开关
+                    <Link to={`${match.url}/components/toggle`}>
+                      {intl.get('main.navbar.toggle')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="TooltipItem">
                     <Link to={`${match.url}/components/tooltip`}>
@@ -132,6 +135,8 @@ export default class MainPage extends Component {
                  component={PopoverIndex}/>
           <Route exact={true} path={`${match.url}/components/tooltip`}
                  component={TooltipIndex}/>
+          <Route exact={true} path={`${match.url}/components/toggle`}
+                 component={ToggleIndex}/>
         </div>
     );
 

@@ -24,6 +24,7 @@ export {default as Card} from './card';
 export {default as Popover} from './Popover';
 export {default as Tooltip} from './Tooltip';
 export {default as Modal} from './modal';
+export {default as Toggle} from './toggle';
 
 export {
   Button,

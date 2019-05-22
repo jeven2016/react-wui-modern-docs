@@ -11,7 +11,8 @@ export default class Button extends BaseComponent {
     disabled: false,
     className: 'button',
     withinGroup: false,
-    role: null  //only for internal use
+    role: null, //only for internal use
+    hasMinWidth: false
   };
 
   static propTypes = {
@@ -26,6 +27,7 @@ export default class Button extends BaseComponent {
     size: PropTypes.oneOf(['large', 'medium', 'small', '']), //the size of the button
     outline: PropTypes.bool,
     circle: PropTypes.bool,
+    hasMinWidth: PropTypes.bool,  // has min-width style
     withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
   };
 
@@ -61,6 +63,7 @@ export default class Button extends BaseComponent {
       size,
       outline,
       circle,
+      hasMinWidth,
       onClick,
       disabled = false,
       withinGroup,
@@ -79,6 +82,7 @@ export default class Button extends BaseComponent {
       outline: outline,
       circle: circle,
       label: withinGroup,
+      "min-width": hasMinWidth
     });
 
     return (
