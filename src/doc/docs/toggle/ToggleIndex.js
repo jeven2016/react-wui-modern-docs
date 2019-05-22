@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {ToggleA, ToggleB} from "./Toggles";
+import {ToggleA, ToggleB, ToggleC} from './Toggles';
 
 export default class ToggleIndex extends DocComponent {
   constructor(args) {
@@ -33,6 +33,11 @@ export default class ToggleIndex extends DocComponent {
         <section>
           <h3 id="toggleB">{intl.get('content.toggle.sample.toggleB')} </h3>
           <ToggleB/>
+        </section>
+
+        <section>
+          <h3 id="toggleC">{intl.get('content.toggle.sample.toggleC')} </h3>
+          <ToggleC/>
         </section>
 
       </div>

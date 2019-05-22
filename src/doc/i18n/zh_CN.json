@@ -61,5 +61,6 @@
   "content.toggle.title": "Toggle 开关",
   "content.toggle.simple.desc": "Toggle 开关示例",
   "content.toggle.sample.toggleA": "基本的开关",
-  "content.toggle.sample.toggleB": "Primary 类型"
+  "content.toggle.sample.toggleB": "圆形开关",
+  "content.toggle.sample.toggleB": "方形开关"
 }

@@ -156,7 +156,6 @@ class PopoverModal extends BaseComponent {
   render() {
     const {className, getContent, header, body, active, forwardedRef, position} = this.props;
     let positionClassName = `${Position[position]} popover-arrow`;
-
     let content;
     if (!isNil(getContent)) {
       content = getContent({

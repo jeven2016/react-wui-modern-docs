@@ -6,3 +6,4 @@ refer to the implementation of NavBar
  * default selected/active for dropdown,menu,popover
  * by default , all modals will be initially inserted => should be lazily loaded 
  * refactor the toggle css code to use flexbox 
+ * add {...otherProps} to all components
