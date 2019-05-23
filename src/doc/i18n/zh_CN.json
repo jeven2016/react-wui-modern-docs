@@ -14,6 +14,7 @@
   "main.navbar.popover": "Popover 弹出框",
   "main.navbar.tooltip": "Tooltip 提示",
   "main.navbar.toggle": "Toggle 开关",
+  "main.navbar.card": "Card 卡片",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -62,5 +63,10 @@
   "content.toggle.simple.desc": "Toggle 开关示例",
   "content.toggle.sample.toggleA": "基本的开关",
   "content.toggle.sample.toggleB": "圆形开关",
-  "content.toggle.sample.toggleB": "方形开关"
+  "content.toggle.sample.toggleB": "方形开关",
+  "content.card.title": "Card 卡片",
+  "content.card.simple.desc": "Card 卡片示例",
+  "content.card.sample.cardA": "一个基本的Card",
+  "content.card.sample.cardB": "名片",
+  "content.card.sample.cardC": "卡片中的图片"
 }

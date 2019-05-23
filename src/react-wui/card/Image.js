@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
+import BaseComponent from "../BaseComponent";
 
-export default class Image extends Component {
+export default class Image extends BaseComponent {
   static defaultProps = {
-    className: 'image',
+    className: 'img',
+    width: "100%",
   };
 
   render() {
-    const {className, children} = this.props;
-    return <div className={className}>
-      {children}
-    </div>;
+    const {width, className, appendClass, ...otherProps} = this.props;
+    let clsName = this.getClass();
+    return <img className={clsName} width={width} {...otherProps}/>;
   }
 }

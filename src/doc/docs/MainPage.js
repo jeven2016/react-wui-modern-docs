@@ -10,6 +10,7 @@ import PopoverIndex from './popover/PopoverIndex';
 import TooltipIndex from './tooltip/TooltipIndex';
 import ModalIndex from "./modal/ModalIndex";
 import ToggleIndex from "./toggle/ToggleIndex";
+import CardIndex from "./card/CardIndex";
 
 export default class MainPage extends Component {
 
@@ -39,7 +40,9 @@ export default class MainPage extends Component {
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="CardItem">
-                    Card 卡片
+                    <Link to={`${match.url}/components/card`}>
+                      {intl.get('main.navbar.card')}
+                    </Link>
                   </Menu.Item>
                   < Menu.Item id="DrawerItem">
                     Drawer 抽屉
@@ -123,6 +126,8 @@ export default class MainPage extends Component {
 
           <Route exact={true} path={`${match.url}/components/button`}
                  component={ButtonIndex}/>
+          <Route exact={true} path={`${match.url}/components/card`}
+                 component={CardIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}
                  component={MenuIndex}/>
           <Route exact={true} path={`${match.url}/components/modal`}
@@ -137,6 +142,7 @@ export default class MainPage extends Component {
                  component={TooltipIndex}/>
           <Route exact={true} path={`${match.url}/components/toggle`}
                  component={ToggleIndex}/>
+
         </div>
     );
 

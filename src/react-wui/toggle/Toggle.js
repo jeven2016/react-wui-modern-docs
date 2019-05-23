@@ -36,19 +36,21 @@ export default class Toggle extends BaseComponent {
     !isNil(onChange) && onChange(newActive, evt);
   }
 
-  getBarContent() {
+  getContent(isBarContent) {
     const {content} = this.props;
-    if (isNil(content) || !content.showInBar) {
-      return null;
-    }
-    return this.state.active ? content.on : content.off;
-  }
 
-  getBallContent() {
-    const {content} = this.props;
-    if (isNil(content) || content.showInBar) {
+    if (isNil(content)) {
       return null;
     }
+
+    if ((isBarContent && !content.showInBar)) {
+      return null;
+    }
+
+    if (!isBarContent && content.showInBar) {
+      return null;
+    }
+
     return this.state.active ? content.on : content.off;
   }
 
@@ -68,10 +70,10 @@ export default class Toggle extends BaseComponent {
                    onClick={this.clickToggle} {...otherProps}>
       <span className={clsName}>
         <span className="bar">
-         {this.getBarContent()}
+         {this.getContent(true)}
         </span>
         <span className="ball">
-          {this.getBallContent()}
+          {this.getContent(false)}
         </span>
       </span>
     </button>;

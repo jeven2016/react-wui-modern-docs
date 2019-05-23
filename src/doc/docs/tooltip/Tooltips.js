@@ -9,9 +9,11 @@ export const TooltipA = () => {
       <Tooltip position="top" body="This is a tooltip">
         <span tabIndex={0}>Top</span>
       </Tooltip>
-      &nbsp;&nbsp;
       <Tooltip position="bottom" body="This is a tooltip">
         <Button outline={true} color="blue">Bottom</Button>
+      </Tooltip>
+      <Tooltip position="top" body="This is a tooltip">
+        <Button outline={true} color="blue">Top</Button>
       </Tooltip>
     </div>
 

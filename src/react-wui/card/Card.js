@@ -9,12 +9,12 @@ export default class Card extends BaseComponent {
   };
 
   render() {
-    const {className, block, children, apppendClass} = this.props;
+    const {className, block, children, apppendClass, ...otherProps} = this.props;
     let clsName = this.getClass({
       [apppendClass]: apppendClass,
       block
     });
-    return <div className={clsName}>
+    return <div className={clsName} {...otherProps}>
       {children}
     </div>;
   }

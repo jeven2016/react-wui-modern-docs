@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArchive,
   faArrowDown, faCar,
-  faCheck, faPlane, faQuestion, faVoteYea,
+  faCheck, faPlane, faQuestion, faTimes, faVoteYea,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const ToggleA = () => {
@@ -86,16 +86,16 @@ export const ToggleC = () => {
               <FontAwesomeIcon icon={faCheck}/>
             </Icon>,
             off: <Icon>
-              <FontAwesomeIcon icon={faQuestion}/>
+              <FontAwesomeIcon icon={faTimes}/>
             </Icon>,
             showInBar: true,
           }}/>
           <Toggle type="secondary" content={{
             on: <Icon>
-              <FontAwesomeIcon icon={faCar}/>
+              <FontAwesomeIcon icon={faCheck}/>
             </Icon>,
             off: <Icon>
-              <FontAwesomeIcon icon={faPlane}/>
+              <FontAwesomeIcon icon={faTimes}/>
             </Icon>,
           }}/>
         </div>

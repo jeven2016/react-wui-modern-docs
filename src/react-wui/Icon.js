@@ -7,10 +7,10 @@ export default class Icon extends BaseComponent {
   };
 
   render() {
-    const {className, appendClass, color, children} = this.props;
+    const {className, appendClass, color, children, ...otherProps} = this.props;
     let clsName = this.getClass({
       [appendClass]: appendClass,
     });
-    return (<i className={clsName}>{children}</i>);
+    return (<i className={clsName} {...otherProps}>{children}</i>);
   }
 }
