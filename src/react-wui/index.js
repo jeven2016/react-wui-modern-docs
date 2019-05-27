@@ -25,6 +25,9 @@ export {default as Popover} from './Popover';
 export {default as Tooltip} from './Tooltip';
 export {default as Modal} from './modal';
 export {default as Toggle} from './toggle';
+export {default as Drawer} from './Drawer';
+export {default as Accordion} from './Accordion';
+export {default as Blockquota} from './Blockquota';
 
 export {
   Button,

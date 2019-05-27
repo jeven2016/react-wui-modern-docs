@@ -6,6 +6,8 @@
   "home.title": "React Wui",
   "home.title.about.me": "关于我",
   "home.title.about.documentation": "文档中心",
+  "main.navbar.accordion": "Accordion 手风琴",
+  "main.navbar.blockquota": "Blockquota 引用",
   "main.navbar.button": "Button 按钮",
   "main.navbar.drawer": "Drawer 抽屉",
   "main.navbar.dropdown": "Dropdown 下拉框",
@@ -74,5 +76,19 @@
   "content.card.sample.cardE": "占据整行",
   "content.drawer.title": "Drawer 抽屉",
   "content.drawer.simple.desc": "Drawer 抽屉示例",
-  "content.drawer.sample.drawerA": "左侧显示"
+  "content.drawer.sample.drawerA": "左侧显示",
+  "content.drawer.sample.drawerB": "顶部显示",
+  "content.drawer.sample.drawerC": "右侧显示",
+  "content.drawer.sample.drawerD": "底部显示",
+  "content.accordion.title": "Accordion 手风琴",
+  "content.accordion.simple.desc": "Accordion 手风琴示例",
+  "content.drawer.sample.accordionA": "Accordion",
+
+  "content.blockquota.title": "Blockquota 引用",
+  "content.blockquota.simple.desc": "Blockquota 引用示例",
+  "content.blockquota.sample.blockquotaA": "普通的引用",
+  "content.blockquota.sample.blockquotaB": "有边框的引用",
+  "content.blockquota.sample.blockquotaC": "有边框和背景色的引用",
+  "content.blockquota.sample.blockquotaD": "自定义文字和背景色",
+  "content.blockquota.sample.blockquotaE": "Secondary引用"
 }

@@ -12,6 +12,8 @@ import ModalIndex from './modal/ModalIndex';
 import ToggleIndex from './toggle/ToggleIndex';
 import CardIndex from './card/CardIndex';
 import DrawerIndex from './drawer/DrawerIndex';
+import AccordionIndex from "./accordion/AccordionIndex";
+import BlockquotaIndex from "./blockquota/BlockquotaIndex";
 
 export default class MainPage extends Component {
 
@@ -30,10 +32,14 @@ export default class MainPage extends Component {
                 <Menu.Header>Components</Menu.Header>
                 <Menu.List>
                   <Menu.Item id="AccordionItem">
-                    Accordion 手风琴
+                    <Link to={`${match.url}/components/accordion`}>
+                      {intl.get('main.navbar.accordion')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="BlockquoteItem">
-                    Blockquote 引用
+                    <Link to={`${match.url}/components/blockquota`}>
+                      {intl.get('main.navbar.blockquota')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="buttonItem">
                     <Link to={`${match.url}/components/button`}>
@@ -126,7 +132,10 @@ export default class MainPage extends Component {
 
 
           </div>
-
+          <Route exact={true} path={`${match.url}/components/blockquota`}
+                 component={BlockquotaIndex}/>
+          <Route exact={true} path={`${match.url}/components/accordion`}
+                 component={AccordionIndex}/>
           <Route exact={true} path={`${match.url}/components/button`}
                  component={ButtonIndex}/>
           <Route exact={true} path={`${match.url}/components/card`}
