@@ -44,11 +44,15 @@ $header-height: 4rem;
     height: calc(100vh - 4rem);
     position: sticky;
     border-right: 1px solid #fff;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 
     .menu-header {
       font-weight: 500;
+    }
+
+    &:focus, &:hover {
+      overflow-y: auto;
     }
   }
 

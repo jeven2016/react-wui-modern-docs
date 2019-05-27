@@ -6,11 +6,11 @@ import {
   Card,
   Divider,
   Icon,
-  Tooltip
+  Tooltip,
 } from '../../../react-wui';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMailBulk, faPhone, faUser} from "@fortawesome/free-solid-svg-icons";
-import pic from "../../../style/back.jpg";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMailBulk, faPhone, faUser} from '@fortawesome/free-solid-svg-icons';
+import pic from '../../../style/back.jpg';
 
 export const CardA = () => {
   let comp = <>
@@ -31,7 +31,7 @@ export const CardA = () => {
       </Card>
 
       <Card>
-        <Card.Header appendClass="bg-color-gray">
+        <Card.Header hasBackground>
           Header
         </Card.Header>
         <Divider/>
@@ -46,7 +46,7 @@ export const CardA = () => {
         </Card.Footer>
       </Card>
     </div>
-    <div style={{marginTop: "1rem"}}>
+    <div style={{marginTop: '1rem'}}>
       <Card>
         <Card.Header>
           Header
@@ -84,7 +84,7 @@ export const CardB = () => {
       <Card>
         <Card.Row>
           <h2 className="text color-blue">
-            <Icon style={{marginRight: "0.5rem"}}>
+            <Icon style={{marginRight: '0.5rem'}}>
               <FontAwesomeIcon icon={faUser}/>
             </Icon>
             <span>Jeven Wang</span>
@@ -96,13 +96,13 @@ export const CardB = () => {
         </Card.Body>
         <Card.Footer>
           <ButtonGroup block>
-            <Button style={{width: "50%"}} color="green">
-              <FontAwesomeIcon icon={faPhone} style={{marginRight: "0.5rem"}}/>
+            <Button style={{width: '50%'}} color="green">
+              <FontAwesomeIcon icon={faPhone} style={{marginRight: '0.5rem'}}/>
               电话
             </Button>
-            <Button style={{width: "50%"}} color="blue">
+            <Button style={{width: '50%'}} color="blue">
               <FontAwesomeIcon icon={faMailBulk}
-                               style={{marginRight: "0.5rem"}}/>
+                               style={{marginRight: '0.5rem'}}/>
               邮件
             </Button>
           </ButtonGroup>
@@ -111,10 +111,10 @@ export const CardB = () => {
     </div>
 
     <div>
-      <Card style={{marginTop: "1rem"}}>
+      <Card style={{marginTop: '1rem'}}>
         <Card.Row>
           <h2 className="text color-blue">
-            <Icon style={{marginRight: "0.5rem"}}>
+            <Icon style={{marginRight: '0.5rem'}}>
               <FontAwesomeIcon icon={faUser}/>
             </Icon>
             <span>John Smith</span>
@@ -153,7 +153,7 @@ export const CardC = () => {
       </Tooltip>
     </div>
 
-    <div style={{marginTop: "1rem"}}>
+    <div style={{marginTop: '1rem'}}>
       <Card>
         <Card.CardImage position="top">
           <Card.Image src={pic}>
@@ -173,7 +173,7 @@ export const CardC = () => {
       </Card>
     </div>
 
-    <div style={{marginTop: "1rem"}}>
+    <div style={{marginTop: '1rem'}}>
       <Card>
         <Card.Row>
           <h4>好去处</h4>
@@ -183,6 +183,96 @@ export const CardC = () => {
           </h5>
         </Card.Row>
         <Card.CardImage position="bottom">
+          <Card.Image src={pic}>
+          </Card.Image>
+          <Card.OverlayTitle>
+            <h2>一个天籁之境</h2>
+            <h6>去哪里能找到如此优美的仙境呢?</h6>
+          </Card.OverlayTitle>
+        </Card.CardImage>
+      </Card>
+    </div>
+
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Toggle} from "react-wui";
+  
+ 
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const CardD = () => {
+  let comp = <>
+
+    <div>
+      <Tooltip body="一个最简单的,只有图片的卡片">
+        <Card autoScale>
+          <Card.CardImage position="top">
+            <Card.Image src={pic}>
+            </Card.Image>
+          </Card.CardImage>
+        </Card>
+      </Tooltip>
+    </div>
+
+    <div style={{marginTop: '1rem'}}>
+      <Card autoScale>
+        <Card.CardImage position="top">
+          <Card.Image src={pic}>
+          </Card.Image>
+          <Card.OverlayTitle>
+            <h2>一个天籁之境</h2>
+            <h6>去哪里能找到如此优美的仙境呢?</h6>
+          </Card.OverlayTitle>
+        </Card.CardImage>
+        <Card.Footer>
+          <h4>好去处</h4>
+          <h5>选一个合适的时间, 去一个最适宜的地方. 这里的风景让人无法拒绝,绝对值得体验的仙境.</h5>
+          <h5 className="text comment">
+            详情请电话咨询......
+          </h5>
+        </Card.Footer>
+      </Card>
+    </div>
+
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Toggle} from "react-wui";
+  
+ 
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const CardE = () => {
+  let comp = <>
+
+    <Card block>
+      <Card.Header hasBackground>
+        Header
+      </Card.Header>
+      <Divider/>
+      <Card.Body>
+        Body
+      </Card.Body>
+      <Card.Row>
+        Row
+      </Card.Row>
+      <Card.Footer>
+        Footer
+      </Card.Footer>
+    </Card>
+
+    <div style={{marginTop: '1rem'}}>
+      <Card block>
+        <Card.CardImage position="top">
           <Card.Image src={pic}>
           </Card.Image>
           <Card.OverlayTitle>

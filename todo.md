@@ -8,3 +8,4 @@ refer to the implementation of NavBar
  * refactor the toggle css code to use flexbox 
  * add {...otherProps} to all components
  * 多个card 一起排列时,设置了padding-left,窗口变小出现换行时左侧不对齐的问题
+ *　动画统一增强

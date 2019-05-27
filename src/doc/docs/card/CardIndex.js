@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {CardA, CardB, CardC} from './Cards';
+import {CardA, CardB, CardC, CardD, CardE} from './Cards';
 
 export default class CardIndex extends DocComponent {
   constructor(args) {
@@ -39,6 +39,18 @@ export default class CardIndex extends DocComponent {
           <h3 id="cardC">{intl.get('content.card.sample.cardC')} </h3>
           <CardC/>
         </section>
+
+        <section>
+          <h3 id="cardD">{intl.get('content.card.sample.cardD')} </h3>
+          <CardD/>
+        </section>
+
+
+        <section>
+          <h3 id="cardE">{intl.get('content.card.sample.cardE')} </h3>
+          <CardE/>
+        </section>
+
 
       </div>
 

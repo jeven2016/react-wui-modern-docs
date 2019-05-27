@@ -7,6 +7,7 @@
   "home.title.about.me": "关于我",
   "home.title.about.documentation": "文档中心",
   "main.navbar.button": "Button 按钮",
+  "main.navbar.drawer": "Drawer 抽屉",
   "main.navbar.dropdown": "Dropdown 下拉框",
   "main.navbar.menu": "Menu 菜单",
   "main.navbar.modal": "Modal 对话框",
@@ -68,5 +69,10 @@
   "content.card.simple.desc": "Card 卡片示例",
   "content.card.sample.cardA": "一个基本的Card",
   "content.card.sample.cardB": "名片",
-  "content.card.sample.cardC": "卡片中的图片"
+  "content.card.sample.cardC": "卡片中的图片",
+  "content.card.sample.cardD": "显示缩放效果",
+  "content.card.sample.cardE": "占据整行",
+  "content.drawer.title": "Drawer 抽屉",
+  "content.drawer.simple.desc": "Drawer 抽屉示例",
+  "content.drawer.sample.drawerA": "左侧显示"
 }

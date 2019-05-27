@@ -8,9 +8,10 @@ import DropdownIndex from './dropdown/DropdownIndex';
 import NavbarIndex from './navbar/NavbarIndex';
 import PopoverIndex from './popover/PopoverIndex';
 import TooltipIndex from './tooltip/TooltipIndex';
-import ModalIndex from "./modal/ModalIndex";
-import ToggleIndex from "./toggle/ToggleIndex";
-import CardIndex from "./card/CardIndex";
+import ModalIndex from './modal/ModalIndex';
+import ToggleIndex from './toggle/ToggleIndex';
+import CardIndex from './card/CardIndex';
+import DrawerIndex from './drawer/DrawerIndex';
 
 export default class MainPage extends Component {
 
@@ -45,7 +46,9 @@ export default class MainPage extends Component {
                     </Link>
                   </Menu.Item>
                   < Menu.Item id="DrawerItem">
-                    Drawer 抽屉
+                    <Link to={`${match.url}/components/drawer`}>
+                      {intl.get('main.navbar.drawer')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="DropdownItem">
                     <Link to={`${match.url}/components/dropdown`}>
@@ -128,12 +131,15 @@ export default class MainPage extends Component {
                  component={ButtonIndex}/>
           <Route exact={true} path={`${match.url}/components/card`}
                  component={CardIndex}/>
+          <Route exact={true} path={`${match.url}/components/dropdown`}
+                 component={DropdownIndex}/>
+          <Route exact={true} path={`${match.url}/components/drawer`}
+                 component={DrawerIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}
                  component={MenuIndex}/>
           <Route exact={true} path={`${match.url}/components/modal`}
                  component={ModalIndex}/>
-          <Route exact={true} path={`${match.url}/components/dropdown`}
-                 component={DropdownIndex}/>
+
           <Route exact={true} path={`${match.url}/components/navbar`}
                  component={NavbarIndex}/>
           <Route exact={true} path={`${match.url}/components/popover`}

@@ -7,8 +7,10 @@ export default class Header extends BaseComponent {
   };
 
   render() {
-    const {className, appendClass, children} = this.props;
-    let clsName = this.getClass();
+    const {hasBackground, className, appendClass, children} = this.props;
+    let clsName = this.getClass({
+      gray: hasBackground,
+    });
     return <div className={clsName}>
       {children}
     </div>;
