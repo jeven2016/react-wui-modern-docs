@@ -11,3 +11,4 @@ refer to the implementation of NavBar
  *　动画统一增强
  * Drawer没有黑色背景时的点击自动关闭如何实现
  * 参数\变量\方法名称统一风格
+ * loader设置style: margin-top失败
