@@ -14,6 +14,7 @@ import CardIndex from './card/CardIndex';
 import DrawerIndex from './drawer/DrawerIndex';
 import AccordionIndex from "./accordion/AccordionIndex";
 import BlockquotaIndex from "./blockquota/BlockquotaIndex";
+import LoaderIndex from "./loader/LoaderIndex";
 
 export default class MainPage extends Component {
 
@@ -63,6 +64,11 @@ export default class MainPage extends Component {
                   </Menu.Item>
                   <Menu.Item id="InputItem">
                     Input 输入框
+                  </Menu.Item>
+                  <Menu.Item id="LoaderItem">
+                    <Link to={`${match.url}/components/loader`}>
+                      {intl.get('main.navbar.loader')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="MenuItem">
                     <Link to={`${match.url}/components/menu`}>
@@ -144,6 +150,8 @@ export default class MainPage extends Component {
                  component={DropdownIndex}/>
           <Route exact={true} path={`${match.url}/components/drawer`}
                  component={DrawerIndex}/>
+          <Route exact={true} path={`${match.url}/components/loader`}
+                 component={LoaderIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}
                  component={MenuIndex}/>
           <Route exact={true} path={`${match.url}/components/modal`}

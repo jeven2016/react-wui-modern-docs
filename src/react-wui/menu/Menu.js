@@ -78,7 +78,8 @@ export default class Menu extends BaseMenu {
     }
     if (menu.hasChildNodes()) {
       let menuChildNodes = menu.childNodes;
-      menuChildNodes.forEach(childNode => {
+      for (let elem in menuChildNodes) {
+        let childNode = menuChildNodes[elem];
         if (this.hasClass(childNode, MenuClassName.list)) {
           this.updateItem(childNode.childNodes, index + 1, index);
         }
@@ -88,7 +89,7 @@ export default class Menu extends BaseMenu {
         if (this.hasClass(childNode, MenuClassName.submenu)) {
           this.updatePaddingLeft(childNode, index + 1);
         }
-      });
+      }
     }
 
   }
@@ -133,7 +134,8 @@ export default class Menu extends BaseMenu {
 
   updateItem(itemNodes, next, index) {
     const {paddingLeftIncrement, paddingLeftUnit} = this.props;
-    itemNodes.forEach(item => {
+    for (let elem in itemNodes) {
+      let item = itemNodes[elem];
       if (this.hasClass(item, MenuClassName.submenu)) {
         this.updatePaddingLeft(item, ++index);
       }
@@ -142,7 +144,7 @@ export default class Menu extends BaseMenu {
         item.style.paddingLeft = `${next *
         paddingLeftIncrement}${paddingLeftUnit}`;
       }
-    });
+    }
   }
 
   hasClass = (node, className) => !isNil(node.className) &&

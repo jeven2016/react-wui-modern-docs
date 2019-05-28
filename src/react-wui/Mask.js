@@ -7,12 +7,12 @@ export default class Mask extends BaseComponent {
   };
 
   render() {
-    const {className, appendClass, active, onClick, children} = this.props
+    const {className, appendClass, active, onClick, children, ...otherProps} = this.props
     let clsName = this.getClass({
       active: active,
       inactive: !active
     });
-    return <div className={clsName} onClick={onClick}>
+    return <div className={clsName} onClick={onClick} {...otherProps}>
       {children}
     </div>
   }

@@ -11,6 +11,7 @@
   "main.navbar.button": "Button 按钮",
   "main.navbar.drawer": "Drawer 抽屉",
   "main.navbar.dropdown": "Dropdown 下拉框",
+  "main.navbar.loader": "Loader 加载",
   "main.navbar.menu": "Menu 菜单",
   "main.navbar.modal": "Modal 对话框",
   "main.navbar.navbar": "Navbar 导航栏",
@@ -90,5 +91,12 @@
   "content.blockquota.sample.blockquotaB": "有边框的引用",
   "content.blockquota.sample.blockquotaC": "有边框和背景色的引用",
   "content.blockquota.sample.blockquotaD": "自定义文字和背景色",
-  "content.blockquota.sample.blockquotaE": "Secondary引用"
+  "content.blockquota.sample.blockquotaE": "Secondary引用",
+
+  "content.loader.title": "Loader 加载",
+  "content.loader.simple.desc": "Loader 加载示例",
+  "content.loader.sample.loaderA": "三种类型",
+  "content.loader.sample.loaderB": "显示提示信息",
+  "content.loader.sample.loaderC": "在按钮中显示",
+  "content.loader.sample.loaderD": "内容加载中"
 }

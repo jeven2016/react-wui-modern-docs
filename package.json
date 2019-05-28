@@ -43,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
     "react-app-polyfill": "^0.2.2"
