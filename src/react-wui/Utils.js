@@ -54,8 +54,7 @@ export const getRandomInt = (min, max) => {
 };
 
 ///////////////////////////////////////
-
-export {isNil, isObject} from 'lodash';
+export {isNil, isObject, inRange, isInteger} from 'lodash';
 
 // https://github.com/facebook/react/issues/13969
 // context should be placed in a individual file

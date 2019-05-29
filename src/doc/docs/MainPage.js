@@ -15,6 +15,7 @@ import DrawerIndex from './drawer/DrawerIndex';
 import AccordionIndex from "./accordion/AccordionIndex";
 import BlockquotaIndex from "./blockquota/BlockquotaIndex";
 import LoaderIndex from "./loader/LoaderIndex";
+import GridIndex from "./grid/GridIndex";
 
 export default class MainPage extends Component {
 
@@ -60,6 +61,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="DropdownItem">
                     <Link to={`${match.url}/components/dropdown`}>
                       {intl.get('main.navbar.dropdown')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="GridItem">
+                    <Link to={`${match.url}/components/grid`}>
+                      {intl.get('main.navbar.grid')}
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="InputItem">
@@ -150,6 +156,8 @@ export default class MainPage extends Component {
                  component={DropdownIndex}/>
           <Route exact={true} path={`${match.url}/components/drawer`}
                  component={DrawerIndex}/>
+          <Route exact={true} path={`${match.url}/components/grid`}
+                 component={GridIndex}/>
           <Route exact={true} path={`${match.url}/components/loader`}
                  component={LoaderIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}

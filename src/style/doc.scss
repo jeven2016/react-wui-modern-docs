@@ -134,6 +134,20 @@ $header-height: 4rem;
       font-weight: 400;
     }
   }
+
+  .grid {
+    .row {
+      border: 1px solid rgba(86, 61, 124, 0.2);
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .row > div[class^=col-] {
+      background-color: #ccc;
+      border: 1px solid rgba(86, 61, 124, 0.2);
+      background-color: rgba(86, 61, 124, 0.15);
+    }
+  }
 }
 
 

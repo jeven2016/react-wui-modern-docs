@@ -73,3 +73,18 @@ export const FlexAlign = {
   right: 'flex-align right',
   center: 'flex-align center',
 };
+
+export const JustifyContentType = {
+  start: "justify-start",
+  end: "justify-end",
+  center: "justify-center",
+  around: "justify-around",
+  between: "justify-between",
+  evenly: "justify-evenly"
+};
+
+export const AlignItemsType = {
+  start: "align-start",
+  end: "align-end",
+  center: "align-center"
+};

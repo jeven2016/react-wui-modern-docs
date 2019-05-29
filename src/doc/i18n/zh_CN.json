@@ -11,6 +11,7 @@
   "main.navbar.button": "Button 按钮",
   "main.navbar.drawer": "Drawer 抽屉",
   "main.navbar.dropdown": "Dropdown 下拉框",
+  "main.navbar.grid": "Grid 栅格",
   "main.navbar.loader": "Loader 加载",
   "main.navbar.menu": "Menu 菜单",
   "main.navbar.modal": "Modal 对话框",
@@ -84,7 +85,6 @@
   "content.accordion.title": "Accordion 手风琴",
   "content.accordion.simple.desc": "Accordion 手风琴示例",
   "content.drawer.sample.accordionA": "Accordion",
-
   "content.blockquota.title": "Blockquota 引用",
   "content.blockquota.simple.desc": "Blockquota 引用示例",
   "content.blockquota.sample.blockquotaA": "普通的引用",
@@ -92,11 +92,15 @@
   "content.blockquota.sample.blockquotaC": "有边框和背景色的引用",
   "content.blockquota.sample.blockquotaD": "自定义文字和背景色",
   "content.blockquota.sample.blockquotaE": "Secondary引用",
-
   "content.loader.title": "Loader 加载",
   "content.loader.simple.desc": "Loader 加载示例",
   "content.loader.sample.loaderA": "三种类型",
   "content.loader.sample.loaderB": "显示提示信息",
   "content.loader.sample.loaderC": "在按钮中显示",
-  "content.loader.sample.loaderD": "内容加载中"
+  "content.loader.sample.loaderD": "内容加载中",
+  "content.grid.title": "Grid 栅格",
+  "content.grid.simple.desc": "Grid 栅格示例",
+  "content.grid.sample.gridA": "默认为xs类型",
+  "content.grid.sample.gridB": "设置offset",
+  "content.grid.sample.gridC": "水平排列各列"
 }
