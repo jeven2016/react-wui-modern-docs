@@ -1,7 +1,7 @@
 export const TransparentbtnStyle = {
-  background: "transparent",
-  border: "none",
-  outline: "none",
+  background: 'transparent',
+  border: 'none',
+  outline: 'none',
 };
 
 export const NavBarFixedTypes = ['top', 'bottom'];
@@ -75,16 +75,22 @@ export const FlexAlign = {
 };
 
 export const JustifyContentType = {
-  start: "justify-start",
-  end: "justify-end",
-  center: "justify-center",
-  around: "justify-around",
-  between: "justify-between",
-  evenly: "justify-evenly"
+  start: 'justify-start',
+  end: 'justify-end',
+  center: 'justify-center',
+  around: 'justify-around',
+  between: 'justify-between',
+  evenly: 'justify-evenly',
 };
 
 export const AlignItemsType = {
-  start: "align-start",
-  end: "align-end",
-  center: "align-center"
+  start: 'align-start',
+  end: 'align-end',
+  center: 'align-center',
+};
+
+export const FormItemType = {
+  inline: 'form-item inline',
+  block: 'form-item',
+  grid: 'form-item row',
 };

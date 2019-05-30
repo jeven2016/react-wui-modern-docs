@@ -102,5 +102,8 @@
   "content.grid.simple.desc": "Grid 栅格示例",
   "content.grid.sample.gridA": "默认为xs类型",
   "content.grid.sample.gridB": "设置offset",
-  "content.grid.sample.gridC": "水平排列各列"
+  "content.grid.sample.gridC": "水平方向排列",
+  "content.grid.sample.gridD": "垂直方向排列",
+  "content.grid.sample.gridE": "排列顺序",
+  "content.grid.sample.gridF": "响应式布局"
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {GridA, GridB, GridC} from "./Grids";
+import {GridA, GridB, GridC, GridD, GridE, GridF} from './Grids';
 
 export default class GridIndex extends DocComponent {
   constructor(args) {
@@ -35,8 +35,23 @@ export default class GridIndex extends DocComponent {
         </section>
 
         <section>
-          <h3 id="GridC">{intl.get('content.grid.sample.GridC')}</h3>
+          <h3 id="gridC">{intl.get('content.grid.sample.gridC')}</h3>
           <GridC/>
+        </section>
+
+        <section>
+          <h3 id="gridD">{intl.get('content.grid.sample.gridD')}</h3>
+          <GridD/>
+        </section>
+
+        <section>
+          <h3 id="gridE">{intl.get('content.grid.sample.gridE')}</h3>
+          <GridE/>
+        </section>
+
+        <section>
+          <h3 id="gridF">{intl.get('content.grid.sample.gridF')}</h3>
+          <GridF/>
         </section>
 
       </div>

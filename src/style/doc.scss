@@ -200,3 +200,16 @@ $header-height: 4rem;
     text-align: center;
   }
 }
+
+@media screen and ("min-width": "768px") {
+  .doc.left-nav-col{
+    display: block;
+  }
+}
+
+@media screen and ("max-width": "767.95px") {
+  .doc.left-nav-col{
+    display: none;
+  }
+}
+
