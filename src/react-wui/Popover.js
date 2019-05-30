@@ -144,7 +144,7 @@ class PopoverModal extends BaseComponent {
 
   componentWillUnmount() {
     if (this.container) {
-      this.container.remove();
+      this.container.parentNode.removeChild(this.container);
     }
   }
 
