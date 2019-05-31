@@ -24,6 +24,8 @@ export default class GridIndex extends DocComponent {
         <p>
           {intl.get('content.grid.simple.desc')}
         </p>
+
+        <span className="grid-sample-col">
         <section>
           <h3 id="gridA">{intl.get('content.grid.sample.gridA')}</h3>
           <GridA/>
@@ -53,6 +55,7 @@ export default class GridIndex extends DocComponent {
           <h3 id="gridF">{intl.get('content.grid.sample.gridF')}</h3>
           <GridF/>
         </section>
+        </span>
 
       </div>
 

@@ -11,6 +11,7 @@
   "main.navbar.button": "Button 按钮",
   "main.navbar.drawer": "Drawer 抽屉",
   "main.navbar.dropdown": "Dropdown 下拉框",
+  "main.navbar.form": "Form 表单",
   "main.navbar.grid": "Grid 栅格",
   "main.navbar.loader": "Loader 加载",
   "main.navbar.menu": "Menu 菜单",
@@ -105,5 +106,12 @@
   "content.grid.sample.gridC": "水平方向排列",
   "content.grid.sample.gridD": "垂直方向排列",
   "content.grid.sample.gridE": "排列顺序",
-  "content.grid.sample.gridF": "响应式布局"
+  "content.grid.sample.gridF": "响应式布局",
+  "content.form.title": "Form 表格",
+  "content.form.simple.desc": "Form 表格示例",
+  "content.form.sample.formA": "行内显示的表单",
+  "content.form.sample.formB": "占据整行的表单",
+  "content.form.sample.formC": "响应式布局下的表单",
+  "content.form.sample.formD": "在输入框中显示错误信息",
+  "content.form.sample.formE": "在带Icon的输入框中显示错误信息"
 }

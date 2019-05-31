@@ -148,6 +148,15 @@ $header-height: 4rem;
       background-color: rgba(86, 61, 124, 0.15);
     }
   }
+
+
+  .grid-sample-col {
+    .row {
+      > [class^=col-] {
+        padding: 0.5rem;
+      }
+    }
+  }
 }
 
 
@@ -201,15 +210,20 @@ $header-height: 4rem;
   }
 }
 
-@media screen and ("min-width": "768px") {
-  .doc.left-nav-col{
+@media screen and ("min-width": "992px") {
+  .doc.left-nav-col, .doc.right-col {
     display: block;
   }
 }
 
-@media screen and ("max-width": "767.95px") {
-  .doc.left-nav-col{
+@media screen and ("max-width": "991.95px") {
+  .doc.left-nav-col, .doc.right-col {
     display: none;
+  }
+
+  .doc.center-col {
+    padding: 7rem 1rem 0rem;
+    flex: 1 1 auto;
   }
 }
 

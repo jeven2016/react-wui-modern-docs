@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import {InputBorderType} from "./common/Constants";
 
 class IconInput extends Component {
   static defaultProps = {
@@ -17,16 +18,18 @@ class IconInput extends Component {
   };
 
   render() {
-    const {children, leftIcon, className, size, block, withinGroup} = this.props;
+    const {borderType, children, leftIcon, className, size, block, withinGroup, ...otherProps} = this.props;
 
+    let borderTypeCls = InputBorderType[borderType];
     let clsName = classnames(className, {
       'left-icon': leftIcon,
       [size]: size,
       block: block,
+      [borderTypeCls]: borderTypeCls,
       element: withinGroup, //add 'element' to class if this input is under controlled by input-group
     });
 
-    return <div className={clsName}>
+    return <div className={clsName} {...otherProps}>
       {children}
     </div>;
   }
@@ -56,6 +59,7 @@ class Input extends Component {
 
   render() {
     const {
+      borderType,
       size,
       nativeType,
       block,
@@ -66,11 +70,14 @@ class Input extends Component {
       ...otherProps
     } = this.props;
 
+    let borderTypeCls = InputBorderType[borderType];
+
     let clsName = classnames(className, {
       [size]: size,
       expanded: expanded,
       element: withinGroup,
       block: block,
+      [borderTypeCls]: borderTypeCls
     });
 
     return (

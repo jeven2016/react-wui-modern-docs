@@ -1557,10 +1557,10 @@ h1, h2, h3, h4, h5, h6 {
     align-items: flex-end; }
   .row.align-center {
     align-items: center; }
-  .row > *[class^=col-] {
+  .row > [class^=col-] {
     position: relative;
     display: block;
-    padding: 0.5rem 0.25rem;
+    padding: 0 0.25rem;
     width: 100%; }
   .row > .col-1 {
     width: 8.33333%; }

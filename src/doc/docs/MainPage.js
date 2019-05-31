@@ -16,6 +16,7 @@ import AccordionIndex from "./accordion/AccordionIndex";
 import BlockquotaIndex from "./blockquota/BlockquotaIndex";
 import LoaderIndex from "./loader/LoaderIndex";
 import GridIndex from "./grid/GridIndex";
+import FormIndex from "./form/FormIndex";
 
 export default class MainPage extends Component {
 
@@ -63,6 +64,11 @@ export default class MainPage extends Component {
                       {intl.get('main.navbar.dropdown')}
                     </Link>
                   </Menu.Item>
+                  <Menu.Item id="FormItem">
+                    <Link to={`${match.url}/components/form`}>
+                      {intl.get('main.navbar.form')}
+                    </Link>
+                  </Menu.Item>
                   <Menu.Item id="GridItem">
                     <Link to={`${match.url}/components/grid`}>
                       {intl.get('main.navbar.grid')}
@@ -95,9 +101,6 @@ export default class MainPage extends Component {
                     <Link to={`${match.url}/components/popover`}>
                       {intl.get('main.navbar.popover')}
                     </Link>
-                  </Menu.Item>
-                  <Menu.Item id="FormItem">
-                    Form 表单
                   </Menu.Item>
                   <Menu.Item id="LoadingItem">
                     Loading 加载
@@ -156,6 +159,8 @@ export default class MainPage extends Component {
                  component={DropdownIndex}/>
           <Route exact={true} path={`${match.url}/components/drawer`}
                  component={DrawerIndex}/>
+          <Route exact={true} path={`${match.url}/components/form`}
+                 component={FormIndex}/>
           <Route exact={true} path={`${match.url}/components/grid`}
                  component={GridIndex}/>
           <Route exact={true} path={`${match.url}/components/loader`}

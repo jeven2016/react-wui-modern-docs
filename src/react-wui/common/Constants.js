@@ -1,3 +1,9 @@
+export const InputBorderType = {
+  ok: "input-ok",
+  warning: "input-warning",
+  error: "input-error"
+};
+
 export const TransparentbtnStyle = {
   background: 'transparent',
   border: 'none',
