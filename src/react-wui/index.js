@@ -33,6 +33,7 @@ export {default as Row} from './grid/Row';
 export {default as Col} from './grid/Col';
 export {default as Form} from './Form';
 export {default as Alert} from './Alert';
+export {default as Notification} from './Notification';
 
 export {
   Button,

@@ -1,9 +1,9 @@
-import React from "react";
-import SamplePannel from "../../common/SamplePannel";
-import {Alert, Button} from "../../../react-wui";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDatabase, faInfo} from "@fortawesome/free-solid-svg-icons";
-import {faDAndD, faGoodreads} from "@fortawesome/free-brands-svg-icons";
+import React from 'react';
+import SamplePannel from '../../common/SamplePannel';
+import {Alert, Button, Notification} from '../../../react-wui';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faDatabase, faInfo} from '@fortawesome/free-solid-svg-icons';
+import {faDAndD, faGoodreads} from '@fortawesome/free-brands-svg-icons';
 
 export const AlertA = () => {
   let comp = <>
@@ -30,13 +30,15 @@ export const AlertA = () => {
 
 export const AlertB = () => {
   let comp = <>
-    <Alert type="info" iconType={<FontAwesomeIcon icon={faInfo}/>}
+    <Alert title="INFO" type="info" iconType={<FontAwesomeIcon icon={faInfo}/>}
            body="A info alert" closable={true}/>
-    <Alert type="ok" iconType={<FontAwesomeIcon icon={faGoodreads}/>}
+    <Alert title="OK" type="ok" iconType={<FontAwesomeIcon icon={faGoodreads}/>}
            body="A ok alert" closable={true}/>
-    <Alert type="warning" iconType={<FontAwesomeIcon icon={faDAndD}/>}
+    <Alert title="WARNING" type="warning"
+           iconType={<FontAwesomeIcon icon={faDAndD}/>}
            body="A warning alert" closable={true}/>
-    <Alert type="error" iconType={<FontAwesomeIcon icon={faDatabase}/>}
+    <Alert title="ERROR" type="error"
+           iconType={<FontAwesomeIcon icon={faDatabase}/>}
            body="A error alert" closable={true}/>
   </>;
 
@@ -61,6 +63,8 @@ export const AlertC = () => {
     <Alert type="ok" body="A ok alert" closable={true}/>
     <Alert type="warning" body="A warning alert" closable={true}/>
     <Alert type="error" body="A error alert" closable={true}/>
+
+    <Button onClick={() => Notification.info('hello')}>Info</Button>
   </>;
 
   let code = `

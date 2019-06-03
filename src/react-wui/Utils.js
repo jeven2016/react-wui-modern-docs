@@ -47,14 +47,16 @@ export const appendClassIfAbsent = (elem, className) => {
   return elem.props.className;
 };
 
+
+///////////////////////////////////////
+export {isNil, isObject, inRange, isInteger} from 'lodash';
+
+
 export const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-///////////////////////////////////////
-export {isNil, isObject, inRange, isInteger} from 'lodash';
 
 // https://github.com/facebook/react/issues/13969
 // context should be placed in a individual file

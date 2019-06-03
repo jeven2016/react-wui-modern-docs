@@ -1,21 +1,21 @@
-import React from "react";
-import BaseComponent from "./BaseComponent";
-import {isNil} from "./Utils";
-import classnames from "classnames";
-import {IconWarning} from "./Icons";
+import React from 'react';
+import BaseComponent from './BaseComponent';
+import {isNil} from './Utils';
+import classnames from 'classnames';
+import {IconWarning} from './Icons';
 
 const AlertType = {
-  info: {clsName: "alert-info", icon: null},
-  ok: {clsName: "alert-ok", icon: null},
-  warning: {clsName: "alert-warning", icon: <IconWarning/>},
-  error: {clsName: "alert-error", icon: null}
+  info: {clsName: 'alert-info', icon: null},
+  ok: {clsName: 'alert-ok', icon: null},
+  warning: {clsName: 'alert-warning', icon: <IconWarning/>},
+  error: {clsName: 'alert-error', icon: null},
 };
 
 export default class Alert extends BaseComponent {
 
   static defaultProps = {
     className: 'alert',
-    showIcon: true
+    showIcon: true,
   };
 
   static propTypes = {};
@@ -30,9 +30,9 @@ export default class Alert extends BaseComponent {
     if (AlertType.hasOwnProperty(type)) {
       typeCls = AlertType[type].clsName;
     }
-    let clsName = classnames("alert", {
-      "with-title": title,
-      [typeCls]: typeCls
+    let clsName = classnames('alert', {
+      'with-title': title,
+      [typeCls]: typeCls,
     });
 
     let iconElement = this.getIconContent(showIcon, iconType, type);
@@ -66,11 +66,15 @@ export default class Alert extends BaseComponent {
     if (showIcon) {
 
       if (!isNil(iconType)) {
-        iconElementChild = iconType
+        iconElementChild = iconType;
       } else {
-        iconElementChild = AlertType[type].icon;
+        iconElementChild = !isNil(AlertType[type])
+            ? AlertType[type].icon
+            : null;
       }
-      iconElement = <div className="alert-icon">{iconElementChild}</div>;
+      if (iconElementChild) {
+        iconElement = <div className="alert-icon">{iconElementChild}</div>;
+      }
     }
     return iconElement;
   }
