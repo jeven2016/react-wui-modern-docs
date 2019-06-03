@@ -17,6 +17,7 @@ import BlockquotaIndex from "./blockquota/BlockquotaIndex";
 import LoaderIndex from "./loader/LoaderIndex";
 import GridIndex from "./grid/GridIndex";
 import FormIndex from "./form/FormIndex";
+import AlertIndex from "./alert/AlertIndex";
 
 export default class MainPage extends Component {
 
@@ -37,6 +38,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="AccordionItem">
                     <Link to={`${match.url}/components/accordion`}>
                       {intl.get('main.navbar.accordion')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="AlertItem">
+                    <Link to={`${match.url}/components/alert`}>
+                      {intl.get('main.navbar.alert')}
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="BlockquoteItem">
@@ -151,6 +157,8 @@ export default class MainPage extends Component {
                  component={BlockquotaIndex}/>
           <Route exact={true} path={`${match.url}/components/accordion`}
                  component={AccordionIndex}/>
+          <Route exact={true} path={`${match.url}/components/alert`}
+                 component={AlertIndex}/>
           <Route exact={true} path={`${match.url}/components/button`}
                  component={ButtonIndex}/>
           <Route exact={true} path={`${match.url}/components/card`}

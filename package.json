@@ -12,7 +12,6 @@
     "connected-react-router": "^6.3.2",
     "es6-promise": "^4.2.6",
     "history": "^4.9.0",
-    "import": "0.0.6",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "rc-hammerjs": "^0.6.9",
@@ -22,6 +21,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-syntax-highlighter": "^10.2.1",
+    "react-transition-group": "^1.2.1",
     "scroll-to-element": "^2.0.3",
     "shallowequal": "^1.1.0",
     "whatwg-fetch": "^3.0.0"

@@ -7,6 +7,7 @@
   "home.title.about.me": "关于我",
   "home.title.about.documentation": "文档中心",
   "main.navbar.accordion": "Accordion 手风琴",
+  "main.navbar.alert": "Alert 告警",
   "main.navbar.blockquota": "Blockquota 引用",
   "main.navbar.button": "Button 按钮",
   "main.navbar.drawer": "Drawer 抽屉",
@@ -113,5 +114,11 @@
   "content.form.sample.formB": "占据整行的表单",
   "content.form.sample.formC": "响应式布局下的表单",
   "content.form.sample.formD": "在输入框中显示错误信息",
-  "content.form.sample.formE": "在带Icon的输入框中显示错误信息"
+  "content.form.sample.formE": "在带Icon的输入框中显示错误信息",
+  "content.alert.title": "Alert 告警",
+  "content.alert.simple.desc": "Alert 告警示例",
+  "content.alert.sample.alertA": "基础Alert",
+  "content.alert.sample.alertB": "更多内容",
+  "content.alert.sample.alertC": "传统方式显示Alert",
+  "content.alert.sample.alertD": "全局显示的Alert"
 }
