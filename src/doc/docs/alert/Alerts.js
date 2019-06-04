@@ -65,10 +65,17 @@ export const AlertC = () => {
     <Alert type="error" body="A error alert" closable={true}/>
 
     <Button onClick={() => Notification.info({body: 'hello'})}>Info</Button>
-    <Button onClick={() => Notification.ok("are you kidding me?")}>Ok</Button>
+    <Button onClick={() => Notification.ok('are you kidding me?')}>Ok</Button>
     <Button
-        onClick={() => Notification.warning("warning message")}>Warning</Button>
-    <Button onClick={() => Notification.error("error message")}>Error</Button>
+        onClick={() => Notification.warning('warning message')}>Warning</Button>
+    <Button onClick={() => Notification.error('error message')}>Error</Button>
+
+    <Button onClick={() => Notification.info({
+      title: 'INFO',
+      body: 'hello',
+      closable: true,
+      iconType: <FontAwesomeIcon icon={faInfo}/>,
+    })}>Info</Button>
   </>;
 
   let code = `
@@ -85,3 +92,4 @@ export const AlertC = () => {
 
   return <SamplePannel component={comp} code={code}/>;
 };
+;

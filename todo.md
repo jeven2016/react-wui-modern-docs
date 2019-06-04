@@ -14,6 +14,7 @@ refer to the implementation of NavBar
  * loader设置style: margin-top失败
  * Modal 打开在关闭时,IE 下overflow无法滚动
  * 各类颜色需要统一
+ * 动画版本１.2太低了－－》　升级
  
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp

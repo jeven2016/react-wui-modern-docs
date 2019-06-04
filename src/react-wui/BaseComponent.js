@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import shallowEqual from 'shallowequal';
-import * as Utils from "./Utils";
+import * as Utils from './Utils';
 import classnames from 'classnames';
 
 export default class BaseComponent extends Component {
@@ -19,6 +19,10 @@ export default class BaseComponent extends Component {
   }
 
   static getUtils() {
+    return Utils;
+  }
+
+  utils() {
     return Utils;
   }
 

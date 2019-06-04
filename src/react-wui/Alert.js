@@ -3,6 +3,7 @@ import BaseComponent from './BaseComponent';
 import {isNil} from './Utils';
 import classnames from 'classnames';
 import {IconWarning} from './Icons';
+import { CSSTransition } from 'react-transition-group';
 
 const AlertType = {
   info: {clsName: 'alert-info', icon: null},
@@ -25,6 +26,23 @@ export default class Alert extends BaseComponent {
     this.state = {};
   }
 
+  componentDidMount() {
+    const {duration} = this.props;
+
+    if (this.utils().isInteger(duration)) {
+      this.timeout = setTimeout(() => {
+        console.log('close');
+      }, duration);
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('Alert unmount');
+    if (!this.utils().isNil(this.timeout)) {
+      clearTimeout(this.timeout);
+    }
+  }
+
   getContent(type, {title, body, closable, iconType, showIcon}) {
     let typeCls;
     if (AlertType.hasOwnProperty(type)) {
@@ -37,26 +55,29 @@ export default class Alert extends BaseComponent {
 
     let iconElement = this.getIconContent(showIcon, iconType, type);
 
-    let content = <div className={clsName}>
-      {iconElement}
+    let content = <CSSTransition timeout={3000}>
 
-      <div className="alert-content">
-        {
-          !isNil(title) ? <div className="title">{title}</div> : null
-        }
-        <div className="body">
-          {body}
+      <div className={clsName}>
+        {iconElement}
+
+        <div className="alert-content">
+          {
+            !isNil(title) ? <div className="title">{title}</div> : null
+          }
+          <div className="body">
+            {body}
+          </div>
+
         </div>
-
+        {
+          !isNil(closable) ?
+              <div className="alert-close">
+                <button className="button close-btn">x</button>
+              </div>
+              : null
+        }
       </div>
-      {
-        !isNil(closable) ?
-            <div className="alert-close">
-              <button className="button close-btn">x</button>
-            </div>
-            : null
-      }
-    </div>;
+    </CSSTransition>;
     return content;
   }
 
@@ -82,6 +103,7 @@ export default class Alert extends BaseComponent {
   render() {
     const {
       type, children, className, appendClass,
+      duration,
       title, body, closable, iconType, isGlobal,
       showIcon,
       ...otherProps

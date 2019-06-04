@@ -16,7 +16,7 @@ class Notification extends BaseComponent {
   }
 
   componentWillUnmount() {
-    console.log("Notification will unmount")
+    console.log('Notification will unmount');
     let cnt = Notification.container;
     if (cnt) {
       cnt.parent.removeChild(cnt);
@@ -69,7 +69,7 @@ class Notification extends BaseComponent {
  */
 let generateKey = () => {
   return `nf-key-${Date.now()}-${getRandomInt(1000, 10000)}`;
-}
+};
 
 /**
  * Add a alert message to queue
@@ -78,8 +78,14 @@ let generateKey = () => {
  */
 let send = (type, message) => {
   const key = generateKey();
-  let msg = Utils.isString(message) ? {key: key, type: type, body: message}
-      : {key: key, type: type, ...message};
+  let duration = 3000;
+  let msg = Utils.isString(message) ? {
+        key: key,
+        duration: duration,
+        type: type,
+        body: message,
+      }
+      : {key: key, duration: duration, type: type, ...message};
 
   if (GLOBAL_ALERT) {
     GLOBAL_ALERT.add(msg);
@@ -98,15 +104,15 @@ let send = (type, message) => {
 
 export default {
   info(message) {
-    send("info", message);
+    send('info', message);
   },
   ok(message) {
-    send("ok", message);
+    send('ok', message);
   },
   warning(message) {
-    send("warning", message);
+    send('warning', message);
   },
   error(message) {
-    send("error", message);
-  }
+    send('error', message);
+  },
 };
