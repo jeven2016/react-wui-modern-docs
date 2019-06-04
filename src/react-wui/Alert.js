@@ -25,7 +25,7 @@ export default class Alert extends BaseComponent {
     this.state = {};
   }
 
-  getContent(type, {title, body, closable, iconType, showIcon}, otherProps) {
+  getContent(type, {title, body, closable, iconType, showIcon}) {
     let typeCls;
     if (AlertType.hasOwnProperty(type)) {
       typeCls = AlertType[type].clsName;
@@ -37,7 +37,7 @@ export default class Alert extends BaseComponent {
 
     let iconElement = this.getIconContent(showIcon, iconType, type);
 
-    let content = <div className={clsName} {...otherProps}>
+    let content = <div className={clsName}>
       {iconElement}
 
       <div className="alert-content">

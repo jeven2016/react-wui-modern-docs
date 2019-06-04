@@ -47,10 +47,9 @@ export const appendClassIfAbsent = (elem, className) => {
   return elem.props.className;
 };
 
-
 ///////////////////////////////////////
-export {isNil, isObject, inRange, isInteger} from 'lodash';
-
+export {isNil, isObject, inRange, isInteger, isString} from 'lodash';
+///////////////////////////////////////
 
 export const getRandomInt = (min, max) => {
   min = Math.ceil(min);

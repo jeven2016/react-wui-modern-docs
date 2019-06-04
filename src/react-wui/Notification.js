@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BaseComponent from './BaseComponent';
-import {getRandomInt, isNil} from './Utils';
-import classnames from 'classnames';
+import {getRandomInt} from './Utils';
 import Alert from './Alert';
+
+let GLOBAL_ALERT;
+let Utils = BaseComponent.getUtils();
 
 class Notification extends BaseComponent {
   constructor(args) {
@@ -11,12 +13,19 @@ class Notification extends BaseComponent {
     this.state = {
       messages: [],
     };
-    this.container = null;
+  }
+
+  componentWillUnmount() {
+    console.log("Notification will unmount")
+    let cnt = Notification.container;
+    if (cnt) {
+      cnt.parent.removeChild(cnt);
+    }
   }
 
   static container;
 
-  static initContainer() {
+  static initContainer(handleNfInstance) {
     if (Notification.container) {
       return Notification.container;
     }
@@ -28,23 +37,20 @@ class Notification extends BaseComponent {
 
       Notification.container = container;
     }
+
+    ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
     return Notification.container;
   }
 
   render() {
 
-    return (<>
-          {
-            this.state.messages.map(msg => {
-              return <Alert key={this.generateKey()} {...msg}/>;
-            })
-          }
-        </>
-    );
-  }
-
-  generateKey() {
-    return `nf-key-${Date.now()}-${getRandomInt(1000, 10000)}`;
+    return <>
+      {
+        this.state.messages.map(({key, ...other}) => {
+          return <Alert key={key} {...other}/>;
+        })
+      }
+    </>;
   }
 
   add(msg) {
@@ -57,19 +63,50 @@ class Notification extends BaseComponent {
 
 }
 
-function handleNfInstance(notificationInstance) {
-  notificationInstance.add({
-    type: 'info',
-    title: 'a test',
-    body: 'what the fuck',
-    closable: true,
-  });
+/**
+ * Generate a key for inner Alert intances
+ * @returns {string}
+ */
+let generateKey = () => {
+  return `nf-key-${Date.now()}-${getRandomInt(1000, 10000)}`;
 }
 
-export default {
-  info({title, body, closable, iconType, showIcon}) {
-    let container = Notification.initContainer();
-    ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
+/**
+ * Add a alert message to queue
+ * @param type
+ * @param message
+ */
+let send = (type, message) => {
+  const key = generateKey();
+  let msg = Utils.isString(message) ? {key: key, type: type, body: message}
+      : {key: key, type: type, ...message};
 
+  if (GLOBAL_ALERT) {
+    GLOBAL_ALERT.add(msg);
+    return;
+  }
+
+  const handleNfInstance = (notificationInstance) => {
+    GLOBAL_ALERT = notificationInstance;
+    notificationInstance.add(msg);
+  };
+
+  let container = Notification.initContainer(handleNfInstance);
+  ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
+
+};
+
+export default {
+  info(message) {
+    send("info", message);
   },
+  ok(message) {
+    send("ok", message);
+  },
+  warning(message) {
+    send("warning", message);
+  },
+  error(message) {
+    send("error", message);
+  }
 };

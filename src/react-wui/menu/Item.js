@@ -76,7 +76,6 @@ export default class Item extends BaseComponent {
   }
 
   getClassName(activeItem, clickItem, menuDisabled) {
-    console.log('activeItem=' + activeItem);
     const {
       className,
       active,

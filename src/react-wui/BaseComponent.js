@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import shallowEqual from 'shallowequal';
-import {isNil, isObject} from './Utils';
+import * as Utils from "./Utils";
 import classnames from 'classnames';
 
 export default class BaseComponent extends Component {
@@ -12,14 +12,18 @@ export default class BaseComponent extends Component {
 
   getAppendClass() {
     let {appendClass} = this.props;
-    if (!isNil(appendClass)) {
+    if (!Utils.isNil(appendClass)) {
       return appendClass;
     }
     return '';
   }
 
+  static getUtils() {
+    return Utils;
+  }
+
   getClass(data) {
-    if (!isNil(data) && !isObject(data)) {
+    if (!Utils.isNil(data) && !Utils.isObject(data)) {
       throw new Error('data is invalid');
     }
     let appendClass = this.getAppendClass();

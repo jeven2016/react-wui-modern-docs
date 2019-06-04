@@ -64,7 +64,11 @@ export const AlertC = () => {
     <Alert type="warning" body="A warning alert" closable={true}/>
     <Alert type="error" body="A error alert" closable={true}/>
 
-    <Button onClick={() => Notification.info('hello')}>Info</Button>
+    <Button onClick={() => Notification.info({body: 'hello'})}>Info</Button>
+    <Button onClick={() => Notification.ok("are you kidding me?")}>Ok</Button>
+    <Button
+        onClick={() => Notification.warning("warning message")}>Warning</Button>
+    <Button onClick={() => Notification.error("error message")}>Error</Button>
   </>;
 
   let code = `
