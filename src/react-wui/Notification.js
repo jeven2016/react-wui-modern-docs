@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import BaseComponent from './BaseComponent';
 import {getRandomInt} from './Utils';
 import Alert from './Alert';
-import {WindowEventHandler} from "./event";
+import {WindowEventHandler} from './event';
 
 let GLOBAL_ALERT;
 let Utils = BaseComponent.getUtils();
 const DEFAULT_CONFIG = {
-  position: "top",
+  position: 'top',
   duration: 3000,
+  top: '5rem',
 
 };
 
@@ -26,6 +27,7 @@ class Notification extends BaseComponent {
     if (cnt) {
       cnt.parent.removeChild(cnt);
     }
+    console.log('container will unmount');
   }
 
   componentDidMount() {
@@ -40,7 +42,7 @@ class Notification extends BaseComponent {
     let containerWidth = Notification.container.getBoundingClientRect().width;
 
     Notification.container.style.left = (windowWidth - containerWidth) / 2
-        + "px";
+        + 'px';
   }
 
   static container;
@@ -54,11 +56,12 @@ class Notification extends BaseComponent {
       container = document.createElement('div');
       container.className = 'alert-container';
       document.body.appendChild(container);
+      container.style.top = DEFAULT_CONFIG.top;
 
       Notification.container = container;
     }
-
-    ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
+    ReactDOM.createPortal(<Notification ref={handleNfInstance}/>, container);
+    // ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
     return Notification.container;
   }
 
@@ -141,5 +144,5 @@ export default {
   },
   mini(message) {
     send('mini', message);
-  }
+  },
 };
