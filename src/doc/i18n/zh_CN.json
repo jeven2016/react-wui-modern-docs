@@ -118,7 +118,7 @@
   "content.alert.title": "Alert 告警",
   "content.alert.simple.desc": "Alert 告警示例",
   "content.alert.sample.alertA": "基础Alert",
-  "content.alert.sample.alertB": "更多内容",
-  "content.alert.sample.alertC": "传统方式显示Alert",
+  "content.alert.sample.alertB": "自定义Alert内容",
+  "content.alert.sample.alertC": "通过API显示全局Alert",
   "content.alert.sample.alertD": "全局显示的Alert"
 }

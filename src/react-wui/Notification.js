@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import BaseComponent from './BaseComponent';
 import {getRandomInt} from './Utils';
 import Alert from './Alert';
+import {WindowEventHandler} from "./event";
 
 let GLOBAL_ALERT;
 let Utils = BaseComponent.getUtils();
+const DEFAULT_CONFIG = {
+  position: "top",
+  duration: 3000,
+
+};
 
 class Notification extends BaseComponent {
   constructor(args) {
@@ -16,11 +22,25 @@ class Notification extends BaseComponent {
   }
 
   componentWillUnmount() {
-    console.log('Notification will unmount');
     let cnt = Notification.container;
     if (cnt) {
       cnt.parent.removeChild(cnt);
     }
+  }
+
+  componentDidMount() {
+    this.updatePosition();
+  }
+
+  updatePosition() {
+    if (!Notification.container) {
+      return;
+    }
+    let windowWidth = document.documentElement.getBoundingClientRect().width;
+    let containerWidth = Notification.container.getBoundingClientRect().width;
+
+    Notification.container.style.left = (windowWidth - containerWidth) / 2
+        + "px";
   }
 
   static container;
@@ -45,6 +65,7 @@ class Notification extends BaseComponent {
   render() {
 
     return <>
+      <WindowEventHandler onResize={this.updatePosition}/>
       {
         this.state.messages.map(({key, ...other}) => {
           return <Alert key={key} {...other}/>;
@@ -78,14 +99,13 @@ let generateKey = () => {
  */
 let send = (type, message) => {
   const key = generateKey();
-  let duration = 3000;
   let msg = Utils.isString(message) ? {
         key: key,
-        duration: duration,
+        duration: DEFAULT_CONFIG.duration,
         type: type,
         body: message,
       }
-      : {key: key, duration: duration, type: type, ...message};
+      : {key: key, duration: DEFAULT_CONFIG.duration, type: type, ...message};
 
   if (GLOBAL_ALERT) {
     GLOBAL_ALERT.add(msg);
@@ -115,4 +135,11 @@ export default {
   error(message) {
     send('error', message);
   },
+
+  simple(message) {
+    send('simple', message);
+  },
+  mini(message) {
+    send('mini', message);
+  }
 };

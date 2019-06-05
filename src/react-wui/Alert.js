@@ -2,14 +2,16 @@ import React from 'react';
 import BaseComponent from './BaseComponent';
 import {isNil} from './Utils';
 import classnames from 'classnames';
-import {IconWarning} from './Icons';
-import { CSSTransition } from 'react-transition-group';
+import {IconError, IconInfo, IconOk, IconWarning} from './Icons';
+import {CSSTransition} from 'react-transition-group';
 
 const AlertType = {
-  info: {clsName: 'alert-info', icon: null},
-  ok: {clsName: 'alert-ok', icon: null},
+  simple: {clsName: "alert-simple"},
+  info: {clsName: 'alert-info', icon: <IconInfo/>},
+  mini: {clsName: 'alert-mini', icon: <IconInfo/>},
+  ok: {clsName: 'alert-ok', icon: <IconOk/>},
   warning: {clsName: 'alert-warning', icon: <IconWarning/>},
-  error: {clsName: 'alert-error', icon: null},
+  error: {clsName: 'alert-error', icon: <IconError/>},
 };
 
 export default class Alert extends BaseComponent {
@@ -23,24 +25,32 @@ export default class Alert extends BaseComponent {
 
   constructor(args) {
     super(args);
-    this.state = {};
+    this.state = {activeAnimation: true, removed: false};
   }
 
   componentDidMount() {
     const {duration} = this.props;
 
     if (this.utils().isInteger(duration)) {
-      this.timeout = setTimeout(() => {
-        console.log('close');
-      }, duration);
+      this.timeout = setTimeout(() => this.close(), duration);
     }
   }
 
-  componentWillUnmount() {
-    console.log('Alert unmount');
+  close() {
+    this.setState({activeAnimation: false});
+  }
+
+  exit() {
     if (!this.utils().isNil(this.timeout)) {
+      console.log('Alert unmount');
       clearTimeout(this.timeout);
+      this.timeout = null;
     }
+    this.setState({removed: true});
+  }
+
+  componentWillUnmount() {
+    this.exit();
   }
 
   getContent(type, {title, body, closable, iconType, showIcon}) {
@@ -55,7 +65,20 @@ export default class Alert extends BaseComponent {
 
     let iconElement = this.getIconContent(showIcon, iconType, type);
 
-    let content = <CSSTransition timeout={3000}>
+    if (this.state.removed) {
+      return null;
+    }
+
+    let content = <CSSTransition in={this.state.activeAnimation}
+                                 timeout={300}
+                                 classNames={{
+                                   enter: 'enter',
+                                   enterActive: 'enter-active',
+                                   exit: 'leave',
+                                   exitActive: 'leave-active',
+                                   exitDone: "leave-done"
+                                 }}
+                                 onExited={this.exit.bind(this)}>
 
       <div className={clsName}>
         {iconElement}
@@ -72,7 +95,9 @@ export default class Alert extends BaseComponent {
         {
           !isNil(closable) ?
               <div className="alert-close">
-                <button className="button close-btn">x</button>
+                <button className="button close-btn"
+                        onClick={this.close.bind(this)}>x
+                </button>
               </div>
               : null
         }
