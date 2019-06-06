@@ -48,7 +48,7 @@ export const appendClassIfAbsent = (elem, className) => {
 };
 
 ///////////////////////////////////////
-export {isNil, isObject, inRange, isInteger, isString} from 'lodash';
+export {isNil, isObject, inRange, isInteger, isString, isBoolean} from 'lodash';
 ///////////////////////////////////////
 
 export const getRandomInt = (min, max) => {
@@ -162,3 +162,8 @@ export const placeCenter = (destComponent, ctrl) => {
 
 };
 
+export const validate = (condition, message) => {
+  if (!condition) {
+    throw new Error(message);
+  }
+};

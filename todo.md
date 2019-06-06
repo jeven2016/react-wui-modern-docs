@@ -15,6 +15,8 @@ refer to the implementation of NavBar
  * Modal 打开在关闭时,IE 下overflow无法滚动
  * 各类颜色需要统一
  * 动画版本１.2太低了－－》　升级
+ * append class should be deprecated
+ * toggle设置为turnOn 时无效, turnOn后界面第一次\第二次点击时,onChange中的状态值出错
  
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp

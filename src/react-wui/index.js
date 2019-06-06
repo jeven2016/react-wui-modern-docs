@@ -34,6 +34,20 @@ export {default as Col} from './grid/Col';
 export {default as Form} from './Form';
 export {default as Alert} from './Alert';
 export {default as Notification} from './Notification';
+export {default as Badge} from './Badge';
+export {
+  IconInfo,
+  IconWarning,
+  IconError,
+  IconOk,
+  IconClear,
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowDown,
+  IconStar,
+  IconStarBorder,
+  IconStarHalf
+} from "./Icons";
 
 export {
   Button,

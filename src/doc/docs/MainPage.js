@@ -18,6 +18,7 @@ import LoaderIndex from "./loader/LoaderIndex";
 import GridIndex from "./grid/GridIndex";
 import FormIndex from "./form/FormIndex";
 import AlertIndex from "./alert/AlertIndex";
+import BadgeIndex from "./badge/BadgeIndex";
 
 export default class MainPage extends Component {
 
@@ -43,6 +44,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="AlertItem">
                     <Link to={`${match.url}/components/alert`}>
                       {intl.get('main.navbar.alert')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="BadgeItem">
+                    <Link to={`${match.url}/components/badge`}>
+                      {intl.get('main.navbar.badge')}
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="BlockquoteItem">
@@ -153,6 +159,8 @@ export default class MainPage extends Component {
 
 
           </div>
+          <Route exact={true} path={`${match.url}/components/badge`}
+                 component={BadgeIndex}/>
           <Route exact={true} path={`${match.url}/components/blockquota`}
                  component={BlockquotaIndex}/>
           <Route exact={true} path={`${match.url}/components/accordion`}
