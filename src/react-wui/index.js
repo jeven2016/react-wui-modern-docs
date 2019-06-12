@@ -35,6 +35,7 @@ export {default as Form} from './Form';
 export {default as Alert} from './Alert';
 export {default as Notification} from './Notification';
 export {default as Badge} from './Badge';
+export {default as Checkbox} from './Checkbox';
 export {
   IconInfo,
   IconWarning,

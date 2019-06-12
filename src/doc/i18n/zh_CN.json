@@ -10,6 +10,7 @@
   "main.navbar.alert": "Alert 告警",
   "main.navbar.blockquota": "Blockquota 引用",
   "main.navbar.button": "Button 按钮",
+  "main.navbar.checkbox": "Checkbox 多选框",
   "main.navbar.drawer": "Drawer 抽屉",
   "main.navbar.dropdown": "Dropdown 下拉框",
   "main.navbar.form": "Form 表单",
@@ -126,6 +127,10 @@
   "content.badge.simple.desc": "Badge 标记示例",
   "content.badge.sample.badgeA": "基础标记",
   "content.badge.sample.badgeB": "小圆点",
-  "content.badge.sample.badgeC": "切换显示"
+  "content.badge.sample.badgeC": "切换显示",
+
+  "content.checkbox.title": "Checkbox 多选框",
+  "content.checkbox.simple.desc": "Checkbox 多选框示例",
+  "content.checkbox.sample.checkboxA": "基础"
 
 }

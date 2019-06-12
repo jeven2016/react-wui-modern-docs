@@ -1,5 +1,5 @@
 import React from "react";
-
+//https://material.io/tools/icons/?icon=alarm_add&style=round
 export const IconInfo = (props) => {
   return <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
               fill="currentColor" aria-hidden="true" focusable="false"
@@ -104,6 +104,28 @@ export const IconStarHalf = (props) => {
         d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>
   </svg>;
 };
+
+export const IconChecked = (props) => {
+  return <svg xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" aria-hidden="true" focusable="false"
+              viewBox="0 0 24 24" style={props.style}>
+    <path fill="none" d="M0 0h24v24H0V0z"/>
+    <path
+        d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+
+  </svg>;
+};
+
+export const IconUnChecked = (props) => {
+  return <svg xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" aria-hidden="true" focusable="false"
+              viewBox="0 0 24 24" style={props.style}>
+    <path fill="none" d="M0 0h24v24H0V0z"/>
+    <path
+        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+  </svg>;
+};
+
 
 
 

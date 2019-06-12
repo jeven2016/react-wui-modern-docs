@@ -19,6 +19,7 @@ import GridIndex from "./grid/GridIndex";
 import FormIndex from "./form/FormIndex";
 import AlertIndex from "./alert/AlertIndex";
 import BadgeIndex from "./badge/BadgeIndex";
+import CheckboxIndex from "./checkbox/CheckboxIndex";
 
 export default class MainPage extends Component {
 
@@ -59,6 +60,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="buttonItem">
                     <Link to={`${match.url}/components/button`}>
                       {intl.get('main.navbar.button')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="CheckboxItem">
+                    <Link to={`${match.url}/components/checkbox`}>
+                      {intl.get('main.navbar.checkbox')}
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="CardItem">
@@ -169,6 +175,8 @@ export default class MainPage extends Component {
                  component={AlertIndex}/>
           <Route exact={true} path={`${match.url}/components/button`}
                  component={ButtonIndex}/>
+          <Route exact={true} path={`${match.url}/components/checkbox`}
+                 component={CheckboxIndex}/>
           <Route exact={true} path={`${match.url}/components/card`}
                  component={CardIndex}/>
           <Route exact={true} path={`${match.url}/components/dropdown`}
