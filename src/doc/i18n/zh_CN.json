@@ -20,6 +20,7 @@
   "main.navbar.modal": "Modal 对话框",
   "main.navbar.navbar": "Navbar 导航栏",
   "main.navbar.popover": "Popover 弹出框",
+  "main.navbar.radio": "Radio 单选框",
   "main.navbar.tooltip": "Tooltip 提示",
   "main.navbar.toggle": "Toggle 开关",
   "main.navbar.card": "Card 卡片",
@@ -128,9 +129,11 @@
   "content.badge.sample.badgeA": "基础标记",
   "content.badge.sample.badgeB": "小圆点",
   "content.badge.sample.badgeC": "切换显示",
-
   "content.checkbox.title": "Checkbox 多选框",
   "content.checkbox.simple.desc": "Checkbox 多选框示例",
-  "content.checkbox.sample.checkboxA": "基础"
+  "content.checkbox.sample.checkboxA": "基础",
 
+  "content.radio.title": "Radio 单选框",
+  "content.radio.simple.desc": "Radio 单选框示例",
+  "content.radio.sample.radioA": "基础"
 }

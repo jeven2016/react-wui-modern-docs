@@ -1,18 +1,18 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Checkbox, Notification} from '../../../react-wui';
+import {Notification, Radio} from "../../../react-wui";
 
 function change(value) {
   Notification.mini(`The value is :${value}`)
 }
 
-export const CheckboxA = () => {
+export const RadioA = () => {
   let comp = <>
     <div>
-      <Checkbox checked onChange={change}>One</Checkbox>
-      <Checkbox onChange={change}>Two</Checkbox>
-      <Checkbox onChange={change}>Three</Checkbox>
-      <Checkbox onChange={change}>Three</Checkbox>
+      <Radio checked onChange={change} label="One" value="valueOne"/>
+      <Radio onChange={change}>Two</Radio>
+      <Radio onChange={change}>Three</Radio>
+      <Radio onChange={change}>Three</Radio>
     </div>
   </>;
 

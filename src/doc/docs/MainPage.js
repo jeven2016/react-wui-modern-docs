@@ -20,6 +20,7 @@ import FormIndex from "./form/FormIndex";
 import AlertIndex from "./alert/AlertIndex";
 import BadgeIndex from "./badge/BadgeIndex";
 import CheckboxIndex from "./checkbox/CheckboxIndex";
+import RadioIndex from "./radio/RadioIndex";
 
 export default class MainPage extends Component {
 
@@ -123,6 +124,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="LoadingItem">
                     Loading 加载
                   </Menu.Item>
+                  <Menu.Item id="RadioItem">
+                    <Link to={`${match.url}/components/radio`}>
+                      {intl.get('main.navbar.radio')}
+                    </Link>
+                  </Menu.Item>
                   <Menu.Item id="SlidershowItem">
                     Slidershow 幻灯片
                   </Menu.Item>
@@ -198,6 +204,8 @@ export default class MainPage extends Component {
                  component={NavbarIndex}/>
           <Route exact={true} path={`${match.url}/components/popover`}
                  component={PopoverIndex}/>
+          <Route exact={true} path={`${match.url}/components/radio`}
+                 component={RadioIndex}/>
           <Route exact={true} path={`${match.url}/components/tooltip`}
                  component={TooltipIndex}/>
           <Route exact={true} path={`${match.url}/components/toggle`}
