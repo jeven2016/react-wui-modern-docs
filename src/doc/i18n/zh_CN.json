@@ -135,5 +135,6 @@
 
   "content.radio.title": "Radio 单选框",
   "content.radio.simple.desc": "Radio 单选框示例",
-  "content.radio.sample.radioA": "基础"
+  "content.radio.sample.radioA": "基础",
+  "content.radio.sample.radioB": "Radio Group"
 }

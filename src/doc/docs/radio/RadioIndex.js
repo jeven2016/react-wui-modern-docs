@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {AlertA, RadioA} from "./Radios";
+import {AlertA, RadioA, RadioB} from "./Radios";
 
 export default class RadioIndex extends DocComponent {
   constructor(args) {
@@ -28,6 +28,11 @@ export default class RadioIndex extends DocComponent {
         <section>
           <h3 id="radioA">{intl.get('content.radio.sample.radioA')}</h3>
           <RadioA/>
+        </section>
+
+        <section>
+          <h3 id="radioB">{intl.get('content.radio.sample.radioB')}</h3>
+          <RadioB/>
         </section>
 
       </div>

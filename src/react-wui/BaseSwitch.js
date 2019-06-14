@@ -4,8 +4,8 @@ import {isNil} from "./Utils";
 
 function BaseSwitch(props) {
   const {
-    value, label, baseClassName, inputType,
-    iconChecked, iconUnchecked,
+    value, label, baseClassName, inputType, underControlled = false,
+    iconChecked, iconUnchecked, canUnchecked = true,
     children, onChange, checked, ...otherProps
   } = props;
   const [checkState, setCheckState] = useState(false);
@@ -13,7 +13,9 @@ function BaseSwitch(props) {
 
   //update checked state
   let currentCheckState = checked;
-  if (manuallyChanged) {
+
+  //if this switch is under controlled by other component, ignore it
+  if (!underControlled && manuallyChanged) {
     currentCheckState = checkState;
   }
 
@@ -26,9 +28,15 @@ function BaseSwitch(props) {
   });
 
   const onClick = (evt) => {
+    if (currentCheckState && !canUnchecked) {
+      console.log("return")
+      return;
+    }
+
     if (!manuallyChanged) {
       setManuallyChanged(true);
     }
+
     let state = !currentCheckState;
     setCheckState(state);
     !isNil(onChange) && onChange(!isNil(value) ? value : state, evt);

@@ -64,6 +64,7 @@ export const FloatMenuContext = React.createContext({});
 
 export const NavbarContext = React.createContext({});
 export const ModalContext = React.createContext({});
+export const RadioGroupContext = React.createContext({});
 
 export const isFloatMenu = (type) => {
   return type === MenuType.float;
