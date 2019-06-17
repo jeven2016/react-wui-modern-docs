@@ -5,15 +5,11 @@ import {
   ButtonGroup,
   Divider,
   Dropdown,
-  Icon,
+  IconArrowDown,
   Menu
 } from '../../../react-wui';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-  faArrowDown,
-  faBaseballBall,
-  faListAlt
-} from "@fortawesome/free-solid-svg-icons";
+import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
 import {faWeibo} from "@fortawesome/free-brands-svg-icons";
 
 export const DpA = () => {
@@ -76,7 +72,7 @@ export const DpB = () => {
     </Dropdown>
     <Dropdown type="button" style={{marginLeft: "2rem"}}>
       <Dropdown.Title>
-        <Button color="green">Button</Button>
+        <Button color="green">Button <IconArrowDown/></Button>
       </Dropdown.Title>
       <Menu>
         <Menu.List>
@@ -89,10 +85,8 @@ export const DpB = () => {
     </Dropdown>
     <Dropdown type="simple" style={{marginLeft: "2rem"}} triggerBy="click">
       <Dropdown.Title>
-        Down &nbsp;
-        <Icon>
-          <FontAwesomeIcon icon={faArrowDown}/>
-        </Icon>
+        Down
+        <IconArrowDown/>
       </Dropdown.Title>
       <Menu>
         <Menu.List>
@@ -249,8 +243,6 @@ export const DpD = () => {
 
   return <SamplePannel component={comp} code={code}/>;
 };
-
-
 
 export const DpE = () => {
   let comp = <>
