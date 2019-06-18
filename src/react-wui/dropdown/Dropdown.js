@@ -10,6 +10,7 @@ import {
   DropdownTriggerType,
   DropdownType
 } from "../common/Constants";
+import {isNil} from "../Utils";
 
 export default class Dropdown extends BaseComponent {
   static defaultProps = {
@@ -38,9 +39,9 @@ export default class Dropdown extends BaseComponent {
   }
 
   clickItem(itemInfo, evt) {
-    console.log(itemInfo);
-    let closeMenu = this.onItemClick ? this.onItemClick(itemInfo, evt) : true;
-    if (closeMenu) {
+    const {onItemClick} = this.props;
+    let closeMenu = onItemClick ? onItemClick(itemInfo, evt) : true;
+    if (isNil(closeMenu) || closeMenu) {
       this.setState({active: false});
     }
   }

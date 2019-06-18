@@ -25,6 +25,7 @@
   "main.navbar.toggle": "Toggle 开关",
   "main.navbar.card": "Card 卡片",
   "main.navbar.badge": "Badge 卡片",
+  "main.navbar.breadcrumb": "Breadcrumb 面包屑",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -132,9 +133,14 @@
   "content.checkbox.title": "Checkbox 多选框",
   "content.checkbox.simple.desc": "Checkbox 多选框示例",
   "content.checkbox.sample.checkboxA": "基础",
-
   "content.radio.title": "Radio 单选框",
   "content.radio.simple.desc": "Radio 单选框示例",
   "content.radio.sample.radioA": "基础",
-  "content.radio.sample.radioB": "Radio Group"
+  "content.radio.sample.radioB": "Radio Group",
+  "content.breadcrumb.title": "Breadcrumb 面包屑",
+  "content.breadcrumb.simple.desc": "Breadcrumb 面包屑示例",
+  "content.breadcrumb.sample.A": "基础",
+  "content.breadcrumb.sample.B": "自定义分隔符",
+  "content.breadcrumb.sample.C": "设定大小",
+  "content.breadcrumb.sample.D": "组合使用"
 }

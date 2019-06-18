@@ -21,6 +21,7 @@ import AlertIndex from "./alert/AlertIndex";
 import BadgeIndex from "./badge/BadgeIndex";
 import CheckboxIndex from "./checkbox/CheckboxIndex";
 import RadioIndex from "./radio/RadioIndex";
+import BreadcrumbIndex from "./breadcrumb/BreadcrumbIndex";
 
 export default class MainPage extends Component {
 
@@ -56,6 +57,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="BlockquoteItem">
                     <Link to={`${match.url}/components/blockquota`}>
                       {intl.get('main.navbar.blockquota')}
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item id="BreadcrumbItem">
+                    <Link to={`${match.url}/components/breadcrumb`}>
+                      {intl.get('main.navbar.breadcrumb')}
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="buttonItem">
@@ -181,6 +187,8 @@ export default class MainPage extends Component {
                  component={AlertIndex}/>
           <Route exact={true} path={`${match.url}/components/button`}
                  component={ButtonIndex}/>
+          <Route exact={true} path={`${match.url}/components/breadcrumb`}
+                 component={BreadcrumbIndex}/>
           <Route exact={true} path={`${match.url}/components/checkbox`}
                  component={CheckboxIndex}/>
           <Route exact={true} path={`${match.url}/components/card`}
