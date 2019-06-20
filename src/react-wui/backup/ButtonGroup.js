@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {updateChildrenByCallback} from './Utils';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 export default class ButtonGroup extends Component {
@@ -30,7 +30,7 @@ export default class ButtonGroup extends Component {
       className,
     } = this.props;
 
-    let clsName = classnames(className, {
+    let clsName = clsx(className, {
       [type]: type,
       [size]: size,
       [color]: color,

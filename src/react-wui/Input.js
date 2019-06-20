@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {InputBorderType} from "./common/Constants";
 
@@ -21,7 +21,7 @@ class IconInput extends Component {
     const {borderType, children, leftIcon, className, size, block, withinGroup, ...otherProps} = this.props;
 
     let borderTypeCls = InputBorderType[borderType];
-    let clsName = classnames(className, {
+    let clsName = clsx(className, {
       'left-icon': leftIcon,
       [size]: size,
       block: block,
@@ -72,7 +72,7 @@ class Input extends Component {
 
     let borderTypeCls = InputBorderType[borderType];
 
-    let clsName = classnames(className, {
+    let clsName = clsx(className, {
       [size]: size,
       expanded: expanded,
       element: withinGroup,

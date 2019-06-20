@@ -1,6 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
+import {A} from "./Selects";
 
 export default class SelectIndex extends DocComponent {
   constructor(args) {
@@ -26,7 +27,7 @@ export default class SelectIndex extends DocComponent {
 
         <section>
           <h3 id="selectA">{intl.get('content.select.sample.A')}</h3>
-
+          <A/>
         </section>
 
       </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import classnames from "classnames";
+import clsx from "clsx";
 
 function Item(props) {
   const {active, children, ...otherProps} = props;
-  let clsName = classnames("item", {
+  let clsName = clsx("item", {
     active
   });
   return <div className={clsName} {...otherProps}>{children}</div>
@@ -12,7 +12,7 @@ function Item(props) {
 function Breadcrumb(props) {
   const {hasBackground, separator, children, ...otherProps} = props;
 
-  let clsName = classnames("breadcrumb", {
+  let clsName = clsx("breadcrumb", {
     "with-bg": hasBackground
   });
 

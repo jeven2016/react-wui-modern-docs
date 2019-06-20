@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import shallowEqual from 'shallowequal';
 import * as Utils from './Utils';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 export default class BaseComponent extends Component {
 
@@ -31,7 +31,7 @@ export default class BaseComponent extends Component {
       throw new Error('data is invalid');
     }
     let appendClass = this.getAppendClass();
-    let clsName = classnames(appendClass, this.props.className, data);
+    let clsName = clsx(appendClass, this.props.className, data);
     return clsName;
   }
 

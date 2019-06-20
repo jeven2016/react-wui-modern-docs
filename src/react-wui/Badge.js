@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import classnames from "classnames";
+import clsx from "clsx";
 import {isBoolean, isNil, validate} from "./Utils";
 
 const BadgeType = {
@@ -35,7 +35,7 @@ function Badge(props) {
     // return () => console.log("component unmounted");
   });
 
-  let clsName = classnames("badge", {
+  let clsName = clsx("badge", {
     [badgeType]: badgeType,
     [colorType]: colorType
   });

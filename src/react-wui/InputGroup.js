@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import {appendClassIfAbsent} from './Utils';
 
 class InputLabel extends Component {
@@ -33,7 +33,7 @@ export default class InputGroup extends Component {
   render() {
     const {block, children, className, ...otherProps} = this.props;
 
-    let clsName = classnames(className, {
+    let clsName = clsx(className, {
       block: block,
     });
 

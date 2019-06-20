@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import classnames from "classnames";
+import clsx from "clsx";
 import {isNil} from "./Utils";
 
 function BaseSwitch(props) {
@@ -22,7 +22,7 @@ function BaseSwitch(props) {
   //get the icon
   const Icon = currentCheckState ? iconChecked : iconUnchecked;
 
-  let clsName = classnames(baseClassName, {
+  let clsName = clsx(baseClassName, {
     checked: currentCheckState,
     unchecked: !currentCheckState
   });

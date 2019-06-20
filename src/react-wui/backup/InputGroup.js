@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
   updateChildrenByCallback,
@@ -30,10 +30,10 @@ export default class InputGroup extends Component {
     className: 'input-group',
 
     //the elements need to append the "element" class
-    elementClassNames: ['input', 'icon-input'],
+    elementclsx: ['input', 'icon-input'],
 
     //the elements need to append the "label" class
-    labelClassNames: ['button'],
+    labelclsx: ['button'],
   };
 
   static Label = InputLabel;
@@ -44,17 +44,17 @@ export default class InputGroup extends Component {
   }
 
   render() {
-    const {block, children, className, elementClassNames, labelClassNames} = this.props;
+    const {block, children, className, elementclsx, labelclsx} = this.props;
     let newChildren = children;
 
-    let clsName = classnames(className, {
+    let clsName = clsx(className, {
       block: block,
     });
 
     if (newChildren) {
       newChildren = updateChildrenByCallback(newChildren, (elem) => {
         //ensure the class "elem" is appended for sub input element
-        if (hasClass(elem, elementClassNames)) {
+        if (hasClass(elem, elementclsx)) {
           let suffix = 'element';
           if (block && hasClass(elem, 'input')) {
             suffix = 'expanded ' + suffix;
@@ -63,7 +63,7 @@ export default class InputGroup extends Component {
         }
 
         //ensure the class "label" is appended
-        if (hasClass(elem, labelClassNames)) {
+        if (hasClass(elem, labelclsx)) {
           return this.getNewElement(elem, 'label');
         }
         return elem;

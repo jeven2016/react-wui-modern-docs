@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 export default class ButtonGroup extends Component {
@@ -25,7 +25,7 @@ export default class ButtonGroup extends Component {
       ...otherProps
     } = this.props;
 
-    let clsName = classnames(className, {
+    let clsName = clsx(className, {
       [size]: size,
       block: block,
       outline: outline,

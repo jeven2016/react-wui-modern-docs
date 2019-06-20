@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseComponent from './BaseComponent';
 import {isNil} from './Utils';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import {IconError, IconInfo, IconOk, IconWarning} from './Icons';
 import {CSSTransition} from 'react-transition-group';
 
@@ -58,7 +58,7 @@ export default class Alert extends BaseComponent {
     if (AlertType.hasOwnProperty(type)) {
       typeCls = AlertType[type].clsName;
     }
-    let clsName = classnames('alert', {
+    let clsName = clsx('alert', {
       'with-title': title,
       [typeCls]: typeCls,
     });
@@ -71,7 +71,7 @@ export default class Alert extends BaseComponent {
 
     let content = <CSSTransition in={this.state.activeAnimation}
                                  timeout={300}
-                                 classNames={{
+                                 clsx={{
                                    enter: 'enter',
                                    enterActive: 'enter-active',
                                    exit: 'leave',
