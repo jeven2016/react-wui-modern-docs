@@ -22,6 +22,7 @@ import BadgeIndex from "./badge/BadgeIndex";
 import CheckboxIndex from "./checkbox/CheckboxIndex";
 import RadioIndex from "./radio/RadioIndex";
 import BreadcrumbIndex from "./breadcrumb/BreadcrumbIndex";
+import SelectIndex from "./select/SelectIndex";
 
 export default class MainPage extends Component {
 
@@ -138,6 +139,11 @@ export default class MainPage extends Component {
                   <Menu.Item id="SlidershowItem">
                     Slidershow 幻灯片
                   </Menu.Item>
+                  <Menu.Item id="SelectItem">
+                    <Link to={`${match.url}/components/select`}>
+                      {intl.get('main.navbar.select')}
+                    </Link>
+                  </Menu.Item>
                   <Menu.Item id="TableItem">
                     Table 表格
                   </Menu.Item>
@@ -214,6 +220,8 @@ export default class MainPage extends Component {
                  component={PopoverIndex}/>
           <Route exact={true} path={`${match.url}/components/radio`}
                  component={RadioIndex}/>
+          <Route exact={true} path={`${match.url}/components/select`}
+                 component={SelectIndex}/>
           <Route exact={true} path={`${match.url}/components/tooltip`}
                  component={TooltipIndex}/>
           <Route exact={true} path={`${match.url}/components/toggle`}

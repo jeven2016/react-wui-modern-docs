@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Icon, NavBar} from '../../react-wui';
-import {faBars, faBook, faUser} from '@fortawesome/free-solid-svg-icons';
+import {IconList, NavBar} from '../../react-wui';
+import {faBook, faUser} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import intl from 'react-intl-universal';
 import {Link} from 'react-router-dom';
@@ -10,9 +10,7 @@ export default class Header extends Component {
   render() {
     return <NavBar fixed="top" type="primary" appendClass="doc header">
       <NavBar.Title>
-        <Icon>
-          <FontAwesomeIcon icon={faBars}/>
-        </Icon>
+        <IconList/>
         <div className="doc title-link">
           <h3><Link to="/">{intl.get('home.title')}</Link></h3>
         </div>

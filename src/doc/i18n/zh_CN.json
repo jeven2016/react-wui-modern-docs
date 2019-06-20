@@ -26,6 +26,7 @@
   "main.navbar.card": "Card 卡片",
   "main.navbar.badge": "Badge 卡片",
   "main.navbar.breadcrumb": "Breadcrumb 面包屑",
+  "main.navbar.select": "Select 选择框",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -142,5 +143,9 @@
   "content.breadcrumb.sample.A": "基础",
   "content.breadcrumb.sample.B": "自定义分隔符",
   "content.breadcrumb.sample.C": "设定大小",
-  "content.breadcrumb.sample.D": "组合使用"
+  "content.breadcrumb.sample.D": "组合使用",
+
+  "content.select.title": "Select 选择框",
+  "content.select.simple.desc": "Select 选择框示例",
+  "content.select.sample.A": "基础"
 }
