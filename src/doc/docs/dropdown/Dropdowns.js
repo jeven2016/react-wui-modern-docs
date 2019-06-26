@@ -249,7 +249,7 @@ export const DpE = () => {
 
     <Dropdown type="button" position="bottomLeft" style={{marginLeft: "2rem"}}>
       <Dropdown.Title>
-        <Button appendClass="clear-border" circle={true}
+        <Button extraClassName="clear-border" circle={true}
                 color="green"
                 outline={true}>
           <FontAwesomeIcon icon={faWeibo}/>
@@ -267,7 +267,7 @@ export const DpE = () => {
 
     <Dropdown type="button" position="bottomLeft" style={{marginLeft: "2rem"}}>
       <Dropdown.Title>
-        <Button appendClass="clear-border" circle={true}
+        <Button extraClassName="clear-border" circle={true}
                 color="green"
                 outline={true}>
           <FontAwesomeIcon icon={faWeibo} size="2x"/>

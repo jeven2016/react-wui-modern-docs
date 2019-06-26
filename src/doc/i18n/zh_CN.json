@@ -75,7 +75,7 @@
   "content.toggle.simple.desc": "Toggle 开关示例",
   "content.toggle.sample.toggleA": "基本的开关",
   "content.toggle.sample.toggleB": "圆形开关",
-  "content.toggle.sample.toggleB": "方形开关",
+  "content.toggle.sample.toggleC": "方形开关",
   "content.card.title": "Card 卡片",
   "content.card.simple.desc": "Card 卡片示例",
   "content.card.sample.cardA": "一个基本的Card",
@@ -144,8 +144,16 @@
   "content.breadcrumb.sample.B": "自定义分隔符",
   "content.breadcrumb.sample.C": "设定大小",
   "content.breadcrumb.sample.D": "组合使用",
-
   "content.select.title": "Select 选择框",
   "content.select.simple.desc": "Select 选择框示例",
-  "content.select.sample.A": "基础"
+  "content.select.sample.A": "基础",
+  "content.button.title": "Button 按钮",
+  "content.button.simple.desc": "Button 按钮示例",
+  "content.button.sample.A": "根据类型区分的按钮",
+  "content.button.sample.B": "占据整行",
+  "content.button.sample.C": "圆形按钮",
+  "content.button.sample.D": "多种颜色的按钮",
+  "content.button.sample.D2": "显示边框的按钮",
+  "content.button.sample.E": "按钮组合",
+  "content.button.sample.F": "按钮组"
 }
