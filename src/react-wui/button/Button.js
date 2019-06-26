@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {preventEvent} from '../event/EventFuntions';
 import clsx from "clsx";
 
-function Button(props) {
+const Button = React.forwardRef((props, ref) => {
   const {
     className,
     children,
@@ -56,11 +56,12 @@ function Button(props) {
       <button className={clsName}
           // onClick={getCallback(disabled, onClick)}
               type={nativeType ? nativeType : 'button'}
-              {...otherProps}>
+              {...otherProps}
+              ref={ref}>
         {children}
       </button>
   );
-}
+});
 
 Button.defaultProps = {
   disabled: false,
