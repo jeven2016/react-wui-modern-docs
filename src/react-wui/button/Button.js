@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
-import {preventEvent} from '../event/EventFuntions';
 import clsx from "clsx";
 
 const Button = React.forwardRef((props, ref) => {
@@ -20,9 +19,16 @@ const Button = React.forwardRef((props, ref) => {
     disabled = false,
     withinGroup,
     extraClassName,
-    elementType,
+    elementType: ElementType,
+    focus = true,
     ...otherProps
   } = props;
+
+  const btnRef = ref ? ref : useRef(null);
+
+  useEffect(() => {
+    // focus && btnRef.current.focus();
+  });
 
   let clsName = clsx(extraClassName, className, {
     [type]: type,
@@ -37,33 +43,18 @@ const Button = React.forwardRef((props, ref) => {
     "min-width": hasMinWidth
   });
 
-  let getCallback = (disabled = false, onClick) => {
-    //ensure the click event won't be triggered if the button is disabled
-    let clickCallback = onClick;
-    if (disabled) {
-      clickCallback = (e) => {
-        preventEvent(e);
-      };
-    }
-    if (!clickCallback) {
-      clickCallback = (e) => {
-      };
-    }
-    return clickCallback;
-  };
-
   return (
-      <button className={clsName}
-          // onClick={getCallback(disabled, onClick)}
-              type={nativeType ? nativeType : 'button'}
-              {...otherProps}
-              ref={ref}>
+      <ElementType className={clsName} onClick={onClick} disabled={disabled}
+                   type={nativeType ? nativeType : 'button'}
+                   {...otherProps}
+                   ref={btnRef}>
         {children}
-      </button>
+      </ElementType>
   );
 });
 
 Button.defaultProps = {
+  elementType: "button",
   disabled: false,
   className: 'button',
   withinGroup: false,
@@ -72,7 +63,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  elementType: PropTypes.string, // 'a' or 'button'
+  elementType: PropTypes.oneOf(["a", "button"]), // 'a' or 'button'
   type: PropTypes.string,   //it can only be blank or 'button' and it has nothing to do with native html type
   nativeType: PropTypes.oneOf(['button', 'reset', 'submit', 'a']), //the native html type, like 'button', 'reset' or 'submit'
   block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row

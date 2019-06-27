@@ -1,11 +1,21 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, ButtonGroup, IconClear, Tooltip} from "../../../react-wui";
+import {
+  Button,
+  ButtonGroup,
+  IconClear,
+  Loader,
+  Notification,
+  Tooltip
+} from "../../../react-wui";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlane} from "@fortawesome/free-solid-svg-icons";
 
 export const A = () => {
   let comp = <>
     <div>
       <Button>default</Button>
+      <Button elementType="a" href="#" onClick={() => void (0)}>Link</Button>
     </div>
     <div style={{marginTop: "1rem"}}>
       <Tooltip position="top" body="This is a tooltip">
@@ -31,9 +41,12 @@ export const A = () => {
       return <>
         <div>
           <Button>default</Button>
+          <Button elementType="a" href="#" onClick={() => void (0)}>Link</Button>
         </div>
         <div style={{marginTop: "1rem"}}>
-          <Button type="primary">primary</Button>
+          <Tooltip position="top" body="This is a tooltip">
+            <Button type="primary">primary</Button>
+          </Tooltip>
           <Button type="secondary">secondary</Button>
         </div>
         <div style={{marginTop: "1rem"}}>
@@ -78,14 +91,10 @@ export const B = () => {
 
 export const C = () => {
   let comp = <>
-    <Button circle>B</Button>
+    <Button circle>王</Button>
     <Button type="info" circle>OK</Button>
     <Button type="success" circle>NO</Button>
-    <Button circle>a
-      {/*<FontAwesomeIcon icon={faMusic}/>*/}
-      <IconClear/>
-    </Button>
-    <IconClear/>
+    <Button circle><IconClear/></Button>
   </>;
 
   let code = `
@@ -96,6 +105,10 @@ export const C = () => {
   
     render(){
       return <>
+       <Button circle>王</Button>
+       <Button type="info" circle>OK</Button>
+       <Button type="success" circle>NO</Button>
+       <Button circle><IconClear/></Button>
       </>;
     }
   }
@@ -301,6 +314,95 @@ export const F = () => {
           <Button outline color="red">red</Button>
         </ButtonGroup>
       </div>
+      </>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const G = () => {
+  let comp = <>
+    <div>
+
+      <Button outline color="teal" onClick={() => Notification.mini({
+        body: 'you clicked a button'
+      })}>
+        Click
+      </Button>
+      <Button outline color="brown" disabled
+              onClick={() => Notification.mini({
+                body: 'hello'
+              })}>
+        Disabled
+      </Button>
+    </div>
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Button} from "react-wui";
+  
+  export default class ButtonSample extends Component{
+  
+    render(){
+      return <>
+       <div>
+        <ButtonGroup>
+          <Button outline color="black">black</Button>
+          <Button outline color="brown">brown</Button>
+          <Button outline color="pink">pink</Button>
+          <Button outline color="purple">purple</Button>
+          <Button outline color="violet">violet</Button>
+        </ButtonGroup>
+      </div>
+      <div style={{marginTop: "1rem"}}>
+        <ButtonGroup block>
+          <Button outline color="blue">blue</Button>
+          <Button outline color="teal">teal</Button>
+          <Button outline color="green">green</Button>
+          <Button outline color="yellow">yellow</Button>
+          <Button outline color="orange">orange</Button>
+          <Button outline color="red">red</Button>
+        </ButtonGroup>
+      </div>
+      </>;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const H = () => {
+  let comp = <>
+    <div>
+      <Button>
+        Remove
+        <IconClear/>
+      </Button>
+      <Button type="primary">
+        飞机
+        <FontAwesomeIcon icon={faPlane} style={{marginLeft: "0.5rem"}}/>
+      </Button>
+      <Button color="green" disabled>
+        Saving...
+        <Loader type="third" size="small"/>
+      </Button>
+    </div>
+
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Button} from "react-wui";
+  
+  export default class ButtonSample extends Component{
+  
+    render(){
+      return <>
+        
       </>;
     }
   }

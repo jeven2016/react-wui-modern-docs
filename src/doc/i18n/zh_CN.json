@@ -155,5 +155,7 @@
   "content.button.sample.D": "多种颜色的按钮",
   "content.button.sample.D2": "显示边框的按钮",
   "content.button.sample.E": "按钮组合",
-  "content.button.sample.F": "按钮组"
+  "content.button.sample.F": "按钮组",
+  "content.button.sample.G": "禁用按钮",
+  "content.button.sample.H": "在按钮中显示图标"
 }
