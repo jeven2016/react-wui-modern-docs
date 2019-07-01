@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {A, B, C, D, D2, E, F, G, H} from "./Buttons";
+import {A, B, C, D, D2, E, F, G, H,I} from "./Buttons";
 
 export default class ButtonIndex extends DocComponent {
   constructor(args) {
@@ -68,6 +68,10 @@ export default class ButtonIndex extends DocComponent {
         <section>
           <h3 id="buttonH">{intl.get('content.button.sample.H')}</h3>
           <H/>
+        </section>
+        <section>
+          <h3 id="buttonI">{intl.get('content.button.sample.I')}</h3>
+          <I/>
         </section>
 
       </div>

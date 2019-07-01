@@ -27,6 +27,7 @@
   "main.navbar.badge": "Badge 卡片",
   "main.navbar.breadcrumb": "Breadcrumb 面包屑",
   "main.navbar.select": "Select 选择框",
+  "main.navbar.input": "Input 输入框",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -157,5 +158,11 @@
   "content.button.sample.E": "按钮组合",
   "content.button.sample.F": "按钮组",
   "content.button.sample.G": "禁用按钮",
-  "content.button.sample.H": "在按钮中显示图标"
+  "content.button.sample.H": "在按钮中显示图标",
+  "content.button.sample.I": "切换等待状态",
+
+  "content.input.title": "Input 输入框",
+  "content.input.simple.desc": "Input 输入框示例",
+  "content.input.sample.A": "普通类型",
+  "content.input.sample.B": "显示Icon"
 }

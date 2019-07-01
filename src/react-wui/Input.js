@@ -8,11 +8,12 @@ class IconInput extends Component {
     disabled: false,
     className: 'icon-input',
     withinGroup: false,
+    size: "medium"
   };
 
   static propTypes = {
-    leftIcon: PropTypes.bool,
-    size: PropTypes.string,
+    leftIcon: PropTypes.bool, // whether the icon is placed in left side of the input
+    size: PropTypes.oneOf(["large", "medium", "small"]),
     block: PropTypes.bool,
     withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
   };
@@ -46,7 +47,7 @@ class Input extends Component {
 
   static propTypes = {
     size: PropTypes.string,
-    nativeType: PropTypes.string,
+    nativeType: PropTypes.oneOf(["text","textarea","password"]),
     block: PropTypes.bool,
     className: PropTypes.string,
     placeholder: PropTypes.string,

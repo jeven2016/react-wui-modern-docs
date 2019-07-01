@@ -23,6 +23,7 @@ import CheckboxIndex from "./checkbox/CheckboxIndex";
 import RadioIndex from "./radio/RadioIndex";
 import BreadcrumbIndex from "./breadcrumb/BreadcrumbIndex";
 import SelectIndex from "./select/SelectIndex";
+import InputIndex from "./input/InputIndex";
 
 export default class MainPage extends Component {
 
@@ -101,7 +102,9 @@ export default class MainPage extends Component {
                     </Link>
                   </Menu.Item>
                   <Menu.Item id="InputItem">
-                    Input 输入框
+                    <Link to={`${match.url}/components/input`}>
+                      {intl.get('main.navbar.input')}
+                    </Link>
                   </Menu.Item>
                   <Menu.Item id="LoaderItem">
                     <Link to={`${match.url}/components/loader`}>
@@ -207,6 +210,8 @@ export default class MainPage extends Component {
                  component={FormIndex}/>
           <Route exact={true} path={`${match.url}/components/grid`}
                  component={GridIndex}/>
+          <Route exact={true} path={`${match.url}/components/input`}
+                 component={InputIndex}/>
           <Route exact={true} path={`${match.url}/components/loader`}
                  component={LoaderIndex}/>
           <Route exact={true} path={`${match.url}/components/menu`}

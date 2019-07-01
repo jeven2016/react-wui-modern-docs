@@ -20,7 +20,6 @@ const Button = React.forwardRef((props, ref) => {
     withinGroup,
     extraClassName,
     elementType: ElementType,
-    focus = true,
     ...otherProps
   } = props;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Button,
@@ -6,6 +6,7 @@ import {
   IconClear,
   Loader,
   Notification,
+  Toggle,
   Tooltip
 } from "../../../react-wui";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -386,10 +387,6 @@ export const H = () => {
         飞机
         <FontAwesomeIcon icon={faPlane} style={{marginLeft: "0.5rem"}}/>
       </Button>
-      <Button color="green" disabled>
-        Saving...
-        <Loader type="third" size="small"/>
-      </Button>
     </div>
 
   </>;
@@ -402,10 +399,76 @@ export const H = () => {
   
     render(){
       return <>
-        
+         <div>
+            <Button>Remove<IconClear/></Button>
+            <Button type="primary">
+              飞机
+              <FontAwesomeIcon icon={faPlane} style={{marginLeft: "0.5rem"}}/>
+            </Button>
+          </div>
       </>;
     }
   }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const I = () => {
+  const [active, setActive] = useState();
+  let comp = <>
+    <div>
+      <div><Toggle onChange={(value) => setActive(value)}/></div>
+      <div style={{marginTop: "1rem"}}>
+        <Button color="blue" disabled={active}>
+          {active ? "Saving" : "Save"}
+          {
+            active && <Loader type="third" size="small" color="white"
+                              active={active}/>
+          }
+
+        </Button>
+        <Button type="success" circle disabled={active}>
+          {
+            active && <Loader type="third" size="small" color="white"
+                              active={active}/>
+          }
+        </Button>
+      </div>
+    </div>
+
+  </>;
+
+  let code = `
+  import React, {useState} from "react";
+  import {Button} from "react-wui";
+  
+  const BtnSample = (props)=>{
+      const [active, setActive] = useState();
+      let comp = <>
+        <div>
+          <div><Toggle onChange={(value) => setActive(value)}/></div>
+          <div style={{marginTop: "1rem"}}>
+            <Button color="blue" disabled={active}>
+              {active ? "Saving" : "Save"}
+              {
+                active && <Loader type="third" size="small" color="white"
+                                  active={active}/>
+              }
+    
+            </Button>
+            <Button type="success" circle disabled={active}>
+              {
+                active && <Loader type="third" size="small" color="white"
+                                  active={active}/>
+              }
+            </Button>
+          </div>
+        </div>
+      </>;
+  }
+  
+  export default BtnSample;
   `;
 
   return <SamplePannel component={comp} code={code}/>;
