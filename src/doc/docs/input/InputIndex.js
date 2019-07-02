@@ -1,7 +1,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
-import {A, B} from "./Inputs";
+import {A, B, C, D} from "./Inputs";
 
 export default class InputIndex extends DocComponent {
   constructor(args) {
@@ -30,9 +30,17 @@ export default class InputIndex extends DocComponent {
           <h3 id="inputA">{intl.get('content.input.sample.A')}</h3>
           <A/>
         </section>
-           <section>
+        <section>
           <h3 id="inputB">{intl.get('content.input.sample.B')}</h3>
           <B/>
+        </section>
+        <section>
+          <h3 id="inputC">{intl.get('content.input.sample.C')}</h3>
+          <C/>
+        </section>
+        <section>
+          <h3 id="inputD">{intl.get('content.input.sample.D')}</h3>
+          <D/>
         </section>
 
         </span>

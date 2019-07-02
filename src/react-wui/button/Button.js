@@ -68,6 +68,7 @@ Button.propTypes = {
   block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
   color: PropTypes.string, //the color, like "primary", "red"
   className: PropTypes.string, //the class name of button
+  extraClassName: PropTypes.string, //the customized class need to add
   disabled: PropTypes.bool, //disable this button
   active: PropTypes.bool, // active this button
   onClick: PropTypes.func, //the click callback provided

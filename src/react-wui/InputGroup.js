@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import clsx from 'clsx';
-import {appendClassIfAbsent} from './Utils';
+import PropTypes from "prop-types";
 
 class InputLabel extends Component {
   static defaultProps = {
@@ -23,11 +23,20 @@ export default class InputGroup extends Component {
     className: 'input-group',
   };
 
+  static propTypes = {
+    className: PropTypes.string, //the class name of button
+    extraClassName: PropTypes.string, //the customized class need to add
+  };
+
   static Label = InputLabel;
 
-  getNewElement(element, className) {
-    let newClassName = appendClassIfAbsent(element, className);
-    return React.cloneElement(element, {className: newClassName});
+  updateChildren(children) {
+    return React.Children.map(children, chd => {
+      if (chd.type === InputLabel) {
+        return React.cloneElement(chd, {extraClassName: "label"});
+      }
+      return React.cloneElement(chd, {extraClassName: "element inset"})
+    });
   }
 
   render() {
@@ -39,7 +48,7 @@ export default class InputGroup extends Component {
 
     return (
         <div className={clsName} {...otherProps}>
-          {children}
+          {this.updateChildren(children)}
         </div>
     );
   }

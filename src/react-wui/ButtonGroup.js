@@ -11,6 +11,7 @@ export default class ButtonGroup extends Component {
   static propTypes = {
     block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
     className: PropTypes.string, //the class name of button
+    extraClassName: PropTypes.string, //the customized class need to add
     size: PropTypes.string, //the size of the button
     outline: PropTypes.bool,
   };
@@ -21,11 +22,12 @@ export default class ButtonGroup extends Component {
       outline,
       block,
       className,
+      extraClassName,
       children,
       ...otherProps
     } = this.props;
 
-    let clsName = clsx(className, {
+    let clsName = clsx(extraClassName, className, {
       [size]: size,
       block: block,
       outline: outline,

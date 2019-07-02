@@ -11,6 +11,7 @@ import {
   DropdownType
 } from "../common/Constants";
 import {isNil} from "../Utils";
+import clsx from "clsx";
 
 export default class Dropdown extends BaseComponent {
   static defaultProps = {
@@ -24,6 +25,7 @@ export default class Dropdown extends BaseComponent {
     type: PropTypes.oneOf(
         [DropdownType.button, DropdownType.normal, DropdownType.simple]),
 
+    extraClassName: PropTypes.string, //the customized class need to add
   };
 
   static Title = Title;
@@ -100,18 +102,18 @@ export default class Dropdown extends BaseComponent {
   render() {
     const {
       className,
+      extraClassName,
       type,
       triggerBy,
       onItemClick,
       children,
       position,
-      appendClass,
       ...otherProps
     } = this.props;
 
     let dpTypeCls = this.getValue(DropdownClass, type);
 
-    let clsName = this.getClass({
+    let clsName = clsx(extraClassName, className, {
       [dpTypeCls]: dpTypeCls,
       active: this.state.active
     });

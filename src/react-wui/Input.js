@@ -12,6 +12,7 @@ class IconInput extends Component {
   };
 
   static propTypes = {
+    extraClassName: PropTypes.string, //the customized class need to add
     leftIcon: PropTypes.bool, // whether the icon is placed in left side of the input
     size: PropTypes.oneOf(["large", "medium", "small"]),
     block: PropTypes.bool,
@@ -19,10 +20,13 @@ class IconInput extends Component {
   };
 
   render() {
-    const {borderType, children, leftIcon, className, size, block, withinGroup, ...otherProps} = this.props;
-
+    const {
+      borderType, children = [], leftIcon, className,
+      extraClassName,
+      size, block, withinGroup, ...otherProps
+    } = this.props;
     let borderTypeCls = InputBorderType[borderType];
-    let clsName = clsx(className, {
+    let clsName = clsx(extraClassName, className, {
       'left-icon': leftIcon,
       [size]: size,
       block: block,
@@ -47,9 +51,10 @@ class Input extends Component {
 
   static propTypes = {
     size: PropTypes.string,
-    nativeType: PropTypes.oneOf(["text","textarea","password"]),
+    nativeType: PropTypes.oneOf(["text", "textarea", "password"]),
     block: PropTypes.bool,
     className: PropTypes.string,
+    extraClassName: PropTypes.string, //the customized class need to add
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
     withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
@@ -65,6 +70,7 @@ class Input extends Component {
       nativeType,
       block,
       className,
+      extraClassName,
       placeholder,
       expanded,
       withinGroup,
@@ -73,7 +79,7 @@ class Input extends Component {
 
     let borderTypeCls = InputBorderType[borderType];
 
-    let clsName = clsx(className, {
+    let clsName = clsx(extraClassName, className, {
       [size]: size,
       expanded: expanded,
       element: withinGroup,

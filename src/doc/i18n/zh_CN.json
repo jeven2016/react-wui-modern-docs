@@ -164,5 +164,7 @@
   "content.input.title": "Input 输入框",
   "content.input.simple.desc": "Input 输入框示例",
   "content.input.sample.A": "普通类型",
-  "content.input.sample.B": "显示Icon"
+  "content.input.sample.B": "显示Icon",
+  "content.input.sample.C": "左侧显示Icon",
+  "content.input.sample.D": "Input Group"
 }
