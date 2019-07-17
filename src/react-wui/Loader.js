@@ -45,55 +45,55 @@ export default class Loader extends BaseComponent {
     const {type, text} = this.props;
     let content = null;
     if (type === "primary") {
-      content = <div className="content"></div>;
+      content = <span className="content"></span>;
     }
     if (type === "secondary" || type === "third") {
-      content = <div className="content">
-        <div className="segment1">
-          <div className="item"></div>
-        </div>
-        <div className="segment2">
-          <div className="item"></div>
-        </div>
-        <div className="segment3">
-          <div className="item"></div>
-        </div>
-        <div className="segment4">
-          <div className="item"></div>
-        </div>
-        <div className="segment5">
-          <div className="item"></div>
-        </div>
-        <div className="segment6">
-          <div className="item"></div>
-        </div>
-        <div className="segment7">
-          <div className="item"></div>
-        </div>
-        <div className="segment8">
-          <div className="item"></div>
-        </div>
-        <div className="segment9">
-          <div className="item"></div>
-        </div>
-        <div className="segment10">
-          <div className="item"></div>
-        </div>
-        <div className="segment11">
-          <div className="item"></div>
-        </div>
-        <div className="segment12">
-          <div className="item"></div>
-        </div>
-      </div>;
+      content = <span className="content">
+        <span className="segment1">
+          <span className="item"></span>
+        </span>
+        <span className="segment2">
+          <span className="item"></span>
+        </span>
+        <span className="segment3">
+          <span className="item"></span>
+        </span>
+        <span className="segment4">
+          <span className="item"></span>
+        </span>
+        <span className="segment5">
+          <span className="item"></span>
+        </span>
+        <span className="segment6">
+          <span className="item"></span>
+        </span>
+        <span className="segment7">
+          <span className="item"></span>
+        </span>
+        <span className="segment8">
+          <span className="item"></span>
+        </span>
+        <span className="segment9">
+          <span className="item"></span>
+        </span>
+        <span className="segment10">
+          <span className="item"></span>
+        </span>
+        <span className="segment11">
+          <span className="item"></span>
+        </span>
+        <span className="segment12">
+          <span className="item"></span>
+        </span>
+      </span>;
     }
 
     if (!isNil(text)) {
       return <>
         {content}
-        <div className="info">
+        <span className="info">
           {text}
-        </div>
+        </span>
       </>
     }
     return content;
@@ -114,18 +114,18 @@ export default class Loader extends BaseComponent {
     if (!isNil(children)) {
       let wrapperStyle = block ? LoaderWrapperBlockStyle : LoaderWrapperStyle;
       return <>
-        <div style={wrapperStyle}>
+        <span style={wrapperStyle}>
           <Mask active={active} style={MaskStyle}/>
-          <div className={clsName} {...otherProps} style={LoaderStyle}>
+          <span className={clsName} {...otherProps} style={LoaderStyle}>
             {content}
-          </div>
+          </span>
           {children}
-        </div>
+        </span>
       </>;
     }
-    return <div className={clsName} {...otherProps} >
+    return <span className={clsName} {...otherProps} >
       {content}
-    </div>;
+    </span>;
 
   }
 

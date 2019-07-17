@@ -164,7 +164,10 @@
   "content.input.title": "Input 输入框",
   "content.input.simple.desc": "Input 输入框示例",
   "content.input.sample.A": "普通类型",
+  "content.input.sample.A1": "其他类型",
   "content.input.sample.B": "显示Icon",
   "content.input.sample.C": "左侧显示Icon",
-  "content.input.sample.D": "Input Group"
+  "content.input.sample.D": "Input Group",
+  "content.input.sample.E": "Input Group中组合Input",
+  "content.input.sample.F": "Input Group中组合下拉框"
 }

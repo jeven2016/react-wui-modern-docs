@@ -26,18 +26,10 @@ export default class InputGroup extends Component {
   static propTypes = {
     className: PropTypes.string, //the class name of button
     extraClassName: PropTypes.string, //the customized class need to add
+    block: PropTypes.bool
   };
 
   static Label = InputLabel;
-
-  updateChildren(children) {
-    return React.Children.map(children, chd => {
-      if (chd.type === InputLabel) {
-        return React.cloneElement(chd, {extraClassName: "label"});
-      }
-      return React.cloneElement(chd, {extraClassName: "element inset"})
-    });
-  }
 
   render() {
     const {block, children, className, ...otherProps} = this.props;
@@ -48,7 +40,7 @@ export default class InputGroup extends Component {
 
     return (
         <div className={clsName} {...otherProps}>
-          {this.updateChildren(children)}
+          {children}
         </div>
     );
   }

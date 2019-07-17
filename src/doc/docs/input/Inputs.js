@@ -2,11 +2,12 @@ import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Button,
-  Radio,
+  ButtonGroup,
+  Dropdown,
   Input,
   InputGroup,
-  Dropdown,
-  Menu, ButtonGroup
+  Menu,
+  Radio
 } from "../../../react-wui";
 import {IconSearch} from "../../../react-wui/Icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -22,6 +23,41 @@ export const A = () => {
     </div>
     <div className="doc doc-row">
       <Input placeholder="This is a largeinput" size="large"/>
+    </div>
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class BlockquotaSample extends Component{
+  
+    render(){
+      return  null;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+
+};
+
+export const A1 = () => {
+  let comp = <>
+    <div className="doc doc-row">
+      <Input type="textarea" placeholder="type=textarea"/>
+    </div>
+    <div className="doc doc-row">
+      <Input type="number" placeholder="type=number"/>
+    </div>
+    <div className="doc doc-row">
+      <Input type="date" placeholder="type=date"/>
+    </div>
+    <div className="doc doc-row">
+      <Input type="datetime" placeholder="type=datetime"/>
+    </div>
+    <div className="doc doc-row">
+      <Input type="color" placeholder="type=color" value="#0f0"/>
     </div>
   </>;
 
@@ -137,7 +173,7 @@ export const D = () => {
       <InputGroup>
         <InputGroup.Label>$</InputGroup.Label>
         <Input withinGroup placeholder="money......"/>
-        <Button>Buy</Button>
+        <Button color="secondary">Buy</Button>
       </InputGroup>
     </div>
     <div className="doc doc-row">
@@ -147,13 +183,19 @@ export const D = () => {
         </InputGroup.Label>
         <Input withinGroup placeholder="money......"/>
         <Button>Buy</Button>
+        <InputGroup.Label>
+          Return
+        </InputGroup.Label>
+        <InputGroup.Label>
+          Option
+        </InputGroup.Label>
       </InputGroup>
     </div>
     <div className="doc doc-row">
       <InputGroup>
         <Dropdown type="button">
           <Dropdown.Title>
-            <Button color="blue" outline={true}>bottomRight</Button>
+            <Button color="primary">Options</Button>
           </Dropdown.Title>
           <Menu>
             <Menu.List>
@@ -183,6 +225,258 @@ export const D = () => {
             </Menu>
           </Dropdown>
         </ButtonGroup>
+      </InputGroup>
+    </div>
+
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class BlockquotaSample extends Component{
+  
+    render(){
+      return  null;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+
+};
+
+export const E = () => {
+  let comp = <>
+    <div className="doc doc-row">
+      <InputGroup>
+        <InputGroup.Label>
+          $
+        </InputGroup.Label>
+        <Input placeholder="Money...."/>
+      </InputGroup>
+    </div>
+    <div className="doc doc-row">
+      <InputGroup>
+        <InputGroup.Label>
+          $
+        </InputGroup.Label>
+        <Input placeholder="Money...."/>
+        <Input placeholder="Money...."/>
+      </InputGroup>
+    </div>
+    <div className="doc doc-row">
+      <InputGroup>
+        <InputGroup.Label>
+          $
+        </InputGroup.Label>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
+        <InputGroup.Label>
+          End
+        </InputGroup.Label>
+        <InputGroup.Label>
+          End
+        </InputGroup.Label>
+      </InputGroup>
+    </div>
+    <div className="doc doc-row">
+      <InputGroup>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
+        <InputGroup.Label>
+          Search
+        </InputGroup.Label>
+      </InputGroup>
+    </div>
+
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Menu} from "react-wui";
+  
+  export default class BlockquotaSample extends Component{
+  
+    render(){
+      return  null;
+    }
+  }
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+
+};
+
+export const F = () => {
+  let comp = <>
+    <div className="doc doc-row">
+      <InputGroup>
+        <InputGroup.Label>
+          $
+        </InputGroup.Label>
+        <Input placeholder="Money...."/>
+        <Dropdown type="button" position="bottomLeft">
+          <Dropdown.Title>
+            <Button color="primary" outline={true}>Action</Button>
+          </Dropdown.Title>
+          <Menu>
+            <Menu.List>
+              <Menu.Item id={1} value={1} text="Action 1"/>
+              <Menu.Item id={2} value={2} text="Action 2"/>
+              <Menu.Item id={3} value={3} text="Action 3"/>
+              <Menu.Item id={4} value={4} text="Action 4"/>
+            </Menu.List>
+          </Menu>
+        </Dropdown>
+      </InputGroup>
+    </div>
+    <div className="doc doc-row">
+      <InputGroup>
+        <InputGroup.Label>
+          $
+        </InputGroup.Label>
+        <Input placeholder="Money...."/>
+        <Dropdown type="button" position="bottomLeft">
+          <Dropdown.Title>
+            <Button color="primary" outline={true}>Action</Button>
+          </Dropdown.Title>
+          <Menu>
+            <Menu.List>
+              <Menu.Item id={1} value={1} text="Action 1"/>
+              <Menu.Item id={2} value={2} text="Action 2"/>
+              <Menu.Item id={3} value={3} text="Action 3"/>
+              <Menu.Item id={4} value={4} text="Action 4"/>
+            </Menu.List>
+          </Menu>
+        </Dropdown>
+        <Dropdown type="button" position="bottomLeft">
+          <Dropdown.Title>
+            <Button color="primary" outline={true}>Action</Button>
+          </Dropdown.Title>
+          <Menu>
+            <Menu.List>
+              <Menu.Item id={1} value={1} text="Action 1"/>
+              <Menu.Item id={2} value={2} text="Action 2"/>
+              <Menu.Item id={3} value={3} text="Action 3"/>
+              <Menu.Item id={4} value={4} text="Action 4"/>
+            </Menu.List>
+          </Menu>
+        </Dropdown>
+      </InputGroup>
+    </div>
+    <div className="doc doc-row">
+      <InputGroup>
+        <InputGroup.Label>
+          $
+        </InputGroup.Label>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
+        <InputGroup.Label>
+          End
+        </InputGroup.Label>
+        <Dropdown triggerBy="hover">
+          <Dropdown.Title>Click</Dropdown.Title>
+          <Menu>
+            <Menu.List>
+              <Menu.Item id={1} value={1} text="Action 1"/>
+              <Menu.Item id={2} value={2} text="Action 2"/>
+              <Menu.Item id={3} value={3} text="Action 3"/>
+              <Menu.Item id={4} value={4} text="Action 4"/>
+            </Menu.List>
+          </Menu>
+        </Dropdown>
+      </InputGroup>
+    </div>
+    <div className="doc doc-row">
+      <InputGroup>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
+        <ButtonGroup>
+          <Button color="green" outline={true}>Search</Button>
+          <Dropdown type="button" position="bottomRight">
+            <Dropdown.Title>
+              <Button color="green">
+                <FontAwesomeIcon icon={faArrowDown}/>
+              </Button>
+            </Dropdown.Title>
+            <Menu>
+              <Menu.List>
+                <Menu.Item value={1} text="Action 1"/>
+                <Menu.Item value={2} text="Action 2"/>
+                <Menu.Item value={3} text="Action 3"/>
+                <Menu.Item value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </ButtonGroup>
+      </InputGroup>
+    </div>
+
+    <div className="doc doc-row">
+      <InputGroup>
+        <ButtonGroup>
+          <Button color="green" outline={true}>Search</Button>
+          <Dropdown type="button" position="bottomRight">
+            <Dropdown.Title>
+              <Button color="green">
+                <FontAwesomeIcon icon={faArrowDown}/>
+              </Button>
+            </Dropdown.Title>
+            <Menu>
+              <Menu.List>
+                <Menu.Item value={1} text="Action 1"/>
+                <Menu.Item value={2} text="Action 2"/>
+                <Menu.Item value={3} text="Action 3"/>
+                <Menu.Item value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </ButtonGroup>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
+      </InputGroup>
+    </div>
+
+
+    <div className="doc doc-row">
+      <InputGroup>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
+        <ButtonGroup>
+          <Button color="green" outline={true}>Search</Button>
+          <Dropdown type="button" position="bottomRight">
+            <Dropdown.Title>
+              <Button color="green">
+                <FontAwesomeIcon icon={faArrowDown}/>
+              </Button>
+            </Dropdown.Title>
+            <Menu>
+              <Menu.List>
+                <Menu.Item value={1} text="Action 1"/>
+                <Menu.Item value={2} text="Action 2"/>
+                <Menu.Item value={3} text="Action 3"/>
+                <Menu.Item value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </ButtonGroup>
+        <Input.IconInput>
+          <Input placeholder="This is an input"/>
+          <IconSearch/>
+        </Input.IconInput>
       </InputGroup>
     </div>
 

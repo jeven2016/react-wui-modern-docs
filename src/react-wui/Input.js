@@ -51,7 +51,7 @@ class Input extends Component {
 
   static propTypes = {
     size: PropTypes.string,
-    nativeType: PropTypes.oneOf(["text", "textarea", "password"]),
+    nativeType: PropTypes.string,//"text", "textarea", "password", "file",
     block: PropTypes.bool,
     className: PropTypes.string,
     extraClassName: PropTypes.string, //the customized class need to add
@@ -87,9 +87,10 @@ class Input extends Component {
       [borderTypeCls]: borderTypeCls
     });
 
+    let ElementType = nativeType === "textarea" ? nativeType : "input";
     return (
-        <input className={clsName} type={nativeType}
-               placeholder={placeholder} {...otherProps}/>
+        <ElementType className={clsName} type={nativeType}
+                     placeholder={placeholder} {...otherProps}/>
     );
 
   }
