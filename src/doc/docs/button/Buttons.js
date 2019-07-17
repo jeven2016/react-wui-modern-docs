@@ -380,12 +380,12 @@ export const H = () => {
   let comp = <>
     <div>
       <Button>
-        Remove
+        <span>Remove</span>
         <IconClear/>
       </Button>
       <Button type="primary">
-        飞机
-        <FontAwesomeIcon icon={faPlane} style={{marginLeft: "0.5rem"}}/>
+        <span>飞机</span>
+        <FontAwesomeIcon icon={faPlane}/>
       </Button>
     </div>
 
@@ -393,17 +393,20 @@ export const H = () => {
 
   let code = `
   import React, {Component} from "react";
-  import {Button} from "react-wui";
+  import {Button, Icon} from "react-wui";
   
   export default class ButtonSample extends Component{
   
     render(){
       return <>
          <div>
-            <Button>Remove<IconClear/></Button>
+            <Button>
+              <span>Remove</span>
+              <IconClear/>
+            </Button>
             <Button type="primary">
-              飞机
-              <FontAwesomeIcon icon={faPlane} style={{marginLeft: "0.5rem"}}/>
+              <span>飞机</span>
+              <FontAwesomeIcon icon={faPlane}/>
             </Button>
           </div>
       </>;
@@ -420,8 +423,8 @@ export const I = () => {
     <div>
       <div><Toggle onChange={(value) => setActive(value)}/></div>
       <div style={{marginTop: "1rem"}}>
-        <Button color="blue" disabled={active}>
-          {active ? "Saving" : "Save"}
+        <Button color="blue" disabled={active} style={{minWidth: "10rem"}}>
+          <span>{active ? "Saving" : "Save"}</span>
           {
             active && <Loader type="third" size="small" color="white"
                               active={active}/>
@@ -430,8 +433,9 @@ export const I = () => {
         </Button>
         <Button type="success" circle disabled={active}>
           {
-            active && <Loader type="third" size="small" color="white"
-                              active={active}/>
+            active ? <Loader type="third" size="small" color="white"
+                             active={active}/>
+                : "GO"
           }
         </Button>
       </div>
@@ -449,8 +453,8 @@ export const I = () => {
         <div>
           <div><Toggle onChange={(value) => setActive(value)}/></div>
           <div style={{marginTop: "1rem"}}>
-            <Button color="blue" disabled={active}>
-              {active ? "Saving" : "Save"}
+            <Button color="blue" disabled={active} style={{minWidth: "10rem"}}>
+              <span>{active ? "Saving" : "Save"}</span>
               {
                 active && <Loader type="third" size="small" color="white"
                                   active={active}/>
@@ -459,8 +463,9 @@ export const I = () => {
             </Button>
             <Button type="success" circle disabled={active}>
               {
-                active && <Loader type="third" size="small" color="white"
-                                  active={active}/>
+                active ? <Loader type="third" size="small" color="white"
+                                 active={active}/>
+                    : "GO"
               }
             </Button>
           </div>
