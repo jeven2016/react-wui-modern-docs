@@ -13,8 +13,8 @@ import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
 import {faWeibo} from "@fortawesome/free-brands-svg-icons";
 
 export const DpA = () => {
-  let comp = <> <Dropdown triggerBy="hover">
-    <div key="hover">Hover</div>
+  let comp = <> <Dropdown triggerBy="click">
+    <div key="click">Click</div>
     <Menu>
       <Menu.List>
         <Menu.Item id={1} value={1} text="Action 1"/>
@@ -26,7 +26,7 @@ export const DpA = () => {
   </Dropdown>
 
     <Dropdown triggerBy="hover" style={{marginLeft: "2rem"}}>
-      <Dropdown.Title>Divider</Dropdown.Title>
+      <Dropdown.Title>Hover</Dropdown.Title>
       <Menu>
         <Menu.List>
           <Divider/>
