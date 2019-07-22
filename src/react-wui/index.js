@@ -55,7 +55,8 @@ export {
   IconUnChecked,
   IconRadioUnChecked,
   IconRadioChecked,
-  IconList
+  IconList,
+  IconSearch
 } from "./Icons";
 
 export {

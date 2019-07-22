@@ -1,47 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from "prop-types";
 
-class InputLabel extends Component {
-  static defaultProps = {
-    className: 'label',
-  };
+const InputGroup = (props) => {
+  const {block, children, className = "input-group", extraClassName, ...otherProps} = props;
 
-  render() {
-    const {className, children} = this.props;
-    return (
-        <div className={className}>
-          {children}
-        </div>
-    );
-  }
-}
+  let clsName = clsx(extraClassName, className, {block: block});
 
-export default class InputGroup extends Component {
-  static defaultProps = {
-    disabled: false,
-    className: 'input-group',
-  };
+  return (
+      <div className={clsName} {...otherProps}>
+        {children}
+      </div>
+  );
+};
 
-  static propTypes = {
-    className: PropTypes.string, //the class name of button
-    extraClassName: PropTypes.string, //the customized class need to add
-    block: PropTypes.bool
-  };
+InputGroup.propTypes = {
+  block: PropTypes.bool, //whether to occupy the whole row
+  className: PropTypes.string, //the class name of button
+  extraClassName: PropTypes.string, //the customized class need to add
+};
 
-  static Label = InputLabel;
+InputGroup.Label = (props) => {
+  const {className = "label", children, extraClassName, ...otherProps} = props;
+  let clsName = clsx(extraClassName, className);
 
-  render() {
-    const {block, children, className, ...otherProps} = this.props;
+  return <div className={clsName} {...otherProps}>{children}</div>;
+};
 
-    let clsName = clsx(className, {
-      block: block,
-    });
-
-    return (
-        <div className={clsName} {...otherProps}>
-          {children}
-        </div>
-    );
-  }
-}
+export default InputGroup;

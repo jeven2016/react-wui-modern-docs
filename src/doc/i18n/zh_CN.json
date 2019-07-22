@@ -169,5 +169,6 @@
   "content.input.sample.C": "左侧显示Icon",
   "content.input.sample.D": "Input Group",
   "content.input.sample.E": "Input Group中组合Input",
-  "content.input.sample.F": "Input Group中组合下拉框"
+  "content.input.sample.F": "Input Group中组合下拉框",
+  "content.input.sample.G": "占据整行"
 }

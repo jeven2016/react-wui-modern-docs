@@ -17,7 +17,6 @@ const Button = React.forwardRef((props, ref) => {
     hasMinWidth,
     onClick,
     disabled = false,
-    withinGroup,
     extraClassName,
     elementType: ElementType,
     ...otherProps
@@ -38,7 +37,6 @@ const Button = React.forwardRef((props, ref) => {
     active: active,
     outline: outline,
     circle: circle,
-    label: withinGroup,
     "min-width": hasMinWidth
   });
 
@@ -56,7 +54,6 @@ Button.defaultProps = {
   elementType: "button",
   disabled: false,
   className: 'button',
-  withinGroup: false,
   role: null, //only for internal use
   hasMinWidth: false
 };
@@ -75,8 +72,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(['large', 'medium', 'small', '']), //the size of the button
   outline: PropTypes.bool,
   circle: PropTypes.bool,
-  hasMinWidth: PropTypes.bool,  // has min-width style
-  withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
+  hasMinWidth: PropTypes.bool // has min-width style
 };
 
 export default Button;

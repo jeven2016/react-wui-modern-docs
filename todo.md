@@ -17,6 +17,6 @@ refer to the implementation of NavBar
  * 动画版本１.2太低了－－》　升级
  * append class should be deprecated
  * toggle设置为turnOn 时无效, turnOn后界面第一次\第二次点击时,onChange中的状态值出错
- 
+ * input/button, large/small/medium需要统一添加
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp

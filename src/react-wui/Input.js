@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {InputBorderType} from "./common/Constants";
+import BaseComponent from "./BaseComponent";
 
-class IconInput extends Component {
+class IconInput extends BaseComponent {
   static defaultProps = {
     disabled: false,
     className: 'icon-input',
-    withinGroup: false,
     size: "medium"
   };
 
@@ -16,14 +16,13 @@ class IconInput extends Component {
     leftIcon: PropTypes.bool, // whether the icon is placed in left side of the input
     size: PropTypes.oneOf(["large", "medium", "small"]),
     block: PropTypes.bool,
-    withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
   };
 
   render() {
     const {
-      borderType, children = [], leftIcon, className,
+      borderType, children, leftIcon, className,
       extraClassName,
-      size, block, withinGroup, ...otherProps
+      size, block, ...otherProps
     } = this.props;
     let borderTypeCls = InputBorderType[borderType];
     let clsName = clsx(extraClassName, className, {
@@ -31,7 +30,6 @@ class IconInput extends Component {
       [size]: size,
       block: block,
       [borderTypeCls]: borderTypeCls,
-      element: withinGroup, //add 'element' to class if this input is under controlled by input-group
     });
 
     return <div className={clsName} {...otherProps}>
@@ -40,25 +38,20 @@ class IconInput extends Component {
   }
 }
 
-class Input extends Component {
+class Input extends BaseComponent {
   static defaultProps = {
-    nativeType: 'text',
+    type: 'text',
     className: 'input',
-    expanded: false,
-    withinGroup: false,
     placeholder: '',
   };
 
   static propTypes = {
     size: PropTypes.string,
-    nativeType: PropTypes.string,//"text", "textarea", "password", "file",
+    type: PropTypes.string.isRequired,//"text", "textarea", "password", "file", etc.
     block: PropTypes.bool,
-    className: PropTypes.string,
+    className: PropTypes.string.isRequired,
     extraClassName: PropTypes.string, //the customized class need to add
-    placeholder: PropTypes.string,
     disabled: PropTypes.bool,
-    withinGroup: PropTypes.bool, //whether this input is under controlled by a input-group
-    expanded: PropTypes.bool, // whether the input is expanded in input-group, it only take effect with input-group
   };
 
   static IconInput = IconInput;
@@ -67,13 +60,11 @@ class Input extends Component {
     const {
       borderType,
       size,
-      nativeType,
+      type,
       block,
       className,
       extraClassName,
-      placeholder,
-      expanded,
-      withinGroup,
+      disabled,
       ...otherProps
     } = this.props;
 
@@ -81,16 +72,16 @@ class Input extends Component {
 
     let clsName = clsx(extraClassName, className, {
       [size]: size,
-      expanded: expanded,
-      element: withinGroup,
       block: block,
       [borderTypeCls]: borderTypeCls
     });
 
-    let ElementType = nativeType === "textarea" ? nativeType : "input";
+    if (type.toLowerCase() === "textarea") {
+      return <textarea className={clsName} {...otherProps} disabled={disabled}/>
+    }
     return (
-        <ElementType className={clsName} type={nativeType}
-                     placeholder={placeholder} {...otherProps}/>
+        <input className={clsName} type={type} {...otherProps}
+               disabled={disabled}/>
     );
 
   }

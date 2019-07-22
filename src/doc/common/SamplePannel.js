@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card} from "../../react-wui";
+import {Card, Tooltip} from "../../react-wui";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from "@fortawesome/free-solid-svg-icons";
 import CodeTemplate from "./CodeTemplate";
@@ -30,8 +30,13 @@ export default class SamplePannel extends Component {
       <Card.Header>
         <div className="doc-title">
           <div className="doc-title-item" onClick={this.show}>
-            <div><FontAwesomeIcon icon={faCode}/></div>
-            <div className="doc-code">Code</div>
+            <div>
+              <Tooltip body="Code">
+                <span>
+                <FontAwesomeIcon icon={faCode}/>
+                </span>
+              </Tooltip>
+            </div>
           </div>
         </div>
       </Card.Header>
