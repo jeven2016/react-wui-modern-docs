@@ -2881,7 +2881,7 @@ textarea.input {
     display: none;
     height: 0; }
   .submenu > .menu-list, .menu > .menu-list {
-    transition: all .2s linear;
+    transition: all 0.2s linear;
     background: #fff; }
     .submenu > .menu-list > .menu-item, .menu > .menu-list > .menu-item {
       position: relative;
@@ -2891,25 +2891,24 @@ textarea.input {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      margin: 0;
-      text-align: left;
       cursor: pointer;
-      border-width: 0;
-      align-items: center;
+      border: none;
       min-width: 8rem;
       transition: all .5s; }
-      .submenu > .menu-list > .menu-item:focus, .menu > .menu-list > .menu-item:focus, .submenu > .menu-list > .menu-item:hover:not(.special):not(.disabled), .menu > .menu-list > .menu-item:hover:not(.special):not(.disabled) {
-        color: #007aff;
-        transition: all 0.2s; }
-        .submenu > .menu-list > .menu-item:focus.with-box, .menu > .menu-list > .menu-item:focus.with-box, .submenu > .menu-list > .menu-item:hover:not(.special):not(.disabled).with-box, .menu > .menu-list > .menu-item:hover:not(.special):not(.disabled).with-box {
-          box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.12);
-          font-size: 1rem; }
-        .submenu > .menu-list > .menu-item:focus.with-bg, .menu > .menu-list > .menu-item:focus.with-bg, .submenu > .menu-list > .menu-item:hover:not(.special):not(.disabled).with-bg, .menu > .menu-list > .menu-item:hover:not(.special):not(.disabled).with-bg {
-          background-color: #fafafa; }
-      .submenu > .menu-list > .menu-item.active:not(.special), .menu > .menu-list > .menu-item.active:not(.special) {
+      .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus, .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover {
         color: #007aff; }
-        .submenu > .menu-list > .menu-item.active:not(.special).with-bg, .menu > .menu-list > .menu-item.active:not(.special).with-bg {
-          background-color: #ededed; }
+        .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus.with-box, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus.with-box, .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover.with-box, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover.with-box {
+          box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.12);
+          font-weight: 500; }
+        .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus.with-bg, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus.with-bg, .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover.with-bg, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover.with-bg {
+          background-color: #fafafa; }
+      .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):active, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):active, .submenu > .menu-list > .menu-item.active:not(:disabled):not(.disabled), .menu > .menu-list > .menu-item.active:not(:disabled):not(.disabled) {
+        color: #007aff; }
+        .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):active.with-box, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):active.with-box, .submenu > .menu-list > .menu-item.active:not(:disabled):not(.disabled).with-box, .menu > .menu-list > .menu-item.active:not(:disabled):not(.disabled).with-box {
+          box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.12);
+          font-weight: 500; }
+        .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):active.with-bg, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):active.with-bg, .submenu > .menu-list > .menu-item.active:not(:disabled):not(.disabled).with-bg, .menu > .menu-list > .menu-item.active:not(:disabled):not(.disabled).with-bg {
+          background-color: #fafafa; }
       .submenu > .menu-list > .menu-item:disabled, .menu > .menu-list > .menu-item:disabled, .submenu > .menu-list > .menu-item.disabled, .menu > .menu-list > .menu-item.disabled {
         color: #333;
         background-color: transparent; }
