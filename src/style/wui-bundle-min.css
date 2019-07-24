@@ -793,7 +793,7 @@ a {
 
 @keyframes show-menu-list {
   from {
-    top: 10rem; }
+    top: 6rem; }
   to {
     top: 2.625rem; } }
 
@@ -2878,8 +2878,7 @@ textarea.input {
     transform: rotate(90deg);
     transform-origin: center; }
   .submenu.close > .menu-list, .close.menu > .menu-list {
-    display: none;
-    height: 0; }
+    display: none; }
   .submenu > .menu-list, .menu > .menu-list {
     transition: all 0.2s linear;
     background: #fff; }
@@ -2894,7 +2893,7 @@ textarea.input {
       cursor: pointer;
       border: none;
       min-width: 8rem;
-      transition: all .5s; }
+      transition: transition; }
       .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus, .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover {
         color: #007aff; }
         .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus.with-box, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):focus.with-box, .submenu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover.with-box, .menu > .menu-list > .menu-item:not(:disabled):not(.disabled):hover.with-box {
@@ -2912,14 +2911,18 @@ textarea.input {
       .submenu > .menu-list > .menu-item:disabled, .menu > .menu-list > .menu-item:disabled, .submenu > .menu-list > .menu-item.disabled, .menu > .menu-list > .menu-item.disabled {
         color: #333;
         background-color: transparent; }
-      .submenu > .menu-list > .menu-item > .icon, .menu > .menu-list > .menu-item > .icon {
+      .submenu > .menu-list > .menu-item > .icon:first-child:not(:last-child), .menu > .menu-list > .menu-item > .icon:first-child:not(:last-child) {
         margin-right: 0.5rem; }
+      .submenu > .menu-list > .menu-item > .icon:last-child:not(:first-child), .menu > .menu-list > .menu-item > .icon:last-child:not(:first-child) {
+        margin-left: 0.5rem; }
   .submenu .menu-header, .menu .menu-header {
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 1rem;
     font-weight: 500;
     position: relative; }
-    .submenu .menu-header > .icon, .menu .menu-header > .icon {
+    .submenu .menu-header > .icon:first-child:not(:last-child), .menu .menu-header > .icon:first-child:not(:last-child) {
       margin-right: 0.5rem; }
+    .submenu .menu-header > .icon:last-child:not(:first-child), .menu .menu-header > .icon:last-child:not(:first-child) {
+      margin-left: 0.5rem; }
   .submenu:not(.float) .menu-header:after, .menu:not(.float) .menu-header:after {
     content: '';
     width: 0;
@@ -2946,10 +2949,8 @@ textarea.input {
   padding: 0.25rem 0; }
   .menu.with-border {
     border: 1px solid #ccc; }
-  .menu.simple {
-    border-width: 0; }
-    .menu.simple > .divider {
-      display: none; }
+  .menu.simple > .divider {
+    display: none; }
   .menu.float {
     flex-direction: row;
     padding: 0; }
@@ -2957,7 +2958,7 @@ textarea.input {
       flex: 0 0 auto;
       align-items: center;
       flex-direction: row;
-      transition: all .3s; }
+      transition: all 0.3s; }
       .menu.float > .submenu .menu-header:after, .menu.float > .menu .menu-header:after {
         content: none;
         border: none; }
@@ -2975,7 +2976,7 @@ textarea.input {
       display: block;
       left: 0;
       top: 100%;
-      content: '';
+      content: "";
       height: 0.1875rem;
       width: 100%;
       background-color: #007aff;
@@ -2983,7 +2984,7 @@ textarea.input {
       animation: change-width-smoothly 0.3s; }
     .menu.float > .submenu.active > .menu-list, .menu.float > .active.menu > .menu-list {
       display: block;
-      animation: show-menu-list .5s; }
+      animation: show-menu-list 0.5s; }
     .menu.float > .menu-list {
       display: -ms-flexbox;
       display: -webkit-flex;

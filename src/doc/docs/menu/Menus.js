@@ -258,17 +258,19 @@ export const MenuFloat = () => {
           <Icon>
             <FontAwesomeIcon icon={faWindowClose}/>
           </Icon>
-          不会关闭菜单
+          <span>不会关闭菜单</span>
         </Menu.Item>
         <Menu.Item id="item2">
           <Icon>
             <FontAwesomeIcon icon={faWindowClose}/>
-          </Icon>关闭菜单1
+          </Icon>
+          <span>关闭菜单1</span>
         </Menu.Item>
         <Menu.Item id="item3">
           <Icon>
             <FontAwesomeIcon icon={faWindowClose}/>
-          </Icon>关闭菜单2
+          </Icon>
+          <span>关闭菜单2</span>
         </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
@@ -283,17 +285,20 @@ export const MenuFloat = () => {
         <Menu.Item id="item7">
           <Icon>
             <FontAwesomeIcon icon={faWindowClose}/>
-          </Icon>item7
+          </Icon>
+          <span>item7</span>
         </Menu.Item>
         <Menu.Item id="item8">
           <Icon>
             <FontAwesomeIcon icon={faWindowClose}/>
-          </Icon>item8
+          </Icon>
+          <span>item8</span>
         </Menu.Item>
         <Menu.Item id="item9">
           <Icon>
             <FontAwesomeIcon icon={faWindowClose}/>
-          </Icon>item9
+          </Icon>
+          <span>item9</span>
         </Menu.Item>
         <Menu.SubMenu>
           <Menu.Header>Submenu3</Menu.Header>
@@ -301,17 +306,20 @@ export const MenuFloat = () => {
             <Menu.Item id="item7_1">
               <Icon>
                 <FontAwesomeIcon icon={faWindowClose}/>
-              </Icon>item10
+              </Icon>
+              <span>item10</span>
             </Menu.Item>
             <Menu.Item id="item8_1">
               <Icon>
                 <FontAwesomeIcon icon={faWindowClose}/>
-              </Icon>item11
+              </Icon>
+              <span>item11</span>
             </Menu.Item>
             <Menu.Item id="item9_1">
               <Icon>
                 <FontAwesomeIcon icon={faWindowClose}/>
-              </Icon>item12
+              </Icon>
+              <span>item12</span>
             </Menu.Item>
           </Menu.List>
         </Menu.SubMenu>
