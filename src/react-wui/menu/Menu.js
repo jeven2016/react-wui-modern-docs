@@ -73,27 +73,6 @@ export default class Menu extends BaseMenu {
     this.updatePaddingLeft(this.menuRef.current, 0);
   }
 
-  updatePaddingLeft(menu, index = 0) {
-    if (!this.props.setItemPaddingLeft) {
-      return;
-    }
-    if (menu.hasChildNodes()) {
-      let menuChildNodes = menu.childNodes;
-      for (let elem in menuChildNodes) {
-        let childNode = menuChildNodes[elem];
-        if (this.hasClass(childNode, MenuClassName.list)) {
-          this.updateItem(childNode.childNodes, index + 1, index);
-        }
-        if (this.hasClass(childNode, MenuClassName.header)) {
-          this.updateItem([childNode], index === 0 ? 1 : index, index);
-        }
-        if (this.hasClass(childNode, MenuClassName.submenu)) {
-          this.updatePaddingLeft(childNode, index + 1);
-        }
-      }
-    }
-
-  }
 
   getCurrentActiveIem() {
     let stateItem = this.state.clickedItem;
