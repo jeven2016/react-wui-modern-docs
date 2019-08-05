@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Button,
@@ -65,25 +65,33 @@ export const A = () => {
 };
 
 export const B = () => {
+  let btnRef = useRef(null);
+  useEffect(()=>{
+    //focus
+    btnRef.current.focus();
+  });
   let comp = <>
     <Button block>Block</Button>
-    <Button type="primary" block>Block</Button>
+    <Button type="primary" block ref={btnRef}>Block</Button>
     <Button type="danger" block>Block</Button>
   </>;
 
   let code = `
-  import React, {Component} from "react";
+  import React, {Component, useRef, useEffect} from "react";
   import {Button} from "react-wui";
   
-  export default class ButtonSample extends Component{
-  
-    render(){
-      return <>
-        <Button block>Block</Button>
-        <Button type="primary" block>Block</Button>
-        <Button type="danger" block>Block</Button>
-      </>;
-    }
+  export const sample = () => {
+    let btnRef = useRef(null);
+    useEffect(()=>{
+      //focus
+      btnRef.current.focus();
+    });
+    let comp = <>
+      <Button block>Block</Button>
+      <Button type="primary" block ref={btnRef}>Block</Button>
+      <Button type="danger" block>Block</Button>
+    </>;
+    return comp;
   }
   `;
 
