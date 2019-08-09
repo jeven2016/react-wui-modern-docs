@@ -17,7 +17,7 @@ const Menu = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     //set padding-left property to child nodes
-    setPadding(menuRef.current, 0);
+    setPadding(props, menuRef.current, 0);
   });
 
   const {
