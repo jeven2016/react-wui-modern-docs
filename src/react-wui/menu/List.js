@@ -1,18 +1,20 @@
 import React from 'react';
-import BaseComponent from '../BaseComponent';
+import clsx from "clsx";
 
-export default class List extends BaseComponent {
-  static defaultProps = {
-    className: 'menu-list',
-  };
+/**
+ * Menu List
+ */
+const List = React.forwardRef((props, ref) => {
+  const {className, extraClassName, children, ...otherProps} = props;
+console.log(props);
+  let clsName = clsx(extraClassName, className);
 
-  render() {
-    const {className, children, key} = this.props;
-    let clsName = this.getClass({});
+  return <ul className={clsName} ref={ref} {...otherProps}>
+    {children}
+  </ul>;
+});
 
-    return <ul className={clsName}>
-      {children}
-    </ul>;
-  }
-
-}
+List.defaultProps = {
+  className: 'menu-list'
+};
+export default List;

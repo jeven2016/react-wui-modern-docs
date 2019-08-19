@@ -1,5 +1,6 @@
 import React from 'react';
-import {isNil, MenuContext} from '../Utils';
+import {isNil} from '../Utils';
+import {MenuContext} from "./MenuUtils";
 import SubMenu from './SubMenu';
 import Header from './Header';
 import List from './List';
@@ -72,7 +73,6 @@ export default class Menu extends BaseMenu {
   componentDidUpdate() {
     this.updatePaddingLeft(this.menuRef.current, 0);
   }
-
 
   getCurrentActiveIem() {
     let stateItem = this.state.clickedItem;

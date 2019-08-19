@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseMenu from './BaseMenu';
-import {FloatMenuContext, isFloatMenu, MenuContext} from "../Utils";
+import {isFloatMenu} from "../Utils";
+import {FloatMenuContext, MenuContext} from "./MenuUtils";
 import {WindowEventHandler} from "../event";
 import Header from "./Header";
 import List from "./List";

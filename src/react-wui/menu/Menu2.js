@@ -1,19 +1,18 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {MenuContext} from '../Utils';
+import {MenuContext} from "./MenuUtils";
 import SubMenu from './SubMenu';
 import Header from './Header';
 import List from './List';
-import Item from './Item';
+import Item from './Item2';
 import {MenuType} from '../common/Constants';
 import PropTypes from 'prop-types';
 import clsx from "clsx";
 import {setPadding} from "./MenuUtils";
+import {isNil} from "../Utils";
 
 const Menu = React.forwardRef((props, ref) => {
-  const [menuState, setMenuState] = useState({
-    clickedItem: null,
-    showMenuList: true,
-  });
+  const [activeItemId, setActiveItemId] = useState();
+  const [showMenuList, setShowMenuList] = useState(true);
 
   useEffect(() => {
     //set padding-left property to child nodes
@@ -26,7 +25,7 @@ const Menu = React.forwardRef((props, ref) => {
     type,
     onClickHeader,
     onClickItem,
-    activeItem,
+    activeItems,
     canClose,
     openMenu,
     setItemPaddingLeft,
@@ -45,7 +44,7 @@ const Menu = React.forwardRef((props, ref) => {
     'with-bg': hasBackground,
     [type]: type,
     block,
-    'close': !menuState.showMenuList,
+    'close': !showMenuList,
   });
 
   const updateChildren = (children) => {
@@ -75,14 +74,34 @@ const Menu = React.forwardRef((props, ref) => {
     return chd;
   };
 
+  // handle item
+  const handleItem = (itemInfo, evt) => {
+    const id = itemInfo.id;
+    setActiveItemId(id);
+
+    let callback = props.onClickItem;
+    return !isNil(callback) ? callback(itemInfo, evt) : null;
+  };
+
+  // handle header
+  const handleHeader = (headerInfo, evt) => {
+    let callback = props.onClickHeader;
+    !isNil(callback) && callback(headerInfo.id, evt);
+
+    if (props.canClose) {
+      setShowMenuList(!showMenuList);
+    }
+  };
+
   // let updatedChildren = updateChildren(children, type);
   const menuRef = ref ? ref : useRef(null);
 
   return (
       <MenuContext.Provider
           value={{
-            // activeItem: this.getCurrentActiveIem(),
-            // clickItem: this.handleItem,
+            activeItemId: activeItemId,
+            clickItem: handleItem,
+            clickHeader: handleHeader,
             openMenu: openMenu,
             menuType: type,
             menuDisabled: disabled,
@@ -106,7 +125,7 @@ Menu.defaultProps = {
   hasBorder: true,
   hasBox: false,
   hasBackground: false,
-  activeItem: null,
+  activeItems: [],
   setItemPaddingLeft: true,
   paddingLeftUnit: 'rem',
   paddingLeftIncrement: 1,
@@ -123,7 +142,7 @@ Menu.propTypes = {
   hasBorder: PropTypes.bool, //make the menu show borders
   hasBox: PropTypes.bool, //make the menu show a box
   hasBackground: PropTypes.bool, // show a background for menu
-  activeItem: PropTypes.string, //the id of a item that is currently selected
+  activeItems: PropTypes.array, //the id of a item that is currently selected
   openMenu: PropTypes.array, // an array includes the menu id should open by default, default value is ["all"]
   onClickItem: PropTypes.func, // a callback triggered by clicking a item
   onClickHeader: PropTypes.func, // a callback triggered by clicking a header

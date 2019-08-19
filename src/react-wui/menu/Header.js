@@ -1,54 +1,32 @@
-import React from 'react';
-import BaseComponent from '../BaseComponent';
-import {MenuContext} from "../Utils";
-import {MenuType} from "../common/Constants";
+import React, {useContext} from 'react';
+import {MenuContext} from "./MenuUtils";
 import PropTypes from "prop-types";
+import clsx from "clsx";
 
 /**
- * Header Component
+ * Menu Header
  */
-export default class Header extends BaseComponent {
-  static defaultProps = {
-    className: 'menu-header'
-  };
+const Header = React.forwardRef((props, ref) => {
+  const menuCtx = useContext(MenuContext);
+  const {id, className, extraClassName, children, paddingLeft} = props;
 
-  static propTypes = {
-    className: PropTypes.string, //the class name of Header
-  };
+  let clsName = clsx(extraClassName, className);
 
-  constructor(args) {
-    super(args);
-    this.state = {
-      activeHeader: false,
-    };
-    this.headerClick = this.headerClick.bind(this);
-  }
+  return <li className={clsName}
+             ref={ref}
+             key={id}
+             onClick={(evt) => menuCtx.clickHeader({id: props.id}, evt)}
+             style={{paddingLeft: paddingLeft}}>
+    {children}
+  </li>;
+});
 
-  headerClick(clickHeader, menuType, evt) {
-    if (clickHeader) {
-      clickHeader(this.props.id, evt);
-    }
-    if (menuType === MenuType.float) {
-      this.setState({
-        activeHeader: !this.state.activeHeader
-      });
-    }
-  }
+Header.defaultProps = {
+  className: 'menu-header'
+};
 
-  render() {
-    const {id, className, children, clickHeader, paddingLeft} = this.props;
-    let clsName = this.getClass();
-    return (
-        <MenuContext.Consumer>
-          {({menuType}) => {
-            return <li className={clsName}
-                       onClick={this.headerClick.bind(this, clickHeader,
-                           menuType)}
-                       style={{paddingLeft: paddingLeft}}>
-              {children}
-            </li>;
-          }}
-        </MenuContext.Consumer>
-    );
-  }
-}
+Header.propTypes = {
+  className: PropTypes.string, //the class name of Header
+};
+
+export default Header;

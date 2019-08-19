@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {MenuType} from "./common/Constants";
 import clsx from "clsx";
 
@@ -57,11 +57,6 @@ export const getRandomInt = (min, max) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-// https://github.com/facebook/react/issues/13969
-// context should be placed in a individual file
-export const MenuContext = React.createContext({});
-export const FloatMenuContext = React.createContext({});
 
 export const NavbarContext = React.createContext({});
 export const ModalContext = React.createContext({});

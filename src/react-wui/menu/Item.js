@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
-import {FloatMenuContext, isNil, MenuContext} from '../Utils';
+import {isNil} from '../Utils';
+import {FloatMenuContext, MenuContext} from "./MenuUtils";
 import PropTypes from 'prop-types';
 
 export default class Item extends BaseComponent {
@@ -34,7 +35,7 @@ export default class Item extends BaseComponent {
       value: this.props.value,
       text: !isNil(this.props.text) ? this.props.text : this.props.children,
     };
-    if(!clickItem){
+    if (!clickItem) {
       return;
     }
     let closeMenu = clickItem(itemInfo, evt);

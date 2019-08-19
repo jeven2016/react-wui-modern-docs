@@ -1,5 +1,6 @@
 import {isNil} from "lodash";
 import {MenuClassName} from "../common/Constants";
+import React,{useContext} from "react";
 
 export const hasClass = (node, className) => !isNil(node.className) &&
     node.className.includes(className);
@@ -60,3 +61,13 @@ export const setPadding = (props, menu, index = 0) => {
     }
   }
 };
+
+/**
+ * Menu Context
+ * @type {React.Context<{}>}
+ */
+export const MenuContext = React.createContext({});
+
+// https://github.com/facebook/react/issues/13969
+// context should be placed in a individual file
+export const FloatMenuContext = React.createContext({});
