@@ -1,23 +1,22 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {MenuContext} from "./MenuUtils";
-import SubMenu from './SubMenu';
+import {MenuContext, setPadding} from "./MenuUtils";
+import SubMenu from './SubMenu2';
 import Header from './Header';
 import List from './List';
 import Item from './Item2';
-import {MenuType} from '../common/Constants';
 import PropTypes from 'prop-types';
 import clsx from "clsx";
-import {setPadding} from "./MenuUtils";
 import {isNil} from "../Utils";
 
 const Menu = React.forwardRef((props, ref) => {
   const [activeItemId, setActiveItemId] = useState();
   const [showMenuList, setShowMenuList] = useState(true);
 
+  //set padding-left property to items, only execute once
   useEffect(() => {
     //set padding-left property to child nodes
     setPadding(props, menuRef.current, 0);
-  });
+  }, []);
 
   const {
     block, className, extraClassName, hasBorder, children,
@@ -26,7 +25,6 @@ const Menu = React.forwardRef((props, ref) => {
     onClickHeader,
     onClickItem,
     activeItems,
-    canClose,
     openMenu,
     setItemPaddingLeft,
     paddingLeftUnit,
@@ -47,33 +45,6 @@ const Menu = React.forwardRef((props, ref) => {
     'close': !showMenuList,
   });
 
-  const updateChildren = (children) => {
-    const {type} = props;
-    let chd = React.Children.map(children, child => {
-      //pass the click handler to header
-      if (child.type === Header) {
-        return React.cloneElement(child, {
-          clickHeader: this.handleHeader,
-        });
-      }
-      return child;
-    });
-
-    if (type === MenuType.float) {
-      chd = React.Children.map(children, child => {
-        //mark this menu is SubMenu (in top level) and can be folded
-        if (child.type === SubMenu) {
-          return React.cloneElement(child, {
-            isTopSubMenu: true,
-          });
-        }
-        return child;
-      });
-    }
-
-    return chd;
-  };
-
   // handle item
   const handleItem = (itemInfo, evt) => {
     const id = itemInfo.id;
@@ -86,15 +57,18 @@ const Menu = React.forwardRef((props, ref) => {
   // handle header
   const handleHeader = (headerInfo, evt) => {
     let callback = props.onClickHeader;
-    !isNil(callback) && callback(headerInfo.id, evt);
-
-    if (props.canClose) {
+    let autoCloseMenu = true;
+    if (!isNil(callback)) {
+      // the menu won't be closed automatically if the callback returns false
+      autoCloseMenu = callback(headerInfo.id, evt);
+    }
+    if (autoCloseMenu) {
       setShowMenuList(!showMenuList);
     }
   };
 
   // let updatedChildren = updateChildren(children, type);
-  const menuRef = ref ? ref : useRef(null);
+  const menuRef = !isNil(ref) ? ref : useRef(null);
 
   return (
       <MenuContext.Provider
@@ -129,7 +103,6 @@ Menu.defaultProps = {
   setItemPaddingLeft: true,
   paddingLeftUnit: 'rem',
   paddingLeftIncrement: 1,
-  canClose: true, // only for float menu type
   autoCloseFloatSubMenu: true, //automatically close the float menu after clicked the item
   openMenu: ['all'], // menu id array or 'all'
   onClickItem: null,

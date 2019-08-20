@@ -6,7 +6,6 @@ import clsx from "clsx";
  */
 const List = React.forwardRef((props, ref) => {
   const {className, extraClassName, children, ...otherProps} = props;
-console.log(props);
   let clsName = clsx(extraClassName, className);
 
   return <ul className={clsName} ref={ref} {...otherProps}>

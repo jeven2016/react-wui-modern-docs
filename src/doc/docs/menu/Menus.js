@@ -246,7 +246,7 @@ export const MenuFloat = () => {
       return false;
     }
   }}>
-    <Menu.SubMenu>
+    <Menu.SubMenu isDirectChild>
       <Menu.Header>
         <Icon>
           <FontAwesomeIcon icon={faList}/>
@@ -274,7 +274,7 @@ export const MenuFloat = () => {
         </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
-    <Menu.SubMenu>
+    <Menu.SubMenu isDirectChild>
       <Menu.Header>
         <Icon>
           <FontAwesomeIcon icon={faList}/>
@@ -341,7 +341,7 @@ export const MenuFloat = () => {
                   return false
                 }
               }}>
-                <Menu.SubMenu>
+                <Menu.SubMenu isDirectChild={true}>
                   <Menu.Header>
                     <Icon>
                       <FontAwesomeIcon icon={faList}/>
@@ -352,27 +352,6 @@ export const MenuFloat = () => {
                     <Menu.Item id="item1">不会关闭菜单</Menu.Item>
                     <Menu.Item id="item2">关闭菜单1</Menu.Item>
                     <Menu.Item id="item3">关闭菜单2</Menu.Item>
-                  </Menu.List>
-                </Menu.SubMenu>
-                <Menu.SubMenu>
-                  <Menu.Header>
-                    <Icon>
-                      <FontAwesomeIcon icon={faList}/>
-                    </Icon>
-                    <span>Submenu3</span>
-                  </Menu.Header>
-                  <Menu.List>
-                    <Menu.Item id="item7">item7</Menu.Item>
-                    <Menu.Item id="item8">item8</Menu.Item>
-                    <Menu.Item id="item9">item9</Menu.Item>
-                    <Menu.SubMenu>
-                      <Menu.Header>Submenu3</Menu.Header>
-                      <Menu.List>
-                        <Menu.Item id="item7_1">item10</Menu.Item>
-                        <Menu.Item id="item8_1">item11</Menu.Item>
-                        <Menu.Item id="item9_1">item12</Menu.Item>
-                      </Menu.List>
-                    </Menu.SubMenu>
                   </Menu.List>
                 </Menu.SubMenu>
               </Menu>;

@@ -1,5 +1,5 @@
 import {isNil} from "lodash";
-import {MenuClassName} from "../common/Constants";
+import {MenuClassName, MenuType} from "../common/Constants";
 import React,{useContext} from "react";
 
 export const hasClass = (node, className) => !isNil(node.className) &&
@@ -71,3 +71,7 @@ export const MenuContext = React.createContext({});
 // https://github.com/facebook/react/issues/13969
 // context should be placed in a individual file
 export const FloatMenuContext = React.createContext({});
+
+export const isFloatMenu = (type) => {
+  return type === MenuType.float;
+};

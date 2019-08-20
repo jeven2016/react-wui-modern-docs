@@ -16,6 +16,7 @@ const addWindowEventListener = (type, handler) => {
 };
 
 const removeWindowEventListener = (type, handler) => {
+  console.debug("remove a event handler", type)
   window.removeEventListener(type, handler, false);
 };
 
