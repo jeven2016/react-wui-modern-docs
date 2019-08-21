@@ -100,3 +100,9 @@ export const FormItemType = {
   block: 'form-item',
   grid: 'form-item row',
 };
+
+//=================================
+export const EventListener = {
+  click: "click",
+  mouseEnter: "mouseover"
+};

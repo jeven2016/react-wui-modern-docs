@@ -1,37 +1,28 @@
-import React from 'react';
-import BaseComponent from '../BaseComponent';
+import React, {useState} from 'react';
+import {isNil} from "lodash";
 
-export default class BaseMenu extends BaseComponent {
-  constructor(args) {
-    super(args);
-    // console.log("target=" + new.target.name);
-  }
+const useMenuList = (props) => {
+  const [showMenuList, setShowMenuList] = useState(true);
 
-  handleHeader(headerId, evt) {
-    let callback = this.props.onClickHeader;
-    if (callback) {
-      callback(headerId, evt);
+  // handle header
+  const handleHeader = (headerInfo, evt) => {
+    // debugger;
+    let callback = props.onClickHeader;
+    let autoCloseMenu = true;
+    if (!isNil(callback)) {
+      // the menu won't be closed automatically if the callback returns false
+      autoCloseMenu = callback(headerInfo.id, evt);
     }
-
-    if (this.props.canClose) {
-      this.setState({
-        showMenuList: !this.state.showMenuList,
-      });
+    //close the menu list automatically if autoCloseMenu is true , undefined or null
+    if (isNil(autoCloseMenu) || autoCloseMenu) {
+      setShowMenuList(!showMenuList);
     }
+  };
 
+  return {
+    showMenuList,
+    handleHeader
   }
+};
 
-  /**
-   * itemInfo = {id, value, text}
-   */
-  handleItem(itemInfo, evt) {
-    const id = itemInfo.id;
-    this.setState({
-      clickedItem: id,
-    });
-
-    let callback = this.props.onClickItem;
-    return callback ? callback(itemInfo, evt) : null;
-  }
-
-}
+export default useMenuList;

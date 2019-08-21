@@ -1,150 +1,122 @@
-import React from 'react';
-import BaseMenu from './BaseMenu';
-import {isFloatMenu} from "../Utils";
-import {FloatMenuContext, MenuContext} from "./MenuUtils";
-import {WindowEventHandler} from "../event";
-import Header from "./Header";
-import List from "./List";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import {
+  FloatMenuContext,
+  isFloatMenu,
+  MenuContext,
+  passHeaderHandler,
+  setPadding
+} from "./MenuUtils";
 import PropTypes from "prop-types";
+import Menu from "./Menu";
+import useEvent from "../common/UseEvent";
+import {isNil} from "../Utils";
+import {EventListener} from "../common/Constants";
+import clsx from "clsx";
+import useMenuList from "./BaseMenu";
 
-export default class SubMenu extends BaseMenu {
-  static defaultProps = {
-    className: 'submenu',
-    canClose: true, // only for float menu type
-    isTopSubMenu: false //only for internal use
-  };
+const SubMenu = React.forwardRef((props, ref) => {
+  const {
+    setItemPaddingLeft,
+    isDirectChild,
+    className,
+    extraClassName,
+    children,
+    ...otherProps
+  } = props;
+  const menuCtx = useContext(MenuContext);
+  const [activeFloatMenu, setActiveFloatMenu] = useState(false);
+  const {showMenuList, handleHeader} = useMenuList(props); //used to collapse or expand the menu list
+  const forwardRef = ref ? ref : useRef(null);
+  const isFloatSubmenu = isDirectChild && isFloatMenu(menuCtx.menuType);
 
-  static propTypes = {
-    className: PropTypes.string, //the class name of menu
-    isTopSubMenu: PropTypes.bool //whether this submenu is direct child of a menu and can be folded
-  };
+  //set padding-left property to items, only execute once
+  useEffect(() => {
+    //set padding-left property to child nodes
+    setPadding(props, forwardRef.current, 0);
+  }, []);
 
-  // Assign a contextType to read the current theme context.
-  // React will find the closest theme Provider above and use its value.
-  static contextType = MenuContext;
+  //add a window event listener to close the popup submenu
+  useEvent(EventListener.click, (evt) => {
+    if (isFloatSubmenu) {
+      closeFloatMenu(evt);
+    }
+  }, isFloatSubmenu);
 
-  constructor(args) {
-    super(args);
-    this.state = {
-      showMenuList: true,
-      activeFloatMenu: false
-    };
-
-    //associate the methods with a Menu instance
-    this.handleHeader = this.handleHeader.bind(this);
-    this.handleFloatMenuItem = this.handleFloatMenuItem.bind(this);
-
-    this.ref = React.createRef();
-  }
-
-  /**
-   * Close the submenu if the menu's type is float
-   * @param evt
-   */
-  closeFloatMenu(evt) {
-    const {isTopSubMenu} = this.props;
-    if (!isTopSubMenu) {
+  const handleFloatMenuItem = useCallback((itemInfo, evt) => {
+    const close = menuCtx.clickItem(itemInfo, evt);
+    if (!menuCtx.autoCloseFloatSubMenu) {
       return;
     }
 
-    let inside = this.ref.current.contains(evt.target);
+    if (isNil(close) || close) {
+      setActiveFloatMenu(val => !val);
+    }
+  }, []);
 
-    // if the header is one child of current sub-menu, the menu list cannot be closed
+  const closeFloatMenu = (evt) => {
+    let inside = forwardRef.current.contains(evt.target);
     if (inside) {
       return;
     }
-    this.updateActiveStatus(false);
-  }
+    // if the header is one child of current sub-menu, the menu list cannot be closed
+    setActiveFloatMenu(false);
+  };
 
-  /**
-   * Display submenu or not
-   * @param value status
-   */
-  updateActiveStatus(value) {
-    if (this.state.activeFloatMenu === value) {
-      return;
+  //click handler of header
+  let clickHeader = (headerInfo, evt) => {
+    if (isFloatSubmenu) {
+      setActiveFloatMenu(true);
+      //prevent the default behaviour that the menu component provides
+      //(in order not to collapse or expand the menu list)
+      return false;
     }
+  };
 
-    this.setState({
-      activeFloatMenu: value,
-    });
+  //for simple submenu
+  let simpleClsName = clsx(extraClassName, className, {
+    'close': !showMenuList
+  });
+  let content = <ul className={simpleClsName}
+                    ref={forwardRef} {...otherProps}>
+    {passHeaderHandler(children, clickHeader)}
+  </ul>;
+
+  // for float menu
+  if (isDirectChild) {
+    let extra = `${extraClassName ? extraClassName : ""}${activeFloatMenu
+        ? "active" : null}`;
+
+    return <FloatMenuContext.Provider value={{
+      clickFloatMenuItem: handleFloatMenuItem
+    }}>
+      <Menu ref={forwardRef}
+            className={className}
+            setItemPaddingLeft={setItemPaddingLeft}
+            extraClassName={extra} {...otherProps}
+            onClickHeader={clickHeader}>
+        {passHeaderHandler(children, clickHeader)}
+      </Menu>
+    </FloatMenuContext.Provider>;
   }
+  return content;
+});
 
-  /**
-   * Handle the click event
-   * @param headerId
-   * @param evt
-   */
-  handleHeader(headerId, evt) {
-    const {isTopSubMenu} = this.props;
-    if (isTopSubMenu && this.checkMenu()) {
-      this.updateActiveStatus(true);
-    } else {
-      super.handleHeader(headerId, evt);
-    }
-  }
+SubMenu.defaultProps = {
+  className: 'submenu',
+  setItemPaddingLeft:true,
+  isDirectChild: false //only for internal use
+};
 
-  handleFloatMenuItem(id, closeMenu = true, evt) {
-    if (this.checkMenu()) {
-      this.updateActiveStatus(!closeMenu);
-    }
-  }
+SubMenu.propTypes = {
+  className: PropTypes.string, //the class name of menu
+  setItemPaddingLeft: PropTypes.bool,
+  isDirectChild: PropTypes.bool //whether this submenu is direct child of a menu and can be folded
+};
 
-  /**
-   * Check whether the menu is float
-   * @returns boolean
-   */
-  checkMenu() {
-    return isFloatMenu(this.context.menuType);
-  }
-
-  updateChildren(children) {
-    let chd = React.Children.map(children, (child) => {
-      let childType = child.type;
-      if (childType === Header) {
-        return React.cloneElement(child, {
-          clickHeader: this.handleHeader,
-        });
-      }
-
-      if (this.checkMenu() && childType === List) {
-        return React.cloneElement(child, {
-          clickFloatMenuItem: this.handleFloatMenuItem,
-        });
-      }
-      return child;
-    });
-
-    return chd;
-  }
-
-  render() {
-    const {className, canClose, children, isTopSubMenu} = this.props;
-    let clsName = this.getClass({
-      'close': !this.checkMenu()
-          && !this.state.showMenuList,
-      active: this.checkMenu()
-          && this.state.activeFloatMenu
-    });
-
-    let updatedChildren = this.updateChildren(children);
-
-    let evtHandler = isTopSubMenu && this.checkMenu() ?
-        <WindowEventHandler onClick={this.closeFloatMenu.bind(this)}/> : null;
-
-    let content = <div className={clsName} ref={this.ref}>
-      {evtHandler}
-      {updatedChildren}
-    </div>;
-
-    // create a submenu context for float menu
-    if (isTopSubMenu) {
-      return <FloatMenuContext.Provider value={{
-        clickFloatMenuItem: this.handleFloatMenuItem
-      }}>
-        {content}
-      </FloatMenuContext.Provider>
-    }
-    return content;
-  }
-}
+export default SubMenu;

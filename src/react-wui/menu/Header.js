@@ -8,14 +8,14 @@ import clsx from "clsx";
  */
 const Header = React.forwardRef((props, ref) => {
   const menuCtx = useContext(MenuContext);
-  const {id, className, extraClassName, children, paddingLeft} = props;
+  const {id, onClick,className, extraClassName, children, paddingLeft} = props;
 
   let clsName = clsx(extraClassName, className);
 
   return <li className={clsName}
              ref={ref}
              key={id}
-             onClick={(evt) => menuCtx.clickHeader({id: props.id}, evt)}
+             onClick={(evt) => onClick({id: props.id}, evt)}
              style={{paddingLeft: paddingLeft}}>
     {children}
   </li>;

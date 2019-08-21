@@ -1,108 +1,82 @@
-import React from 'react';
-import BaseComponent from '../BaseComponent';
+import React, {useContext} from 'react';
 import {isNil} from '../Utils';
 import {FloatMenuContext, MenuContext} from "./MenuUtils";
 import PropTypes from 'prop-types';
+import clsx from "clsx";
 
-export default class Item extends BaseComponent {
-  static defaultProps = {
-    className: 'menu-item',
-    hasBox: false,
-    hasBackground: false,
-    hasBottomBar: false,
-    disabled: false,
-    align: null, //left or right
-  };
+const Item = React.forwardRef((props, ref) => {
+  const {
+    className,
+    extraClassName,
+    active,
+    align,
+    hasBottomBar,
+    hasBox,
+    disabled,
+    children,
+    paddingLeft,
+    id,
+    hasBackground,
+    value,
+    text,
+    ...otherProps
+  } = props;
 
-  static propsType = {
-    className: PropTypes.string,
-    hasBottomBar: PropTypes.bool,
-    hasBox: PropTypes.bool, //make the item show a box
-    hasBackground: PropTypes.bool, // show a background for menu items
-    disabled: PropTypes.bool, //disable this Menu
-    align: PropTypes.oneOf(['left', 'right']), // align this item to left or right position
-  };
+  const menuCtx = useContext(MenuContext);
+  const floatMenuCtx = useContext(FloatMenuContext);
 
-  static contextType = MenuContext;
+  const clsName = clsx(extraClassName, className, {
+    [align]: align,
+    'with-box': hasBox,
+    'with-bg': hasBackground,
+    'with-bottom-bar': hasBottomBar,
+    active: menuCtx.activeItemId === props.id,
+    disabled: disabled || menuCtx.menuDisabled,
+  });
 
-  itemClick(clickItem, clickFloatMenuItem, autoCloseFloatSubMenu, evt) {
-    if (!autoCloseFloatSubMenu || this.props.disabled
-        || this.context.menuDisabled) {
+  const onClick = (evt) => {
+    if (!menuCtx.autoCloseFloatSubMenu || props.disabled
+        || menuCtx.menuDisabled) {
       return;
     }
     const itemInfo = {
-      id: this.props.id,
-      value: this.props.value,
-      text: !isNil(this.props.text) ? this.props.text : this.props.children,
+      id: props.id,
+      value: props.value,
+      text: !isNil(props.text) ? props.text : props.children,
     };
-    if (!clickItem) {
+    if (!menuCtx.clickItem) {
       return;
     }
-    let closeMenu = clickItem(itemInfo, evt);
+    let closeMenu = menuCtx.clickItem(itemInfo, evt);
 
-    if (clickFloatMenuItem) {
-      clickFloatMenuItem(this.props.id, closeMenu, evt);
+    if (floatMenuCtx.clickFloatMenuItem) {
+      floatMenuCtx.clickFloatMenuItem(props.id, closeMenu, evt);
     }
-  }
+  };
 
-  render() {
-    const {
-      className,
-      active,
-      align,
-      hasBottomBar,
-      hasBox,
-      disabled,
-      children,
-      paddingLeft,
-      id,
-      hasBackground,
-      value,
-      text,
-      ...otherProps
-    } = this.props;
+  return <li className={clsName}
+             style={{paddingLeft: paddingLeft}}
+             onClick={(evt) => onClick(evt)}
+             {...otherProps}>
+    {!isNil(text) ? text : children}
+  </li>
+});
 
-    return (
-        <MenuContext.Consumer>
-          {({activeItem, clickItem, menuDisabled, autoCloseFloatSubMenu}) =>
-              <FloatMenuContext.Consumer>
-                {({clickFloatMenuItem}) =>
-                    <li className={this.getClassName(activeItem, clickItem,
-                        menuDisabled)}
-                        style={{paddingLeft: paddingLeft}}
-                        onClick={this.itemClick.bind(this, clickItem,
-                            clickFloatMenuItem, autoCloseFloatSubMenu)}
-                        {...otherProps}>
-                      {!isNil(text) ? text : children}
-                    </li>
-                }
-              </FloatMenuContext.Consumer>
-          }
-        </MenuContext.Consumer>
-    );
-  }
+Item.defaultProps = {
+  className: 'menu-item',
+  hasBox: false,
+  hasBackground: false,
+  hasBottomBar: false,
+  disabled: false,
+  align: null, //left or right
+};
+Item.propsType = {
+  className: PropTypes.string,
+  hasBottomBar: PropTypes.bool,
+  hasBox: PropTypes.bool, //make the item show a box
+  hasBackground: PropTypes.bool, // show a background for menu items
+  disabled: PropTypes.bool, //disable this Menu
+  align: PropTypes.oneOf(['left', 'right']), // align this item to left or right position
+};
 
-  getClassName(activeItem, clickItem, menuDisabled) {
-    const {
-      className,
-      active,
-      align,
-      hasBottomBar,
-      hasBox,
-      disabled,
-      children,
-      paddingLeft,
-      id,
-      hasBackground,
-    } = this.props;
-    let clsName = this.getClass({
-      [align]: align,
-      'with-box': hasBox,
-      'with-bg': hasBackground,
-      'with-bottom-bar': hasBottomBar,
-      active: !isNil(activeItem) && activeItem === this.props.id,
-      disabled: disabled || menuDisabled,
-    });
-    return clsName;
-  }
-}
+export default Item;
