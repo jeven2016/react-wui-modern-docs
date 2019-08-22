@@ -27,8 +27,9 @@ const SubMenu = React.forwardRef((props, ref) => {
     ...otherProps
   } = props;
   const menuCtx = useContext(MenuContext);
+  let currentDisabled = menuCtx.disabled ? menuCtx.disabled : disabled;
   const [activeFloatMenu, setActiveFloatMenu] = useState(false);
-  const {showMenuList, handleHeader} = useMenuList(props); //used to collapse or expand the menu list
+  const {showMenuList, handleHeader} = useMenuList(props, currentDisabled); //used to collapse or expand the menu list
   const forwardRef = ref ? ref : useRef(null);
   const isFloatSubmenu = isDirectChild && isFloatMenu(menuCtx.menuType);
 
@@ -83,7 +84,7 @@ const SubMenu = React.forwardRef((props, ref) => {
     }}>
       <Menu ref={forwardRef}
             type="float"
-            disabled={disabled}
+            disabled={currentDisabled}
             className={className}
             setItemPaddingLeft={setItemPaddingLeft}
             extraClassName={extra} {...otherProps}

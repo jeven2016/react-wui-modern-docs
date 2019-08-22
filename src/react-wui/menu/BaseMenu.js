@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {isNil} from "lodash";
 
-const useMenuList = (props) => {
+const useMenuList = (props, disabled = false) => {
   const [showMenuList, setShowMenuList] = useState(true);
 
   // handle header
   const handleHeader = (headerInfo, evt) => {
-    if (props.disabled) {
+    if (props.disabled || disabled) {
       return;
     }
     // debugger;

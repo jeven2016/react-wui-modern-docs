@@ -18,15 +18,6 @@ import useMenuList from "./BaseMenu";
  * Menu Component
  */
 const Menu = React.forwardRef((props, ref) => {
-  const [activeItemId, setActiveItemId] = useState();
-  const {showMenuList, handleHeader} = useMenuList(props);
-
-  //set padding-left property to items, only execute once
-  useEffect(() => {
-    //set padding-left property to child nodes
-    setPadding(props, menuRef.current, 0);
-  }, []);
-
   const {
     block, className, extraClassName, hasBorder, children,
     disabled,
@@ -45,8 +36,18 @@ const Menu = React.forwardRef((props, ref) => {
     ...otherProps
   } = props;
 
+  const [activeItemId, setActiveItemId] = useState();
+  const {showMenuList, handleHeader} = useMenuList(props, disabled);
+
+  //set padding-left property to items, only execute once
+  useEffect(() => {
+    //set padding-left property to child nodes
+    setPadding(props, menuRef.current, 0);
+  }, []);
+
+
   let clsName = clsx(extraClassName, className, {
-    'clear-border': !hasBorder,
+    'with-border': hasBorder,
     'with-box': hasBox,
     'with-bg': hasBackground,
     [type]: type,
@@ -81,6 +82,7 @@ const Menu = React.forwardRef((props, ref) => {
   return (
       <MenuContext.Provider
           value={{
+            disabled: disabled,
             activeItemId: activeItemId,
             clickItem: handleItem,
             openMenu: openMenu,
@@ -103,7 +105,7 @@ Menu.Item = Item;
 Menu.defaultProps = {
   className: 'menu',
   disabled: false,
-  hasBorder: true,
+  hasBorder: false,
   hasBox: false,
   hasBackground: false,
   activeItems: [],

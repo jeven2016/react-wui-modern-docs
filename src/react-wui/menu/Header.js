@@ -8,9 +8,9 @@ import clsx from "clsx";
  */
 const Header = React.forwardRef((props, ref) => {
   const menuCtx = useContext(MenuContext);
-  const {id, onClick,className, extraClassName, children, paddingLeft} = props;
+  const {id, onClick, className, extraClassName, children, paddingLeft} = props;
 
-  let clsName = clsx(extraClassName, className);
+  let clsName = clsx(extraClassName, className, {disabled: menuCtx.disabled});
 
   return <li className={clsName}
              ref={ref}

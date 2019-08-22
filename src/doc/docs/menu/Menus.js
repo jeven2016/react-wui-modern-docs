@@ -175,20 +175,34 @@ export const MenuD = () => {
 };
 
 export const MenuE = () => {
-  let comp = <Menu hasBox={true} type="dark" style={{width: '15rem'}}>
-    <Menu.Header>用户管理</Menu.Header>
+  let comp = <Menu hasBox={true} type="dark" style={{width: "15rem"}}>
+    <Menu.Header>
+      <Icon>
+        <FontAwesomeIcon icon={faList}/>
+      </Icon>
+      <span>用户管理</span>
+    </Menu.Header>
     <Menu.List>
       <Menu.Item id="user">用户</Menu.Item>
       <Menu.Item id="role">角色</Menu.Item>
       <Menu.Item id="authority">权限</Menu.Item>
       <Menu.SubMenu>
-        <Menu.Header>Submenu2</Menu.Header>
+        <Menu.Header>
+          <Icon>
+            <FontAwesomeIcon icon={faList}/>
+          </Icon>
+          <span>Submenu2</span>
+        </Menu.Header>
         <Menu.List>
           <Menu.Item id="item1">item1</Menu.Item>
           <Menu.Item id="item2">item2</Menu.Item>
           <Menu.Item id="item3">item3</Menu.Item>
           <Menu.SubMenu>
-            <Menu.Header>Submenu3</Menu.Header>
+            <Menu.Header><Icon>
+              <FontAwesomeIcon icon={faList}/>
+            </Icon>
+              <span>Submenu3</span>
+            </Menu.Header>
             <Menu.List>
               <Menu.Item id="item1_1">item4</Menu.Item>
               <Menu.Item id="item2_1">item5</Menu.Item>
@@ -549,16 +563,12 @@ export const MenuFloatLeft = () => {
         <div>
           <Menu block={true} type="float" style={{marginTop: '2rem'}}>
             <Menu.List>
-              <Menu.Item id="user" hasBox={true} hasBackground={true} hasBottomBar
-                         align="left">用户</Menu.Item>
-              <Menu.Item id="role" hasBox={true} hasBackground={true} hasBottomBar>角色</Menu.Item>
-              <Menu.Item id="authority" hasBox={true}
-                         hasBackground={true} hasBottomBar>权限</Menu.Item>
-              <Menu.Item id="setting" hasBox={true}
-                         hasBackground={true} hasBottomBar>设置</Menu.Item>
-              <Menu.Item id="security" hasBox={true} hasBottomBar
-                         hasBackground={true}>安全</Menu.Item>
-              <Menu.Item id="mgnt" hasBox={true} hasBackground={true} hasBottomBar>管理</Menu.Item>
+              <Menu.Item id="user" hasBottomBar align="left">用户</Menu.Item>
+              <Menu.Item id="role" hasBottomBar>角色</Menu.Item>
+              <Menu.Item id="authority" hasBottomBar>权限</Menu.Item>
+              <Menu.Item id="setting" hasBottomBar>设置</Menu.Item>
+              <Menu.Item id="security" hasBottomBar>安全</Menu.Item>
+              <Menu.Item id="mgnt" hasBottomBar>管理</Menu.Item>
             </Menu.List>
           </Menu>
         </div>
@@ -575,15 +585,15 @@ export const MenuFloatLeft = () => {
       return  <div>
           <Menu block={true} type="float" style={{marginTop: "2rem"}}>
             <Menu.List>
-              <Menu.Item id="user" hasBox={true} hasBackground={true} align="left">用户</Menu.Item>
-              <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
+              <Menu.Item id="user"  align="left">用户</Menu.Item>
+              <Menu.Item id="role" >角色</Menu.Item>
               <Menu.Item id="authority" hasBox={true}
                          hasBackground={true}>权限</Menu.Item>
               <Menu.Item id="setting" hasBox={true}
                          hasBackground={true}>设置</Menu.Item>
               <Menu.Item id="security" hasBox={true}
                          hasBackground={true}>安全</Menu.Item>
-              <Menu.Item id="mgnt" hasBox={true} hasBackground={true} >管理</Menu.Item>
+              <Menu.Item id="mgnt">管理</Menu.Item>
             </Menu.List>
           </Menu>
         </div>;
@@ -597,7 +607,7 @@ export const MenuFloatLeft = () => {
 export const MenuFloatComponents = () => {
   let comp = <>
         <div>
-          <Menu block={true} type="float" style={{marginTop: '2rem'}}>
+          <Menu block={true} type="float" hasBorder>
             <Menu.List>
               <Menu.Item id="button">
                 <Button color="green">Button</Button>

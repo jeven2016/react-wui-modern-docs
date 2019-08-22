@@ -331,7 +331,7 @@ time, mark, audio, video {
 /**
 * set the group's border radius property
  */
-.base-btn:disabled, .dp-base:disabled, .dropdown:disabled, .select:disabled, .button:disabled, .base-btn.disabled, .disabled.dp-base, .disabled.dropdown, .disabled.select, .disabled.button, .button-group:disabled > .button, .button-group.disabled > .button, .input:disabled, .input.disabled, .icon-input:disabled, .icon-input.disabled, .button-dropdown.disabled > .button, .submenu > .menu-list > .menu-item:disabled, .menu > .menu-list > .menu-item:disabled, .submenu > .menu-list > .menu-item.disabled, .menu > .menu-list > .menu-item.disabled, .submenu .menu-header:disabled, .menu .menu-header:disabled, .submenu .menu-header.disabled, .menu .menu-header.disabled, .submenu.disabled > .menu-header, .disabled.menu > .menu-header {
+.base-btn:disabled, .dp-base:disabled, .dropdown:disabled, .select:disabled, .button:disabled, .base-btn.disabled, .disabled.dp-base, .disabled.dropdown, .disabled.select, .disabled.button, .button-group:disabled > .button, .button-group.disabled > .button, .input:disabled, .input.disabled, .icon-input:disabled, .icon-input.disabled, .button-dropdown.disabled > .button, .submenu > .menu-list > .menu-item:disabled, .menu > .menu-list > .menu-item:disabled, .submenu > .menu-list > .menu-item.disabled, .menu > .menu-list > .menu-item.disabled, .submenu .menu-header:disabled, .menu .menu-header:disabled, .submenu .menu-header.disabled, .menu .menu-header.disabled {
   cursor: not-allowed;
   opacity: 0.7; }
 
@@ -2911,6 +2911,7 @@ textarea.input {
       .submenu > .menu-list > .menu-item.active:not(.disabled).with-bottom-bar:after, .menu > .menu-list > .menu-item.active:not(.disabled).with-bottom-bar:after {
         position: absolute;
         display: block;
+        border-radius: 50%;
         left: 0;
         top: calc(100% - 0.1875rem);
         content: "";
@@ -2952,11 +2953,6 @@ textarea.input {
     top: calc(50% - 2px); }
   .submenu.block, .block.menu {
     display: flex; }
-  .submenu.disabled > .menu-header, .disabled.menu > .menu-header {
-    color: #333;
-    background-color: transparent; }
-  .submenu:not(.disabled) > .menu-header:not(.disabled):focus, .menu:not(.disabled) > .menu-header:not(.disabled):focus, .submenu:not(.disabled) > .menu-header:not(.disabled):hover, .menu:not(.disabled) > .menu-header:not(.disabled):hover {
-    color: #007aff; }
 
 .menu {
   display: -ms-inline-flexbox;
@@ -2973,8 +2969,7 @@ textarea.input {
     display: none; }
   .menu.float {
     flex-direction: row;
-    padding: 0;
-    border-bottom: 1px solid #ccc; }
+    padding: 0; }
     .menu.float > .submenu .menu-header, .menu.float > .menu .menu-header {
       flex: 0 0 auto;
       align-items: center;
@@ -2997,6 +2992,7 @@ textarea.input {
       .menu.float > .submenu.active > .menu-header:after, .menu.float > .active.menu > .menu-header:after {
         position: absolute;
         display: block;
+        border-radius: 50%;
         left: 0;
         top: calc(100% - 0.1875rem);
         content: "";
@@ -3048,11 +3044,6 @@ textarea.input {
       background-color: #00192D;
       color: #e6e6e6;
       transition: all 0.2s; }
-    .menu.dark:not(.disabled) > .menu-header:not(.disabled):focus, .menu.dark:not(.disabled) > .menu-header:not(.disabled):hover, .menu.dark .submenu:not(.disabled) > .menu-header:not(.disabled):focus, .menu.dark .menu:not(.disabled) > .menu-header:not(.disabled):focus, .menu.dark .submenu:not(.disabled) > .menu-header:not(.disabled):hover, .menu.dark .menu:not(.disabled) > .menu-header:not(.disabled):hover {
-      color: #fff;
-      text-shadow: 1px 1px 2px #333, 0 0 25px #fff, 0 0 5px #007aff; }
-      .menu.dark:not(.disabled) > .menu-header:not(.disabled):focus:after, .menu.dark:not(.disabled) > .menu-header:not(.disabled):hover:after, .menu.dark .submenu:not(.disabled) > .menu-header:not(.disabled):focus:after, .menu.dark .menu:not(.disabled) > .menu-header:not(.disabled):focus:after, .menu.dark .submenu:not(.disabled) > .menu-header:not(.disabled):hover:after, .menu.dark .menu:not(.disabled) > .menu-header:not(.disabled):hover:after {
-        border-top-color: #fff; }
     .menu.dark > .menu-list > .menu-item.disabled, .menu.dark .submenu > .menu-list > .menu-item.disabled, .menu.dark .menu > .menu-list > .menu-item.disabled {
       color: #999999; }
     .menu.dark > .menu-list > .menu-item:not(.disabled):focus, .menu.dark > .menu-list > .menu-item:not(.disabled):hover, .menu.dark .submenu > .menu-list > .menu-item:not(.disabled):focus, .menu.dark .menu > .menu-list > .menu-item:not(.disabled):focus, .menu.dark .submenu > .menu-list > .menu-item:not(.disabled):hover, .menu.dark .menu > .menu-list > .menu-item:not(.disabled):hover {
