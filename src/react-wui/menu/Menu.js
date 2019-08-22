@@ -1,5 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {MenuContext, passHeaderHandler, setPadding} from "./MenuUtils";
+import {
+  isFloatMenu,
+  MenuContext,
+  passHeaderHandler,
+  setPadding
+} from "./MenuUtils";
 import SubMenu from './SubMenu';
 import Header from './Header';
 import List from './List';
@@ -9,6 +14,9 @@ import clsx from "clsx";
 import {isNil} from "../Utils";
 import useMenuList from "./BaseMenu";
 
+/**
+ * Menu Component
+ */
 const Menu = React.forwardRef((props, ref) => {
   const [activeItemId, setActiveItemId] = useState();
   const {showMenuList, handleHeader} = useMenuList(props);
@@ -44,6 +52,7 @@ const Menu = React.forwardRef((props, ref) => {
     [type]: type,
     block,
     'close': !showMenuList,
+    disabled:disabled
   });
 
   // handle item
@@ -53,6 +62,17 @@ const Menu = React.forwardRef((props, ref) => {
 
     let callback = props.onClickItem;
     return !isNil(callback) ? callback(itemInfo, evt) : null;
+  };
+
+  const handleFloatMenu = (menuChildren) => {
+    return React.Children.map(menuChildren, (child) => {
+      if (child.type === SubMenu && isFloatMenu(type)) {
+        return React.cloneElement(child, {
+          isDirectChild: true
+        });
+      }
+      return child;
+    })
   };
 
   // let updatedChildren = updateChildren(children, type);
@@ -69,7 +89,7 @@ const Menu = React.forwardRef((props, ref) => {
             autoCloseFloatSubMenu: autoCloseFloatSubMenu,
           }}>
         <ul className={clsName} ref={menuRef} {...otherProps}>
-          {passHeaderHandler(children, handleHeader)}
+          {handleFloatMenu(passHeaderHandler(children, handleHeader))}
         </ul>
       </MenuContext.Provider>
   );
@@ -107,7 +127,7 @@ Menu.propTypes = {
   openMenu: PropTypes.array, // an array includes the menu id should open by default, default value is ["all"]
   onClickItem: PropTypes.func, // a callback triggered by clicking a item
   onClickHeader: PropTypes.func, // a callback triggered by clicking a header
-  type: PropTypes.oneOf(['primary', 'dark', 'float']), // menu type
+  type: PropTypes.oneOf(['primary', 'dark', 'float']) // menu type
   // type: PropTypes.arrayOf(["primary", "dark", "float"]) // menu type
 };
 

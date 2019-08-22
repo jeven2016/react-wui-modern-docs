@@ -6,6 +6,9 @@ const useMenuList = (props) => {
 
   // handle header
   const handleHeader = (headerInfo, evt) => {
+    if (props.disabled) {
+      return;
+    }
     // debugger;
     let callback = props.onClickHeader;
     let autoCloseMenu = true;

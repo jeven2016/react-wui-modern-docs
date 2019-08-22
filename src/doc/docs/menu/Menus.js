@@ -246,7 +246,7 @@ export const MenuFloat = () => {
       return false;
     }
   }}>
-    <Menu.SubMenu isDirectChild>
+    <Menu.SubMenu disabled>
       <Menu.Header>
         <Icon>
           <FontAwesomeIcon icon={faList}/>
@@ -274,7 +274,35 @@ export const MenuFloat = () => {
         </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
-    <Menu.SubMenu isDirectChild>
+    <Menu.SubMenu>
+      <Menu.Header>
+        <Icon>
+          <FontAwesomeIcon icon={faList}/>
+        </Icon>
+        <span>Submenu2</span>
+      </Menu.Header>
+      <Menu.List>
+        <Menu.Item id="item1">
+          <Icon>
+            <FontAwesomeIcon icon={faWindowClose}/>
+          </Icon>
+          <span>不会关闭菜单</span>
+        </Menu.Item>
+        <Menu.Item id="item2">
+          <Icon>
+            <FontAwesomeIcon icon={faWindowClose}/>
+          </Icon>
+          <span>关闭菜单1</span>
+        </Menu.Item>
+        <Menu.Item id="item3">
+          <Icon>
+            <FontAwesomeIcon icon={faWindowClose}/>
+          </Icon>
+          <span>关闭菜单2</span>
+        </Menu.Item>
+      </Menu.List>
+    </Menu.SubMenu>
+    <Menu.SubMenu>
       <Menu.Header>
         <Icon>
           <FontAwesomeIcon icon={faList}/>
@@ -341,7 +369,7 @@ export const MenuFloat = () => {
                   return false
                 }
               }}>
-                <Menu.SubMenu isDirectChild={true}>
+                <Menu.SubMenu>
                   <Menu.Header>
                     <Icon>
                       <FontAwesomeIcon icon={faList}/>
