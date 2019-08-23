@@ -21,6 +21,7 @@ export const NavBarListAlign = {
 export const MenuType = {
   float: 'float',
   primary: 'primary',
+  dark: 'dark'
 };
 
 export const openMenuType = {

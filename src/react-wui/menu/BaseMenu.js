@@ -14,7 +14,7 @@ const useMenuList = (props, disabled = false) => {
     let autoCloseMenu = true;
     if (!isNil(callback)) {
       // the menu won't be closed automatically if the callback returns false
-      autoCloseMenu = callback(headerInfo.id, evt);
+      autoCloseMenu = callback(headerInfo, evt);
     }
     //close the menu list automatically if autoCloseMenu is true , undefined or null
     if (isNil(autoCloseMenu) || autoCloseMenu) {

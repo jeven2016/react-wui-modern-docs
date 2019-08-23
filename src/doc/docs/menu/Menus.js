@@ -4,6 +4,7 @@ import SamplePannel from '../../common/SamplePannel';
 import {faList, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWindowClose} from '@fortawesome/free-regular-svg-icons';
+import SubMenu from "../../../react-wui/menu/SubMenu";
 
 export const MenuA = () => {
   let comp = <Menu style={{width: '15rem'}}>
@@ -175,7 +176,8 @@ export const MenuD = () => {
 };
 
 export const MenuE = () => {
-  let comp = <Menu hasBox={true} type="dark" style={{width: "15rem"}}>
+  let comp = <Menu hasBox={true} type="dark"  defaultOpenedMenus={["sub1","sub2"]} style={{width: "15rem"}}>
+    <SubMenu id="sub1">
     <Menu.Header>
       <Icon>
         <FontAwesomeIcon icon={faList}/>
@@ -213,7 +215,31 @@ export const MenuE = () => {
 
       </Menu.SubMenu>
     </Menu.List>
-
+    </SubMenu>
+    <Menu.SubMenu id="sub2">
+      <Menu.Header><Icon>
+        <FontAwesomeIcon icon={faList}/>
+      </Icon>
+        <span>Submenu3</span>
+      </Menu.Header>
+      <Menu.List>
+        <Menu.Item id="item1_1">item4</Menu.Item>
+        <Menu.Item id="item2_1">item5</Menu.Item>
+        <Menu.Item id="item3_1">item6</Menu.Item>
+      </Menu.List>
+    </Menu.SubMenu>
+    <Menu.SubMenu id="sub3">
+      <Menu.Header><Icon>
+        <FontAwesomeIcon icon={faList}/>
+      </Icon>
+        <span>Submenu3</span>
+      </Menu.Header>
+      <Menu.List>
+        <Menu.Item id="item1_1">item4</Menu.Item>
+        <Menu.Item id="item2_1">item5</Menu.Item>
+        <Menu.Item id="item3_1">item6</Menu.Item>
+      </Menu.List>
+    </Menu.SubMenu>
   </Menu>;
 
   let code = `
@@ -621,9 +647,9 @@ export const MenuFloatComponents = () => {
                 </Input.IconInput>
               </Menu.Item>
               <Menu.Item id="">
-                <Dropdown type="simple">
+                <Dropdown type="button">
                   <Dropdown.Title>
-                    Dropdown
+                    <Button color="green">Dropdown</Button>
                   </Dropdown.Title>
                   <Menu position="right">
                     <Menu.List>
