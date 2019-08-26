@@ -12,7 +12,7 @@ import Item from './Item';
 import PropTypes from 'prop-types';
 import clsx from "clsx";
 import {isNil} from "../Utils";
-import useMenuList from "./BaseMenu";
+import {isDefaultOpen, useMenuList} from "./BaseMenu";
 import {openMenuType} from "../common/Constants";
 
 /**
@@ -39,8 +39,11 @@ const Menu = React.forwardRef((props, ref) => {
     ...otherProps
   } = props;
 
+  const defaultOpen = () => isDefaultOpen(defaultOpenedMenus, id);
+
   const [activeItemId, setActiveItemId] = useState();
-  const {showMenuList, handleHeader} = useMenuList(props, disabled);
+  const {showMenuList, handleHeader} = useMenuList(props, disabled,
+      defaultOpen);
 
   //set padding-left property to items, only execute once
   useEffect(() => {
@@ -48,23 +51,14 @@ const Menu = React.forwardRef((props, ref) => {
     setPadding(props, menuRef.current, 0);
   }, []);
 
-  //move to submenu
-  let openCurrentMenu = false;
-  if (isNil(open)) {
-    if (defaultOpenedMenus === openMenuType.all || defaultOpenedMenus.includes(id)) {
-      openCurrentMenu = true;
-    }
-  } else {
-    openCurrentMenu = open;
-  }
-
   let clsName = clsx(extraClassName, className, {
     'with-border': hasBorder,
     'with-box': hasBox,
     'with-bg': hasBackground,
     [type]: type,
     block,
-    'close': !isNil(showMenuList) ? !showMenuList : !openCurrentMenu,
+    'close': showMenuList.manualChang ? !showMenuList.show
+        : !defaultOpen(),
     disabled: disabled
   });
 
@@ -123,7 +117,6 @@ Menu.Item = Item;
 
 Menu.defaultProps = {
   defaultOpenedMenus: openMenuType.all,
-  open: null,
   className: 'menu',
   disabled: false,
   hasBorder: false,
@@ -134,6 +127,7 @@ Menu.defaultProps = {
   paddingLeftUnit: 'rem',
   paddingLeftIncrement: 1,
   autoCloseFloatSubMenu: true, //automatically close the float menu after clicked the item
+  closable: true,
   onClickItem: null,
   onClickHeader: null,
   type: null, //primary, dark, float
@@ -147,8 +141,9 @@ Menu.propTypes = {
   hasBackground: PropTypes.bool, // show a background for menu
   activeItems: PropTypes.array, //the id of a item that is currently selected
   setItemPaddingLeft: PropTypes.bool,
-  defaultOpenedMenus: PropTypes.oneOf(PropTypes.array, PropTypes.oneOf("all")), // an array includes the menu id should open by default, default value is ["all"]
-  open: PropTypes.bool, //open this menu
+  defaultOpenedMenus: PropTypes.oneOfType([PropTypes.array,
+    PropTypes.string]), // an array includes the menu id should open by default, default value is ["all"]
+  closable: PropTypes.bool, //whether this menu is closable
   onClickItem: PropTypes.func, // a callback triggered by clicking a item
   onClickHeader: PropTypes.func, // a callback triggered by clicking a header
   type: PropTypes.oneOf(['primary', 'dark', 'float']) // menu type

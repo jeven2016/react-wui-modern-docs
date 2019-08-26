@@ -24,6 +24,7 @@ const Item = React.forwardRef((props, ref) => {
 
   const menuCtx = useContext(MenuContext);
   const floatMenuCtx = useContext(FloatMenuContext);
+  const disabledItem = isNil(disabled) ? menuCtx.menuDisabled : disabled;
 
   const clsName = clsx(extraClassName, className, {
     [align]: align,
@@ -31,12 +32,11 @@ const Item = React.forwardRef((props, ref) => {
     'with-bg': hasBackground,
     'with-bottom-bar': hasBottomBar,
     active: menuCtx.activeItemId === props.id,
-    disabled: disabled || menuCtx.menuDisabled,
+    disabled: disabledItem
   });
 
   const onClick = (evt) => {
-    if (!menuCtx.autoCloseFloatSubMenu || props.disabled
-        || menuCtx.menuDisabled) {
+    if (!menuCtx.autoCloseFloatSubMenu || disabledItem) {
       return;
     }
     const itemInfo = {
@@ -67,7 +67,7 @@ Item.defaultProps = {
   hasBox: false,
   hasBackground: false,
   hasBottomBar: false,
-  disabled: false,
+  disabled: null,
   align: null, //left or right
 };
 Item.propsType = {

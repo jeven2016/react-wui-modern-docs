@@ -7,14 +7,24 @@ import {faWindowClose} from '@fortawesome/free-regular-svg-icons';
 import SubMenu from "../../../react-wui/menu/SubMenu";
 
 export const MenuA = () => {
-  let comp = <Menu style={{width: '15rem'}}>
-    <Menu.Header>用户管理</Menu.Header>
-    <Menu.List>
-      <Menu.Item id="user">用户</Menu.Item>
-      <Menu.Item id="role">角色</Menu.Item>
-      <Menu.Item id="authority">权限</Menu.Item>
-    </Menu.List>
-  </Menu>;
+  let comp = <>
+    <Menu style={{width: '15rem'}}>
+      <Menu.Header>用户管理</Menu.Header>
+      <Menu.List>
+        <Menu.Item id="user">用户</Menu.Item>
+        <Menu.Item id="role">角色</Menu.Item>
+        <Menu.Item id="authority">权限</Menu.Item>
+      </Menu.List>
+    </Menu>
+    <Menu style={{width: '15rem'}} onClickHeader={() => false}>
+      <Menu.Header>不可折叠</Menu.Header>
+      <Menu.List>
+        <Menu.Item id="user">用户</Menu.Item>
+        <Menu.Item id="role">角色</Menu.Item>
+        <Menu.Item id="authority">权限</Menu.Item>
+      </Menu.List>
+    </Menu>
+  </>;
 
   let code = `
   import React, {Component} from "react";
@@ -23,14 +33,24 @@ export const MenuA = () => {
   export default class MenuSample extends Component{
   
     render(){
-      return  <Menu style={{width: "15rem"}}>
-                <Menu.Header>用户管理</Menu.Header>
-                <Menu.List>
-                  <Menu.Item id="user">用户</Menu.Item>
-                  <Menu.Item id="role">角色</Menu.Item>
-                  <Menu.Item id="authority">权限</Menu.Item>
-                </Menu.List>
-              </Menu>
+      return  <>
+        <Menu style={{width: '15rem'}}>
+          <Menu.Header>用户管理</Menu.Header>
+          <Menu.List>
+            <Menu.Item id="user">用户</Menu.Item>
+            <Menu.Item id="role">角色</Menu.Item>
+            <Menu.Item id="authority">权限</Menu.Item>
+          </Menu.List>
+        </Menu>
+        <Menu style={{width: '15rem'}} onClickHeader={() => false}>
+          <Menu.Header>不可折叠</Menu.Header>
+          <Menu.List>
+            <Menu.Item id="user">用户</Menu.Item>
+            <Menu.Item id="role">角色</Menu.Item>
+            <Menu.Item id="authority">权限</Menu.Item>
+          </Menu.List>
+        </Menu>
+      </>;
     }
   }
   `;
@@ -116,7 +136,7 @@ export const MenuD = () => {
       <Menu.Item id="user">用户</Menu.Item>
       <Menu.Item id="role">角色</Menu.Item>
       <Menu.Item id="authority">权限</Menu.Item>
-      <Menu.SubMenu>
+      <Menu.SubMenu id="disabledId" disabled>
         <Menu.Header>Submenu2</Menu.Header>
         <Menu.List>
           <Menu.Item id="item1">item1</Menu.Item>
@@ -125,9 +145,9 @@ export const MenuD = () => {
           <Menu.SubMenu>
             <Menu.Header>Submenu3</Menu.Header>
             <Menu.List>
-              <Menu.Item id="item1_1">item4</Menu.Item>
-              <Menu.Item id="item2_1">item5</Menu.Item>
-              <Menu.Item id="item3_1">item6</Menu.Item>
+              <Menu.Item id="item1_1" disabled={false}>Not disabled</Menu.Item>
+              <Menu.Item id="item2_1" disabled={false}>Not disabled</Menu.Item>
+              <Menu.Item id="item3_1">Disabled</Menu.Item>
             </Menu.List>
           </Menu.SubMenu>
         </Menu.List>
@@ -176,45 +196,47 @@ export const MenuD = () => {
 };
 
 export const MenuE = () => {
-  let comp = <Menu hasBox={true} type="dark"  defaultOpenedMenus={["sub1","sub2"]} style={{width: "15rem"}}>
+  let comp = <Menu hasBox={true} type="dark"
+                   defaultOpenedMenus={["sub1", "sub2"]}
+                   style={{width: "15rem"}}>
     <SubMenu id="sub1">
-    <Menu.Header>
-      <Icon>
-        <FontAwesomeIcon icon={faList}/>
-      </Icon>
-      <span>用户管理</span>
-    </Menu.Header>
-    <Menu.List>
-      <Menu.Item id="user">用户</Menu.Item>
-      <Menu.Item id="role">角色</Menu.Item>
-      <Menu.Item id="authority">权限</Menu.Item>
-      <Menu.SubMenu>
-        <Menu.Header>
-          <Icon>
-            <FontAwesomeIcon icon={faList}/>
-          </Icon>
-          <span>Submenu2</span>
-        </Menu.Header>
-        <Menu.List>
-          <Menu.Item id="item1">item1</Menu.Item>
-          <Menu.Item id="item2">item2</Menu.Item>
-          <Menu.Item id="item3">item3</Menu.Item>
-          <Menu.SubMenu>
-            <Menu.Header><Icon>
+      <Menu.Header>
+        <Icon>
+          <FontAwesomeIcon icon={faList}/>
+        </Icon>
+        <span>用户管理</span>
+      </Menu.Header>
+      <Menu.List>
+        <Menu.Item id="user">用户</Menu.Item>
+        <Menu.Item id="role">角色</Menu.Item>
+        <Menu.Item id="authority">权限</Menu.Item>
+        <Menu.SubMenu>
+          <Menu.Header>
+            <Icon>
               <FontAwesomeIcon icon={faList}/>
             </Icon>
-              <span>Submenu3</span>
-            </Menu.Header>
-            <Menu.List>
-              <Menu.Item id="item1_1">item4</Menu.Item>
-              <Menu.Item id="item2_1">item5</Menu.Item>
-              <Menu.Item id="item3_1">item6</Menu.Item>
-            </Menu.List>
-          </Menu.SubMenu>
-        </Menu.List>
+            <span>Submenu2</span>
+          </Menu.Header>
+          <Menu.List>
+            <Menu.Item id="item1">item1</Menu.Item>
+            <Menu.Item id="item2">item2</Menu.Item>
+            <Menu.Item id="item3">item3</Menu.Item>
+            <Menu.SubMenu>
+              <Menu.Header><Icon>
+                <FontAwesomeIcon icon={faList}/>
+              </Icon>
+                <span>Submenu3</span>
+              </Menu.Header>
+              <Menu.List>
+                <Menu.Item id="item1_1">item4</Menu.Item>
+                <Menu.Item id="item2_1">item5</Menu.Item>
+                <Menu.Item id="item3_1">item6</Menu.Item>
+              </Menu.List>
+            </Menu.SubMenu>
+          </Menu.List>
 
-      </Menu.SubMenu>
-    </Menu.List>
+        </Menu.SubMenu>
+      </Menu.List>
     </SubMenu>
     <Menu.SubMenu id="sub2">
       <Menu.Header><Icon>
@@ -223,9 +245,9 @@ export const MenuE = () => {
         <span>Submenu3</span>
       </Menu.Header>
       <Menu.List>
-        <Menu.Item id="item1_1">item4</Menu.Item>
-        <Menu.Item id="item2_1">item5</Menu.Item>
-        <Menu.Item id="item3_1">item6</Menu.Item>
+        <Menu.Item id="item1_2">item4</Menu.Item>
+        <Menu.Item id="item2_2">item5</Menu.Item>
+        <Menu.Item id="item3_2">item6</Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
     <Menu.SubMenu id="sub3">
@@ -235,9 +257,9 @@ export const MenuE = () => {
         <span>Submenu3</span>
       </Menu.Header>
       <Menu.List>
-        <Menu.Item id="item1_1">item4</Menu.Item>
-        <Menu.Item id="item2_1">item5</Menu.Item>
-        <Menu.Item id="item3_1">item6</Menu.Item>
+        <Menu.Item id="item1_3">item4</Menu.Item>
+        <Menu.Item id="item2_3">item5</Menu.Item>
+        <Menu.Item id="item3_3">item6</Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
   </Menu>;

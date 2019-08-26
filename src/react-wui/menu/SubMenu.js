@@ -11,13 +11,14 @@ import useEvent from "../common/UseEvent";
 import {isNil} from "../Utils";
 import {EventListener} from "../common/Constants";
 import clsx from "clsx";
-import useMenuList from "./BaseMenu";
+import {isDefaultOpen, isDisabled, useMenuList} from "./BaseMenu";
 
 /**
  * SubMenu Component
  */
 const SubMenu = React.forwardRef((props, ref) => {
   const {
+    id,
     setItemPaddingLeft,
     isDirectChild,
     disabled,
@@ -26,11 +27,20 @@ const SubMenu = React.forwardRef((props, ref) => {
     children,
     ...otherProps
   } = props;
+
   const menuCtx = useContext(MenuContext);
-  let currentDisabled = menuCtx.disabled ? menuCtx.disabled : disabled;
+  let currentDisabled = isDisabled(menuCtx.menuDisabled, disabled);
   const [activeFloatMenu, setActiveFloatMenu] = useState(false);
-  const {showMenuList, handleHeader} = useMenuList(props, currentDisabled); //used to collapse or expand the menu list
+
+  //get the initial status of this menu
+  const defaultOpen = () => isDefaultOpen(menuCtx.defaultOpenedMenus, id);
+
+  //used to collapse or expand the menu list
+  const {showMenuList, handleHeader} = useMenuList(props, currentDisabled,
+      defaultOpen);
   const forwardRef = ref ? ref : useRef(null);
+
+  //check this submenu is float type
   const isFloatSubmenu = isDirectChild && isFloatMenu(menuCtx.menuType);
 
   //add a window event listener to close the popup submenu if this submenu is
@@ -59,8 +69,8 @@ const SubMenu = React.forwardRef((props, ref) => {
   }, []);
 
   //click handler of header
-  let clickHeader = (headerInfo, evt) => {
-    if (disabled) {
+  let clickHeader = useCallback((headerInfo, evt) => {
+    if (currentDisabled) {
       return;
     }
     if (isFloatSubmenu) {
@@ -69,10 +79,12 @@ const SubMenu = React.forwardRef((props, ref) => {
       //(in order not to collapse or expand the menu list)
       return false;
     }
+
+    //for simple submenu
     if (!isFloatMenu(menuCtx.menuType)) {
       handleHeader(headerInfo, evt);
     }
-  };
+  });
 
   // for submenu is direct child of a menu
   if (isDirectChild) {
@@ -95,14 +107,18 @@ const SubMenu = React.forwardRef((props, ref) => {
   } else {
     //for simple submenu
     let simpleClsName = clsx(extraClassName, className, {
-      'close': !showMenuList,
-      disabled: disabled
+      'close': showMenuList.manualChang ? !showMenuList.show
+          : !defaultOpen(),
+      disabled: currentDisabled
     });
 
-    return <ul className={simpleClsName}
-               ref={forwardRef} {...otherProps}>
-      {passHeaderHandler(children, clickHeader)}
-    </ul>;
+    return <MenuContext.Provider
+        value={{...menuCtx, menuDisabled: currentDisabled}}>
+      <ul className={simpleClsName}
+          ref={forwardRef} {...otherProps}>
+        {passHeaderHandler(children, handleHeader)}
+      </ul>
+    </MenuContext.Provider>;
   }
 });
 
@@ -110,14 +126,15 @@ SubMenu.defaultProps = {
   disabled: false,
   className: 'submenu',
   setItemPaddingLeft: true,
-  isDirectChild: false //only for internal use
+  isDirectChild: false, //only for internal use
 };
 
 SubMenu.propTypes = {
   disabled: PropTypes.bool, //disable this Menu
   className: PropTypes.string, //the class name of menu
   setItemPaddingLeft: PropTypes.bool,
-  isDirectChild: PropTypes.bool //whether this submenu is direct child of a menu and can be folded
+  id: PropTypes.string,
+  isDirectChild: PropTypes.bool, //whether this submenu is direct child of a menu and can be folded
 };
 
 export default SubMenu;
