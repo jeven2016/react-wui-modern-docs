@@ -657,6 +657,9 @@ export const MenuFloatComponents = () => {
         <div>
           <Menu block={true} type="float" hasBorder>
             <Menu.List>
+              <Menu.Item id="menu">
+                <span>Menu</span>
+              </Menu.Item>
               <Menu.Item id="button">
                 <Button color="green">Button</Button>
               </Menu.Item>
@@ -668,7 +671,7 @@ export const MenuFloatComponents = () => {
                   </Icon>
                 </Input.IconInput>
               </Menu.Item>
-              <Menu.Item id="">
+              <Menu.Item id="dpdown">
                 <Dropdown type="button">
                   <Dropdown.Title>
                     <Button color="green">Dropdown</Button>
