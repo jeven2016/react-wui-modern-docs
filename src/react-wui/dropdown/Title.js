@@ -7,9 +7,9 @@ export default class Title extends BaseComponent {
   render() {
     const {clickTitle, children} = this.props;
     return (
-        <Button onClick={clickTitle} extraClassName="title">
+        <span onClick={clickTitle} extraClassName="title">
           {children}
-        </Button>
+        </span>
     );
   }
 
