@@ -1,72 +1,50 @@
-import React from 'react';
-import {WindowEventHandler} from '../event';
-import Menu from '../menu';
-import BaseComponent from '../BaseComponent';
-import PropTypes from 'prop-types';
-import Title from "./Title";
-import {
-  DropdownClass,
-  DropdownPosition,
-  DropdownTriggerType,
-  DropdownType
-} from "../common/Constants";
-import {isNil} from "../Utils";
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import clsx from "clsx";
+import Menu from "../menu";
+import Title from "./Title";
+import {DropdownTriggerType, EventListener} from "../common/Constants";
+import useEvent from "../common/UseEvent";
 
-export default class Dropdown extends BaseComponent {
-  static defaultProps = {
-    type: 'normal', //simple, button, normal
-    triggerBy: 'click', /*trigger showing the menu by click or hover event*/
-    onItemClick: null,
-    position: "bottomLeft"
-  };
+const Dropdown = React.forwardRef((props, ref) => {
+  const [dpState, setDpState] = useState({active: false});
+  const dpRef = ref ? ref : useRef(null);
+  const {
+    className = "dropdown",
+    extraClassName,
+    type,
+    triggerBy,
+    onSelect,
+    children,
+    position,
+    ...otherProps
+  } = props;
 
-  static propTypes = {
-    type: PropTypes.oneOf(
-        [DropdownType.button, DropdownType.normal, DropdownType.simple]),
+  useEvent(EventListener.click, (evt) => {
+    // let inside = forwardRef.current.contains(evt.target);
+    setDpState({...dpState, active: false});
+  });
 
-    extraClassName: PropTypes.string, //the customized class need to add
-  };
+  useEffect(() => {
 
-  static Title = Title;
+  });
 
-  constructor(args) {
-    super(args);
-    this.dpRef = React.createRef();
-    this.clickItem = this.clickItem.bind(this);
-    this.clickTitle = this.clickTitle.bind(this);
-    this.state = {
-      active: false,
-    };
-  }
+  const handleSelect = useCallback((item, evt) => {
+    //call onSelect
+  }, []);
 
-  clickItem(itemInfo, evt) {
-    const {onItemClick} = this.props;
-    let closeMenu = onItemClick ? onItemClick(itemInfo, evt) : true;
-    if (isNil(closeMenu) || closeMenu) {
-      this.setState({active: false});
-    }
-  }
-
-  clickTitle() {
-    const {triggerBy} = this.props;
-    if (triggerBy === DropdownTriggerType.hover) {
+  const handleHover = useCallback((active) => {
+    if (triggerBy !== DropdownTriggerType.hover) {
       return;
     }
-    this.setState({
-      active: !this.state.active,
-    });
-  }
+    setDpState({...dpState, active: active});
+  }, [triggerBy]);
 
-  updateChildren() {
-    const {children, position} = this.props;
-    let positionCls = this.getValue(DropdownPosition, position);
+  const updateChildren = useCallback(() => {
     return React.Children.map(children, child => {
       let childType = child.type;
       if (childType === Menu) {
         return React.cloneElement(child, {
-          onClickItem: this.clickItem,
-          appendClass: positionCls
+          onClickItem: handleSelect
         });
       }
       if (childType === Title) {
@@ -76,59 +54,18 @@ export default class Dropdown extends BaseComponent {
       }
       return child;
     });
-  }
+  }, [children]);
 
-  handleHover(activeMenu) {
-    const {triggerBy} = this.props;
-    if (triggerBy !== DropdownTriggerType.hover) {
-      return;
-    }
-    this.setState({
-      active: activeMenu,
-    });
-  }
+  let cls = clsx(extraClassName, className);
 
-  closeMenu(evt) {
-    //ensure the menu won't be closed while clicking title
-    if (this.dpRef.current.contains(evt.target)) {
-      return;
-    }
-    this.state.active && this.setState({
-      active: false,
-    });
+  return <div
+      ref={dpRef}
+      onMouseEnter={() => handleHover(true)}
+      onMouseLeave={() => handleHover(false)}
+      className={cls}>
+    {updateChildren()}
+  </div>
 
-  }
+});
 
-  render() {
-    const {
-      className,
-      extraClassName,
-      type,
-      triggerBy,
-      onItemClick,
-      children,
-      position,
-      ...otherProps
-    } = this.props;
-
-    let dpTypeCls = this.getValue(DropdownClass, type);
-
-    let clsName = clsx(extraClassName, className, {
-      [dpTypeCls]: dpTypeCls,
-      active: this.state.active
-    });
-    let chd = this.updateChildren(children);
-
-    return (
-        <div onMouseEnter={this.handleHover.bind(this, true)}
-             onMouseLeave={this.handleHover.bind(this, false)}
-             className={clsName}
-             ref={this.dpRef}
-             {...otherProps}>
-          <WindowEventHandler onClick={this.closeMenu.bind(this)}/>
-          {chd}
-        </div>
-    );
-  }
-
-}
+export default Dropdown;
