@@ -5,9 +5,9 @@ import Button from "../button";
 //todo remove .title, the title can only be button / span
 export default class Title extends BaseComponent {
   render() {
-    const {clickTitle, children} = this.props;
+    const {onClick, children} = this.props;
     return (
-        <span onClick={clickTitle} extraClassName="title">
+        <span onClick={onClick} className="title">
           {children}
         </span>
     );

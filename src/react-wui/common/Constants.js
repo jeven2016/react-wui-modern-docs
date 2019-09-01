@@ -1,7 +1,7 @@
 export const InputBorderType = {
-  ok: "input-ok",
-  warning: "input-warning",
-  error: "input-error"
+  ok: 'input-ok',
+  warning: 'input-warning',
+  error: 'input-error',
 };
 
 export const TransparentbtnStyle = {
@@ -21,7 +21,7 @@ export const NavBarListAlign = {
 export const MenuType = {
   float: 'float',
   primary: 'primary',
-  dark: 'dark'
+  dark: 'dark',
 };
 
 export const openMenuType = {
@@ -102,8 +102,14 @@ export const FormItemType = {
   grid: 'form-item row',
 };
 
+export const Active = {
+  na: 'na',
+  active: 'active',
+  disactive: 'disactive',
+};
+
 //=================================
 export const EventListener = {
-  click: "click",
-  mouseEnter: "mouseover"
+  click: 'click',
+  mouseEnter: 'mouseover',
 };
