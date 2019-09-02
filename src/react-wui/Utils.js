@@ -1,6 +1,6 @@
-import React,{useContext} from 'react';
-import {MenuType} from "./common/Constants";
-import clsx from "clsx";
+import React, {useContext} from 'react';
+import {MenuType} from './common/Constants';
+import clsx from 'clsx';
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
@@ -62,7 +62,49 @@ export const NavbarContext = React.createContext({});
 export const ModalContext = React.createContext({});
 export const RadioGroupContext = React.createContext({});
 
+export const placePadding = (destComponent, ctrl, type, padding = 0) => {
+  place(destComponent, ctrl, type, 0);
 
+  switch (type) {
+    case 'bottom':
+    case 'bottomLeft':
+    case 'bottomRight':
+      destComponent.style.paddingTop = `${padding}px`;
+      break;
+    case 'top':
+    case 'topLeft':
+    case 'topRight':
+      destComponent.style.paddingBottom = `${padding}px`;
+      break;
+    case 'left':
+      destComponent.style.paddingRight = `${padding}px`;
+      break;
+    case 'right':
+      destComponent.style.paddingLeft = `${padding}px`;
+      break;
+  }
+};
+
+export const setTransformOrigin = (destComponent, type) => {
+  switch (type) {
+    case 'bottom':
+    case 'bottomLeft':
+    case 'bottomRight':
+      destComponent.style.transformOrigin = `top`;
+      break;
+    case 'top':
+    case 'topLeft':
+    case 'topRight':
+      destComponent.style.transformOrigin = `bottom`;
+      break;
+    case 'left':
+      destComponent.style.paddingRight = `right`;
+      break;
+    case 'right':
+      destComponent.style.paddingLeft = `left`;
+      break;
+  }
+};
 
 /**
  * place a component to somewhere
@@ -150,10 +192,10 @@ export const placeCenter = (destComponent, ctrl) => {
   let destAvaliableHeight = Math.max(destPos.height,
       destComponent.offsetHeight);
 
-  console.log(scrollTop + "," + ctrlPos.height + "," + destAvaliableHeight)
+  console.log(scrollTop + ',' + ctrlPos.height + ',' + destAvaliableHeight);
   destComponent.style.top = Math.floor(
-      (ctrlPos.height - destAvaliableHeight) / 2) + "px";
-  destComponent.style.margin = "0 auto";
+      (ctrlPos.height - destAvaliableHeight) / 2) + 'px';
+  destComponent.style.margin = '0 auto';
 
 };
 

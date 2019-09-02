@@ -1,8 +1,10 @@
 import React, {useContext} from 'react';
 import {isNil} from '../Utils';
-import {FloatMenuContext, MenuContext} from "./MenuUtils";
+import {FloatMenuContext, MenuContext} from './MenuUtils';
 import PropTypes from 'prop-types';
-import clsx from "clsx";
+import clsx from 'clsx';
+import {Active} from '../common/Constants';
+import Element from '../common/Element';
 
 const Item = React.forwardRef((props, ref) => {
   const {
@@ -32,7 +34,7 @@ const Item = React.forwardRef((props, ref) => {
     'with-bg': hasBackground,
     'with-bottom-bar': hasBottomBar,
     active: menuCtx.activeItemId === props.id,
-    disabled: disabledItem
+    disabled: disabledItem,
   });
 
   const onClick = (evt) => {
@@ -54,12 +56,14 @@ const Item = React.forwardRef((props, ref) => {
     }
   };
 
-  return <li className={clsName}
-             style={{paddingLeft: paddingLeft}}
-             onClick={(evt) => onClick(evt)}
-             {...otherProps}>
+  return <Element className={clsName}
+                  disabled={disabledItem}
+                  ref={ref}
+                  style={{paddingLeft: paddingLeft}}
+                  onClick={(evt) => onClick(evt)}
+                  {...otherProps}>
     {!isNil(text) ? text : children}
-  </li>
+  </Element>;
 });
 
 Item.defaultProps = {

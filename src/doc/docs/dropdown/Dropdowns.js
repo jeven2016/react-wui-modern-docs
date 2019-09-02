@@ -6,32 +6,32 @@ import {
   Divider,
   Dropdown,
   IconArrowDown,
-  Menu
+  Menu,
 } from '../../../react-wui';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
-import {faWeibo} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
+import {faWeibo} from '@fortawesome/free-brands-svg-icons';
 
 export const DpA = () => {
   let comp = <> <Dropdown triggerBy="click">
     <Dropdown.Title>
       <div key="click">Click</div>
     </Dropdown.Title>
-    <Menu>
+    <Menu hasBorder>
       <Menu.List>
-        <Menu.Item id={1} value={1} text="Action 1"/>
+        <Menu.Item disabled id={1} value={1} text="Action 1"/>
         <Menu.Item id={2} value={2} text="Action 2"/>
         <Menu.Item id={3} value={3} text="Action 3"/>
         <Menu.Item id={4} value={4} text="Action 4"/>
+        <Menu.Item id={5} value={5} text="Won't close" onClick={() => true}/>
       </Menu.List>
     </Menu>
   </Dropdown>
 
-    <Dropdown triggerBy="hover" style={{marginLeft: "2rem"}}>
+    <Dropdown triggerBy="hover" style={{marginLeft: '4rem'}}>
       <Dropdown.Title>Hover</Dropdown.Title>
-      <Menu>
+      <Menu hasBox>
         <Menu.List>
-          <Divider/>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Divider/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -63,7 +63,7 @@ export const DpB = () => {
   let comp = <>
     <Dropdown>
       <Dropdown.Title>Click Title</Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -72,11 +72,11 @@ export const DpB = () => {
         </Menu.List>
       </Menu>
     </Dropdown>
-    <Dropdown type="button" style={{marginLeft: "2rem"}}>
+    <Dropdown type="button" style={{marginLeft: '2rem'}}>
       <Dropdown.Title>
         <Button color="green">Button <IconArrowDown/></Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -85,12 +85,12 @@ export const DpB = () => {
         </Menu.List>
       </Menu>
     </Dropdown>
-    <Dropdown type="simple" style={{marginLeft: "2rem"}} triggerBy="click">
+    <Dropdown type="simple" style={{marginLeft: '2rem'}} triggerBy="click">
       <Dropdown.Title>
         Down
         <IconArrowDown/>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -122,7 +122,7 @@ export const DpC = () => {
       <Dropdown.Title>
         <Button color="green">topLeft</Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -132,11 +132,11 @@ export const DpC = () => {
       </Menu>
     </Dropdown>
 
-    <Dropdown type="button" position="topRight" style={{marginLeft: "2rem"}}>
+    <Dropdown type="button" position="topRight" style={{marginLeft: '2rem'}}>
       <Dropdown.Title>
         <Button color="blue">topRight</Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -146,11 +146,11 @@ export const DpC = () => {
       </Menu>
     </Dropdown>
 
-    <Dropdown type="button" position="bottomLeft" style={{marginLeft: "2rem"}}>
+    <Dropdown type="button" position="bottomLeft" style={{marginLeft: '2rem'}}>
       <Dropdown.Title>
         <Button color="red" outline={true}>bottomLeft</Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -160,11 +160,11 @@ export const DpC = () => {
       </Menu>
     </Dropdown>
 
-    <Dropdown type="button" position="bottomRight" style={{marginLeft: "2rem"}}>
+    <Dropdown type="button" position="bottomRight" style={{marginLeft: '2rem'}}>
       <Dropdown.Title>
         <Button color="pink" outline={true}>bottomRight</Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -200,7 +200,7 @@ export const DpD = () => {
             <FontAwesomeIcon icon={faArrowDown}/>
           </Button>
         </Dropdown.Title>
-        <Menu>
+        <Menu hasBorder>
           <Menu.List>
             <Menu.Item value={1} text="Action 1"/>
             <Menu.Item value={2} text="Action 2"/>
@@ -211,7 +211,7 @@ export const DpD = () => {
       </Dropdown>
     </ButtonGroup>
 
-    <ButtonGroup style={{marginLeft: "2rem"}}>
+    <ButtonGroup style={{marginLeft: '2rem'}}>
       <Button color="green" outline={true}>Button</Button>
       <Dropdown type="button" position="bottomRight">
         <Dropdown.Title>
@@ -219,7 +219,7 @@ export const DpD = () => {
             <FontAwesomeIcon icon={faArrowDown}/>
           </Button>
         </Dropdown.Title>
-        <Menu>
+        <Menu hasBorder>
           <Menu.List>
             <Menu.Item value={1} text="Action 1"/>
             <Menu.Item value={2} text="Action 2"/>
@@ -249,7 +249,7 @@ export const DpD = () => {
 export const DpE = () => {
   let comp = <>
 
-    <Dropdown type="button" position="bottomLeft" style={{marginLeft: "2rem"}}>
+    <Dropdown type="button" position="bottomLeft" style={{marginLeft: '2rem'}}>
       <Dropdown.Title>
         <Button extraClassName="clear-border" circle={true}
                 color="green"
@@ -257,7 +257,7 @@ export const DpE = () => {
           <FontAwesomeIcon icon={faWeibo}/>
         </Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>
@@ -267,7 +267,7 @@ export const DpE = () => {
       </Menu>
     </Dropdown>
 
-    <Dropdown type="button" position="bottomLeft" style={{marginLeft: "2rem"}}>
+    <Dropdown type="button" position="bottomLeft" style={{marginLeft: '2rem'}}>
       <Dropdown.Title>
         <Button extraClassName="clear-border" circle={true}
                 color="green"
@@ -275,7 +275,7 @@ export const DpE = () => {
           <FontAwesomeIcon icon={faWeibo} size="2x"/>
         </Button>
       </Dropdown.Title>
-      <Menu>
+      <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>
           <Menu.Item id={2} value={2} text="Action 2"/>

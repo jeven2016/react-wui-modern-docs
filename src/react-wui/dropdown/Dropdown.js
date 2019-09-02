@@ -4,11 +4,13 @@ import Menu from '../menu';
 import Title from './Title';
 import {Active, DropdownTriggerType, EventListener} from '../common/Constants';
 import useEvent from '../common/UseEvent';
-import {place} from '../Utils';
+import {place, placePadding, setTransformOrigin} from '../Utils';
 import usePortal from '../common/usePortal';
 import * as ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import {preventEvent} from '../event';
+import Element from '../common/Element';
+import {isNil} from 'lodash';
 
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
@@ -18,22 +20,29 @@ const Dropdown = React.forwardRef((props, ref) => {
   const {
     className = 'dropdown',
     extraClassName,
+    disabled = false,
     type,
     position = 'bottomLeft',
     triggerBy = DropdownTriggerType.click,
     onSelect,
-    menuOffset = 5,
+    menuOffset = 4,
     children,
     ...otherProps
   } = props;
 
   useEvent(EventListener.click, (evt) => {
+    //ensure the menu won't be closed while clicking title
+    if (dpRef.current.contains(evt.target)
+        || dpState.active !== Active.active) {
+      return;
+    }
     setDpState({...dpState, active: Active.na});
   });
 
   useEffect(() => {
     if (dpState.active === Active.active) {
-      place(menuRef.current, dpRef.current, position, menuOffset);
+      setTransformOrigin(menuRef.current, position);
+      placePadding(menuRef.current, dpRef.current, position, menuOffset);
     }
   }, [dpState.active]);
 
@@ -46,9 +55,18 @@ const Dropdown = React.forwardRef((props, ref) => {
         : Active.active;
   };
 
-  const handleSelect = useCallback((item, evt) => {
+  const handleSelect = useCallback((itemInfo, evt) => {
     //call onSelect
-    preventEvent(evt);
+    let autoActiveItem = true;
+    if (!isNil(onSelect)) {
+      autoActiveItem = onSelect(itemInfo, evt);
+    }
+    if (isNil(autoActiveItem) || autoActiveItem) {
+      setDpState({
+        ...dpState,
+        active: Active.disactive,
+      });
+    }
   }, []);
 
   const clickTitle = (evt) => {
@@ -62,16 +80,18 @@ const Dropdown = React.forwardRef((props, ref) => {
       ...dpState,
       active: status,
     });
-
-    preventEvent(evt);
   };
 
-  const handleHover = useCallback((active) => {
+  const handleHover = (active) => {
+    console.log('hove');
     if (triggerBy !== DropdownTriggerType.hover) {
       return;
     }
-    // setDpState({...dpState, active: active});
-  }, [triggerBy]);
+    setDpState({
+      ...dpState,
+      active: active,
+    });
+  };
 
   const getMenu = (child) => {
 
@@ -85,7 +105,6 @@ const Dropdown = React.forwardRef((props, ref) => {
             {
               React.cloneElement(child, {
                 onClickItem: handleSelect,
-                hasBox: true,
               })}</div>
         </CSSTransition>,
         rootElem);
@@ -110,13 +129,15 @@ const Dropdown = React.forwardRef((props, ref) => {
 
   let cls = clsx(extraClassName, className);
 
-  return <div
+  return <Element
+      className={cls}
+      disabled={disabled}
       ref={dpRef}
       onMouseEnter={() => handleHover(Active.active)}
       onMouseLeave={() => handleHover(Active.disactive)}
-      className={cls}>
+      {...otherProps}>
     {updateChildren()}
-  </div>;
+  </Element>;
 
 });
 
