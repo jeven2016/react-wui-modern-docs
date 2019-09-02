@@ -94,9 +94,6 @@ const Dropdown = React.forwardRef((props, ref) => {
   };
 
   const getMenu = (child) => {
-
-    console.log('active=' + dpState.active);
-
     let menuContent = ReactDOM.createPortal(
         <CSSTransition in={dpState.active === Active.active}
                        timeout={100}
@@ -105,6 +102,7 @@ const Dropdown = React.forwardRef((props, ref) => {
             {
               React.cloneElement(child, {
                 onClickItem: handleSelect,
+                selectable: false,
               })}</div>
         </CSSTransition>,
         rootElem);

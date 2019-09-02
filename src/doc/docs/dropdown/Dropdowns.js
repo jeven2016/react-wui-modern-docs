@@ -15,7 +15,7 @@ import {faWeibo} from '@fortawesome/free-brands-svg-icons';
 export const DpA = () => {
   let comp = <> <Dropdown triggerBy="click">
     <Dropdown.Title>
-      <div key="click">Click</div>
+      <div key="click">Click Me<IconArrowDown/></div>
     </Dropdown.Title>
     <Menu hasBorder>
       <Menu.List>
@@ -23,7 +23,6 @@ export const DpA = () => {
         <Menu.Item id={2} value={2} text="Action 2"/>
         <Menu.Item id={3} value={3} text="Action 3"/>
         <Menu.Item id={4} value={4} text="Action 4"/>
-        <Menu.Item id={5} value={5} text="Won't close" onClick={() => true}/>
       </Menu.List>
     </Menu>
   </Dropdown>

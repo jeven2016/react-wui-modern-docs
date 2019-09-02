@@ -3,17 +3,17 @@ import {
   isFloatMenu,
   MenuContext,
   passHeaderHandler,
-  setPadding
-} from "./MenuUtils";
+  setPadding,
+} from './MenuUtils';
 import SubMenu from './SubMenu';
 import Header from './Header';
 import List from './List';
 import Item from './Item';
 import PropTypes from 'prop-types';
-import clsx from "clsx";
-import {isNil} from "../Utils";
-import {isDefaultOpen, useMenuList} from "./BaseMenu";
-import {openMenuType} from "../common/Constants";
+import clsx from 'clsx';
+import {isNil} from '../Utils';
+import {isDefaultOpen, useMenuList} from './BaseMenu';
+import {openMenuType} from '../common/Constants';
 
 /**
  * Menu Component
@@ -24,6 +24,7 @@ const Menu = React.forwardRef((props, ref) => {
     disabled,
     type,
     id,
+    selectable = true,
     onClickHeader,
     onClickItem,
     activeItems,
@@ -59,18 +60,22 @@ const Menu = React.forwardRef((props, ref) => {
     block,
     'close': showMenuList.manualChang ? !showMenuList.show
         : !defaultOpen(),
-    disabled: disabled
+    disabled: disabled,
   });
 
   // handle item
   const handleItem = (itemInfo, evt) => {
     const itemId = itemInfo.id;
-    setActiveItemId(itemId);
     let autoActiveItem = true;
     let callback = props.onClickItem;
     if (!isNil(callback)) {
       autoActiveItem = callback(itemInfo, evt);
     }
+
+    if (!selectable) {
+      return false;
+    }
+
     if (isNil(autoActiveItem) || autoActiveItem) {
       setActiveItemId(itemId);
     }
@@ -82,11 +87,11 @@ const Menu = React.forwardRef((props, ref) => {
     return React.Children.map(menuChildren, (child) => {
       if (child.type === SubMenu && isFloatMenu(type)) {
         return React.cloneElement(child, {
-          isDirectChild: true
+          isDirectChild: true,
         });
       }
       return child;
-    })
+    });
   };
 
   // let updatedChildren = updateChildren(children, type);
@@ -141,12 +146,13 @@ Menu.propTypes = {
   hasBackground: PropTypes.bool, // show a background for menu
   activeItems: PropTypes.array, //the id of a item that is currently selected
   setItemPaddingLeft: PropTypes.bool,
-  defaultOpenedMenus: PropTypes.oneOfType([PropTypes.array,
+  defaultOpenedMenus: PropTypes.oneOfType([
+    PropTypes.array,
     PropTypes.string]), // an array includes the menu id should open by default, default value is ["all"]
   closable: PropTypes.bool, //whether this menu is closable
   onClickItem: PropTypes.func, // a callback triggered by clicking a item
   onClickHeader: PropTypes.func, // a callback triggered by clicking a header
-  type: PropTypes.oneOf(['primary', 'dark', 'float']) // menu type
+  type: PropTypes.oneOf(['primary', 'dark', 'float']), // menu type
   // type: PropTypes.arrayOf(["primary", "dark", "float"]) // menu type
 };
 
