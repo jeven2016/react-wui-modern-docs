@@ -29,26 +29,26 @@ export default class DropdownIndex extends DocComponent {
           <DpA/>
         </section>
 
-        {/*<section>*/}
-        {/*  <h3 id="click_dp">{intl.get("content.dropdown.type.click")}</h3>*/}
-        {/*  <DpB/>*/}
-        {/*</section>*/}
+        <section>
+          <h3 id="click_dp">{intl.get("content.dropdown.type.click")}</h3>
+          <DpB/>
+        </section>
 
-        {/*<section>*/}
-        {/*  <h3 id="dp_position">{intl.get("content.dropdown.position")}</h3>*/}
-        {/*  <DpC/>*/}
-        {/*</section>*/}
+        <section>
+          <h3 id="dp_position">{intl.get("content.dropdown.position")}</h3>
+          <DpC/>
+        </section>
 
-        {/*<section>*/}
-        {/*  <h3 id="dp_btn_group">{intl.get("content.dropdown.button.group")}</h3>*/}
-        {/*  <DpD/>*/}
-        {/*</section>*/}
+        <section>
+          <h3 id="dp_btn_group">{intl.get("content.dropdown.button.group")}</h3>
+          <DpD/>
+        </section>
 
-        {/*<section>*/}
-        {/*  <h3 id="dp_btn_circle">{intl.get(*/}
-        {/*      "content.dropdown.button.circle")}</h3>*/}
-        {/*  <DpE/>*/}
-        {/*</section>*/}
+        <section>
+          <h3 id="dp_btn_circle">{intl.get(
+              "content.dropdown.button.circle")}</h3>
+          <DpE/>
+        </section>
 
 
       </div>

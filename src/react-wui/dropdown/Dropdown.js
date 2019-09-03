@@ -4,13 +4,13 @@ import Menu from '../menu';
 import Title from './Title';
 import {Active, DropdownTriggerType, EventListener} from '../common/Constants';
 import useEvent from '../common/UseEvent';
-import {place, placePadding, setTransformOrigin} from '../Utils';
+import {placePadding, setTransformOrigin} from '../Utils';
 import usePortal from '../common/usePortal';
 import * as ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
-import {preventEvent} from '../event';
 import Element from '../common/Element';
 import {isNil} from 'lodash';
+import Button from "../button";
 
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
@@ -21,6 +21,7 @@ const Dropdown = React.forwardRef((props, ref) => {
     className = 'dropdown',
     extraClassName,
     disabled = false,
+    selectable = false,
     type,
     position = 'bottomLeft',
     triggerBy = DropdownTriggerType.click,
@@ -102,7 +103,7 @@ const Dropdown = React.forwardRef((props, ref) => {
             {
               React.cloneElement(child, {
                 onClickItem: handleSelect,
-                selectable: false,
+                selectable: selectable,
               })}</div>
         </CSSTransition>,
         rootElem);
@@ -116,7 +117,8 @@ const Dropdown = React.forwardRef((props, ref) => {
       if (childType === Menu) {
         return getMenu(child);
       }
-      if (childType === Title) {
+      if (childType === Title
+          || childType === Button) {
         return React.cloneElement(child, {
           onClick: clickTitle,
         });
