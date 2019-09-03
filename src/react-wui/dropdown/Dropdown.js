@@ -10,7 +10,7 @@ import * as ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import Element from '../common/Element';
 import {isNil} from 'lodash';
-import Button from "../button";
+import Button from '../button';
 
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
@@ -26,7 +26,7 @@ const Dropdown = React.forwardRef((props, ref) => {
     position = 'bottomLeft',
     triggerBy = DropdownTriggerType.click,
     onSelect,
-    menuOffset = 4,
+    menuOffset = 6,
     children,
     ...otherProps
   } = props;
@@ -40,12 +40,20 @@ const Dropdown = React.forwardRef((props, ref) => {
     setDpState({...dpState, active: Active.na});
   });
 
-  useEffect(() => {
+  useEvent(EventListener.resize, (evt) => {
+    move();
+  });
+
+  const move = () => {
     if (dpState.active === Active.active) {
       setTransformOrigin(menuRef.current, position);
       placePadding(menuRef.current, dpRef.current, position, menuOffset);
     }
-  }, [dpState.active]);
+  };
+
+  useEffect(() => {
+    move();
+  }, [dpState.active, position]);
 
   const getOppositeStatus = (status) => {
     if (status === Active.na) {
@@ -95,9 +103,13 @@ const Dropdown = React.forwardRef((props, ref) => {
   };
 
   const getMenu = (child) => {
+    if (disabled) {
+      return null;
+    }
     let menuContent = ReactDOM.createPortal(
         <CSSTransition in={dpState.active === Active.active}
                        timeout={100}
+                       onEntered={() => console.log('entered now~~~')}
                        classNames="dropdown-menu">
           <div className="dropdown-menu" ref={menuRef}>
             {
@@ -121,13 +133,14 @@ const Dropdown = React.forwardRef((props, ref) => {
           || childType === Button) {
         return React.cloneElement(child, {
           onClick: clickTitle,
+          disabled: disabled,
         });
       }
       return child;
     });
   };
 
-  let cls = clsx(extraClassName, className);
+  let cls = clsx(extraClassName, className, {disabled: disabled});
 
   return <Element
       className={cls}

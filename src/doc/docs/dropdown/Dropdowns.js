@@ -2,22 +2,35 @@ import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Button,
-  ButtonGroup,
+  ButtonGroup, Col,
   Divider,
   Dropdown,
   IconArrowDown,
-  Menu,
+  Menu, Row,
 } from '../../../react-wui';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
 import {faWeibo} from '@fortawesome/free-brands-svg-icons';
-import {DocCol} from "../../common/DocComponents";
+import {DocCol, DocRow} from '../../common/DocComponents';
 
 export const DpA = () => {
   let comp = <>
     <DocCol>
       <Dropdown selectable>
         <Dropdown.Title>Selectable</Dropdown.Title>
+        <Menu hasBorder>
+          <Menu.List>
+            <Menu.Item id={1} value={1} text="Action 1"/>
+            <Menu.Item id={2} value={2} text="Action 2"/>
+            <Menu.Item id={3} value={3} text="Action 3"/>
+            <Menu.Item id={4} value={4} text="Action 4"/>
+          </Menu.List>
+        </Menu>
+      </Dropdown>
+    </DocCol>
+    <DocCol>
+      <Dropdown selectable disabled>
+        <Dropdown.Title>disabled</Dropdown.Title>
         <Menu hasBorder>
           <Menu.List>
             <Menu.Item id={1} value={1} text="Action 1"/>
@@ -164,55 +177,180 @@ export const DpB = () => {
 };
 
 export const DpC = () => {
-  let comp = <>
-    <Dropdown position="topLeft">
-      <Button color="green">topLeft</Button>
-      <Menu hasBorder>
-        <Menu.List>
-          <Menu.Item id={1} value={1} text="Action 1"/>
-          <Menu.Item id={2} value={2} text="Action 2"/>
-          <Menu.Item id={3} value={3} text="Action 3"/>
-          <Menu.Item id={4} value={4} text="Action 4"/>
-        </Menu.List>
-      </Menu>
-    </Dropdown>
-
-    <Dropdown position="topRight" style={{marginLeft: '2rem'}}>
-      <Button color="blue">topRight</Button>
-      <Menu hasBorder>
-        <Menu.List>
-          <Menu.Item id={1} value={1} text="Action 1"/>
-          <Menu.Item id={2} value={2} text="Action 2"/>
-          <Menu.Item id={3} value={3} text="Action 3"/>
-          <Menu.Item id={4} value={4} text="Action 4"/>
-        </Menu.List>
-      </Menu>
-    </Dropdown>
-
-    <Dropdown position="bottomLeft" style={{marginLeft: '2rem'}}>
-      <Button color="red" outline={true}>bottomLeft</Button>
-      <Menu hasBorder>
-        <Menu.List>
-          <Menu.Item id={1} value={1} text="Action 1"/>
-          <Menu.Item id={2} value={2} text="Action 2"/>
-          <Menu.Item id={3} value={3} text="Action 3"/>
-          <Menu.Item id={4} value={4} text="Action 4"/>
-        </Menu.List>
-      </Menu>
-    </Dropdown>
-
-    <Dropdown position="bottomRight" style={{marginLeft: '2rem'}}>
-      <Button color="pink" outline={true}>bottomRight</Button>
-      <Menu hasBorder>
-        <Menu.List>
-          <Menu.Item id={1} value={1} text="Action 1"/>
-          <Menu.Item id={2} value={2} text="Action 2"/>
-          <Menu.Item id={3} value={3} text="Action 3"/>
-          <Menu.Item id={4} value={4} text="Action 4"/>
-        </Menu.List>
-      </Menu>
-    </Dropdown>
-  </>;
+  let comp = <div style={{width: "60%"}}>
+    <Row>
+      <Col smOffset={2} sm={8}
+           style={{justifyContent: 'center', display: 'flex'}}>
+        <DocCol>
+          <Dropdown position="topLeft">
+            <Button color="green">TL</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocCol>
+        <DocCol>
+          <Dropdown position="top">
+            <Button color="green">T</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocCol>
+        <DocCol>
+          <Dropdown position="topRight">
+            <Button color="blue">TR</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocCol>
+      </Col>
+    </Row>
+    <Row>
+      <Col sm={2}>
+        <DocRow>
+          <Dropdown position="leftTop">
+            <Button color="red" outline={true}>LT</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocRow>
+        <DocRow>
+          <Dropdown position="left">
+            <Button color="red" outline={true}>L</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocRow>
+        <DocRow>
+          <Dropdown position="leftBottom">
+            <Button color="red" outline={true}>LB</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocRow>
+      </Col>
+      <Col smOffset={8} sm={2}>
+        <DocRow>
+          <Dropdown position="rightTop">
+            <Button color="red" outline={true}>RT</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocRow>
+        <DocRow>
+          <Dropdown position="right">
+            <Button color="red" outline={true}>R</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocRow>
+        <DocRow>
+          <Dropdown position="rightBottom">
+            <Button color="red" outline={true}>RB</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocRow>
+      </Col>
+    </Row>
+    <Row>
+      <Col smOffset={2} sm={8}
+           style={{justifyContent: 'center', display: 'flex'}}>
+        <DocCol>
+          <Dropdown position="bottomLeft">
+            <Button color="red" outline={true}>BL</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocCol>
+        <DocCol>
+          <Dropdown position="bottom">
+            <Button color="red" outline={true}>B</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocCol>
+        <DocCol>
+          <Dropdown position="bottomRight">
+            <Button color="pink" outline={true}>BR</Button>
+            <Menu hasBorder>
+              <Menu.List>
+                <Menu.Item id={1} value={1} text="Action 1"/>
+                <Menu.Item id={2} value={2} text="Action 2"/>
+                <Menu.Item id={3} value={3} text="Action 3"/>
+                <Menu.Item id={4} value={4} text="Action 4"/>
+              </Menu.List>
+            </Menu>
+          </Dropdown>
+        </DocCol>
+      </Col>
+    </Row>
+  </div>;
 
   let code = `
   import React, {Component} from "react";

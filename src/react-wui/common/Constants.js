@@ -112,4 +112,5 @@ export const Active = {
 export const EventListener = {
   click: 'click',
   mouseEnter: 'mouseover',
+  resize: "resize"
 };

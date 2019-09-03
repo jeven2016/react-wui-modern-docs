@@ -85,23 +85,24 @@ export const placePadding = (destComponent, ctrl, type, padding = 0) => {
   }
 };
 
+//todo: transform : left , right not working
 export const setTransformOrigin = (destComponent, type) => {
   switch (type) {
     case 'bottom':
     case 'bottomLeft':
     case 'bottomRight':
-      destComponent.style.transformOrigin = `top`;
+      destComponent.style.transformOrigin = "top";
       break;
     case 'top':
     case 'topLeft':
     case 'topRight':
-      destComponent.style.transformOrigin = `bottom`;
+      destComponent.style.transformOrigin = "bottom";
       break;
     case 'left':
-      destComponent.style.paddingRight = `right`;
+      destComponent.style.transformOrigin = "right";
       break;
     case 'right':
-      destComponent.style.paddingLeft = `left`;
+      destComponent.style.transformOrigin = "left";
       break;
   }
 };

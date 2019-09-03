@@ -1,15 +1,21 @@
 import React from 'react';
-import BaseComponent from "../BaseComponent";
-import Button from "../button";
+import BaseComponent from '../BaseComponent';
+import Button from '../button';
+import Element from '../common/Element';
 
 //todo remove .title, the title can only be button / span
 export default class Title extends BaseComponent {
   render() {
-    const {onClick, children} = this.props;
+    const {
+      className = 'title',
+      onClick,
+      ...otherProps
+    } = this.props;
     return (
-        <span onClick={onClick} className="title">
-          {children}
-        </span>
+        <Element
+            onClick={onClick}
+            className={className}
+            {...otherProps}/>
     );
   }
 
