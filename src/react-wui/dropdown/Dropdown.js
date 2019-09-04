@@ -12,6 +12,7 @@ import Element from '../common/Element';
 import {isNil} from 'lodash';
 import Button from '../button';
 
+const set = new Set();
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
   const rootElem = usePortal('portal');
@@ -44,12 +45,15 @@ const Dropdown = React.forwardRef((props, ref) => {
     move();
   });
 
-  const move = () => {
+
+  const move = useCallback(() => {
     if (dpState.active === Active.active) {
       setTransformOrigin(menuRef.current, position);
       placePadding(menuRef.current, dpRef.current, position, menuOffset);
     }
-  };
+  }, [dpState.active, position]);
+  set.add(move);
+  // console.log("size="+set.)
 
   useEffect(() => {
     move();
@@ -108,8 +112,8 @@ const Dropdown = React.forwardRef((props, ref) => {
     }
     let menuContent = ReactDOM.createPortal(
         <CSSTransition in={dpState.active === Active.active}
-                       timeout={100}
-                       onEntered={() => console.log('entered now~~~')}
+                       transitionAppear={false}
+                       timeout={200}
                        classNames="dropdown-menu">
           <div className="dropdown-menu" ref={menuRef}>
             {

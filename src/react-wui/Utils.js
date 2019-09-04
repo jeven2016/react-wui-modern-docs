@@ -63,8 +63,6 @@ export const ModalContext = React.createContext({});
 export const RadioGroupContext = React.createContext({});
 
 export const placePadding = (destComponent, ctrl, type, padding = 0) => {
-  place(destComponent, ctrl, type, 0);
-
   switch (type) {
     case 'bottom':
     case 'bottomLeft':
@@ -83,6 +81,7 @@ export const placePadding = (destComponent, ctrl, type, padding = 0) => {
       destComponent.style.paddingLeft = `${padding}px`;
       break;
   }
+  place(destComponent, ctrl, type, padding);
 };
 
 //todo: transform : left , right not working
@@ -110,7 +109,7 @@ export const setTransformOrigin = (destComponent, type) => {
 /**
  * place a component to somewhere
  */
-export const place = (destComponent, ctrl, type, topOffset = 0) => {
+export const place = (destComponent, ctrl, type, offset = 0) => {
   var scrollTop = document.documentElement.scrollTop || window.pageYOffset
       || document.body.scrollTop;
   var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset
@@ -122,7 +121,7 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
         - (destComponent.offsetWidth
             - ctrl.offsetWidth)
         / 2) + 'px';
-    destComponent.style.top = (pos.bottom + topOffset) + scrollTop + 'px';
+    destComponent.style.top = (pos.bottom + offset) + scrollTop + 'px';
   }
 
   if (type === 'top') {
@@ -131,13 +130,13 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
             - ctrl.offsetWidth)
         / 2) + 'px';
     destComponent.style.top = (pos.top - destComponent.offsetHeight
-        - topOffset)
+        - offset)
         + scrollTop + 'px';
   }
 
   if (type === 'left') {
     destComponent.style.left = scrollLeft + pos.left - destComponent.offsetWidth
-        - topOffset + 'px';
+        - offset + 'px';
     destComponent.style.top = pos.top - (destComponent.offsetHeight
         - ctrl.offsetHeight) / 2
         + scrollTop
@@ -145,7 +144,7 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
   }
 
   if (type === 'right') {
-    destComponent.style.left = scrollLeft + pos.right + topOffset + 'px';
+    destComponent.style.left = scrollLeft + pos.right + offset + 'px';
     destComponent.style.top = pos.top - (destComponent.offsetHeight
         - ctrl.offsetHeight) / 2
         + scrollTop
@@ -154,7 +153,7 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
 
   if (type === 'topLeft') {
     destComponent.style.left = scrollLeft + pos.left + 'px';
-    destComponent.style.top = pos.top - destComponent.offsetHeight - topOffset
+    destComponent.style.top = pos.top - destComponent.offsetHeight - offset
         + scrollTop
         + 'px';
   }
@@ -162,14 +161,14 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
   if (type === 'topRight') {
     destComponent.style.left = scrollLeft + pos.right
         - destComponent.offsetWidth + 'px';
-    destComponent.style.top = pos.top - destComponent.offsetHeight - topOffset
+    destComponent.style.top = pos.top - destComponent.offsetHeight - offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'bottomLeft') {
     destComponent.style.left = scrollLeft + pos.left + 'px';
-    destComponent.style.top = pos.bottom + topOffset
+    destComponent.style.top = pos.bottom + offset
         + scrollTop
         + 'px';
   }
@@ -177,7 +176,7 @@ export const place = (destComponent, ctrl, type, topOffset = 0) => {
   if (type === 'bottomRight') {
     destComponent.style.left = scrollLeft + pos.right
         - destComponent.offsetWidth + 'px';
-    destComponent.style.top = pos.bottom + topOffset
+    destComponent.style.top = pos.bottom + offset
         + scrollTop
         + 'px';
   }
