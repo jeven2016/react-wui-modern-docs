@@ -1,14 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
+import useElement from '../common/useElement';
 
-export default class Body extends Component {
-  static defaultProps = {
-    className: 'card-body',
-  };
-
-  render() {
-    const {className, children} = this.props;
-    return <div className={className}>
-      {children}
-    </div>;
-  }
-}
+const Body = React.forwardRef(
+    (props, ref) => useElement(props, ref, 'card-body'));
+export default Body;

@@ -33,7 +33,7 @@ const Item = React.forwardRef((props, ref) => {
     'with-box': hasBox,
     'with-bg': hasBackground,
     'with-bottom-bar': hasBottomBar,
-    active: menuCtx.activeItemId === props.id,
+    active: !isNil(props.id) && menuCtx.activeItemId === props.id,
     disabled: disabledItem,
   });
 

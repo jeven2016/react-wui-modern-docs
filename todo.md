@@ -19,5 +19,6 @@ refer to the implementation of NavBar
  * toggle设置为turnOn 时无效, turnOn后界面第一次\第二次点击时,onChange中的状态值出错
  * input/button, large/small/medium需要统一添加
  * useCallback to refactor
+ * popover 覆盖了子节点各类监听事件＝》可在dropdown处测试
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp

@@ -672,11 +672,11 @@ export const MenuFloatComponents = () => {
                 </Input.IconInput>
               </Menu.Item>
               <Menu.Item id="dpdown">
-                <Dropdown type="button">
+                <Dropdown triggerBy="hover" menuOffset={18}>
                   <Dropdown.Title>
-                    <Button color="green">Dropdown</Button>
+                    Dropdown
                   </Dropdown.Title>
-                  <Menu position="right">
+                  <Menu hasBox>
                     <Menu.List>
                       <Menu.Item>Action 1</Menu.Item>
                       <Menu.Item>Action 2</Menu.Item>

@@ -62,6 +62,13 @@ export const NavbarContext = React.createContext({});
 export const ModalContext = React.createContext({});
 export const RadioGroupContext = React.createContext({});
 
+/**
+ * Set padding property for a child node instead of setting margin property
+ * @param destComponent
+ * @param ctrl
+ * @param type
+ * @param padding
+ */
 export const placePadding = (destComponent, ctrl, type, padding = 0) => {
   switch (type) {
     case 'bottom':
@@ -75,41 +82,60 @@ export const placePadding = (destComponent, ctrl, type, padding = 0) => {
       destComponent.style.paddingBottom = `${padding}px`;
       break;
     case 'left':
+    case 'leftTop':
+    case 'leftBottom':
       destComponent.style.paddingRight = `${padding}px`;
       break;
     case 'right':
+    case 'rightTop':
+    case 'rightBottom':
       destComponent.style.paddingLeft = `${padding}px`;
       break;
   }
-  place(destComponent, ctrl, type, padding);
+  place(destComponent, ctrl, type, 0);
 };
 
 //todo: transform : left , right not working
 export const setTransformOrigin = (destComponent, type) => {
+  let origin = 'center';
   switch (type) {
     case 'bottom':
     case 'bottomLeft':
     case 'bottomRight':
-      destComponent.style.transformOrigin = "top";
+      origin = 'top';
       break;
     case 'top':
     case 'topLeft':
     case 'topRight':
-      destComponent.style.transformOrigin = "bottom";
+      origin = 'bottom';
       break;
     case 'left':
-      destComponent.style.transformOrigin = "right";
+      origin = 'right center';
+      break;
+    case 'leftTop':
+      origin = 'right bottom';
+      break;
+    case 'leftBottom':
+      origin = 'right top';
       break;
     case 'right':
-      destComponent.style.transformOrigin = "left";
+      origin = 'left center';
+      break;
+    case 'rightTop':
+      origin = 'left bottom';
+      break;
+    case 'rightBottom':
+      origin = 'left top';
       break;
   }
+
+  destComponent.style.transformOrigin = origin;
 };
 
 /**
  * place a component to somewhere
  */
-export const place = (destComponent, ctrl, type, offset = 0) => {
+export const place = (dest, ctrl, type, offset = 0) => {
   var scrollTop = document.documentElement.scrollTop || window.pageYOffset
       || document.body.scrollTop;
   var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset
@@ -117,66 +143,90 @@ export const place = (destComponent, ctrl, type, offset = 0) => {
 
   var pos = ctrl.getBoundingClientRect();
   if (type === 'bottom') {
-    destComponent.style.left = scrollLeft + (pos.left
-        - (destComponent.offsetWidth
+    dest.style.left = scrollLeft + (pos.left
+        - (dest.offsetWidth
             - ctrl.offsetWidth)
         / 2) + 'px';
-    destComponent.style.top = (pos.bottom + offset) + scrollTop + 'px';
+    dest.style.top = (pos.bottom + offset) + scrollTop + 'px';
   }
 
   if (type === 'top') {
-    destComponent.style.left = scrollLeft + (pos.left
-        - (destComponent.offsetWidth
+    dest.style.left = scrollLeft + (pos.left
+        - (dest.offsetWidth
             - ctrl.offsetWidth)
         / 2) + 'px';
-    destComponent.style.top = (pos.top - destComponent.offsetHeight
+    dest.style.top = (pos.top - dest.offsetHeight
         - offset)
         + scrollTop + 'px';
   }
 
   if (type === 'left') {
-    destComponent.style.left = scrollLeft + pos.left - destComponent.offsetWidth
+    dest.style.left = scrollLeft + pos.left - dest.offsetWidth
         - offset + 'px';
-    destComponent.style.top = pos.top - (destComponent.offsetHeight
+    dest.style.top = pos.top - (dest.offsetHeight
         - ctrl.offsetHeight) / 2
         + scrollTop
         + 'px';
+  }
+
+  if (type === 'leftTop') {
+    dest.style.left = scrollLeft + pos.left - dest.offsetWidth
+        - offset + 'px';
+    dest.style.top = pos.top + scrollTop - dest.offsetHeight
+        + pos.height + 'px';
+  }
+
+  if (type === 'leftBottom') {
+    dest.style.left = scrollLeft + pos.left - dest.offsetWidth
+        - offset + 'px';
+    dest.style.top = pos.top + scrollTop + 'px';
   }
 
   if (type === 'right') {
-    destComponent.style.left = scrollLeft + pos.right + offset + 'px';
-    destComponent.style.top = pos.top - (destComponent.offsetHeight
+    dest.style.left = scrollLeft + pos.right + offset + 'px';
+    dest.style.top = pos.top - (dest.offsetHeight
         - ctrl.offsetHeight) / 2
         + scrollTop
         + 'px';
   }
 
+  if (type === 'rightTop') {
+    dest.style.left = scrollLeft + pos.right + offset + 'px';
+    dest.style.top = pos.top + scrollTop - dest.offsetHeight
+        + pos.height + 'px';
+  }
+
+  if (type === 'rightBottom') {
+    dest.style.left = scrollLeft + pos.right + offset + 'px';
+    dest.style.top = pos.top + scrollTop + 'px';
+  }
+
   if (type === 'topLeft') {
-    destComponent.style.left = scrollLeft + pos.left + 'px';
-    destComponent.style.top = pos.top - destComponent.offsetHeight - offset
+    dest.style.left = scrollLeft + pos.left + 'px';
+    dest.style.top = pos.top - dest.offsetHeight - offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'topRight') {
-    destComponent.style.left = scrollLeft + pos.right
-        - destComponent.offsetWidth + 'px';
-    destComponent.style.top = pos.top - destComponent.offsetHeight - offset
+    dest.style.left = scrollLeft + pos.right
+        - dest.offsetWidth + 'px';
+    dest.style.top = pos.top - dest.offsetHeight - offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'bottomLeft') {
-    destComponent.style.left = scrollLeft + pos.left + 'px';
-    destComponent.style.top = pos.bottom + offset
+    dest.style.left = scrollLeft + pos.left + 'px';
+    dest.style.top = pos.bottom + offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'bottomRight') {
-    destComponent.style.left = scrollLeft + pos.right
-        - destComponent.offsetWidth + 'px';
-    destComponent.style.top = pos.bottom + offset
+    dest.style.left = scrollLeft + pos.right
+        - dest.offsetWidth + 'px';
+    dest.style.top = pos.bottom + offset
         + scrollTop
         + 'px';
   }

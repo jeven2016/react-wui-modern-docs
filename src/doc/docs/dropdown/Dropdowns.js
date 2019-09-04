@@ -6,7 +6,7 @@ import {
   Divider,
   Dropdown,
   IconArrowDown,
-  Menu, Row,
+  Menu, Row, Tooltip,
 } from '../../../react-wui';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
@@ -59,38 +59,6 @@ export const DpA = () => {
     <DocCol>
       <Dropdown triggerBy="hover">
         <Dropdown.Title>Hover</Dropdown.Title>
-        <Menu hasBox>
-          <Menu.List>
-            <Menu.Item id={1} value={1} text="Action 1"/>
-            <Divider/>
-            <Menu.Item id={2} value={2} text="Action 2"/>
-            <Divider/>
-            <Menu.Item id={3} value={3} text="Action 3"/>
-            <Divider/>
-            <Menu.Item id={4} value={4} text="Action 4"/>
-          </Menu.List>
-        </Menu>
-      </Dropdown>
-    </DocCol>
-    <DocCol>
-      <Dropdown triggerBy="hover" position="left">
-        <Dropdown.Title>Left Menu</Dropdown.Title>
-        <Menu hasBox>
-          <Menu.List>
-            <Menu.Item id={1} value={1} text="Action 1"/>
-            <Divider/>
-            <Menu.Item id={2} value={2} text="Action 2"/>
-            <Divider/>
-            <Menu.Item id={3} value={3} text="Action 3"/>
-            <Divider/>
-            <Menu.Item id={4} value={4} text="Action 4"/>
-          </Menu.List>
-        </Menu>
-      </Dropdown>
-    </DocCol>
-    <DocCol>
-      <Dropdown triggerBy="hover" position="right">
-        <Dropdown.Title>Right Menu</Dropdown.Title>
         <Menu hasBox>
           <Menu.List>
             <Menu.Item id={1} value={1} text="Action 1"/>
@@ -177,12 +145,12 @@ export const DpB = () => {
 };
 
 export const DpC = () => {
-  let comp = <div style={{width: "60%"}}>
+  let comp = <div style={{width: '60%'}}>
     <Row>
       <Col smOffset={2} sm={8}
            style={{justifyContent: 'center', display: 'flex'}}>
         <DocCol>
-          <Dropdown position="topLeft">
+          <Dropdown position="topLeft" triggerBy="hover">
             <Button color="green">TL</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -195,20 +163,22 @@ export const DpC = () => {
           </Dropdown>
         </DocCol>
         <DocCol>
-          <Dropdown position="top">
-            <Button color="green">T</Button>
-            <Menu hasBorder>
-              <Menu.List>
-                <Menu.Item id={1} value={1} text="Action 1"/>
-                <Menu.Item id={2} value={2} text="Action 2"/>
-                <Menu.Item id={3} value={3} text="Action 3"/>
-                <Menu.Item id={4} value={4} text="Action 4"/>
-              </Menu.List>
-            </Menu>
-          </Dropdown>
+          <Tooltip body="position='top'" position="bottom">
+            <Dropdown position="top" triggerBy="hover">
+              <Button color="green">T</Button>
+              <Menu hasBorder>
+                <Menu.List>
+                  <Menu.Item id={1} value={1} text="Action 1"/>
+                  <Menu.Item id={2} value={2} text="Action 2"/>
+                  <Menu.Item id={3} value={3} text="Action 3"/>
+                  <Menu.Item id={4} value={4} text="Action 4"/>
+                </Menu.List>
+              </Menu>
+            </Dropdown>
+          </Tooltip>
         </DocCol>
         <DocCol>
-          <Dropdown position="topRight">
+          <Dropdown position="topRight" triggerBy="hover">
             <Button color="blue">TR</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -225,7 +195,7 @@ export const DpC = () => {
     <Row>
       <Col sm={2}>
         <DocRow>
-          <Dropdown position="leftTop">
+          <Dropdown position="leftTop" triggerBy="hover">
             <Button color="red" outline={true}>LT</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -238,7 +208,7 @@ export const DpC = () => {
           </Dropdown>
         </DocRow>
         <DocRow>
-          <Dropdown position="left">
+          <Dropdown position="left" triggerBy="hover">
             <Button color="red" outline={true}>L</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -251,7 +221,7 @@ export const DpC = () => {
           </Dropdown>
         </DocRow>
         <DocRow>
-          <Dropdown position="leftBottom">
+          <Dropdown position="leftBottom" triggerBy="hover">
             <Button color="red" outline={true}>LB</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -266,7 +236,7 @@ export const DpC = () => {
       </Col>
       <Col smOffset={8} sm={2}>
         <DocRow>
-          <Dropdown position="rightTop">
+          <Dropdown position="rightTop" triggerBy="hover">
             <Button color="red" outline={true}>RT</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -279,7 +249,7 @@ export const DpC = () => {
           </Dropdown>
         </DocRow>
         <DocRow>
-          <Dropdown position="right">
+          <Dropdown position="right" triggerBy="hover">
             <Button color="red" outline={true}>R</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -292,7 +262,7 @@ export const DpC = () => {
           </Dropdown>
         </DocRow>
         <DocRow>
-          <Dropdown position="rightBottom">
+          <Dropdown position="rightBottom" triggerBy="hover">
             <Button color="red" outline={true}>RB</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -310,7 +280,7 @@ export const DpC = () => {
       <Col smOffset={2} sm={8}
            style={{justifyContent: 'center', display: 'flex'}}>
         <DocCol>
-          <Dropdown position="bottomLeft">
+          <Dropdown position="bottomLeft" triggerBy="hover">
             <Button color="red" outline={true}>BL</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -323,7 +293,7 @@ export const DpC = () => {
           </Dropdown>
         </DocCol>
         <DocCol>
-          <Dropdown position="bottom">
+          <Dropdown position="bottom" triggerBy="hover">
             <Button color="red" outline={true}>B</Button>
             <Menu hasBorder>
               <Menu.List>
@@ -336,7 +306,7 @@ export const DpC = () => {
           </Dropdown>
         </DocCol>
         <DocCol>
-          <Dropdown position="bottomRight">
+          <Dropdown position="bottomRight" triggerBy="hover">
             <Button color="pink" outline={true}>BR</Button>
             <Menu hasBorder>
               <Menu.List>

@@ -1,14 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
+import useElement from '../common/useElement';
 
-export default class Footer extends Component {
-  static defaultProps = {
-    className: 'card-footer',
-  };
-
-  render() {
-    const {className, children} = this.props;
-    return <div className={className}>
-      {children}
-    </div>;
-  }
-}
+const Footer = React.forwardRef(
+    (props, ref) => useElement(props, ref, 'card-footer'));
+export default Footer;

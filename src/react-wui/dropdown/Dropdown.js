@@ -27,11 +27,10 @@ const Dropdown = React.forwardRef((props, ref) => {
     position = 'bottomLeft',
     triggerBy = DropdownTriggerType.click,
     onSelect,
-    menuOffset = 6,
+    menuOffset = 4,
     children,
     ...otherProps
   } = props;
-
   useEvent(EventListener.click, (evt) => {
     //ensure the menu won't be closed while clicking title
     if (dpRef.current.contains(evt.target)
@@ -44,7 +43,6 @@ const Dropdown = React.forwardRef((props, ref) => {
   useEvent(EventListener.resize, (evt) => {
     move();
   });
-
 
   const move = useCallback(() => {
     if (dpState.active === Active.active) {
@@ -96,10 +94,10 @@ const Dropdown = React.forwardRef((props, ref) => {
   };
 
   const handleHover = (active) => {
-    console.log('hove');
     if (triggerBy !== DropdownTriggerType.hover) {
       return;
     }
+    console.log('hove ' + active);
     setDpState({
       ...dpState,
       active: active,
@@ -112,7 +110,6 @@ const Dropdown = React.forwardRef((props, ref) => {
     }
     let menuContent = ReactDOM.createPortal(
         <CSSTransition in={dpState.active === Active.active}
-                       transitionAppear={false}
                        timeout={200}
                        classNames="dropdown-menu">
           <div className="dropdown-menu" ref={menuRef}>
@@ -152,6 +149,8 @@ const Dropdown = React.forwardRef((props, ref) => {
       ref={dpRef}
       onMouseEnter={() => handleHover(Active.active)}
       onMouseLeave={() => handleHover(Active.disactive)}
+      onFocus={() => handleHover(Active.active)}
+      onBlur={() => handleHover(Active.disactive)}
       {...otherProps}>
     {updateChildren()}
   </Element>;

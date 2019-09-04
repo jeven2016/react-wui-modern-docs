@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
-import clsx from "clsx";
+import clsx from 'clsx';
+import Element from '../common/Element';
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -37,29 +38,29 @@ const Button = React.forwardRef((props, ref) => {
     active: active,
     outline: outline,
     circle: circle,
-    "min-width": hasMinWidth
+    'min-width': hasMinWidth,
   });
 
   return (
-      <ElementType className={clsName} onClick={onClick} disabled={disabled}
-                   type={nativeType ? nativeType : 'button'}
-                   {...otherProps}
-                   ref={btnRef}>
+      <Element className={clsName} onClick={onClick} disabled={disabled}
+               nativeType={nativeType ? nativeType : 'button'}
+               {...otherProps}
+               ref={btnRef}>
         {children}
-      </ElementType>
+      </Element>
   );
 });
 
 Button.defaultProps = {
-  elementType: "button",
+  elementType: 'button',
   disabled: false,
   className: 'button',
   role: null, //only for internal use
-  hasMinWidth: false
+  hasMinWidth: false,
 };
 
 Button.propTypes = {
-  elementType: PropTypes.oneOf(["a", "button"]), // 'a' or 'button'
+  elementType: PropTypes.oneOf(['a', 'button']), // 'a' or 'button'
   type: PropTypes.string,   //it can only be blank or 'button' and it has nothing to do with native html type
   nativeType: PropTypes.oneOf(['button', 'reset', 'submit', 'a']), //the native html type, like 'button', 'reset' or 'submit'
   block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
@@ -72,7 +73,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(['large', 'medium', 'small', '']), //the size of the button
   outline: PropTypes.bool,
   circle: PropTypes.bool,
-  hasMinWidth: PropTypes.bool // has min-width style
+  hasMinWidth: PropTypes.bool, // has min-width style
 };
 
 export default Button;
