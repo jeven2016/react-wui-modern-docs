@@ -11,6 +11,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMailBulk, faPhone, faUser} from '@fortawesome/free-solid-svg-icons';
 import pic from '../../../style/back.jpg';
+import {DocRow} from '../../common/DocComponents';
 
 export const CardA = () => {
   let comp = <>
@@ -282,6 +283,74 @@ export const CardE = () => {
         </Card.CardImage>
       </Card>
     </div>
+
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Toggle} from "react-wui";
+  
+ 
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};
+
+export const CardF = () => {
+  let comp = <>
+    <DocRow>
+      <Card extraClassName="bg-color-blue text color-white">
+        <Card.Header>
+          Header
+        </Card.Header>
+        <Divider translucent/>
+        <Card.Body>
+          Body<br/>
+          Body<br/>
+          Body<br/>
+        </Card.Body>
+        <Divider translucent/>
+        <Card.Footer>
+          Footer
+        </Card.Footer>
+      </Card>
+    </DocRow>
+    <DocRow>
+      <Card extraClassName="bg-color-green text color-white">
+        <Card.Header>
+          Header
+        </Card.Header>
+        <Divider translucent/>
+        <Card.Body>
+          Body<br/>
+          Body<br/>
+          Body<br/>
+        </Card.Body>
+        <Divider translucent/>
+        <Card.Footer>
+          Footer
+        </Card.Footer>
+      </Card>
+    </DocRow>
+
+    <DocRow>
+      <Card>
+        <Card.Header extraClassName="bg-color-green text color-white ">
+          Header
+        </Card.Header>
+        <Divider translucent/>
+        <Card.Body
+            extraClassName="bg-color-yellow text color-white color-red-hover ">
+          Body<br/>
+          Body<br/>
+          Body<br/>
+        </Card.Body>
+        <Divider translucent/>
+        <Card.Footer extraClassName="bg-color-teal text color-white ">
+          Footer
+        </Card.Footer>
+      </Card>
+    </DocRow>
 
   </>;
 

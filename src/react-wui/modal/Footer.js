@@ -1,23 +1,12 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import {FlexAlign} from '../common/Constants';
+import useElement from '../common/useElement';
 
-export default class Footer extends BaseComponent {
-  static defaultProps = {
-    className: 'footer',
-    align: "right",
-  };
-
-  render() {
-    const {children, className, appendClass, align} = this.props;
-    let clsName = this.getClass({
-      [FlexAlign[align]]: align,
-    });
-    return (
-        <div className={clsName}>
-          {children}
-        </div>
-    );
-  }
-
-}
+const Footer = React.forwardRef((props, ref) => {
+  const {align, ...otherProps} = props;
+  return useElement({...otherProps}, ref, 'footer', {
+    [FlexAlign[align]]: align,
+  });
+});
+export default Footer;

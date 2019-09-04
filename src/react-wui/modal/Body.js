@@ -1,19 +1,7 @@
 import React from 'react';
-import BaseComponent from "../BaseComponent";
+import BaseComponent from '../BaseComponent';
+import useElement from '../common/useElement';
 
-export default class Body extends BaseComponent {
-  static defaultProps = {
-    className: 'body'
-  };
-
-  render() {
-    const {children, className, appendClass} = this.props;
-    let clsName = this.getClass();
-    return (
-        <div className={clsName}>
-          {children}
-        </div>
-    );
-  }
-
-}
+const Body = React.forwardRef(
+    (props, ref) => useElement(props, ref, 'body'));
+export default Body;

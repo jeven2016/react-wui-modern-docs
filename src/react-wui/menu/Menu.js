@@ -132,7 +132,6 @@ Menu.defaultProps = {
   paddingLeftUnit: 'rem',
   paddingLeftIncrement: 1,
   autoCloseFloatSubMenu: true, //automatically close the float menu after clicked the item
-  closable: true,
   onClickItem: null,
   onClickHeader: null,
   type: null, //primary, dark, float
@@ -149,7 +148,6 @@ Menu.propTypes = {
   defaultOpenedMenus: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.string]), // an array includes the menu id should open by default, default value is ["all"]
-  closable: PropTypes.bool, //whether this menu is closable
   onClickItem: PropTypes.func, // a callback triggered by clicking a item
   onClickHeader: PropTypes.func, // a callback triggered by clicking a header
   type: PropTypes.oneOf(['primary', 'dark', 'float']), // menu type

@@ -1,35 +1,19 @@
-import React from "react";
-import BaseComponent from "../BaseComponent";
-import {AlignItemsType, JustifyContentType} from "../common/Constants";
+import React from 'react';
+import {AlignItemsType, JustifyContentType} from '../common/Constants';
+import useElement from '../common/useElement';
 
-export default class Row extends BaseComponent {
+const Row = React.forwardRef((props, ref) => {
+  const {
+    justify = JustifyContentType.start
+    , align = AlignItemsType.start,
+    ...otherProps
+  } = props;
+  let justifyCls = JustifyContentType[justify];
+  let alignCls = AlignItemsType[align];
+  return useElement({...otherProps}, ref, 'row', {
+    [justifyCls]: justifyCls,
+    [alignCls]: alignCls,
+  });
+});
 
-  static defaultProps = {
-    className: 'row',
-    justify: JustifyContentType.start,
-    align: AlignItemsType.start
-  };
-
-  static propTypes = {};
-
-  constructor(args) {
-    super(args);
-    this.state = {};
-  }
-
-  render() {
-    const {children, justify, align, className, appendClass, ...otherProps} = this.props;
-    let justifyCls = JustifyContentType[justify];
-    let alignCls = AlignItemsType[align];
-    let clsName = this.getClass({
-      [justifyCls]: justifyCls,
-      [alignCls]: alignCls,
-    });
-
-    return <div className={clsName} {...otherProps}>
-      {children}
-    </div>;
-
-  }
-
-}
+export default Row;

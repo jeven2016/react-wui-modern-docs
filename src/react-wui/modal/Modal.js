@@ -1,7 +1,9 @@
 import React from 'react';
 import BaseComponent from '../BaseComponent';
 import * as ReactDOM from 'react-dom';
-import {ModalContext, placeCenter} from '../Utils';
+import {placeCenter} from '../Utils';
+import {ModalContext} from './ModalBase';
+import clsx from 'clsx';
 
 export default class Modal extends BaseComponent {
   static defaultProps = {
@@ -81,17 +83,19 @@ export default class Modal extends BaseComponent {
   }
 
   render() {
-    const {type, autoClose, children, onCancel, className, appendClass, active, alignCenter} = this.props;
+    const {type, autoClose, children, onCancel, className, extraClassName, active, alignCenter} = this.props;
     let clsName = this.getClass({
       show: this.isActive(),
       [type]: type,
     });
 
+    let contentCls = clsx('content', {[extraClassName]: extraClassName});
+
     let modal = <ModalContext.Provider value={{
       onCancel: onCancel,
     }}>
       <div className={clsName} onClick={this.cancelModal} ref={this.modalRef}>
-        <div className="content">
+        <div className={contentCls}>
           {children}
         </div>
       </div>

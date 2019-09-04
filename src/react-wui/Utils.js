@@ -59,7 +59,6 @@ export const getRandomInt = (min, max) => {
 };
 
 export const NavbarContext = React.createContext({});
-export const ModalContext = React.createContext({});
 export const RadioGroupContext = React.createContext({});
 
 /**

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, Modal} from '../../../react-wui';
+import {Button, Divider, Modal} from '../../../react-wui';
 
 export class ModalA extends Component {
   constructor(args) {
@@ -231,15 +231,16 @@ export class ModalE extends Component {
           onClick={this.openModal.bind(this, 'bg-color-green')}>绿色背景色</Button>
 
       <Modal alignCenter={true} active={this.state.active}
+             extraClassName={this.state.backGroundClass}
              onCancel={this.closeModal}>
-        <Modal.Header appendClass={this.state.backGroundClass}>
+        <Modal.Header>
           Modal Header
         </Modal.Header>
-        <Modal.Body appendClass={this.state.backGroundClass}>
+        <Modal.Body>
           This is a modal sample.
           This is a modal sample.
         </Modal.Body>
-        <Modal.Footer appendClass={this.state.backGroundClass}>
+        <Modal.Footer>
           <Button hasMinWidth={true} color="green"
                   onClick={this.closeModal}>OK</Button>
           <Button hasMinWidth={true} onClick={this.closeModal}>Cancel</Button>

@@ -12,7 +12,6 @@ import Element from '../common/Element';
 import {isNil} from 'lodash';
 import Button from '../button';
 
-const set = new Set();
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
   const rootElem = usePortal('portal');
@@ -50,8 +49,6 @@ const Dropdown = React.forwardRef((props, ref) => {
       placePadding(menuRef.current, dpRef.current, position, menuOffset);
     }
   }, [dpState.active, position]);
-  set.add(move);
-  // console.log("size="+set.)
 
   useEffect(() => {
     move();
@@ -86,7 +83,6 @@ const Dropdown = React.forwardRef((props, ref) => {
     }
 
     let status = getOppositeStatus(dpState.active);
-    console.log('new status=' + status);
     setDpState({
       ...dpState,
       active: status,
@@ -97,7 +93,6 @@ const Dropdown = React.forwardRef((props, ref) => {
     if (triggerBy !== DropdownTriggerType.hover) {
       return;
     }
-    console.log('hove ' + active);
     setDpState({
       ...dpState,
       active: active,

@@ -26,7 +26,7 @@ export default class SamplePannel extends Component {
     const {component, code} = this.props;
     let displayOption = this.state.showCode ? "" : "none";
 
-    return <Card block={true} apppendClass="doc-sample-panel">
+    return <Card block={true} extraClassName="doc-sample-panel">
       <Card.Header>
         <div className="doc-title">
           <div className="doc-title-item" onClick={this.show}>

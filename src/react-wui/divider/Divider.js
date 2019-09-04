@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
+import useElement from '../common/useElement';
 
-export default class Divider extends Component {
-  static defaultProps = {
-    className: 'divider',
-  };
+/**
+ * Divider Component
+ * @type {React.ComponentType<{} & React.ClassAttributes<unknown>>}
+ */
+const Divider = React.forwardRef(
+    (props, ref) => {
+      const {translucent = false, ...otherProps} = props;
+      const style = translucent ? {
+        backgroundColor: 'rgba(0,0,0,0.15)',
+      } : {};
+      return useElement({...otherProps, style: style}, ref, 'divider');
+    });
 
-  render() {
-    const {type, className} = this.props;
-    let nativeType = type ? type : 'div';
-
-    let elem = React.createElement(nativeType, {className: className}, null);
-    return (
-        elem
-    );
-  }
-
-}
+export default Divider;
