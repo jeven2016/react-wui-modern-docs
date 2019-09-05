@@ -210,6 +210,11 @@ export class ModalE extends Component {
       active: false,
       backGroundClass: null,
     };
+    this.btnRef = React.createRef(null);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.btnRef.current.focus();
   }
 
   openModal(bgColorClassName) {
@@ -241,7 +246,7 @@ export class ModalE extends Component {
           This is a modal sample.
         </Modal.Body>
         <Modal.Footer>
-          <Button hasMinWidth={true} color="green"
+          <Button hasMinWidth={true} color="green" ref={this.btnRef}
                   onClick={this.closeModal}>OK</Button>
           <Button hasMinWidth={true} onClick={this.closeModal}>Cancel</Button>
         </Modal.Footer>

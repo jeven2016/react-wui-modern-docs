@@ -1,106 +1,73 @@
-import React from 'react';
-import BaseComponent from '../BaseComponent';
+import React, {useRef, useEffect} from 'react';
 import * as ReactDOM from 'react-dom';
-import {placeCenter} from '../Utils';
-import {ModalContext} from './ModalBase';
+import {ModalContext} from '../common/Context';
 import clsx from 'clsx';
+import usePortal from '../common/usePortal';
+import useEvent from '../common/UseEvent';
+import {EventListener} from '../common/Constants';
+import {isNil, placeCenter} from '../Utils';
 
-export default class Modal extends BaseComponent {
-  static defaultProps = {
-    className: 'dialog',
-    type: 'normal', // simple, primary
-    active: null,
-    onCancel: null, //close callback,
-    autoClose: true,
-    alignCenter: false,
-  };
+const Modal = React.forwardRef((props, ref) => {
+  const {
+    type, className = 'dialog',
+    extraClassName, onCancel,
+    active, autoClose = true,
+    children, alignCenter,
+    ...otherProps
+  } = props;
+  const rootElem = usePortal('wui-modals');
+  const modalRef = ref ? ref : useRef(null);
 
-  constructor(args) {
-    super(args);
-    this.cancelModal = this.cancelModal.bind(this);
-    this.state = {
-      closeModal: false,
-    };
-    this.modalRef = React.createRef();
-
-    this.container = document.createElement('div');
-    document.body.appendChild(this.container);
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const {alignCenter} = this.props;
-    if (alignCenter) {
-      this.updatePosition();
+  useEvent(EventListener.keyDown, (e) => {
+    //add listener for esc key
+    if (active && e.keyCode === 27 && !isNil(onCancel)) {
+      onCancel(e);
     }
-  }
+  });
 
-  updatePosition() {
-    if (this.isActive() && this.props.alignCenter) {
-      let modelNode = this.modalRef.current;
-      document.body.style.overflow = 'hidden';
-      placeCenter(modelNode.childNodes[0], modelNode);
+  useEffect(() => {
+    let body = document.body;
+    const style = body.getAttribute('style');
+    if (!alignCenter || !active) {
+      if (!isNil(style)) {
+        body.removeAttribute('style');
+      }
       return;
     }
 
-    let bodyOverflow = document.body.style.overflow;
-    if (bodyOverflow === 'hidden') {
-      document.body.style.overflow = 'unset';
-    }
-  }
+    let modelNode = modalRef.current;
+    document.body.style.overflow = 'hidden';
+    placeCenter(modelNode.childNodes[0], modelNode);
+  });
 
-  componentWillUnmount() {
-    if (this.container) {
-      this.container.parentNode.removeChild(this.container);
-    }
-  }
+  const clsName = clsx(className, {
+    show: active,
+    [type]: type,
+  });
 
-  cancelModal(evt) {
-    const {autoClose, onCancel} = this.props;
-
-    if (!autoClose) {
-      return;
-    }
-
-    if (this.modalRef.current !== evt.target) {
+  const handleCancel = (e) => {
+    if (!autoClose || modalRef.current !== e.target) {
       // don't close the modal if clicking the modal body instead of black background
       return;
     }
 
     if (onCancel) {
-      onCancel(evt);
-      return;
+      return onCancel(e);
     }
+  };
 
-    this.setState({
-      closeModal: true,
-    });
-
-  }
-
-  isActive() {
-    const {active} = this.props;
-    return this.state.closeMenu ? false : active;
-  }
-
-  render() {
-    const {type, autoClose, children, onCancel, className, extraClassName, active, alignCenter} = this.props;
-    let clsName = this.getClass({
-      show: this.isActive(),
-      [type]: type,
-    });
-
-    let contentCls = clsx('content', {[extraClassName]: extraClassName});
-
-    let modal = <ModalContext.Provider value={{
-      onCancel: onCancel,
-    }}>
-      <div className={clsName} onClick={this.cancelModal} ref={this.modalRef}>
-        <div className={contentCls}>
-          {children}
-        </div>
+  let contentCls = clsx(extraClassName, 'content');
+  let modal = <ModalContext.Provider value={{
+    onCancel: onCancel,
+  }}>
+    <div className={clsName} onClick={handleCancel} ref={modalRef}>
+      <div className={contentCls} {...otherProps}
+           onClick={() => console.log('onclick')}>
+        {children}
       </div>
-    </ModalContext.Provider>;
-    return ReactDOM.createPortal(modal, this.container);
-  }
+    </div>
+  </ModalContext.Provider>;
+  return ReactDOM.createPortal(modal, rootElem);
+});
 
-}
+export default Modal;

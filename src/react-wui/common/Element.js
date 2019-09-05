@@ -25,9 +25,7 @@ const Element = React.forwardRef((props, ref) => {
   };
 
   const handleClick = (e) => {
-    console.log(`${disabled} -clicked`);
     if (prevent(e)) return;
-
     onClick && onClick(e);
   };
 

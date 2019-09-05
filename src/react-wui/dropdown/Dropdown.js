@@ -14,7 +14,7 @@ import Button from '../button';
 
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
-  const rootElem = usePortal('portal');
+  const rootElem = usePortal('wui-portals');
   const dpRef = ref ? ref : useRef(null);
   const menuRef = useRef(null);
   const {
