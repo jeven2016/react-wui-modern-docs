@@ -28,7 +28,7 @@ class App extends Component {
     // react-intl-universal is singleton, so you should init it only once in your app
     intl.init({
       locales,
-      currentLocale: this.state.appliedLocale
+      currentLocale: this.state.appliedLocale,
     }).then(() => {
       // After loading CLDR locale data, start to render
       this.setState({initDone: true});
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return this.state.initDone ?
         <Router>
           <div>
             <Header/>
@@ -46,7 +46,7 @@ class App extends Component {
             </div>
           </div>
         </Router>
-    );
+        : '';
   }
 }
 

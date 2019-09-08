@@ -10,6 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "clsx": "^1.0.4",
     "es6-promise": "^4.2.6",
+    "hammerjs": "^2.0.8",
     "history": "^4.9.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
@@ -46,6 +47,7 @@
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.11",
     "node-sass": "^4.12.0",
-    "react-app-polyfill": "^1.0.1"
+    "react-app-polyfill": "^1.0.1",
+    "serve": "^11.1.0"
   }
 }

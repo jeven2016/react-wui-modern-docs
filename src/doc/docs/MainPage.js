@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {Link, Route} from 'react-router-dom';
 import intl from 'react-intl-universal';
 import ButtonIndex from './button/ButtonIndex';
@@ -12,18 +12,23 @@ import ModalIndex from './modal/ModalIndex';
 import ToggleIndex from './toggle/ToggleIndex';
 import CardIndex from './card/CardIndex';
 import DrawerIndex from './drawer/DrawerIndex';
-import AccordionIndex from "./accordion/AccordionIndex";
-import BlockquotaIndex from "./blockquota/BlockquotaIndex";
-import LoaderIndex from "./loader/LoaderIndex";
-import GridIndex from "./grid/GridIndex";
-import FormIndex from "./form/FormIndex";
-import AlertIndex from "./alert/AlertIndex";
-import BadgeIndex from "./badge/BadgeIndex";
-import CheckboxIndex from "./checkbox/CheckboxIndex";
-import RadioIndex from "./radio/RadioIndex";
-import BreadcrumbIndex from "./breadcrumb/BreadcrumbIndex";
-import SelectIndex from "./select/SelectIndex";
-import InputIndex from "./input/InputIndex";
+import AccordionIndex from './accordion/AccordionIndex';
+import BlockquotaIndex from './blockquota/BlockquotaIndex';
+import LoaderIndex from './loader/LoaderIndex';
+import GridIndex from './grid/GridIndex';
+import FormIndex from './form/FormIndex';
+import AlertIndex from './alert/AlertIndex';
+import BadgeIndex from './badge/BadgeIndex';
+import CheckboxIndex from './checkbox/CheckboxIndex';
+import RadioIndex from './radio/RadioIndex';
+import BreadcrumbIndex from './breadcrumb/BreadcrumbIndex';
+import SelectIndex from './select/SelectIndex';
+import InputIndex from './input/InputIndex';
+
+const ProgressWrapper = (Module) => {
+  console.log('enter.....');
+  return <Module/>;
+};
 
 export default class MainPage extends Component {
 

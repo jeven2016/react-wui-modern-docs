@@ -1,11 +1,13 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import * as ReactDOM from 'react-dom';
 import {ModalContext} from '../common/Context';
 import clsx from 'clsx';
 import usePortal from '../common/usePortal';
 import useEvent from '../common/UseEvent';
-import {EventListener} from '../common/Constants';
+import {Active, EventListener} from '../common/Constants';
 import {isNil, placeCenter} from '../Utils';
+import Hammer from 'hammerjs';
+import {CSSTransition} from 'react-transition-group';
 
 const Modal = React.forwardRef((props, ref) => {
   const {
@@ -17,6 +19,7 @@ const Modal = React.forwardRef((props, ref) => {
   } = props;
   const rootElem = usePortal('wui-modals');
   const modalRef = ref ? ref : useRef(null);
+  const contentRef = useRef(null);
 
   useEvent(EventListener.keyDown, (e) => {
     //add listener for esc key
@@ -39,6 +42,22 @@ const Modal = React.forwardRef((props, ref) => {
     document.body.style.overflow = 'hidden';
     placeCenter(modelNode.childNodes[0], modelNode);
   });
+  console.log('render.................');
+  const posRef = useRef({lastX: 0, lastY: 0});
+  const handleMove = (ev) => {
+    let cnt = contentRef.current;
+
+    console.log(`left=${cnt.style.left},top=${cnt.style.top}`);
+    let posX = ev.deltaX + cnt.style.left;
+    let posY = ev.deltaY + cnt.style.top;
+    console.log(`deltaX=${ev.deltaX},deltaY=${ev.deltaY}`);
+    console.log(`lastX=${posX},lastY=${posY}`);
+    console.log('');
+    // posRef.current = {lastX: posX, lastY: posY};
+
+    cnt.style.left = posX + 'px';
+    cnt.style.top = posY + 'px';
+  };
 
   const clsName = clsx(className, {
     show: active,
@@ -57,14 +76,26 @@ const Modal = React.forwardRef((props, ref) => {
   };
 
   let contentCls = clsx(extraClassName, 'content');
+
+  let content = <div className={contentCls} {...otherProps} ref={contentRef}>
+    {children}
+  </div>;
+  if (alignCenter) {
+    content = <CSSTransition in={active}
+                             timeout={200}
+                             classNames="content">
+      <div className={contentCls} {...otherProps} ref={contentRef}>
+        {children}
+      </div>
+    </CSSTransition>;
+  }
+
   let modal = <ModalContext.Provider value={{
+    onMove: handleMove,
     onCancel: onCancel,
   }}>
     <div className={clsName} onClick={handleCancel} ref={modalRef}>
-      <div className={contentCls} {...otherProps}
-           onClick={() => console.log('onclick')}>
-        {children}
-      </div>
+      {content}
     </div>
   </ModalContext.Provider>;
   return ReactDOM.createPortal(modal, rootElem);
