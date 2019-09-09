@@ -1,56 +1,17 @@
-import React, {useContext} from 'react';
-import {MenuType} from './common/Constants';
-import clsx from 'clsx';
+import React from 'react';
+import {isNil} from "lodash";
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
   return Array.isArray(value);
 };
 
-//split the class by blank space
-const _splitClassName = (className) => {
-  if (!className) {
-    return [];
-  }
-  return className.split(' ');
+export {isObject, inRange, isInteger, isString, isBoolean} from 'lodash';
+export {isNil};
+
+export const isBlank = (value) => {
+  return isNil(value) || /^\s*$/.test(value);
 };
-
-/**
- * Check if the element has a specified class
- * @param elem
- * @param classNameOrArray a single class or an array of classes
- * @param clsArray
- * @return array
- */
-export const hasClass = (elem, classNameOrArray, clsArray/*optional*/) => {
-  if (!classNameOrArray) {
-    return false;
-  }
-
-  if (!clsArray) {
-    clsArray = _splitClassName(elem.props.className);
-  }
-  if (isArray(classNameOrArray)) {
-    let result = clsArray.find(cls => classNameOrArray.includes(cls));
-    if (result) {
-      return true;
-    }
-    return false;
-  } else {
-    return clsArray.includes(classNameOrArray);
-  }
-};
-
-export const appendClassIfAbsent = (elem, className) => {
-  if (!hasClass(elem, className)) {
-    return `${elem.props.className} ${className}`;
-  }
-  return elem.props.className;
-};
-
-///////////////////////////////////////
-export {isNil, isObject, inRange, isInteger, isString, isBoolean} from 'lodash';
-///////////////////////////////////////
 
 export const getRandomInt = (min, max) => {
   min = Math.ceil(min);

@@ -4,10 +4,10 @@ import {ModalContext} from '../common/Context';
 import clsx from 'clsx';
 import usePortal from '../common/usePortal';
 import useEvent from '../common/UseEvent';
-import {Active, EventListener} from '../common/Constants';
+import {EventListener} from '../common/Constants';
 import {isNil, placeCenter} from '../Utils';
-import Hammer from 'hammerjs';
 import {CSSTransition} from 'react-transition-group';
+import {useMove} from "../common/usePan";
 
 const Modal = React.forwardRef((props, ref) => {
   const {
@@ -42,21 +42,29 @@ const Modal = React.forwardRef((props, ref) => {
     document.body.style.overflow = 'hidden';
     placeCenter(modelNode.childNodes[0], modelNode);
   });
-  console.log('render.................');
-  const posRef = useRef({lastX: 0, lastY: 0});
+
+  let lastX = 0, lastY = 0;
+  let dragging = false;
   const handleMove = (ev) => {
     let cnt = contentRef.current;
 
-    console.log(`left=${cnt.style.left},top=${cnt.style.top}`);
-    let posX = ev.deltaX + cnt.style.left;
-    let posY = ev.deltaY + cnt.style.top;
-    console.log(`deltaX=${ev.deltaX},deltaY=${ev.deltaY}`);
-    console.log(`lastX=${posX},lastY=${posY}`);
-    console.log('');
-    // posRef.current = {lastX: posX, lastY: posY};
+    if (!dragging) {
+      lastX = cnt.offsetLeft;
+      lastY = cnt.offsetTop;
+      dragging = true;
+      cnt.style.border = " 0.1875rem dashed #fbbe11";
+      cnt.style.opacity = "0.8";
+    }
 
+    let posX = ev.deltaX + lastX;
+    let posY = ev.deltaY + lastY;
     cnt.style.left = posX + 'px';
     cnt.style.top = posY + 'px';
+    if (ev.isFinal) {
+      dragging = false;
+      cnt.style.border = "none";
+      cnt.style.opacity = "1";
+    }
   };
 
   const clsName = clsx(className, {
@@ -91,7 +99,7 @@ const Modal = React.forwardRef((props, ref) => {
   }
 
   let modal = <ModalContext.Provider value={{
-    onMove: handleMove,
+    onMove: useMove(contentRef),
     onCancel: onCancel,
   }}>
     <div className={clsName} onClick={handleCancel} ref={modalRef}>

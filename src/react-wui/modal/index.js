@@ -1,11 +1,11 @@
-import React, {useContext, useRef, useEffect} from 'react';
+import React, {useContext, useRef} from 'react';
 import Modal from './Modal';
 import useElement from '../common/useElement';
 import {FlexAlign} from '../common/Constants';
 import {ModalContext} from '../common/Context';
 import {isNil} from '../Utils';
 import Element from '../common/Element';
-import Hammer from 'hammerjs';
+import usePan from "../common/usePan";
 
 const Body = React.forwardRef(
     (props, ref) => useElement(props, ref, 'body'));
@@ -24,21 +24,7 @@ const Header = React.forwardRef((props, ref) => {
   const onMove = context.onMove;
   const headerRef = ref ? ref : useRef(null);
 
-  useEffect(() => {
-    if (isNil(onMove)) {
-      return;
-    }
-    const mc = new Hammer(headerRef.current);//this ref should reference to header
-    mc.get('pan').set({direction: Hammer.DIRECTION_ALL});
-    mc.on('pan', (ev) => {
-      onMove(ev);
-    });
-
-    return ()=>{
-      mc.stop();
-      mc.destroy();
-    }
-  },[]);
+  usePan(headerRef, onMove);
 
   let cancelIcon = isNil(onCancel) ? <span>×</span> :
       <span onClick={onCancel}>×</span>;

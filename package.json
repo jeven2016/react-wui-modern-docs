@@ -14,7 +14,6 @@
     "history": "^4.9.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
-    "rc-hammerjs": "^0.6.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-intl-universal": "^2.0.3",
