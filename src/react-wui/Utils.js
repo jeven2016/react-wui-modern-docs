@@ -1,5 +1,5 @@
 import React from 'react';
-import {isNil} from "lodash";
+import {isNil} from 'lodash';
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
@@ -192,21 +192,26 @@ export const place = (dest, ctrl, type, offset = 0) => {
   }
 };
 
-export const placeCenter = (destComponent, ctrl) => {
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset
-      || document.body.scrollTop;
-
+export const placeCenter = (dest, ctrl) => {
   var ctrlPos = ctrl.getBoundingClientRect();
-  var destPos = destComponent.getBoundingClientRect();
+  var destPos = dest.getBoundingClientRect();
+
+  // dest.style.transformOrigin = `255px 290px`;
 
   let destAvaliableHeight = Math.max(destPos.height,
-      destComponent.offsetHeight);
+      dest.offsetHeight);
 
-  console.log(scrollTop + ',' + ctrlPos.height + ',' + destAvaliableHeight);
-  destComponent.style.top = Math.floor(
+  let destAvaliableWidth = Math.max(destPos.width,
+      dest.offsetWidth);
+
+  let y = Math.floor(
       (ctrlPos.height - destAvaliableHeight) / 2) + 'px';
-  destComponent.style.margin = '0 auto';
 
+  let x = Math.floor(
+      (ctrlPos.width - destAvaliableWidth) / 2) + 'px';
+
+  dest.style.left = x;
+  dest.style.top = y;
 };
 
 export const validate = (condition, message) => {

@@ -1,6 +1,6 @@
-import React, {useEffect, useRef} from "react";
-import {isNil} from "../Utils";
-import Hammer from "hammerjs";
+import React, {useEffect, useRef} from 'react';
+import {isNil} from '../Utils';
+import Hammer from 'hammerjs';
 
 /**
  * Return a default handler for using pan
@@ -11,32 +11,33 @@ const useMove = (targetRef) => {
   const previousRef = useRef({
     lastX: 0,
     lastY: 0,
-    dragging: false
+    dragging: false,
   });
   const handler = (ev) => {
-    let cnt = targetRef.current;
+    const cnt = targetRef.current;
 
+    const cntPos = cnt.getBoundingClientRect();
     if (!previousRef.current.dragging) {
       previousRef.current = {
-        lastX: cnt.offsetLeft,
-        lastY: cnt.offsetTop,
-        dragging: true
+        lastX: cntPos.left,
+        lastY: cntPos.top,
+        dragging: true,
       };
-      cnt.style.border = " 0.1875rem dashed #fbbe11";
-      cnt.style.opacity = "0.8";
+      cnt.style.border = ' 0.1875rem dashed #fbbe11';
+      cnt.style.opacity = '0.8';
     }
 
     let posX = ev.deltaX + previousRef.current.lastX;
     let posY = ev.deltaY + previousRef.current.lastY;
-    cnt.style.left = posX + 'px';
-    cnt.style.top = posY + 'px';
+
+    cnt.style.transform = `translate(${posX}px,${posY}px)`;
     if (ev.isFinal) {
       previousRef.current = {
         ...previousRef.current,
-        dragging: false
+        dragging: false,
       };
-      cnt.style.border = "none";
-      cnt.style.opacity = "1";
+      cnt.style.border = 'none';
+      cnt.style.opacity = '1';
     }
   };
 
@@ -45,7 +46,7 @@ const useMove = (targetRef) => {
 
 const usePan = (draggerRef, onMove) => {
   useEffect(() => {
-    console.log("use pan......");
+    console.log('use pan......');
     if (isNil(onMove)) {
       return;
     }
@@ -58,7 +59,7 @@ const usePan = (draggerRef, onMove) => {
     return () => {
       mc.stop();
       mc.destroy();
-    }
+    };
   }, []);
 };
 export {useMove};
