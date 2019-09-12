@@ -5,9 +5,15 @@ import clsx from 'clsx';
 import usePortal from '../common/usePortal';
 import useEvent from '../common/UseEvent';
 import {EventListener} from '../common/Constants';
-import {isNil, placeCenter} from '../Utils';
+import {
+  getLeftIfCentered,
+  isNil,
+  placeCenter,
+  placeVerticalCenter,
+} from '../Utils';
 import {CSSTransition} from 'react-transition-group';
-import {useMove} from "../common/usePan";
+import {useMove} from '../common/usePan';
+import {preventEvent} from '../event';
 
 const Modal = React.forwardRef((props, ref) => {
   const {
@@ -20,6 +26,7 @@ const Modal = React.forwardRef((props, ref) => {
   const rootElem = usePortal('wui-modals');
   const modalRef = ref ? ref : useRef(null);
   const contentRef = useRef(null);
+  let containerRef = useRef(null);
 
   useEvent(EventListener.keyDown, (e) => {
     //add listener for esc key
@@ -29,51 +36,40 @@ const Modal = React.forwardRef((props, ref) => {
   });
 
   useEffect(() => {
+    console.log('use effect');
     let body = document.body;
-    const style = body.getAttribute('style');
-    if (!alignCenter || !active) {
-      if (!isNil(style)) {
-        body.removeAttribute('style');
-      }
+    if (!active) {
+      body.removeAttribute('style');
+      // contentRef.current.removeAttribute('style');
+      return;
+    }
+
+    if (!alignCenter) {
+      /* let x = getLeftIfCentered(contentRef.current, modalRef.current);
+
+       let cnt = contentRef.current;
+       cnt.style.transition = 'opacity .2s,  transform .2s';
+       cnt.style.transfromOrigin = `${x}px, -100%`;
+       cnt.style.opacity = '1';
+       cnt.style.transform = `translate(${x}, 10rem)`;*/
       return;
     }
 
     let modelNode = modalRef.current;
     document.body.style.overflow = 'hidden';
-    placeCenter(modelNode.childNodes[0], modelNode);
-  });
+    // placeVerticalCenter(modelNode.childNodes[0], modelNode);
+  }, [active]);
 
-  let lastX = 0, lastY = 0;
-  let dragging = false;
-  const handleMove = (ev) => {
-    let cnt = contentRef.current;
-
-    if (!dragging) {
-      lastX = cnt.offsetLeft;
-      lastY = cnt.offsetTop;
-      dragging = true;
-      cnt.style.border = " 0.1875rem dashed #fbbe11";
-      cnt.style.opacity = "0.8";
-    }
-
-    let posX = ev.deltaX + lastX;
-    let posY = ev.deltaY + lastY;
-    cnt.style.left = posX + 'px';
-    cnt.style.top = posY + 'px';
-    if (ev.isFinal) {
-      dragging = false;
-      cnt.style.border = "none";
-      cnt.style.opacity = "1";
-    }
-  };
-
-  const clsName = clsx(className, {
-    show: active,
-    [type]: type,
-  });
+  const clsName = clsx(className,
+      alignCenter ? 'align-center' : 'normal',
+      {
+        [type]: type,
+      });
 
   const handleCancel = (e) => {
-    if (!autoClose || modalRef.current !== e.target) {
+    // debugger
+    if (!autoClose || contentRef.current.contains(e.target)) {
+      preventEvent(e);
       // don't close the modal if clicking the modal body instead of black background
       return;
     }
@@ -83,28 +79,42 @@ const Modal = React.forwardRef((props, ref) => {
     }
   };
 
+  // ensure the dialog closed after animation finished
+  const showDialog = (show) => {
+    console.log('css transition');
+    if (show) {
+      modalRef.current.style.display = 'flex';
+    } else {
+      modalRef.current.style.display = 'none';
+    }
+  };
+
   let contentCls = clsx(extraClassName, 'content');
 
-  let content = <div className={contentCls} {...otherProps} ref={contentRef}>
-    {children}
-  </div>;
-  if (alignCenter) {
-    content = <CSSTransition in={active}
-                             timeout={200}
-                             classNames="content">
-      <div className={contentCls} {...otherProps} ref={contentRef}>
-        {children}
-      </div>
-    </CSSTransition>;
-  }
-
   let modal = <ModalContext.Provider value={{
-    onMove: useMove(contentRef),
+    onMove: useMove(containerRef, contentRef),
     onCancel: onCancel,
   }}>
-    <div className={clsName} onClick={handleCancel} ref={modalRef}>
-      {content}
-    </div>
+    <>
+      <div className={active ? 'mask active' : 'mask inactive'}/>
+      <div className={clsName} onClick={handleCancel} ref={modalRef}
+           style={{display: 'none'}}>
+        <CSSTransition in={active}
+                       timeout={500}
+            // unmountOnExit
+                       onEnter={() => showDialog(true)}
+                       onExit={() => showDialog(true)}
+                       onExited={() => showDialog(false)}
+                       classNames="dialog-container">
+          <div className="dialog-container" ref={containerRef}
+               onClick={handleCancel}>
+            <div className={contentCls} {...otherProps} ref={contentRef}>
+              {children}
+            </div>
+          </div>
+        </CSSTransition>
+      </div>
+    </>
   </ModalContext.Provider>;
   return ReactDOM.createPortal(modal, rootElem);
 });

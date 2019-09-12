@@ -193,25 +193,34 @@ export const place = (dest, ctrl, type, offset = 0) => {
 };
 
 export const placeCenter = (dest, ctrl) => {
+  dest.style.left = getLeftIfCentered(dest, ctrl);
+  dest.style.top = getTopIfCentered(dest, ctrl);
+};
+
+export const placeVerticalCenter = (dest, ctrl) => {
+  const y = getTopIfCentered(dest, ctrl);
+  dest.style.transform = `translateY(${y})`;
+};
+
+export const getLeftIfCentered = (dest, ctrl) => {
   var ctrlPos = ctrl.getBoundingClientRect();
   var destPos = dest.getBoundingClientRect();
+  let destAvaliableWidth = Math.max(destPos.width,
+      dest.offsetWidth);
+  let x = Math.floor((ctrlPos.width - destAvaliableWidth) / 2) + 'px';
+  return x;
+};
 
-  // dest.style.transformOrigin = `255px 290px`;
+export const getTopIfCentered = (dest, ctrl) => {
+  var ctrlPos = ctrl.getBoundingClientRect();
+  var destPos = dest.getBoundingClientRect();
 
   let destAvaliableHeight = Math.max(destPos.height,
       dest.offsetHeight);
 
-  let destAvaliableWidth = Math.max(destPos.width,
-      dest.offsetWidth);
-
   let y = Math.floor(
       (ctrlPos.height - destAvaliableHeight) / 2) + 'px';
-
-  let x = Math.floor(
-      (ctrlPos.width - destAvaliableWidth) / 2) + 'px';
-
-  dest.style.left = x;
-  dest.style.top = y;
+  return y;
 };
 
 export const validate = (condition, message) => {

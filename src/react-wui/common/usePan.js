@@ -4,19 +4,21 @@ import Hammer from 'hammerjs';
 
 /**
  * Return a default handler for using pan
- * @param targetRef
+ * @param targetRef removable target object
+ * @param contentRef the content whose border should be highlighted
  * @returns {handler}
  */
-const useMove = (targetRef) => {
+const useMove = (targetRef, contentRef = targetRef) => {
   const previousRef = useRef({
     lastX: 0,
     lastY: 0,
     dragging: false,
   });
   const handler = (ev) => {
-    const cnt = targetRef.current;
+    const target = targetRef.current;
+    const cnt = contentRef.current;
 
-    const cntPos = cnt.getBoundingClientRect();
+    const cntPos = target.getBoundingClientRect();
     if (!previousRef.current.dragging) {
       previousRef.current = {
         lastX: cntPos.left,
@@ -30,7 +32,7 @@ const useMove = (targetRef) => {
     let posX = ev.deltaX + previousRef.current.lastX;
     let posY = ev.deltaY + previousRef.current.lastY;
 
-    cnt.style.transform = `translate(${posX}px,${posY}px)`;
+    target.style.transform = `translate(${posX}px,${posY}px)`;
     if (ev.isFinal) {
       previousRef.current = {
         ...previousRef.current,
