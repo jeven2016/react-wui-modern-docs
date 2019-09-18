@@ -5,14 +5,8 @@ import clsx from 'clsx';
 import usePortal from '../common/usePortal';
 import useEvent from '../common/UseEvent';
 import {EventListener} from '../common/Constants';
-import {
-  getLeftIfCentered,
-  isNil,
-  placeCenter,
-  placeVerticalCenter,
-} from '../Utils';
+import {isNil} from '../Utils';
 import {CSSTransition} from 'react-transition-group';
-import {useMove} from '../common/usePan';
 import {preventEvent} from '../event';
 
 const Modal = React.forwardRef((props, ref) => {
@@ -40,24 +34,9 @@ const Modal = React.forwardRef((props, ref) => {
     let body = document.body;
     if (!active) {
       body.removeAttribute('style');
-      // contentRef.current.removeAttribute('style');
       return;
     }
-
-    if (!alignCenter) {
-      /* let x = getLeftIfCentered(contentRef.current, modalRef.current);
-
-       let cnt = contentRef.current;
-       cnt.style.transition = 'opacity .2s,  transform .2s';
-       cnt.style.transfromOrigin = `${x}px, -100%`;
-       cnt.style.opacity = '1';
-       cnt.style.transform = `translate(${x}, 10rem)`;*/
-      return;
-    }
-
-    let modelNode = modalRef.current;
     document.body.style.overflow = 'hidden';
-    // placeVerticalCenter(modelNode.childNodes[0], modelNode);
   }, [active]);
 
   const clsName = clsx(className,
@@ -67,7 +46,6 @@ const Modal = React.forwardRef((props, ref) => {
       });
 
   const handleCancel = (e) => {
-    // debugger
     if (!autoClose || contentRef.current.contains(e.target)) {
       preventEvent(e);
       // don't close the modal if clicking the modal body instead of black background
@@ -92,7 +70,7 @@ const Modal = React.forwardRef((props, ref) => {
   let contentCls = clsx(extraClassName, 'content');
 
   let modal = <ModalContext.Provider value={{
-    onMove: useMove(containerRef, contentRef),
+    onMove: null,//useMove(containerRef, contentRef),
     onCancel: onCancel,
   }}>
     <>
@@ -100,7 +78,7 @@ const Modal = React.forwardRef((props, ref) => {
       <div className={clsName} onClick={handleCancel} ref={modalRef}
            style={{display: 'none'}}>
         <CSSTransition in={active}
-                       timeout={500}
+                       timeout={300}
             // unmountOnExit
                        onEnter={() => showDialog(true)}
                        onExit={() => showDialog(true)}

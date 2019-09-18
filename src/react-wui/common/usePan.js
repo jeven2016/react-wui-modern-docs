@@ -48,7 +48,6 @@ const useMove = (targetRef, contentRef = targetRef) => {
 
 const usePan = (draggerRef, onMove) => {
   useEffect(() => {
-    console.log('use pan......');
     if (isNil(onMove)) {
       return;
     }

@@ -5,7 +5,7 @@ import {FlexAlign} from '../common/Constants';
 import {ModalContext} from '../common/Context';
 import {isNil} from '../Utils';
 import Element from '../common/Element';
-import usePan from "../common/usePan";
+import usePan from '../common/usePan';
 
 const Body = React.forwardRef(
     (props, ref) => useElement(props, ref, 'body'));
@@ -21,10 +21,10 @@ const Header = React.forwardRef((props, ref) => {
   const {children, className = 'header', ...otherProps} = props;
   const context = useContext(ModalContext);
   const onCancel = context.onCancel;
-  const onMove = context.onMove;
+  // const onMove = context.onMove;
   const headerRef = ref ? ref : useRef(null);
 
-  usePan(headerRef, onMove);
+  // usePan(headerRef, onMove);
 
   let cancelIcon = isNil(onCancel) ? <span>×</span> :
       <span onClick={onCancel}>×</span>;
