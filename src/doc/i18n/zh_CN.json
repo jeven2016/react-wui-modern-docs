@@ -72,6 +72,7 @@
   "content.modal.simple.modalC": "点击背景后不自动关闭",
   "content.modal.simple.modalD": "黑色背景色的对话框",
   "content.modal.simple.modalE": "自定义背景色",
+  "content.modal.simple.modalF": "信息提示",
   "content.toggle.title": "Toggle 开关",
   "content.toggle.simple.desc": "Toggle 开关示例",
   "content.toggle.sample.toggleA": "基本的开关",

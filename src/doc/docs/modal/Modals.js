@@ -263,3 +263,74 @@ export class ModalE extends Component {
   }
 
 }
+
+export const ModelF = (props) => {
+  let comp = <> <Button onClick={(e) => {
+    Modal.info({
+      type: 'primary',
+      header: '删除成功',
+      title: '您已经成功删除此数据。',
+      body: '请稍候在系统管理界面上审核该结果，谢谢',
+      okText: '确定',
+    });
+  }}>
+    Info
+  </Button>
+    <Button onClick={(e) => {
+      Modal.warning({
+        header: '删除成功',
+        title: '您已经成功删除此数据。',
+        body: '请稍候在系统管理界面上审核该结果，谢谢',
+        okText: '确定',
+      });
+    }}>
+      warning
+    </Button>
+    <Button onClick={(e) => {
+      Modal.error({
+        title: '系统无法删除此数据。',
+        body: '请稍候在系统管理界面上查看该结果，谢谢',
+        okText: '确定',
+      });
+    }}>
+      error
+    </Button>
+    <Button onClick={(e) => {
+      Modal.success({
+        type: 'primary',
+        header: '删除成功',
+        title: '您已经成功删除此数据。',
+        body: '请稍候在系统管理界面上审核该结果，谢谢',
+        okText: '确定',
+      });
+    }}>
+      success
+    </Button>
+    <Button onClick={(e) => {
+      Modal.confirm({
+        type: 'primary',
+        header: '确认删除',
+        title: '您确认要删除此记录吗？',
+        body: '请稍候在系统管理界面上审核该结果，谢谢',
+        okText: '确定',
+        cancelText: '取消',
+        onOk: ()=>{
+          console.log("ok")
+        },
+        onCancel: ()=>{
+          console.log("cancelled")
+        }
+      });
+    }}>
+      confirm
+    </Button>
+  </>;
+
+  let code = `
+  import React, {Component} from "react";
+  import {Button, Modal} from "react-wui";
+  
+  `;
+
+  return <SamplePannel component={comp} code={code}/>;
+};

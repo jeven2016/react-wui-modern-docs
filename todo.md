@@ -20,6 +20,8 @@ refer to the implementation of NavBar
  * input/button, large/small/medium需要统一添加
  * useCallback to refactor
  * popover 覆盖了子节点各类监听事件＝》可在dropdown处测试
+ *  ReactDOM.render cannot work perfectly with CSSTransition
+ * useEvent 反复注册问题
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp
  

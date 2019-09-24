@@ -17,7 +17,7 @@ function createRootElement(id) {
 function addRootElement(rootElem) {
   document.body.insertBefore(
       rootElem,
-      document.body.lastElementChild.nextElementSibling,
+      document.body.lastElementChild,
   );
 }
 
@@ -27,12 +27,12 @@ function addRootElement(rootElem) {
  * makes this trivial), so there is no need to ensure the parent target already
  * exists.
  * @example
- * const target = usePortal(id, [id]);
+ * const target = useContainer(id, [id]);
  * return createPortal(children, target);
  * @param {String} id The id of the target container, e.g 'modal' or 'spotlight'
  * @returns {HTMLElement} The DOM node to use as the Portal target.
  */
-function usePortal(id) {
+function useContainer(id) {
   const rootElemRef = useRef(null);
 
   useEffect(() =>{
@@ -77,4 +77,4 @@ function usePortal(id) {
   return getRootElem();
 }
 
-export default usePortal;
+export default useContainer;

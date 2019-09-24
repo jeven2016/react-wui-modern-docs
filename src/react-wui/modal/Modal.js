@@ -2,22 +2,35 @@ import React, {useEffect, useRef} from 'react';
 import * as ReactDOM from 'react-dom';
 import {ModalContext} from '../common/Context';
 import clsx from 'clsx';
-import usePortal from '../common/usePortal';
+import useContainer from '../common/useContainer';
 import useEvent from '../common/UseEvent';
 import {EventListener} from '../common/Constants';
 import {isNil} from '../Utils';
 import {CSSTransition} from 'react-transition-group';
 import {preventEvent} from '../event';
 
+const ModalSizeStyle = {
+  small: 'width-sm',
+  medium: 'width-md',
+  large: 'width-lg',
+  extraLarge: 'width-xl',
+};
+
 const Modal = React.forwardRef((props, ref) => {
   const {
+    modalContainerDom,
+    size = 'medium',
     type, className = 'dialog',
     extraClassName, onCancel,
     active, autoClose = true,
     children, alignCenter,
     ...otherProps
   } = props;
-  const rootElem = usePortal('wui-modals');
+
+  const rootElem = isNil(modalContainerDom)
+      ? useContainer('wui-modals')
+      : modalContainerDom;
+
   const modalRef = ref ? ref : useRef(null);
   const contentRef = useRef(null);
   let containerRef = useRef(null);
@@ -30,20 +43,22 @@ const Modal = React.forwardRef((props, ref) => {
   });
 
   useEffect(() => {
-    console.log('use effect');
     let body = document.body;
     if (!active) {
       body.removeAttribute('style');
       return;
     }
-    document.body.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+    body.style.paddingRight = '17px'; //避免滚动条造成的页面抖动
   }, [active]);
 
   const clsName = clsx(className,
-      alignCenter ? 'align-center' : 'normal',
+      alignCenter ? 'align-center' : 'align-top',
       {
         [type]: type,
-      });
+        active: active,
+      },
+  );
 
   const handleCancel = (e) => {
     if (!autoClose || contentRef.current.contains(e.target)) {
@@ -57,17 +72,8 @@ const Modal = React.forwardRef((props, ref) => {
     }
   };
 
-  // ensure the dialog closed after animation finished
-  const showDialog = (show) => {
-    console.log('css transition');
-    if (show) {
-      modalRef.current.style.display = 'flex';
-    } else {
-      modalRef.current.style.display = 'none';
-    }
-  };
-
-  let contentCls = clsx(extraClassName, 'content');
+  const sizeStyle = ModalSizeStyle[size];
+  let contentCls = clsx(extraClassName, 'content', [sizeStyle]);
 
   let modal = <ModalContext.Provider value={{
     onMove: null,//useMove(containerRef, contentRef),
@@ -75,15 +81,8 @@ const Modal = React.forwardRef((props, ref) => {
   }}>
     <>
       <div className={active ? 'mask active' : 'mask inactive'}/>
-      <div className={clsName} onClick={handleCancel} ref={modalRef}
-           style={{display: 'none'}}>
-        <CSSTransition in={active}
-                       timeout={300}
-            // unmountOnExit
-                       onEnter={() => showDialog(true)}
-                       onExit={() => showDialog(true)}
-                       onExited={() => showDialog(false)}
-                       classNames="dialog-container">
+      <div className={clsName} onClick={handleCancel} ref={modalRef}>
+        <CSSTransition in={active} timeout={300} classNames="dialog-container">
           <div className="dialog-container" ref={containerRef}
                onClick={handleCancel}>
             <div className={contentCls} {...otherProps} ref={contentRef}>

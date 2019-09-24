@@ -6,6 +6,7 @@ import {ModalContext} from '../common/Context';
 import {isNil} from '../Utils';
 import Element from '../common/Element';
 import usePan from '../common/usePan';
+import ModelExtension from './ModalExtension';
 
 const Body = React.forwardRef(
     (props, ref) => useElement(props, ref, 'body'));
@@ -40,5 +41,10 @@ const Header = React.forwardRef((props, ref) => {
 Modal.Header = Header;
 Modal.Body = Body;
 Modal.Footer = Footer;
+Modal.info = ModelExtension.info;
+Modal.warning = ModelExtension.warning;
+Modal.error = ModelExtension.error;
+Modal.success = ModelExtension.success;
+Modal.confirm = ModelExtension.confirm;
 
 export default Modal;

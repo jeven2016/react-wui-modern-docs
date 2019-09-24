@@ -5,7 +5,7 @@ import Title from './Title';
 import {Active, DropdownTriggerType, EventListener} from '../common/Constants';
 import useEvent from '../common/UseEvent';
 import {placePadding, setTransformOrigin} from '../Utils';
-import usePortal from '../common/usePortal';
+import useContainer from '../common/useContainer';
 import * as ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import Element from '../common/Element';
@@ -14,7 +14,7 @@ import Button from '../button';
 
 const Dropdown = React.forwardRef((props, ref) => {
   const [dpState, setDpState] = useState({active: Active.na});
-  const rootElem = usePortal('wui-portals');
+  const rootElem = useContainer('wui-portals');
   const dpRef = ref ? ref : useRef(null);
   const menuRef = useRef(null);
   const {
