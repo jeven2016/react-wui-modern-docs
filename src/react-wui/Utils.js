@@ -1,13 +1,21 @@
 import React from 'react';
-import {isNil} from 'lodash';
+import {
+  isNil,
+  isObject,
+  inRange,
+  isInteger,
+  isString,
+  isBoolean,
+  random,
+} from 'lodash';
+import {createRootElement} from './common/useContainer';
+
+export {isNil, isObject, inRange, isInteger, isString, isBoolean, random};
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
   return Array.isArray(value);
 };
-
-export {isObject, inRange, isInteger, isString, isBoolean} from 'lodash';
-export {isNil};
 
 export const isBlank = (value) => {
   return isNil(value) || /^\s*$/.test(value);
@@ -227,4 +235,27 @@ export const validate = (condition, message) => {
   if (!condition) {
     throw new Error(message);
   }
+};
+
+export const createContainer = (className) => {
+  if (isNil(className)) {
+    className = `wui-container-${random(100, 10000)}`;
+  }
+  let root = document.querySelector(`.${className}`);
+
+  if (!root) {
+    root = document.createElement('div');
+    root.className = className;
+    document.body.insertBefore(root, document.body.lastElementChild);
+  }
+
+  const remove = () => {
+    root.remove();
+  };
+
+  return {
+    container: root,
+    className: className,
+    remove: remove,
+  };
 };

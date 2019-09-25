@@ -1,8 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {Component, useEffect, useRef, useState} from 'react';
 import * as ReactDOM from 'react-dom';
 import Modal from './Modal';
 import {Button, IconError, IconInfo, IconOk, IconWarning} from '../index';
-import {isNil} from '../Utils';
+import {createContainer, isNil} from '../Utils';
 import Row from '../grid/Row';
 import Col from '../grid/Col';
 
@@ -45,8 +45,9 @@ const textColStyle = {
   flex: '0 1 auto',
 };
 
-let SubModal = (props) => {
+const SubModal = (props) => {
   const {
+    callback,
     infoType, header, title, body,
     okText = 'OK', cancelText = 'Cancel',
     onOk, onCancel, icon, ...otherProps
@@ -54,17 +55,23 @@ let SubModal = (props) => {
   const [active, setActive] = useState(false);
   const modalHeader = isNil(header) ? null :
       <Modal.Header>{header}</Modal.Header>;
-
+debugger
   //todo :a workaround since ReactDOM.render cannot work perfectly with CSSTransition
   useEffect(() => {
     const timeout = setTimeout(() => {
       window.clearTimeout(timeout);
       setActive(true);
     }, 200);
+
+    return () => {
+      console.log('what..........');
+    };
   }, []);
 
   const closeModal = (e) => {
     setActive(false);
+
+    callback();
   };
 
   const handleOk = (e) => {
@@ -124,18 +131,21 @@ let SubModal = (props) => {
     </Modal.Footer>
   </Modal>;
 
-  return modal;
-
+  return  modal;
 };
 
-let show = (infoType, config) => {
-  let container = document.createElement('div');
-  container.className = 'alert-container';
-  document.body.appendChild(container);
-  const modal = <SubModal infoType={infoType} {...config} />;
+const container = createContainer();
+const show = (infoType, config) => {
+
+//global container for these modals
+debugger
+  const modal = <SubModal callback={() => {
+    // ReactDOM.render(null, container.container);
+    // container.remove();
+  }} infoType={infoType} {...config} />;
 
   //CSSTransition not working for ReactDOM.render, todo
-  ReactDOM.render(modal, container);
+  ReactDOM.render(modal, container.container);
 };
 
 export default {

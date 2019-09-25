@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from 'react';
  * Creates DOM element to be used as React root.
  * @returns {HTMLElement}
  */
-function createRootElement(id) {
+export function createRootElement(id) {
   const rootContainer = document.createElement('div');
   rootContainer.setAttribute('id', id);
   return rootContainer;
@@ -14,7 +14,7 @@ function createRootElement(id) {
  * Appends element as last child of body.
  * @param {HTMLElement} rootElem
  */
-function addRootElement(rootElem) {
+export function addRootElement(rootElem) {
   document.body.insertBefore(
       rootElem,
       document.body.lastElementChild,

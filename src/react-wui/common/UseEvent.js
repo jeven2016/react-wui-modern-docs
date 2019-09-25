@@ -26,10 +26,11 @@ const useEvent = (name, handler, listenable = true, elem = window) => {
     if (!isSupportedBrowser) {
       return;
     }
-    console.log("add a event listener");
+    console.log('add a event listener');
     const listener = event => handlerRef.current(event);
     elem.addEventListener(name, listener);
     return () => {
+      console.log('remove a event listener');
       elem.removeEventListener(name, listener);
     };
   }, [name, elem]);
