@@ -376,6 +376,7 @@ export const ModelF = (props) => {
         Modal.confirm({
           type: 'primary',
           header: '确认删除',
+          alignCenter: true,
           title: '您确认要删除此记录吗？',
           body: '请稍候在系统管理界面上审核该结果，谢谢',
           okText: '确定',

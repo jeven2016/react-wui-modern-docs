@@ -1,14 +1,13 @@
 import React from 'react';
 import {
+  inRange,
+  isBoolean,
+  isInteger,
   isNil,
   isObject,
-  inRange,
-  isInteger,
   isString,
-  isBoolean,
   random,
 } from 'lodash';
-import {createRootElement} from './common/useContainer';
 
 export {isNil, isObject, inRange, isInteger, isString, isBoolean, random};
 
@@ -258,4 +257,12 @@ export const createContainer = (className) => {
     className: className,
     remove: remove,
   };
+};
+
+export const execute = (handler, timeout) => {
+  const realTimeout = setTimeout(() => {
+    clearTimeout(realTimeout);
+    handler();
+  }, timeout);
+
 };

@@ -1,8 +1,8 @@
-import React, {Component, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import * as ReactDOM from 'react-dom';
 import Modal from './Modal';
 import {Button, IconError, IconInfo, IconOk, IconWarning} from '../index';
-import {createContainer, isNil} from '../Utils';
+import {createContainer, execute, isNil} from '../Utils';
 import Row from '../grid/Row';
 import Col from '../grid/Col';
 
@@ -52,25 +52,18 @@ const SubModal = (props) => {
     okText = 'OK', cancelText = 'Cancel',
     onOk, onCancel, icon, ...otherProps
   } = props;
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
+  const okBtnRef = useRef(null);
   const modalHeader = isNil(header) ? null :
       <Modal.Header>{header}</Modal.Header>;
-debugger
-  //todo :a workaround since ReactDOM.render cannot work perfectly with CSSTransition
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      window.clearTimeout(timeout);
-      setActive(true);
-    }, 200);
 
-    return () => {
-      console.log('what..........');
-    };
-  }, []);
+  //focus on the ok button by default
+  useEffect(() => {
+    okBtnRef.current.focus();
+  });
 
   const closeModal = (e) => {
     setActive(false);
-
     callback();
   };
 
@@ -103,7 +96,7 @@ debugger
   };
 
   const modal = <Modal active={active}
-                       onCancel={closeModal}
+                       onCancel={handleCancel}
                        {...otherProps}>
     {modalHeader}
     <Modal.Body>
@@ -122,7 +115,7 @@ debugger
       </div>
     </Modal.Body>
     <Modal.Footer>
-      <Button hasMinWidth={true} color="blue"
+      <Button hasMinWidth={true} color="blue" ref={okBtnRef}
               onClick={handleOk}>{okText}</Button>
       {InfoType.confirm !== infoType ? null :
           <Button hasMinWidth={true}
@@ -131,17 +124,17 @@ debugger
     </Modal.Footer>
   </Modal>;
 
-  return  modal;
+  return modal;
 };
 
-const container = createContainer();
 const show = (infoType, config) => {
-
-//global container for these modals
-debugger
+  const container = createContainer();
   const modal = <SubModal callback={() => {
-    // ReactDOM.render(null, container.container);
-    // container.remove();
+    execute(() => {
+      ReactDOM.render(null, container.container);
+      container.remove();
+    }, 400);
+
   }} infoType={infoType} {...config} />;
 
   //CSSTransition not working for ReactDOM.render, todo

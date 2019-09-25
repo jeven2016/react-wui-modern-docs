@@ -6,7 +6,6 @@ import useContainer from '../common/useContainer';
 import useEvent from '../common/UseEvent';
 import {EventListener} from '../common/Constants';
 import {isNil} from '../Utils';
-import {CSSTransition} from 'react-transition-group';
 import {preventEvent} from '../event';
 
 const ModalSizeStyle = {
@@ -26,7 +25,7 @@ const Modal = React.forwardRef((props, ref) => {
     children, alignCenter,
     ...otherProps
   } = props;
-
+  console.log('alignCenter=' + alignCenter);
   const rootElem = isNil(modalContainerDom)
       ? useContainer('wui-modals')
       : modalContainerDom;
@@ -61,6 +60,7 @@ const Modal = React.forwardRef((props, ref) => {
       {
         [type]: type,
         active: active,
+        inactive: !active,
       },
   );
 
@@ -86,14 +86,12 @@ const Modal = React.forwardRef((props, ref) => {
     <>
       <div className={active ? 'mask active' : 'mask inactive'}/>
       <div className={clsName} onClick={handleCancel} ref={modalRef}>
-        <CSSTransition in={active} timeout={300} classNames="dialog-container">
-          <div className="dialog-container" ref={containerRef}
-               onClick={handleCancel}>
-            <div className={contentCls} {...otherProps} ref={contentRef}>
-              {children}
-            </div>
+        <div className="dialog-container" ref={containerRef}
+             onClick={handleCancel}>
+          <div className={contentCls} {...otherProps} ref={contentRef}>
+            {children}
           </div>
-        </CSSTransition>
+        </div>
       </div>
     </>
   </ModalContext.Provider>;
