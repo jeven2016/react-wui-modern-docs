@@ -26,6 +26,8 @@ refer to the implementation of NavBar
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp
  
  
+ *animation -> react-spring  !!
+ 
  Reference:
  react-beautiful-dnd-zh
  react-dnd

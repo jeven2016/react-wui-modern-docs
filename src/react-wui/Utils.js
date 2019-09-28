@@ -20,12 +20,6 @@ export const isBlank = (value) => {
   return isNil(value) || /^\s*$/.test(value);
 };
 
-export const getRandomInt = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
 export const NavbarContext = React.createContext({});
 export const RadioGroupContext = React.createContext({});
 
@@ -236,15 +230,15 @@ export const validate = (condition, message) => {
   }
 };
 
-export const createContainer = (className) => {
-  if (isNil(className)) {
-    className = `wui-container-${random(100, 10000)}`;
+export const createContainer = (id) => {
+  if (isNil(id)) {
+    id = `wui-container-${random(100, 10000)}`;
   }
-  let root = document.querySelector(`.${className}`);
+  let root = document.querySelector(`#${id}`);
 
   if (!root) {
     root = document.createElement('div');
-    root.className = className;
+    root.id = id;
     document.body.insertBefore(root, document.body.lastElementChild);
   }
 
@@ -254,15 +248,15 @@ export const createContainer = (className) => {
 
   return {
     container: root,
-    className: className,
+    id: id,
     remove: remove,
   };
 };
 
 export const execute = (handler, timeout) => {
-  const realTimeout = setTimeout(() => {
-    clearTimeout(realTimeout);
+  const timer = setTimeout(() => {
+    clearTimeout(timer);
     handler();
   }, timeout);
-
+  return timer;
 };

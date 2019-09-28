@@ -95,7 +95,8 @@ const Modal = React.forwardRef((props, ref) => {
       </div>
     </>
   </ModalContext.Provider>;
-  return ReactDOM.createPortal(modal, rootElem);
+  return modal;
+  // return ReactDOM.createPortal(modal, rootElem);
 });
 
 export default Modal;

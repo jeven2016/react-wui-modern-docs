@@ -1,98 +1,112 @@
-import React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import ReactDOM from 'react-dom';
-import BaseComponent from './BaseComponent';
-import {getRandomInt} from './Utils';
+import {createContainer, getLeftIfCentered, isString, random} from './Utils';
 import Alert from './Alert';
-import {WindowEventHandler} from './event';
+import {EventListener} from './common/Constants';
+import useEvent from './common/UseEvent';
 
-let GLOBAL_ALERT;
-let Utils = BaseComponent.getUtils();
-const DEFAULT_CONFIG = {
-  position: 'top',
-  duration: 3000,
-  top: '5rem',
-
+const SizeStyle = {
+  small: 'alert-container-width-sm',
 };
 
-class Notification extends BaseComponent {
-  constructor(args) {
-    super(args);
-    this.state = {
-      messages: [],
-    };
+const PositionType = {
+  topCenter: 'top-center',
+  topLeft: 'top-left',
+  topRight: 'top-right',
+  bottomLeft: 'bottom-left',
+  bottomRight: 'bottom-right',
+};
+
+const DEFAULT_CONFIG = {
+  position: 'top',
+  duration: 5000,
+  top: '5rem',
+};
+
+const Proxy = (() => {
+  let add, initialized = false;
+  const attachFunc = ({add: attachedAdd}) => {
+    add = attachedAdd;
+    initialized = true;
+  };
+
+  return {
+    initialized: () => initialized,
+    attach: attachFunc,
+    add: (msg) => add(msg),
+  };
+})();
+
+const Notification = (props) => {
+  const {msgStore, position = PositionType.topCenter} = props;
+  const size = 'small'; //only one size provided
+  const sizeClassName = SizeStyle[size];
+  const [queue, setQueue] = useState([]);
+  const cntRef = useRef(null);
+
+  const addMsg = (msg) => {
+    console.log(queue.length + 1);
+    setQueue(q => [msg, ...q]);
+  };
+
+  if (!msgStore.initialized()) {
+    msgStore.attach({add: addMsg});
   }
 
-  componentWillUnmount() {
-    let cnt = Notification.container;
-    if (cnt) {
-      cnt.parent.removeChild(cnt);
+  useEvent(EventListener.resize, (evt) => {
+    move();
+  }, position === PositionType.topCenter);
+
+  useEffect(() => {
+    if (position === PositionType.topCenter) {
+      move();
     }
-    console.log('container will unmount');
-  }
 
-  componentDidMount() {
-    this.updatePosition();
-  }
+    return () => {
+      let cnt = Notification.container;
+      cnt && cnt.remove();
+      console.log('container is unmounted');
+    };
+  }, []);
 
-  updatePosition() {
-    if (!Notification.container) {
+  const move = () => {
+    let cnt = cntRef.current;
+    if (!cnt) {
       return;
     }
-    let windowWidth = document.documentElement.getBoundingClientRect().width;
-    let containerWidth = Notification.container.getBoundingClientRect().width;
+    console.log('move');
+    cnt.style.left = getLeftIfCentered(
+        cnt, document.documentElement);
+    cnt.style.top = DEFAULT_CONFIG.top;
+  };
+  console.log(queue.length);
+  const removeMsg = (key) => {
+    const newQueue = [...queue.filter(msg => msg.key !== key)];
+    setQueue(newQueue);
+  };
 
-    Notification.container.style.left = (windowWidth - containerWidth) / 2
-        + 'px';
-  }
-
-  static container;
-
-  static initContainer(handleNfInstance) {
-    if (Notification.container) {
-      return Notification.container;
-    }
-    let container = document.querySelector('.alert-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.className = 'alert-container';
-      document.body.appendChild(container);
-      container.style.top = DEFAULT_CONFIG.top;
-
-      Notification.container = container;
-    }
-    ReactDOM.createPortal(<Notification ref={handleNfInstance}/>, container);
-    // ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
-    return Notification.container;
-  }
-
-  render() {
-
-    return <>
-      <WindowEventHandler onResize={this.updatePosition}/>
+  return <div>
+    <div className={`alert-container ${sizeClassName} ${position}`}
+         ref={cntRef}>
       {
-        this.state.messages.map(({key, ...other}) => {
-          return <Alert key={key} {...other}/>;
-        })
+        queue.map(({key, ...other}) => {
+          return <Alert autoUnmout={false} key={key} {...other}
+                        duration={DEFAULT_CONFIG.duration}
+                        onClose={() => removeMsg(key)}
+          />;
+        }).reverse()
       }
-    </>;
-  }
+    </div>
+  </div>;
 
-  add(msg) {
-    const {messages} = this.state;
-    let currentMsgs = messages.concat(msg);
-    this.setState({
-      messages: currentMsgs,
-    });
-  }
-
-}
+};
 
 /**
  * Generate a key for inner Alert intances
  * @returns {string}
  */
 let generateKey = () => {
-  return `nf-key-${Date.now()}-${getRandomInt(1000, 10000)}`;
+  return `nf-key-${Date.now()}-${random(1000, 10000)}`;
 };
 
 /**
@@ -100,49 +114,45 @@ let generateKey = () => {
  * @param type
  * @param message
  */
-let send = (type, message) => {
+let send = (type, config) => {
   const key = generateKey();
-  let msg = Utils.isString(message) ? {
+  let msg = isString(config) ? {
         key: key,
         duration: DEFAULT_CONFIG.duration,
         type: type,
-        body: message,
+        body: config,
       }
-      : {key: key, duration: DEFAULT_CONFIG.duration, type: type, ...message};
+      : {key: key, duration: DEFAULT_CONFIG.duration, type: type, ...config};
 
-  if (GLOBAL_ALERT) {
-    GLOBAL_ALERT.add(msg);
+  const proxy = Proxy;
+  if (proxy.initialized()) {
+    proxy.add(msg);
     return;
   }
-
-  const handleNfInstance = (notificationInstance) => {
-    GLOBAL_ALERT = notificationInstance;
-    notificationInstance.add(msg);
-  };
-
-  let container = Notification.initContainer(handleNfInstance);
-  ReactDOM.render(<Notification ref={handleNfInstance}/>, container);
-
+  let containerObj = createContainer('wui-alert-cont');
+  let notification = ReactDOM.render(<Notification msgStore={proxy}/>,
+      containerObj.container);
+  proxy.add(msg);
 };
 
 export default {
-  info(message) {
-    send('info', message);
+  info(config) {
+    send('info', config);
   },
-  ok(message) {
-    send('ok', message);
+  ok(config) {
+    send('ok', config);
   },
-  warning(message) {
-    send('warning', message);
+  warning(config) {
+    send('warning', config);
   },
-  error(message) {
-    send('error', message);
+  error(config) {
+    send('error', config);
   },
 
-  simple(message) {
-    send('simple', message);
+  simple(config) {
+    send('simple', config);
   },
-  mini(message) {
-    send('mini', message);
+  mini(config) {
+    send('mini', config);
   },
 };
