@@ -1,42 +1,43 @@
 import React from 'react';
-import BaseComponent from './BaseComponent';
-import {PopoverTriggerType, Position} from './common/Constants';
-import Popover from './Popover';
+import {PopupCtrlType, Position} from './common/Constants';
+import clsx from 'clsx';
+import PopupController from './common/PopupController';
+import {validateOneChild} from './common/Validators';
 
-export default class Tooltip extends BaseComponent {
-  static defaultProps = {
-    className: 'tooltip',
-    body: null,
-    position: Position.top,
-  };
+const Tooltip = React.forwardRef((props, ref) => {
+  const {
+    className = 'tooltip',
+    triggerBy = PopupCtrlType.hover,
+    extraClassName,
+    position = 'bottom',
+    body,
+    children,
+    ...otherProps
+  } = props;
 
-  static propTypes = {};
+  validateOneChild(props);
 
-  constructor(args) {
-    super(args);
-    this.getContent = this.getContent.bind(this);
-  }
+  let clsName = clsx(extraClassName, className);
+  let positionClassName = `${Position[position]} popover-arrow`;
 
-  getContent({ref, position, onClick, active, body}) {
-    const {className} = this.props;
-    let positionClassName = `${Position[position]} popover-arrow`;
-    return <div onClick={onClick} className={className}
-                style={{display: active ? 'inline-flex' : 'none'}}
-                ref={ref}>
+  const updateChildren = (chd) => {
+    const popupBody = <div className={clsName} ref={ref}>
       <div className={positionClassName}/>
-      <div>
-        {body}
-      </div>
+      {body}
     </div>;
-  }
 
-  render() {
-    const {className, body, position, children, ...otherProps} = this.props;
-    return <Popover triggerBy={PopoverTriggerType.hover}
-                    body={body}
-                    position={position}
-                    getContent={this.getContent} {...otherProps}>
-      {children}
-    </Popover>;
-  }
-}
+    return {body: popupBody, ctrl: children};
+  };
+  return <PopupController
+      ref={ref}
+      position={position}
+      triggerBy={triggerBy}
+      setChildDisabled={false}
+      handleChildren={updateChildren}
+      {...otherProps}>
+    {children}
+  </PopupController>;
+
+});
+
+export default Tooltip;

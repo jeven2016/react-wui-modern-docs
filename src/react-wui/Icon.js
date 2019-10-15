@@ -1,16 +1,10 @@
 import React from 'react';
-import BaseComponent from './BaseComponent';
+import clsx from 'clsx';
 
-export default class Icon extends BaseComponent {
-  static defaultProps = {
-    className: 'icon',
-  };
+const Icon = React.forwardRef((props, ref) => {
+  const {className = 'icon', extraClassName, color, ...otherProps} = props;
+  let clsName = clsx(extraClassName, className);
+  return (<i ref={ref} className={clsName} {...otherProps}/>);
+});
 
-  render() {
-    const {className, appendClass, color, children, ...otherProps} = this.props;
-    let clsName = this.getClass({
-      [appendClass]: appendClass,
-    });
-    return (<i className={clsName} {...otherProps}>{children}</i>);
-  }
-}
+export default Icon;

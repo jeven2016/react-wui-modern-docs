@@ -5,6 +5,7 @@ import {Button, IconError, IconInfo, IconOk, IconWarning} from '../index';
 import {createContainer, execute, isNil} from '../Utils';
 import Row from '../grid/Row';
 import Col from '../grid/Col';
+import {IconQuestion} from '../Icons';
 
 const InfoType = {
   info: 'info',
@@ -91,7 +92,7 @@ const SubModal = (props) => {
       case InfoType.success:
         return <IconOk/>;
       case InfoType.confirm:
-        return <IconInfo/>; //need to update
+        return <IconQuestion/>; //need to update
     }
   };
 

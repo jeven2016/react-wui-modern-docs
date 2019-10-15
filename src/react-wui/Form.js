@@ -1,63 +1,36 @@
 import React from 'react';
-import BaseComponent from './BaseComponent';
 import {FormItemType} from './common/Constants';
+import clsx from 'clsx';
 
-class Label extends BaseComponent {
-  static defaultProps = {
-    className: 'label-col',
-  };
+const Label = React.forwardRef((props, ref) => {
+  const {
+    className = 'label-col',
+    extraClassName, ...otherProps
+  } = props;
+  const clsName = clsx(extraClassName, className);
+  return <label className={clsName} {...otherProps} ref={ref}/>;
+});
 
-  render() {
-    const {className, type, children, apppendClass, ...otherProps} = this.props;
-    let clsName = this.getClass({});
-    return <label className={clsName} {...otherProps}>{children}</label>;
-  }
-}
+const Item = React.forwardRef((props, ref) => {
+  const {className = 'form-item', extraClassName, type, ...otherProps} = props;
+  const formCls = FormItemType[type];
+  let clsName = clsx(extraClassName, className, {
+    [formCls]: formCls,
+  });
+  return <div ref={ref} className={clsName} {...otherProps}/>;
+});
 
-class Item extends BaseComponent {
+const Form = React.forwardRef((props, ref) => {
+  const {
+    nativeType: RootElement = 'form', className = 'form', extraClassName,
+    ...otherProps
+  } = props;
 
-  static defaultProps = {
-    className: 'form-item',
-  };
+  let clsName = clsx(extraClassName, className);
+  return <RootElement className={clsName} {...otherProps} ref={ref}/>;
+});
 
-  render() {
-    const {className, type, children, apppendClass, ...otherProps} = this.props;
-    const formCls = FormItemType[type];
-    let clsName = this.getClass({
-      "form-item": "form-item",
-      [formCls]: formCls,
-    });
-    return <div className={clsName} {...otherProps}>{children}</div>;
-  }
-}
+Form.Item = Item;
+Form.Label = Label;
 
-export default class Form extends BaseComponent {
-
-  static defaultProps = {
-    className: 'form',
-    nativeType: "form"
-  };
-
-  static propTypes = {};
-
-  static Item = Item;
-  static Label = Label;
-
-  constructor(args) {
-    super(args);
-    this.state = {};
-  }
-
-  render() {
-    const {nativeType, className, type, children, apppendClass, ...otherProps} = this.props;
-    const formCls = FormItemType[type];
-
-    let clsName = this.getClass();
-    let RootElement = nativeType;
-    return <RootElement className={clsName} {...otherProps}>
-      {children}
-    </RootElement>;
-
-  }
-
-}
+export default Form;

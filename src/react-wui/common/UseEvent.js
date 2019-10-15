@@ -1,4 +1,7 @@
 import {useEffect, useRef} from 'react';
+import {isFunction} from '../Utils';
+
+//Tipcally the handler combined with useCallback would be better
 
 //refer to https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 const useEvent = (name, handler, listenable = true, elem = window) => {
@@ -21,6 +24,11 @@ const useEvent = (name, handler, listenable = true, elem = window) => {
     if (!listenable) {
       return;
     }
+
+    if (isFunction(elem)) {
+      elem = elem();
+    }
+
     //only support IE >=11 and other modern browsers
     const isSupportedBrowser = elem && elem.addEventListener;
     if (!isSupportedBrowser) {
@@ -33,7 +41,7 @@ const useEvent = (name, handler, listenable = true, elem = window) => {
       console.log('remove a event listener');
       elem.removeEventListener(name, listener);
     };
-  }, [name, elem]);
+  }, [name]);
 };
 
 export default useEvent;

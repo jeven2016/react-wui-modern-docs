@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Alert,
   Button,
-  IconError,
+  IconError, IconInfo, IconOk,
   IconWarning,
-  Notification,
+  Notification, Radio, RadioGroup,
 } from '../../../react-wui';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlane} from '@fortawesome/free-solid-svg-icons';
+import {DocRow} from '../../common/DocComponents';
 
 export const AlertA = () => {
   let comp = <>
@@ -63,27 +64,77 @@ export const AlertB = () => {
 };
 
 export const AlertC = () => {
+  const [position, setPosition] = useState('topRight');
+
+  Notification.config({
+    position: position,
+  });
+
+  const change = (value) => setPosition(value);
+
   let comp = <>
-    <Button onClick={() => Notification.info({body: 'hello'})}>Info</Button>
-    <Button onClick={() => Notification.ok('are you kidding me?')}>Ok</Button>
-    <Button
-        onClick={() => Notification.warning('warning message')}>Warning</Button>
-    <Button onClick={() => Notification.error('error message')}>Error</Button>
+    <DocRow>
+      <strong>Position:</strong> &nbsp;
+      <RadioGroup defaultValue={position} onChange={change}>
+        <Radio label="Top Left" value="topLeft"/>
+        <Radio label="Top Center" value="topCenter"/>
+        <Radio label="Top Right" value="topRight"/>
+        <Radio label="Bottom Left" value="bottomLeft"/>
+        <Radio label="Bottom Right" value="bottomRight"/>
+      </RadioGroup>
+    </DocRow>
+    <DocRow>
+      <Button onClick={() => Notification.simple({
+        title: 'Simple Message',
+        body: 'This is a simple message.',
+        closable: true,
+      })}>Simple</Button>
 
-    <Button onClick={() => Notification.info({
-      title: 'INFO',
-      body: 'hello',
-      closable: true,
-    })}>Info</Button>
+      <Button onClick={() => Notification.simple({
+        title: 'Simple Message',
+        body: 'This is a simple message.',
+        icon: <IconInfo/>,
+        closable: true,
+      })}>Info</Button>
 
-    <Button onClick={() => Notification.simple({
-      title: 'Simple Message',
-      body: 'This is a simple message.',
-      closable: true
-    })}>Simple2</Button>
+      <Button onClick={() => Notification.simple({
+        title: 'Simple Message',
+        body: 'This is a simple message.',
+        icon: <IconOk style={{color: '#49b847'}}/>,
+        closable: true,
+      })}>OK</Button>
 
-    <Button onClick={() => Notification.mini(
-        'Please double check your system.')}>Mini</Button>
+      <Button onClick={() => Notification.simple({
+        title: 'Simple Message',
+        body: 'This is a simple message.',
+        icon: <IconWarning style={{color: '#c88f3f'}}/>,
+        closable: true,
+      })}>Warning</Button>
+
+      <Button onClick={() => Notification.simple({
+        title: 'Simple Message',
+        body: 'This is a simple message.',
+        icon: <IconWarning style={{color: '#d82b3a'}}/>,
+        closable: true,
+      })}>Error</Button>
+    </DocRow>
+
+    <DocRow>
+      <Button onClick={() => Notification.info({body: 'hello'})}>Info</Button>
+      <Button onClick={() => Notification.ok('are you kidding me?')}>Ok</Button>
+      <Button
+          onClick={() => Notification.warning(
+              'warning message')}>Warning</Button>
+      <Button onClick={() => Notification.error('error message')}>Error</Button>
+
+      <Button onClick={() => Notification.info({
+        title: 'INFO',
+        body: 'hello',
+        closable: true,
+      })}>Info</Button>
+      <Button onClick={() => Notification.mini(
+          'Please double check your system.')}>Mini</Button>
+    </DocRow>
   </>;
 
   let code = `

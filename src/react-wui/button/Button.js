@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Element from '../common/Element';
+import useMultipleRefs from '../common/UseMultipleRefs';
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -11,6 +12,7 @@ const Button = React.forwardRef((props, ref) => {
     type,
     block,
     color,
+    directRef,
     active = false,
     size,
     outline,
@@ -24,6 +26,7 @@ const Button = React.forwardRef((props, ref) => {
   } = props;
 
   const btnRef = ref ? ref : useRef(null);
+  const multipleRefs = useMultipleRefs(btnRef, directRef);
 
   useEffect(() => {
     // focus && btnRef.current.focus();
@@ -45,7 +48,7 @@ const Button = React.forwardRef((props, ref) => {
       <Element className={clsName} onClick={onClick} disabled={disabled}
                nativeType={nativeType ? nativeType : 'button'}
                {...otherProps}
-               ref={btnRef}>
+               ref={multipleRefs}>
         {children}
       </Element>
   );

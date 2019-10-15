@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import Header from './doc/common/Header';
 import {HashRouter as Router, Route} from 'react-router-dom';
 import Home from './doc/common/Home';
 import MainPage from './doc/docs/MainPage';
 
 import intl from 'react-intl-universal';
+import MenuReducer from './doc/common/MenuReducer';
 
 // locale data
 const locales = {
@@ -12,31 +13,28 @@ const locales = {
   'zh_CN': require('./doc/i18n/zh_CN.json'),
 };
 
-class App extends Component {
+const App = (props) => {
+  const [state, setState] = useState({initDone: false, appliedLocale: 'zh_CN'});
+  const [menuState, dispatch] = useReducer(MenuReducer.reducer,
+      MenuReducer.initState);
 
-  constructor(args) {
-    super(args);
-    this.state = {initDone: false, appliedLocale: 'zh_CN'};
-  }
-
-  componentDidMount() {
-    this.loadLocales();
-  }
-
-  loadLocales() {
+  useEffect(() => {
     // init method will load CLDR locale data according to currentLocale
     // react-intl-universal is singleton, so you should init it only once in your app
     intl.init({
       locales,
-      currentLocale: this.state.appliedLocale,
+      currentLocale: state.appliedLocale,
     }).then(() => {
       // After loading CLDR locale data, start to render
-      this.setState({initDone: true});
+      setState({...state, initDone: true});
     });
-  }
+  }, [state.appliedLocale]);
 
-  render() {
-    return this.state.initDone ?
+  return state.initDone ?
+      <MenuReducer.context.Provider value={{
+        menuState: menuState,
+        dispatch: dispatch,
+      }}>
         <Router>
           <div>
             <Header/>
@@ -46,8 +44,9 @@ class App extends Component {
             </div>
           </div>
         </Router>
-        : '';
-  }
-}
+      </MenuReducer.context.Provider>
+      : '';
+
+};
 
 export default App;

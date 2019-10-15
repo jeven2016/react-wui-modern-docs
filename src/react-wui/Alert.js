@@ -15,8 +15,8 @@ const AlertType = {
 const Alert = React.forwardRef((props, ref) => {
   const {
     type, children, className = 'alert', extraClassName,
-    duration, onClose, onUnmount,
-    title, body, closable = true, icon, isGlobal,
+    duration = 4000, onClose, onUnmount,
+    title, body, closable = true, showCloseIcon = true, icon, isGlobal,
     showIcon = true,
     autoUnmout = true,
     ...otherProps
@@ -26,11 +26,12 @@ const Alert = React.forwardRef((props, ref) => {
 
   let timer;
   useEffect(() => {
-    console.log('useEffect... ');
     //auto close while the duration is set
     if (active && closable
         && !isNil(duration) && duration > 0) {
+      console.log("set duration")
       timer = execute(() => {
+        console.log("timer.....")
         handleClose(null);
       }, duration);
     }
@@ -38,7 +39,7 @@ const Alert = React.forwardRef((props, ref) => {
     return () => {
       !isNil(timer) && clearTimeout(timer);
     };
-  }, [active]);
+  }, [active, closable, duration]);
 
   const handleClose = (e) => {
     setActive(false);
@@ -87,6 +88,7 @@ const Alert = React.forwardRef((props, ref) => {
         setUnmounted(true);
       }
       onClose && onClose();
+      console.log("unmounted.....")
     };
 
     let content = <div className={clsName} {...otherProps} ref={ref}
@@ -103,7 +105,7 @@ const Alert = React.forwardRef((props, ref) => {
 
       </div>
       {
-        !isNil(closable) ?
+        showCloseIcon ?
             <div className="alert-close">
               <button onClick={handleClose}
                       className="button close-btn">x

@@ -1,7 +1,7 @@
-import React from "react";
-import DocComponent from "../DocComponent";
-import intl from "react-intl-universal";
-import {LoaderA, LoaderB, LoaderC, LoaderD} from "./Loaders";
+import React from 'react';
+import DocComponent from '../DocComponent';
+import intl from 'react-intl-universal';
+import {LoaderA, LoaderB, LoaderC, LoaderD, LoaderE} from './Loaders';
 
 export default class LoaderIndex extends DocComponent {
   constructor(args) {
@@ -43,6 +43,11 @@ export default class LoaderIndex extends DocComponent {
         <section>
           <h3 id="loaderD">{intl.get('content.loader.sample.loaderD')}</h3>
           <LoaderD/>
+        </section>
+
+        <section>
+          <h3 id="loaderE">{intl.get('content.loader.sample.loaderE')}</h3>
+          <LoaderE/>
         </section>
 
       </div>

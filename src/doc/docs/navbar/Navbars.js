@@ -1,14 +1,14 @@
 import React from 'react';
-import {Button, Dropdown, Icon, Input, Menu, NavBar} from "../../../react-wui";
-import SamplePannel from "../../common/SamplePannel";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Button, Dropdown, Icon, Input, Menu, NavBar} from '../../../react-wui';
+import SamplePannel from '../../common/SamplePannel';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faAlignJustify,
   faList,
   faMusic,
-  faSearch
-} from "@fortawesome/free-solid-svg-icons";
-import {faUser} from "@fortawesome/free-regular-svg-icons";
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
+import {faUser} from '@fortawesome/free-regular-svg-icons';
 
 export const NavbarA = () => {
   let comp = <>
@@ -32,7 +32,7 @@ export const NavbarA = () => {
       </NavBar.List>
     </NavBar>
 
-    <NavBar style={{marginTop: "2rem"}}>
+    <NavBar style={{marginTop: '2rem'}}>
       <NavBar.Title>
         Navbar
       </NavBar.Title>
@@ -71,9 +71,7 @@ export const NavbarB = () => {
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item>
-          <NavBar.Link href="javascript:void(0);">
-            用户
-          </NavBar.Link>
+          用户
         </NavBar.Item>
         <NavBar.Item active={true}>
           角色
@@ -82,9 +80,9 @@ export const NavbarB = () => {
           权限
         </NavBar.Item>
         <NavBar.Item>
-          <Dropdown triggerBy="hover" style={{minWidth: "5rem"}}>
+          <Dropdown triggerBy="hover" style={{minWidth: '5rem'}}>
             <Dropdown.Title>下拉菜单</Dropdown.Title>
-            <Menu>
+            <Menu hasBorder>
               <Menu.List>
                 <Menu.Item id={1} value={1} text="Action 1"/>
                 <Menu.Item id={2} value={2} text="Action 2"/>
@@ -112,11 +110,9 @@ export const NavbarC = () => {
   let comp = <>
     <NavBar type="primary">
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item>
@@ -151,11 +147,9 @@ export const NavbarD = () => {
   let comp = <>
     <NavBar type="primary">
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true} hasBar={true}>
@@ -183,13 +177,11 @@ export const NavbarD = () => {
 
 export const NavbarE = () => {
   let comp = <>
-    <NavBar type="primary" appendClass="bg-color-purple">
+    <NavBar type="primary" extraClassName="bg-color-purple">
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>
@@ -204,14 +196,12 @@ export const NavbarE = () => {
       </NavBar.List>
     </NavBar>
 
-    <NavBar type="primary" appendClass="bg-color-black"
-            style={{marginTop: "1rem"}}>
+    <NavBar type="primary" extraClassName="bg-color-black"
+            style={{marginTop: '1rem'}}>
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>
@@ -226,14 +216,12 @@ export const NavbarE = () => {
       </NavBar.List>
     </NavBar>
 
-    <NavBar type="primary" appendClass="bg-color-green"
-            style={{marginTop: "1rem"}}>
+    <NavBar type="primary" extraClassName="bg-color-green"
+            style={{marginTop: '1rem'}}>
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>
@@ -248,14 +236,12 @@ export const NavbarE = () => {
       </NavBar.List>
     </NavBar>
 
-    <NavBar type="primary" appendClass="bg-color-teal"
-            style={{marginTop: "1rem"}}>
+    <NavBar type="primary" extraClassName="bg-color-teal"
+            style={{marginTop: '1rem'}}>
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>
@@ -270,14 +256,12 @@ export const NavbarE = () => {
       </NavBar.List>
     </NavBar>
 
-    <NavBar type="primary" appendClass="bg-color-brown"
-            style={{marginTop: "1rem"}}>
+    <NavBar type="primary" extraClassName="bg-color-brown"
+            style={{marginTop: '1rem'}}>
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>
@@ -307,11 +291,9 @@ export const NavbarF = () => {
   let comp = <>
     <NavBar type="primary">
       <NavBar.Title>
-        <NavBar.Link href="javascript:void(0);">
-          <i><FontAwesomeIcon icon={faMusic}
-                              style={{marginRight: "0.5rem"}}/></i>
-          音乐网站
-        </NavBar.Link>
+        <i><FontAwesomeIcon icon={faMusic}
+                            style={{marginRight: '0.5rem'}}/></i>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item>
@@ -327,7 +309,7 @@ export const NavbarF = () => {
                 <FontAwesomeIcon icon={faUser}/>
               </Button>
             </Dropdown.Title>
-            <Menu>
+            <Menu hasBox>
               <Menu.List>
                 <Menu.Item id={1} value={1} text="Action 1"/>
                 <Menu.Item id={2} value={2} text="Action 2"/>
@@ -345,8 +327,7 @@ export const NavbarF = () => {
                 <FontAwesomeIcon icon={faList}/>
               </Button>
             </Dropdown.Title>
-            <Menu>
-
+            <Menu hasBox>
               <Menu.List>
                 <Menu.Item id={1} value={1} text="Action 1"/>
                 <Menu.Item id={2} value={2} text="Action 2"/>
@@ -378,11 +359,9 @@ export const NavbarG = () => {
         <NavBar.Switch>
           <FontAwesomeIcon icon={faAlignJustify}/>
         </NavBar.Switch>
-        <NavBar.Link href="javascript:void(0);">
-          <FontAwesomeIcon icon={faMusic}
-                           style={{marginRight: "0.5rem"}}/>
-          音乐网站
-        </NavBar.Link>
+        <FontAwesomeIcon icon={faMusic}
+                         style={{marginRight: '0.5rem'}}/>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>
@@ -406,16 +385,14 @@ export const NavbarG = () => {
       </NavBar.List>
     </NavBar>
 
-    <NavBar type="primary" style={{marginTop: "2rem"}}>
+    <NavBar type="primary" style={{marginTop: '2rem'}}>
       <NavBar.Title>
         <NavBar.Switch>
           <FontAwesomeIcon icon={faAlignJustify}/>
         </NavBar.Switch>
-        <NavBar.Link href="javascript:void(0);">
-          <FontAwesomeIcon icon={faMusic}
-                           style={{marginRight: "0.5rem"}}/>
-          音乐网站
-        </NavBar.Link>
+        <FontAwesomeIcon icon={faMusic}
+                         style={{marginRight: '0.5rem'}}/>
+        音乐网站
       </NavBar.Title>
       <NavBar.List>
         <NavBar.Item hasBackground={true}>

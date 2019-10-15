@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 //https://material.io/tools/icons/?icon=alarm_add&style=round
 export const IconInfo = (props) => {
   return <svg className="svg icon" xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ export const IconClear = (props) => {
     <path
         d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
     <path d="M0 0h24v24H0z" fill="none"/>
-  </svg>
+  </svg>;
 };
 
 export const IconArrowLeft = (props) => {
@@ -149,7 +149,6 @@ export const IconRadioChecked = (props) => {
 
 export const IconList = (props) => {
   return <svg className="svg icon" xmlns="http://www.w3.org/2000/svg"
-              width="1.5em"
               aria-hidden="true"
               viewBox="0 0 24 24" style={props.style}>
     <path d="M2 16v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20V6H2z"/>
@@ -163,6 +162,15 @@ export const IconSearch = (props) => {
               viewBox="0 0 24 24" style={props.style}>
     <path
         d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+  </svg>;
+};
+
+export const IconQuestion = (props) => {
+  return <svg className="svg icon" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" focusable={false}
+              width="1em" height="1em" viewBox="0 0 24 24" style={props.style}>
+    <path
+        d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
   </svg>;
 };
 

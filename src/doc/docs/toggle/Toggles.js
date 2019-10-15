@@ -1,20 +1,21 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Dropdown, Icon, Toggle, Tooltip} from '../../../react-wui';
+import {Icon, Toggle, Tooltip} from '../../../react-wui';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArchive,
   faArrowDown, faCar,
   faCheck, faPlane, faQuestion, faTimes, faVoteYea,
 } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../../react-wui/button';
 
 export const ToggleA = () => {
   let comp = <>
     <Toggle/>
-    <Toggle turnOn/>
+    <Toggle active/>
 
     <Tooltip body="This toggle is disabled.">
-      <Toggle turnOn disabled/>
+      <Toggle active disabled/>
     </Tooltip>
   </>;
 

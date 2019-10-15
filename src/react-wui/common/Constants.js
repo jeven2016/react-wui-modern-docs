@@ -4,11 +4,6 @@ export const InputBorderType = {
   error: 'input-error',
 };
 
-export const TransparentbtnStyle = {
-  background: 'transparent',
-  border: 'none',
-  outline: 'none',
-};
 
 export const NavBarFixedTypes = ['top', 'bottom'];
 
@@ -33,6 +28,14 @@ export const MenuClassName = {
   list: 'menu-list',
   submenu: 'submenu',
   item: 'item',
+};
+
+export const PopupCtrlType = {
+  hover: 'hover',
+  click: 'click',
+
+  isHover: (value) => value === PopupCtrlType.hover,
+  isClick: (value) => value === PopupCtrlType.click,
 };
 
 export const DropdownTriggerType = {
@@ -68,6 +71,10 @@ export const Position = {
   topRight: 'top-right',
   bottomLeft: 'bottom-left',
   bottomRight: 'bottom-right',
+  leftTop: 'left',
+  leftBottom: 'left',
+  rightTop: 'right',
+  rightBottom: 'right',
 };
 
 export const PopoverTriggerType = {
@@ -106,12 +113,20 @@ export const Active = {
   na: 'na',
   active: 'active',
   disactive: 'disactive',
+
+  isNa: (value) => Active.na === value,
+  isActive: (value) => Active.active === value,
+  convertBool: (boolValue) => boolValue ? Active.active : Active.disactive,
 };
 
 //=================================
 export const EventListener = {
   click: 'click',
   mouseEnter: 'mouseover',
-  resize: "resize",
-  keyDown: "keydown"
+  mouseLeave: 'mouseleave',
+  focus: 'focus',
+  blur: 'blur',
+  resize: 'resize',
+  keyDown: 'keydown',
+  scroll: 'scroll',
 };

@@ -3,13 +3,23 @@ import {
   inRange,
   isBoolean,
   isInteger,
+  isFunction,
   isNil,
   isObject,
   isString,
   random,
 } from 'lodash';
 
-export {isNil, isObject, inRange, isInteger, isString, isBoolean, random};
+export {
+  isNil,
+  isObject,
+  inRange,
+  isInteger,
+  isFunction,
+  isString,
+  isBoolean,
+  random,
+};
 
 export const isArray = (value) => {
   // return Object.prototype.toString.call(value) === "[object Array]";
@@ -20,7 +30,6 @@ export const isBlank = (value) => {
   return isNil(value) || /^\s*$/.test(value);
 };
 
-export const NavbarContext = React.createContext({});
 export const RadioGroupContext = React.createContext({});
 
 /**
@@ -30,30 +39,31 @@ export const RadioGroupContext = React.createContext({});
  * @param type
  * @param padding
  */
-export const placePadding = (destComponent, ctrl, type, padding = 0) => {
+export const placePadding = (
+    destComponent, ctrl, type, padding = '0px', margin = 0) => {
   switch (type) {
     case 'bottom':
     case 'bottomLeft':
     case 'bottomRight':
-      destComponent.style.paddingTop = `${padding}px`;
+      destComponent.style.paddingTop = `${padding}`;
       break;
     case 'top':
     case 'topLeft':
     case 'topRight':
-      destComponent.style.paddingBottom = `${padding}px`;
+      destComponent.style.paddingBottom = `${padding}`;
       break;
     case 'left':
     case 'leftTop':
     case 'leftBottom':
-      destComponent.style.paddingRight = `${padding}px`;
+      destComponent.style.paddingRight = `${padding}`;
       break;
     case 'right':
     case 'rightTop':
     case 'rightBottom':
-      destComponent.style.paddingLeft = `${padding}px`;
+      destComponent.style.paddingLeft = `${padding}`;
       break;
   }
-  place(destComponent, ctrl, type, 0);
+  place(destComponent, ctrl, type, margin);
 };
 
 //todo: transform : left , right not working
@@ -255,8 +265,8 @@ export const createContainer = (id) => {
 
 export const execute = (handler, timeout) => {
   const timer = setTimeout(() => {
-    clearTimeout(timer);
     handler();
+    clearTimeout(timer);
   }, timeout);
   return timer;
 };

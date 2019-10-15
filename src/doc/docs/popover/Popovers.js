@@ -7,7 +7,8 @@ export const PopoverA = () => {
     <div>
       <Popover position="topLeft"
                body={<span>This is a sample</span>}>
-        <Button outline={true} color="blue">Top Left</Button>
+        <Button outline={true} color="blue"
+                onClick={() => console.log('click button')}>Top Left</Button>
       </Popover>
 
       <Popover position="top"
@@ -74,8 +75,9 @@ export const PopoverB = () => {
 
 export const PopoverC = () => {
   let comp = <>
-    <Popover triggerBy="hover" position="topLeft" header="Header"
-             body={<span>This is a sample</span>}>
+    <Popover triggerBy="hover" position="bottomRight" header="Header"
+             body={<span>This is a sample</span>}
+             triggerBy="hover">
       <Button outline={true} color="blue">Hover</Button>
     </Popover>
   </>;

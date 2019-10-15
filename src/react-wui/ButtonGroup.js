@@ -1,42 +1,36 @@
-import React, {Component} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import Element from './common/Element';
 
-export default class ButtonGroup extends Component {
-  static defaultProps = {
-    disabled: false,
-    className: 'button-group',
-  };
+const ButtonGroup = React.forwardRef((props, ref) => {
+  const {
+    size,
+    outline,
+    block,
+    disabled = false,
+    className = 'button-group',
+    ...otherProps
+  } = props;
 
-  static propTypes = {
-    block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
-    className: PropTypes.string, //the class name of button
-    extraClassName: PropTypes.string, //the customized class need to add
-    size: PropTypes.string, //the size of the button
-    outline: PropTypes.bool,
-  };
+  let clsName = clsx(className, {
+    [size]: size,
+    block: block,
+    outline: outline,
+  });
 
-  render() {
-    const {
-      size,
-      outline,
-      block,
-      className,
-      extraClassName,
-      children,
-      ...otherProps
-    } = this.props;
+  return <Element ref={ref} className={clsName}
+                  disabled={disabled} {...otherProps}/>;
+});
 
-    let clsName = clsx(extraClassName, className, {
-      [size]: size,
-      block: block,
-      outline: outline,
-    });
+ButtonGroup.defaultProps = {};
 
-    return (
-        <div className={clsName} {...otherProps}>
-          {children}
-        </div>
-    );
-  }
-}
+ButtonGroup.propTypes = {
+  block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
+  className: PropTypes.string, //the class name of button
+  extraClassName: PropTypes.string, //the customized class need to add
+  size: PropTypes.string, //the size of the button
+  outline: PropTypes.bool,
+};
+
+export default ButtonGroup;

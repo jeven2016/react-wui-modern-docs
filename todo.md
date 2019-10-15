@@ -21,9 +21,11 @@ refer to the implementation of NavBar
  * useCallback to refactor
  * popover 覆盖了子节点各类监听事件＝》可在dropdown处测试
  *  ReactDOM.render cannot work perfectly with CSSTransition
- * useEvent 反复注册问题
+ * useEvent 反复注册问题,(解决，只关联name的变更)
+ * useEvent 没有加载的组件也会触发，　popover在dropdown 界面触发。。
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp
+ * react suspense -> loading test
  
  
  *animation -> react-spring  !!

@@ -1,3 +1,8 @@
+* {
+  　　　　　　box-sizing: content-box;
+  　　　　　　-moz-box-sizing: inherit;
+  　　　　　　-webkit-box-sizing: inherit;
+}
 
 body {
   background-color: #fff;
@@ -8,6 +13,23 @@ $header-height: 4rem;
 
 .doc {
 
+  &.menu-title {
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2rem;
+    font-style: italic;
+  }
+
+  &.search-row {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &.doc-row {
     margin-top: 1rem;
   }
@@ -17,7 +39,7 @@ $header-height: 4rem;
     margin-bottom: 2rem;
   }
 
-  &.doc-col{
+  &.doc-col {
     display: inline-block;
     margin-right: 1rem;
   }
@@ -28,19 +50,18 @@ $header-height: 4rem;
   }
 
   &.header {
-    height: $header-height;
+    line-height: $header-height;
 
     .title {
       svg {
-        font-size: 1rem;
-        margin-left: 1rem;
+        font-size: 1.5rem;
       }
     }
   }
 
   &.grid-row {
     display: flex;
-    margin: 0 1rem;
+    //margin: 0 1rem;
   }
 
   &.left-nav-col {
@@ -89,9 +110,8 @@ $header-height: 4rem;
     }
   }
 
-  &.title-link {
+  &.doc-title-link {
     font-weight: bold;
-    margin-left: 1rem;
 
     h3 {
       margin: unset;
@@ -217,13 +237,13 @@ $header-height: 4rem;
   }
 }
 
-@media screen and ("min-width": "992px") {
+@media screen and ("min-width": "768px") {
   .doc.left-nav-col, .doc.right-col {
     display: block;
   }
 }
 
-@media screen and ("max-width": "991.95px") {
+@media screen and ("max-width": "768px") {
   .doc.left-nav-col, .doc.right-col {
     display: none;
   }
@@ -233,4 +253,3 @@ $header-height: 4rem;
     flex: 1 1 auto;
   }
 }
-

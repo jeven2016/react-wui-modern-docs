@@ -20,15 +20,12 @@ const Modal = React.forwardRef((props, ref) => {
     modalContainerDom, //internal use
     size = 'medium',
     type, className = 'dialog',
+    hasMask = true,
     extraClassName, onCancel,
     active, autoClose = true,
     children, alignCenter,
     ...otherProps
   } = props;
-  console.log('alignCenter=' + alignCenter);
-  const rootElem = isNil(modalContainerDom)
-      ? useContainer('wui-modals')
-      : modalContainerDom;
 
   const modalRef = ref ? ref : useRef(null);
   const contentRef = useRef(null);
@@ -84,7 +81,11 @@ const Modal = React.forwardRef((props, ref) => {
     onCancel: onCancel,
   }}>
     <>
-      <div className={active ? 'mask active' : 'mask inactive'}/>
+      {
+        hasMask ? <div className={active ? 'mask active' : 'mask inactive'}/>
+            : null
+      }
+
       <div className={clsName} onClick={handleCancel} ref={modalRef}>
         <div className="dialog-container" ref={containerRef}
              onClick={handleCancel}>

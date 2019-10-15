@@ -1,154 +1,77 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import clsx from 'clsx';
+import React, {useCallback, useRef} from 'react';
 import Menu from '../menu';
 import Title from './Title';
-import {Active, DropdownTriggerType, EventListener} from '../common/Constants';
-import useEvent from '../common/UseEvent';
-import {placePadding, setTransformOrigin} from '../Utils';
-import useContainer from '../common/useContainer';
-import * as ReactDOM from 'react-dom';
-import {CSSTransition} from 'react-transition-group';
-import Element from '../common/Element';
 import {isNil} from 'lodash';
 import Button from '../button';
+import PopupController from '../common/PopupController';
 
 const Dropdown = React.forwardRef((props, ref) => {
-  const [dpState, setDpState] = useState({active: Active.na});
-  const rootElem = useContainer('wui-portals');
   const dpRef = ref ? ref : useRef(null);
-  const menuRef = useRef(null);
   const {
-    className = 'dropdown',
-    extraClassName,
     disabled = false,
     selectable = false,
     type,
-    position = 'bottomLeft',
-    triggerBy = DropdownTriggerType.click,
     onSelect,
-    menuOffset = 4,
-    children,
+    active,
+    autoClose = true,
     ...otherProps
   } = props;
-  useEvent(EventListener.click, (evt) => {
-    //ensure the menu won't be closed while clicking title
-    if (dpRef.current.contains(evt.target)
-        || dpState.active !== Active.active) {
-      return;
-    }
-    setDpState({...dpState, active: Active.na});
-  });
-
-  useEvent(EventListener.resize, (evt) => {
-    move();
-  });
-
-  const move = useCallback(() => {
-    if (dpState.active === Active.active) {
-      setTransformOrigin(menuRef.current, position);
-      placePadding(menuRef.current, dpRef.current, position, menuOffset);
-    }
-  }, [dpState.active, position]);
-
-  useEffect(() => {
-    move();
-  }, [dpState.active, position]);
-
-  const getOppositeStatus = (status) => {
-    if (status === Active.na) {
-      return Active.active;
-    }
-    return status === Active.active
-        ? Active.disactive
-        : Active.active;
-  };
 
   const handleSelect = useCallback((itemInfo, evt) => {
-    //call onSelect
-    let autoActiveItem = true;
     if (!isNil(onSelect)) {
-      autoActiveItem = onSelect(itemInfo, evt);
+      onSelect(itemInfo, evt);
     }
-    if (isNil(autoActiveItem) || autoActiveItem) {
-      setDpState({
-        ...dpState,
-        active: Active.disactive,
-      });
-    }
-  }, []);
+  }, [onSelect]);
 
-  const clickTitle = (evt) => {
-    if (triggerBy === DropdownTriggerType.hover) {
-      return;
+  //close the popup if the popup body is clicked
+  const handleAutoClose = (isPopupClicked, isCtrlClicked) => {
+    //let PopupController to close the popup while menu item is clicked
+    if (isPopupClicked) {
+      return true; //auto close
     }
-
-    let status = getOppositeStatus(dpState.active);
-    setDpState({
-      ...dpState,
-      active: status,
-    });
+    if (isCtrlClicked) {
+      return false; //don't close
+    }
   };
 
-  const handleHover = (active) => {
-    if (triggerBy !== DropdownTriggerType.hover) {
-      return;
-    }
-    setDpState({
-      ...dpState,
-      active: active,
-    });
-  };
-
-  const getMenu = (child) => {
+  const getMenu = useCallback((child) => {
     if (disabled) {
       return null;
     }
-    let menuContent = ReactDOM.createPortal(
-        <CSSTransition in={dpState.active === Active.active}
-                       timeout={200}
-                       classNames="dropdown-menu">
-          <div className="dropdown-menu" ref={menuRef}>
-            {
-              React.cloneElement(child, {
-                onClickItem: handleSelect,
-                selectable: selectable,
-              })}</div>
-        </CSSTransition>,
-        rootElem);
+    //add callback for menu items
+    let menuContent = React.cloneElement(child, {
+      onClickItem: handleSelect,
+      selectable: selectable,
+    });
 
     return menuContent;
-  };
+  }, [disabled, handleSelect, selectable]);
 
-  const updateChildren = () => {
-    return React.Children.map(children, child => {
+  const updateChildren = useCallback((chd) => {
+    const childObj = {bodyClassName: 'dropdown-menu'};
+    React.Children.forEach(chd, (child) => {
       let childType = child.type;
       if (childType === Menu) {
-        return getMenu(child);
+        childObj.body = getMenu(child);
       }
       if (childType === Title
           || childType === Button) {
-        return React.cloneElement(child, {
-          onClick: clickTitle,
+        childObj.ctrl = React.cloneElement(child, {
           disabled: disabled,
         });
       }
-      return child;
     });
-  };
+    return childObj;
+  }, [props.children, disabled]);
 
-  let cls = clsx(extraClassName, className, {disabled: disabled});
-
-  return <Element
-      className={cls}
-      disabled={disabled}
+  return <PopupController
       ref={dpRef}
-      onMouseEnter={() => handleHover(Active.active)}
-      onMouseLeave={() => handleHover(Active.disactive)}
-      onFocus={() => handleHover(Active.active)}
-      onBlur={() => handleHover(Active.disactive)}
-      {...otherProps}>
-    {updateChildren()}
-  </Element>;
+      defaultActive={active}
+      autoClose={autoClose}
+      onAutoClose={handleAutoClose}
+      disabled={disabled}
+      handleChildren={updateChildren}
+      {...otherProps}/>;
 
 });
 

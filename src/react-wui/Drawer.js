@@ -1,77 +1,55 @@
-import React from 'react';
-import BaseComponent from './BaseComponent';
-import Mask from "./Mask";
-import {isNil} from "./Utils";
+import React, {useRef} from 'react';
+import Mask from './Mask';
+import {isNil} from './Utils';
+import clsx from 'clsx';
+import {CSSTransition} from 'react-transition-group';
+import useEvent from './common/UseEvent';
+import {EventListener} from './common/Constants';
 
-export default class Drawer extends BaseComponent {
-  static defaultProps = {
-    disabled: false,
-    className: 'drawer',
-    type: 'normal',
-    position: 'left', //left,right,top,bottom
-    active: false,
-    autoClose: true
-  };
+const Drawer = React.forwardRef((props, ref) => {
+  const {
+    type, active, className = 'drawer', extraClassName, width,
+    onClose, showMask = true,
+    autoClose = true,
+    position, children, ...otherProps
+  } = props;
+  const dwRef = ref ? ref : useRef(null);
 
-  static propTypes = {};
-
-  constructor(args) {
-    super(args);
-    this.dwRef = React.createRef();
-    this.state = {
-      manuallyChanged: false,
-      activeDrawer: false
+  // register window click event listener if no mask displays
+  useEvent(EventListener.click, (evt) => {
+    if (!active) {
+      return;
     }
-  }
+    if (dwRef.current.contains(evt.target)) {
+      return;
+    }
+    console.log("youd didn't stop")
+    close(evt);
+  }, !showMask);
 
-  close(evt) {
-    const {autoClose, onClose} = this.props;
+  const close = (evt) => {
     if (!autoClose) {
       return;
     }
-
-    //ensure the menu won't be closed while clicking title
-    if (this.dwRef.current.contains(evt.target)) {
-      return;
-    }
-    this.setState({
-      activeDrawer: false
-    });
-
     if (!isNil(onClose)) {
       onClose(evt);
     }
-  }
+  };
 
-  isActive() {
-    const {active} = this.props;
-    return active;
-  }
-
-  render() {
-    const {
-      type, active, className, width,
-      onClose,
-      autoClose,
-      position, children, ...otherProps
-    } = this.props;
-
-    let isActive = this.isActive();
-    console.log("isActive=" + isActive);
-    let clsName = this.getClass({
-      [type]: type,
-      [position]: position,
-      active: isActive,
-      inactive: !isActive
-    });
-    return (
-        <>
-          <Mask active={isActive} onClick={this.close.bind(this)}/>
-          <div className={clsName} ref={this.dwRef} {...otherProps}>
+  let clsName = clsx(extraClassName, className, {
+    [type]: type,
+    [position]: position,
+  });
+  return (
+      <>
+        {showMask ? <Mask active={active} onClick={close}/> : null}
+        <CSSTransition classNames="drawer" in={active} timeout={300}>
+          <div className={clsName} ref={dwRef} {...otherProps}>
             {children}
           </div>
-        </>
-    );
-  }
+        </CSSTransition>
+      </>
+  );
+});
 
-}
+export default Drawer;

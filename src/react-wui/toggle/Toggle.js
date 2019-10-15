@@ -1,44 +1,34 @@
 import React from 'react';
-import BaseComponent from '../BaseComponent';
-import {TransparentbtnStyle} from '../common/Constants';
 import {isNil} from '../Utils';
+import useInternalActive from '../common/useInternalActive';
+import clsx from 'clsx';
+import {Active} from '../common/Constants';
 
-export default class Toggle extends BaseComponent {
-  static defaultProps = {
-    className: 'toggle',
-    type: 'normal', // normal, primary,secondary,
-    content: null,
-    disabled: false,
-    turnOn: false,
-  };
+const TransparentbtnStyle = {
+  background: 'transparent',
+  border: 'none',
+  outline: 'none',
+};
 
-  constructor(args) {
-    super(args);
-    this.clickToggle = this.clickToggle.bind(this);
-    this.state = {
-      active: false,
-      manuallyChanged: false,//whether the status is manually changed
-    };
-  }
+const Toggle = React.forwardRef((props, ref) => {
+  const {
+    active = false, disabled = false, className = 'toggle', extraClassName,
+    appendClass, children, type = 'normal', content, onChange, ...otherProps
+  } = props;
 
-  clickToggle(evt) {
-    const {disabled, turnOn} = this.props;
-    if (disabled) {
-      return;
-    }
-    let newActive = !this.state.active;
-    this.setState({
-      manuallyChanged: true,
-      active: this.state.manuallyChanged ? !this.state.active : !turnOn,
-    });
+  const internalObj = useInternalActive(active, !disabled);
+  const isActive = internalObj.isActive;
+  const setActive = internalObj.setActive;
 
-    const {onChange} = this.props;
-    !isNil(onChange) && onChange(newActive, evt);
-  }
+  let isOn = isActive();
+  let clsName = clsx(extraClassName, className, {
+    on: isOn,
+    off: !isOn,
+    disabled: disabled,
+    [type]: type,
+  });
 
-  getContent(isBarContent) {
-    const {content} = this.props;
-
+  const getContent = (isBarContent) => {
     if (isNil(content)) {
       return null;
     }
@@ -51,31 +41,32 @@ export default class Toggle extends BaseComponent {
       return null;
     }
 
-    return this.state.active ? content.on : content.off;
-  }
+    return isActive() ? content.on : content.off;
+  };
 
-  render() {
-    const {turnOn, disabled, className, appendClass, children, type, content, onChange, ...otherProps} = this.props;
+  const clickToggle = (e) => {
+    if (disabled) {
+      return;
+    }
+    const newActive = Active.convertBool(!isActive());
+    setActive(newActive);
+    !isNil(onChange) && onChange(newActive, e);
+  };
 
-    let isOnStatus = this.state.manuallyChanged ? this.state.active :
-        turnOn;
-    let clsName = this.getClass({
-      on: isOnStatus,
-      off: !isOnStatus,
-      disabled: disabled,
-      [type]: type,
-    });
-
-    return <button style={TransparentbtnStyle}
-                   onClick={this.clickToggle} {...otherProps}>
+  return <button style={TransparentbtnStyle}
+                 ref={ref}
+                 disabled={disabled}
+                 onClick={clickToggle} {...otherProps}>
       <span className={clsName}>
         <span className="bar">
-         {this.getContent(true)}
+         {getContent(true)}
         </span>
         <span className="ball">
-          {this.getContent(false)}
+          {getContent(false)}
         </span>
       </span>
-    </button>;
-  }
-}
+  </button>;
+
+});
+
+export default Toggle;

@@ -1,35 +1,21 @@
-import React from "react";
-import BaseComponent from "./BaseComponent";
+import React from 'react';
+import clsx from 'clsx';
 
-export default class Blockquota extends BaseComponent {
+const Blockquota = React.forwardRef((props, ref) => {
+  const {
+    className = 'blockquote', extraClassName, type, hasBorder,
+    hasBox,
+    hasBackground,
+    ...otherProps
+  } = props;
 
-  static defaultProps = {
-    className: 'blockquote'
-  };
+  let clsName = clsx(extraClassName, className, {
+    [type]: type,
+    border: hasBorder,
+    'with-bg': hasBackground,
+    'with-box': hasBox,
+  });
+  return <div className={clsName} {...otherProps} ref={ref}/>;
+});
 
-  static propTypes = {};
-
-  constructor(args) {
-    super(args);
-    this.state = {};
-  }
-
-  render() {
-    const {
-      className, appendClass, children, type, hasBorder,
-      hasBox,
-      hasBackground
-    } = this.props;
-    let clsName = this.getClass({
-      [type]: type,
-      border: hasBorder,
-      "with-bg": hasBackground,
-      "with-box": hasBox
-    });
-    return <div className={clsName}>
-      {children}
-    </div>;
-
-  }
-
-}
+export default Blockquota;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {createContainer, getLeftIfCentered, isString, random} from './Utils';
 import Alert from './Alert';
@@ -17,9 +17,10 @@ const PositionType = {
   bottomRight: 'bottom-right',
 };
 
-const DEFAULT_CONFIG = {
-  position: 'top',
+let DEFAULT_CONFIG = {
+  position: 'topRight',
   duration: 5000,
+  showCloseIcon: false,
   top: '5rem',
 };
 
@@ -38,65 +39,65 @@ const Proxy = (() => {
 })();
 
 const Notification = (props) => {
-  const {msgStore, position = PositionType.topCenter} = props;
+  const {msgStore, position = DEFAULT_CONFIG.position} = props;
   const size = 'small'; //only one size provided
   const sizeClassName = SizeStyle[size];
   const [queue, setQueue] = useState([]);
   const cntRef = useRef(null);
 
   const addMsg = (msg) => {
-    console.log(queue.length + 1);
     setQueue(q => [msg, ...q]);
   };
 
   if (!msgStore.initialized()) {
     msgStore.attach({add: addMsg});
   }
-
+  console.log(position);
   useEvent(EventListener.resize, (evt) => {
     move();
-  }, position === PositionType.topCenter);
+  }, position === 'topCenter');
 
   useEffect(() => {
-    if (position === PositionType.topCenter) {
+    if (position === 'topCenter') {
       move();
+    } else {
+      //remove {top, left} properties from style if position is not topCenter
+      cntRef.current.removeAttribute('style');
     }
 
     return () => {
       let cnt = Notification.container;
       cnt && cnt.remove();
-      console.log('container is unmounted');
     };
-  }, []);
+  }, [position]);
 
   const move = () => {
+    console.log('move......');
     let cnt = cntRef.current;
     if (!cnt) {
       return;
     }
-    console.log('move');
     cnt.style.left = getLeftIfCentered(
         cnt, document.documentElement);
     cnt.style.top = DEFAULT_CONFIG.top;
   };
-  console.log(queue.length);
   const removeMsg = (key) => {
     const newQueue = [...queue.filter(msg => msg.key !== key)];
     setQueue(newQueue);
   };
 
-  return <div>
-    <div className={`alert-container ${sizeClassName} ${position}`}
-         ref={cntRef}>
-      {
-        queue.map(({key, ...other}) => {
-          return <Alert autoUnmout={false} key={key} {...other}
-                        duration={DEFAULT_CONFIG.duration}
-                        onClose={() => removeMsg(key)}
-          />;
-        }).reverse()
-      }
-    </div>
+  return <div
+      className={`alert-container ${sizeClassName} ${PositionType[position]}`}
+      ref={cntRef}>
+    {
+      queue.map(({key, ...other}) => {
+        return <Alert autoUnmout={false} key={key} {...other}
+                      showCloseIcon={DEFAULT_CONFIG.showCloseIcon}
+                      duration={DEFAULT_CONFIG.duration}
+                      onClose={() => removeMsg(key)}
+        />;
+      }).reverse()
+    }
   </div>;
 
 };
@@ -136,6 +137,10 @@ let send = (type, config) => {
 };
 
 export default {
+  config(config) {
+    DEFAULT_CONFIG = {...DEFAULT_CONFIG, ...config};
+  },
+
   info(config) {
     send('info', config);
   },

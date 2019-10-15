@@ -21,7 +21,7 @@ export {default as Dropdown} from './dropdown';
 export {default as Menu} from './menu';
 export {default as Divider} from './divider';
 export {default as Card} from './card';
-export {default as Popover} from './Popover';
+export {default as Popover} from './popover';
 export {default as Tooltip} from './Tooltip';
 export {default as Modal} from './modal';
 export {default as Toggle} from './toggle';
@@ -56,8 +56,8 @@ export {
   IconRadioUnChecked,
   IconRadioChecked,
   IconList,
-  IconSearch
-} from "./Icons";
+  IconSearch,
+} from './Icons';
 
 export {
   Button,

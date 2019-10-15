@@ -1,23 +1,22 @@
-import React from "react";
-import BaseComponent from "./BaseComponent";
+import React from 'react';
+import clsx from 'clsx';
 
-export default class Accordion extends BaseComponent {
+export default class Accordion {
 
   static defaultProps = {
-    className: 'accordion'
+    className: 'accordion',
   };
 
   static propTypes = {};
 
   constructor(args) {
-    super(args);
     this.state = {};
   }
 
   render() {
     const {className, block, children, apppendClass, ...otherProps} = this.props;
-    let clsName = this.getClass({
-      block
+    let clsName = clsx(className, {
+      block,
     });
     return <>
       <div className={clsName}>

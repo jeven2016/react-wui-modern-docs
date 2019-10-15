@@ -108,6 +108,7 @@
   "content.loader.sample.loaderB": "显示提示信息",
   "content.loader.sample.loaderC": "在按钮中显示",
   "content.loader.sample.loaderD": "内容加载中",
+  "content.loader.sample.loaderE": "全局显示",
   "content.grid.title": "Grid 栅格",
   "content.grid.simple.desc": "Grid 栅格示例",
   "content.grid.sample.gridA": "默认为xs类型",

@@ -2,7 +2,7 @@ import React from 'react';
 import Element from './Element';
 import clsx from 'clsx';
 
-const useElement = (props, ref, defaultClassName, cls = {}) => {
+const useElement = (props, ref, defaultClassName, cls = {}, style = {}) => {
   const {
     className = defaultClassName,
     ...otherProps
@@ -14,6 +14,7 @@ const useElement = (props, ref, defaultClassName, cls = {}) => {
       <Element
           ref={ref}
           className={clsName}
+          style={style}
           {...otherProps}/>
   );
 };

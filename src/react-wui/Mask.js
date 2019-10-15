@@ -1,19 +1,16 @@
-import React from "react";
-import BaseComponent from "./BaseComponent";
+import React from 'react';
+import clsx from 'clsx';
 
-export default class Mask extends BaseComponent {
-  static defaultProps = {
-    className: "mask"
-  };
+const Mask = React.forwardRef((props, ref) => {
+  const {
+    className = 'mask', extraClassName, active,
+    onClick, ...otherProps
+  } = props;
+  let clsName = clsx(extraClassName, className, {
+    active: active,
+    inactive: !active,
+  });
+  return <div ref={ref} className={clsName} onClick={onClick} {...otherProps}/>;
+});
 
-  render() {
-    const {className, appendClass, active, onClick, children, ...otherProps} = this.props
-    let clsName = this.getClass({
-      active: active,
-      inactive: !active
-    });
-    return <div className={clsName} onClick={onClick} {...otherProps}>
-      {children}
-    </div>
-  }
-}
+export default Mask;

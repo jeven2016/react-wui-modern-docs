@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useRef}from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Button,
@@ -16,7 +16,7 @@ import {DocCol, DocRow} from '../../common/DocComponents';
 export const DpA = () => {
   let comp = <>
     <DocCol>
-      <Dropdown selectable>
+      <Dropdown>
         <Dropdown.Title>Selectable</Dropdown.Title>
         <Menu hasBorder>
           <Menu.List>
@@ -90,7 +90,9 @@ export const DpA = () => {
 };
 
 export const DpB = () => {
+  const btnRef = useRef(null);
   let comp = <>
+    <Button onClick={()=> btnRef.current.focus()}>TestRef</Button>
     <Dropdown>
       <Dropdown.Title>Click Title</Dropdown.Title>
       <Menu hasBorder>
@@ -103,7 +105,7 @@ export const DpB = () => {
       </Menu>
     </Dropdown>
     <Dropdown style={{marginLeft: '2rem'}}>
-      <Button color="green">Button <IconArrowDown/></Button>
+      <Button color="green" ref={btnRef}>Button <IconArrowDown/></Button>
       <Menu hasBorder>
         <Menu.List>
           <Menu.Item id={1} value={1} text="Action 1"/>

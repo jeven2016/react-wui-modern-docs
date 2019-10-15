@@ -1,11 +1,12 @@
-import React, {useState} from "react";
-import clsx from "clsx";
-import {isNil} from "./Utils";
+import React, {useState} from 'react';
+import clsx from 'clsx';
+import {isNil} from './Utils';
+import Element from './common/Element';
 
 function BaseSwitch(props) {
   const {
     value, label, baseClassName, inputType, underControlled = false,
-    iconChecked, iconUnchecked, canUnchecked = true,
+    iconChecked, iconUnchecked, canUnchecked = true, disabled = false,
     children, onChange, checked, ...otherProps
   } = props;
   const [checkState, setCheckState] = useState(false);
@@ -24,12 +25,12 @@ function BaseSwitch(props) {
 
   let clsName = clsx(baseClassName, {
     checked: currentCheckState,
-    unchecked: !currentCheckState
+    unchecked: !currentCheckState,
   });
 
   const onClick = (evt) => {
     if (currentCheckState && !canUnchecked) {
-      console.log("return")
+      console.log('return');
       return;
     }
 
@@ -43,17 +44,15 @@ function BaseSwitch(props) {
   };
 
   return <>
-    <div className={clsName} {...otherProps}>
-      <input type={inputType} value={value} className="hidden-input"
-             onClick={onClick}/>
-      <span className="icon">
-        <Icon/>
-      </span>
-      <span>
+    <Element className={clsName} disabled={disabled}
+             onClick={onClick} {...otherProps}>
+      <input type={inputType} value={value} className="hidden-input"/>
+      <Icon/>
+      <span className="label">
         {label}
         {children}
       </span>
-    </div>
+    </Element>
   </>;
 }
 

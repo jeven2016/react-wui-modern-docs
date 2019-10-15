@@ -49,7 +49,7 @@ const Element = React.forwardRef((props, ref) => {
     onBlur && onBlur(e);
   };
 
-  let clsName = clsx(extraClassName, className);
+  let clsName = clsx(extraClassName, className, {disabled:disabled});
   return <ElementNode
       ref={ref}
       className={clsName}
