@@ -38,7 +38,8 @@ export {default as Badge} from './Badge';
 export {default as Checkbox} from './Checkbox';
 export {default as Radio, RadioGroup} from './Radio';
 export {default as Breadcrumb} from './Breadcrumb';
-export {default as Select} from './Select';
+export {default as Select} from './select';
+export {default as Progress} from './progress';
 export {
   IconInfo,
   IconWarning,
@@ -57,6 +58,7 @@ export {
   IconRadioChecked,
   IconList,
   IconSearch,
+  IconHome,
 } from './Icons';
 
 export {

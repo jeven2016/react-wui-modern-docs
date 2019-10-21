@@ -4,7 +4,7 @@ import SamplePannel from '../../common/SamplePannel';
 import {faList, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWindowClose} from '@fortawesome/free-regular-svg-icons';
-import SubMenu from "../../../react-wui/menu/SubMenu";
+import SubMenu from '../../../react-wui/menu/SubMenu';
 
 export const MenuA = () => {
   let comp = <>
@@ -62,9 +62,9 @@ export const MenuB = () => {
   let comp = <Menu hasBox={true} hasBorder={true} style={{width: '15rem'}}>
     <Menu.Header>用户管理</Menu.Header>
     <Menu.List>
-      <Menu.Item id="user" hasBox={true} hasBackground={true}>用户</Menu.Item>
-      <Menu.Item id="role" hasBox={true} hasBackground={true}>角色</Menu.Item>
-      <Menu.Item id="authority" hasBox={true}
+      <Menu.Item id="user" hasBackground={true}>用户</Menu.Item>
+      <Menu.Item id="role" hasBackground={true}>角色</Menu.Item>
+      <Menu.Item id="authority"
                  hasBackground={true}>权限</Menu.Item>
     </Menu.List>
   </Menu>;
@@ -96,11 +96,11 @@ export const MenuC = () => {
     <Menu.Header>用户管理</Menu.Header>
     <Menu.List>
       <Divider/>
-      <Menu.Item id="user">用户</Menu.Item>
+      <Menu.Item value="user">用户</Menu.Item>
       <Divider/>
-      <Menu.Item id="role">角色</Menu.Item>
+      <Menu.Item value="role">角色</Menu.Item>
       <Divider/>
-      <Menu.Item id="authority">权限</Menu.Item>
+      <Menu.Item value="authority">权限</Menu.Item>
     </Menu.List>
   </Menu>;
 
@@ -197,8 +197,8 @@ export const MenuD = () => {
 
 export const MenuE = () => {
   let comp = <Menu hasBox={true} type="dark"
-                   defaultOpenedMenus={["sub1", "sub2"]}
-                   style={{width: "15rem"}}>
+                   defaultOpenedMenus={['sub1', 'sub2']}
+                   style={{width: '15rem'}}>
     <SubMenu id="sub1">
       <Menu.Header>
         <Icon>
@@ -672,11 +672,11 @@ export const MenuFloatComponents = () => {
                 </Input.IconInput>
               </Menu.Item>
               <Menu.Item id="dpdown">
-                <Dropdown triggerBy="hover" menuOffset={18}>
+                <Dropdown triggerBy="hover">
                   <Dropdown.Title>
                     Dropdown
                   </Dropdown.Title>
-                  <Menu hasBox>
+                  <Menu hasBox hasBorder={true}>
                     <Menu.List>
                       <Menu.Item>Action 1</Menu.Item>
                       <Menu.Item>Action 2</Menu.Item>

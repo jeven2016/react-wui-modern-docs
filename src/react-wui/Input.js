@@ -18,9 +18,9 @@ const IconInput = React.forwardRef((props, ref) => {
     [borderTypeCls]: borderTypeCls,
   });
 
-  return <div className={clsName} {...otherProps} ref={ref}>
+  return <span className={clsName} {...otherProps} ref={ref}>
     {children}
-  </div>;
+  </span>;
 });
 
 IconInput.propTypes = {

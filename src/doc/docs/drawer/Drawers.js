@@ -90,7 +90,6 @@ export const DrawerB = (props) => {
     <Button onClick={(e) => {
       setActiveLeft(true);
       e.stopPropagation();
-      e.preventDefault();
       console.log("stop now")
     }}>隐藏黑色遮罩</Button>
 

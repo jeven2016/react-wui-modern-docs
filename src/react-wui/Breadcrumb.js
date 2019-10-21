@@ -1,23 +1,23 @@
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 
-function Item(props) {
+const Item = (props) => {
   const {active, children, ...otherProps} = props;
-  let clsName = clsx("item", {
-    active
+  let clsName = clsx('item', {
+    active,
   });
-  return <div className={clsName} {...otherProps}>{children}</div>
-}
+  return <span className={clsName} {...otherProps}>{children}</span>;
+};
 
-function Breadcrumb(props) {
+const Breadcrumb = React.forwardRef((props, ref) => {
   const {hasBackground, separator, children, ...otherProps} = props;
 
-  let clsName = clsx("breadcrumb", {
-    "with-bg": hasBackground
+  let clsName = clsx('breadcrumb', {
+    'with-bg': hasBackground,
   });
 
   return (
-      <div className={clsName} {...otherProps}>
+      <div ref={ref} className={clsName} {...otherProps}>
         {
           React.Children.map(children, (chd, i) => {
             if (i === 0) {
@@ -26,15 +26,15 @@ function Breadcrumb(props) {
             return <>
               <div className="bc-divider">{separator}</div>
               {chd}
-            </>
+            </>;
           })
         }
       </div>
   );
-}
+});
 
-Breadcrumb.defaultProps={
-  separator: "/"
+Breadcrumb.defaultProps = {
+  separator: '/',
 };
 
 Breadcrumb.Item = Item;

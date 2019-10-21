@@ -25,31 +25,31 @@ const Element = React.forwardRef((props, ref) => {
   };
 
   const handleClick = (e) => {
-    if (prevent(e)) return;
+    if (prevent(e)) return false;
     onClick && onClick(e);
   };
 
   const handleMouseEnter = (e) => {
-    if (prevent(e)) return;
+    if (prevent(e)) return false;
     onMouseEnter && onMouseEnter(e);
   };
 
   const handleMouseLeave = (e) => {
-    if (prevent(e)) return;
+    if (prevent(e)) return false;
     onMouseLeave && onMouseLeave(e);
   };
 
   const handleFocus = (e) => {
-    if (prevent(e)) return;
+    if (prevent(e)) return false;
     onFocus && onFocus(e);
   };
 
   const handleBlur = (e) => {
-    if (prevent(e)) return;
+    if (prevent(e)) return false;
     onBlur && onBlur(e);
   };
 
-  let clsName = clsx(extraClassName, className, {disabled:disabled});
+  let clsName = clsx(extraClassName, className, {disabled: disabled});
   return <ElementNode
       ref={ref}
       className={clsName}

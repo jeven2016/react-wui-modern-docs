@@ -25,9 +25,10 @@ const Menu = React.forwardRef((props, ref) => {
     type,
     id,
     selectable = true,
+    autoSelectItem = true,
     onClickHeader,
     onClickItem,
-    activeItems,
+    activeItems = [],
     defaultOpenedMenus,
     open,
     setItemPaddingLeft,
@@ -42,7 +43,7 @@ const Menu = React.forwardRef((props, ref) => {
 
   const defaultOpen = () => isDefaultOpen(defaultOpenedMenus, id);
 
-  const [activeItemId, setActiveItemId] = useState();
+  const [activeItemId, setActiveItemId] = useState(null); //if no id is assigned , the value field would be used as identifier
   const {showMenuList, handleHeader} = useMenuList(props, disabled,
       defaultOpen);
 
@@ -65,14 +66,14 @@ const Menu = React.forwardRef((props, ref) => {
 
   // handle item
   const handleItem = (itemInfo, evt) => {
-    const itemId = itemInfo.id;
+    const itemId = isNil(itemInfo.id) ? itemInfo.value : itemInfo.id;
     let autoActiveItem = true;
     let callback = props.onClickItem;
     if (!isNil(callback)) {
       autoActiveItem = callback(itemInfo, evt);
     }
 
-    if (!selectable) {
+    if (!selectable || !autoSelectItem) {
       return false;
     }
 
@@ -101,6 +102,7 @@ const Menu = React.forwardRef((props, ref) => {
       <MenuContext.Provider
           value={{
             disabled: disabled,
+            activeItems: activeItems,
             activeItemId: activeItemId,
             clickItem: handleItem,
             defaultOpenedMenus: defaultOpenedMenus,
@@ -143,7 +145,7 @@ Menu.propTypes = {
   hasBorder: PropTypes.bool, //make the menu show borders
   hasBox: PropTypes.bool, //make the menu show a box
   hasBackground: PropTypes.bool, // show a background for menu
-  activeItems: PropTypes.array, //the id of a item that is currently selected
+  activeItems: PropTypes.array, //the id of a item that is currently selected, you can pass the values if no id is specified
   setItemPaddingLeft: PropTypes.bool,
   defaultOpenedMenus: PropTypes.oneOfType([
     PropTypes.array,

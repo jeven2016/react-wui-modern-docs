@@ -1,13 +1,18 @@
-import React, {useEffect} from "react";
-import clsx from "clsx";
-import {isBoolean, isNil, validate} from "./Utils";
+import React, {useEffect} from 'react';
+import clsx from 'clsx';
+import {isBoolean, isNil, validate} from './Utils';
 
 const BadgeType = {
-  normal: "normal", dot: "dot", tag: "tag"
+  normal: 'normal', dot: 'dot', tag: 'tag',
 };
 
 const Color = {
-  info: "info", ok: "ok", "warning": "warning", error: "error", dark: "dark"
+  info: 'info',
+  ok: 'ok',
+  gray: 'gray',
+  warning: 'warning',
+  error: 'error',
+  dark: 'dark',
 };
 
 function Badge(props) {
@@ -19,10 +24,10 @@ function Badge(props) {
   }
 
   validate(isBoolean(activeBadge),
-      "the Badge active property should be a boolean value");
+      'the Badge active property should be a boolean value');
 
   let badgeType = BadgeType[type];
-  validate(!isNil(badgeType), "the badge type is required");
+  validate(!isNil(badgeType), 'the badge type is required');
 
   let colorType = Color[color];
   let contentBackground = null;
@@ -35,9 +40,9 @@ function Badge(props) {
     // return () => console.log("component unmounted");
   });
 
-  let clsName = clsx("badge", {
+  let clsName = clsx('badge', {
     [badgeType]: badgeType,
-    [colorType]: colorType
+    [colorType]: colorType,
   });
 
   let badgeContent = body;
@@ -50,7 +55,7 @@ function Badge(props) {
   return (
       <div className={clsName} style={style}>
         <div className="content" style={{
-          display: activeBadge ? "inline-flex" : "none", ...contentBackground
+          display: activeBadge ? 'inline-flex' : 'none', ...contentBackground,
         }}>{badgeContent}</div>
         {chd}
       </div>

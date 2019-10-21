@@ -8,6 +8,7 @@ import {
   isObject,
   isString,
   random,
+  without,
 } from 'lodash';
 
 export {
@@ -19,6 +20,7 @@ export {
   isString,
   isBoolean,
   random,
+  without,
 };
 
 export const isArray = (value) => {
@@ -269,4 +271,8 @@ export const execute = (handler, timeout) => {
     clearTimeout(timer);
   }, timeout);
   return timer;
+};
+
+export const invoke = (callback, ...args) => {
+  return !isNil(callback) && (callback)(args);
 };

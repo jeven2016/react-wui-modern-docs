@@ -9,7 +9,7 @@ const Tooltip = React.forwardRef((props, ref) => {
     className = 'tooltip',
     triggerBy = PopupCtrlType.hover,
     extraClassName,
-    position = 'bottom',
+    position = 'top',
     body,
     children,
     ...otherProps
@@ -30,6 +30,7 @@ const Tooltip = React.forwardRef((props, ref) => {
   };
   return <PopupController
       ref={ref}
+      margin={5}
       position={position}
       triggerBy={triggerBy}
       setChildDisabled={false}

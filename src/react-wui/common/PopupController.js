@@ -1,8 +1,8 @@
-import React, {useEffect, useRef, useLayoutEffect, useState} from 'react';
+import React, {useLayoutEffect, useRef, useState} from 'react';
 import clsx from 'clsx';
 import {Active, EventListener, PopupCtrlType} from './Constants';
 import useEvent from './UseEvent';
-import {execute, isNil, placePadding, setTransformOrigin} from '../Utils';
+import {isNil, placePadding, setTransformOrigin} from '../Utils';
 import * as ReactDOM from 'react-dom';
 import {CSSTransition} from 'react-transition-group';
 import useContainer from './useContainer';
@@ -23,8 +23,10 @@ const PopupController = React.forwardRef((props, ref) => {
     autoClose = true, //auto close the content even though the defaultActive is true
     onAutoClose, // the callback would be invoked while clicking document and trying to close the popup, true : the popup will be closed
     triggerBy = PopupCtrlType.click,
-    bodyOffset = '0.6rem',
-    margin = -1, //the popup margin value in px, to set the gap between the popup and ctrl
+    bodyOffset = '0.3rem',
+    onOpen,
+    onClose,
+    margin = 0, //the popup margin value in px, to set the gap between the popup and ctrl
     handleChildren = () => {},
     children,
     ...otherProps
@@ -38,7 +40,6 @@ const PopupController = React.forwardRef((props, ref) => {
       {...pcState, activePopup: Active.disactive});
 
   useEvent(EventListener.click, (e) => {
-
     // if the active state is maintained by outside and cannot be closed internally
     if (canNotTrigger) {
       return;
@@ -49,16 +50,19 @@ const PopupController = React.forwardRef((props, ref) => {
 
     const isClickPopup = contentRef.current.contains(e.target);
     const isClickCtrl = ctrlRef.current.contains(e.target);
-
-    console.log(`isClickPopup=${isClickPopup}, isClickCtrl=${isClickCtrl},`);
-
+    // console.log(`isClickPopup=${isClickPopup}, isClickCtrl=${isClickCtrl}`);
+    // console.log(`target=`);
+    // console.log(e.target);
+    // console.log(ctrlRef.current);
     if (!isClickPopup && !isClickCtrl) {
       closePopup();
+      handleCallback(false);
       return;
     }
 
     if (onAutoClose && onAutoClose(isClickPopup, isClickCtrl)) {
       closePopup();
+      handleCallback(false);
     }
   });
 
@@ -85,9 +89,7 @@ const PopupController = React.forwardRef((props, ref) => {
   };
 
   const move = () => {
-    console.log('isActive=' + isActive());
     if (!disabled && isActive()) {
-      console.log('move.......');
       const contentDomNode = contentRef.current;
       setTransformOrigin(contentDomNode, position);
       placePadding(contentDomNode, ctrlRef.current, position, bodyOffset,
@@ -118,6 +120,8 @@ const PopupController = React.forwardRef((props, ref) => {
       ...pcState,
       activePopup: nextActiveState,
     });
+
+    handleCallback(nextActiveState);
   };
 
   const getPopupBody = (popupBody, bdClsName) => {
@@ -149,6 +153,16 @@ const PopupController = React.forwardRef((props, ref) => {
       activePopup: status,
     });
 
+    handleCallback(status);
+  };
+
+  const handleCallback = (value) => {
+    if (onOpen && isActive(value)) {
+      onOpen();
+    }
+    if (onClose && !isActive(value)) {
+      onClose();
+    }
   };
 
   const getOppositeStatus = (status) => {

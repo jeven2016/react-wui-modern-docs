@@ -4,7 +4,7 @@ import {isFunction} from '../Utils';
 //Tipcally the handler combined with useCallback would be better
 
 //refer to https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-const useEvent = (name, handler, listenable = true, elem = window) => {
+const useEvent = (name, handler, listenable = true, elem = document) => {
   //a mutable callback variable pointing to the latest interval callback
   //instead of recreating one all the time
   const handlerRef = useRef(null);
@@ -41,7 +41,7 @@ const useEvent = (name, handler, listenable = true, elem = window) => {
       console.log('remove a event listener');
       elem.removeEventListener(name, listener);
     };
-  }, [name]);
+  }, [name, handler]);
 };
 
 export default useEvent;

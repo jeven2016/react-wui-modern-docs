@@ -8,7 +8,7 @@ const InputGroup = React.forwardRef((props, ref) => {
   let clsName = clsx(extraClassName, className, {block: block});
 
   return (
-      <div ref={ref} className={clsName} {...otherProps}/>
+      <span ref={ref} className={clsName} {...otherProps}/>
   );
 });
 

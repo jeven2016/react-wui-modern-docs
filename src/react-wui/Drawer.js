@@ -23,7 +23,6 @@ const Drawer = React.forwardRef((props, ref) => {
     if (dwRef.current.contains(evt.target)) {
       return;
     }
-    console.log("youd didn't stop")
     close(evt);
   }, !showMask);
 

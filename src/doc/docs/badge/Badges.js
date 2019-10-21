@@ -135,7 +135,7 @@ export const BadgeC = () => {
   const [active, setActive] = useState(true);
   let comp = <>
     <div>
-      <Toggle turnOn={true} onChange={(value) => {
+      <Toggle active={true} onChange={(value) => {
         console.log("value=" + value)
         setActive(value)
       }}/>
@@ -207,7 +207,7 @@ export const BadgeD = () => {
   const [active, setActive] = useState(true);
   let comp = <>
     <div>
-      <Toggle turnOn={true} onChange={(value) => {
+      <Toggle active={true} onChange={(value) => {
         console.log("value=" + value)
         setActive(value)
       }}/>

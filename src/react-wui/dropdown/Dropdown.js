@@ -4,6 +4,7 @@ import Title from './Title';
 import {isNil} from 'lodash';
 import Button from '../button';
 import PopupController from '../common/PopupController';
+import Element from '../common/Element';
 
 const Dropdown = React.forwardRef((props, ref) => {
   const dpRef = ref ? ref : useRef(null);
@@ -14,6 +15,8 @@ const Dropdown = React.forwardRef((props, ref) => {
     onSelect,
     active,
     autoClose = true,
+    onDropdownAutoClose, //override the dropdown's auto close handler
+    bodyClassName = 'dropdown-menu',
     ...otherProps
   } = props;
 
@@ -25,6 +28,10 @@ const Dropdown = React.forwardRef((props, ref) => {
 
   //close the popup if the popup body is clicked
   const handleAutoClose = (isPopupClicked, isCtrlClicked) => {
+    if (!isNil(onDropdownAutoClose)) {
+      return onDropdownAutoClose(isPopupClicked, isCtrlClicked);
+    }
+
     //let PopupController to close the popup while menu item is clicked
     if (isPopupClicked) {
       return true; //auto close
@@ -48,18 +55,27 @@ const Dropdown = React.forwardRef((props, ref) => {
   }, [disabled, handleSelect, selectable]);
 
   const updateChildren = useCallback((chd) => {
-    const childObj = {bodyClassName: 'dropdown-menu'};
+    const childObj = {bodyClassName: bodyClassName};
     React.Children.forEach(chd, (child) => {
       let childType = child.type;
+
       if (childType === Menu) {
         childObj.body = getMenu(child);
+        return;
       }
       if (childType === Title
           || childType === Button) {
         childObj.ctrl = React.cloneElement(child, {
           disabled: disabled,
         });
+        return;
       }
+      if (childType === Element) {
+        childObj.body = child;
+        return;
+      }
+      throw new Error(
+          'the children of dropdown can only be Title, Button, Menu or Element.');
     });
     return childObj;
   }, [props.children, disabled]);
@@ -76,5 +92,4 @@ const Dropdown = React.forwardRef((props, ref) => {
 });
 
 Dropdown.Title = Title;
-
 export default Dropdown;

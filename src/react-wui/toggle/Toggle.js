@@ -48,9 +48,10 @@ const Toggle = React.forwardRef((props, ref) => {
     if (disabled) {
       return;
     }
-    const newActive = Active.convertBool(!isActive());
+    const activeState = !isActive();
+    const newActive = Active.convertBool(activeState);
     setActive(newActive);
-    !isNil(onChange) && onChange(newActive, e);
+    !isNil(onChange) && onChange(activeState, e);
   };
 
   return <button style={TransparentbtnStyle}

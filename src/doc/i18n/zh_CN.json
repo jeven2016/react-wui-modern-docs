@@ -28,6 +28,8 @@
   "main.navbar.breadcrumb": "Breadcrumb 面包屑",
   "main.navbar.select": "Select 选择框",
   "main.navbar.input": "Input 输入框",
+  "main.navbar.progress": "Progress 进度条",
+  "main.navbar.layout": "Layout 布局",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -163,7 +165,6 @@
   "content.button.sample.G": "禁用按钮",
   "content.button.sample.H": "在按钮中显示图标",
   "content.button.sample.I": "切换等待状态",
-
   "content.input.title": "Input 输入框",
   "content.input.simple.desc": "Input 输入框示例",
   "content.input.sample.A": "普通类型",
@@ -173,5 +174,13 @@
   "content.input.sample.D": "Input Group",
   "content.input.sample.E": "Input Group中组合Input",
   "content.input.sample.F": "Input Group中组合下拉框",
-  "content.input.sample.G": "占据整行"
+  "content.input.sample.G": "占据整行",
+  "content.progress.title": "Progress 进度条",
+  "content.progress.simple.desc": "Progress 进度条示例",
+  "content.progress.sample.A": "普通类型",
+  "content.progress.sample.B": "显示进度信息",
+  "content.progress.sample.C": "在顶部显示",
+
+  "content.layout.title": "Layout 布局",
+  "content.layout.simple.desc": "Layout 布局示例"
 }

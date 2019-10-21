@@ -1,9 +1,8 @@
-import React, {useContext} from 'react';
-import {isNil} from '../Utils';
+import React, {useContext, useMemo} from 'react';
+import {isBlank, isNil, isString} from '../Utils';
 import {FloatMenuContext, MenuContext} from './MenuUtils';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {Active} from '../common/Constants';
 import Element from '../common/Element';
 
 const Item = React.forwardRef((props, ref) => {
@@ -27,13 +26,31 @@ const Item = React.forwardRef((props, ref) => {
   const menuCtx = useContext(MenuContext);
   const floatMenuCtx = useContext(FloatMenuContext);
   const disabledItem = isNil(disabled) ? menuCtx.menuDisabled : disabled;
+  const activeItems = !isNil(menuCtx.activeItems) ? menuCtx.activeItems : [];
+
+  const isActive = () => {
+    if (disabledItem) {
+      return false;
+    }
+
+    if (!isNil(props.id) && (menuCtx.activeItemId === props.id
+        || activeItems.includes(props.id))) {
+      return true;
+    }
+
+    if (!isNil(props.value) && (menuCtx.activeItemId === props.value
+        || activeItems.includes(props.value))) {
+      return true;
+    }
+    return false;
+  };
 
   const clsName = clsx(extraClassName, className, {
     [align]: align,
     'with-box': hasBox,
     'with-bg': hasBackground,
     'with-bottom-bar': hasBottomBar,
-    active: !isNil(props.id) && menuCtx.activeItemId === props.id,
+    active: isActive(),
     disabled: disabledItem,
   });
 
@@ -46,6 +63,10 @@ const Item = React.forwardRef((props, ref) => {
       value: props.value,
       text: !isNil(props.text) ? props.text : props.children,
     };
+    if (isNil(itemInfo.id)) {
+      delete itemInfo.id;
+    }
+
     if (!menuCtx.clickItem) {
       return;
     }
@@ -56,13 +77,22 @@ const Item = React.forwardRef((props, ref) => {
     }
   };
 
+  const displayChildren = useMemo(() => {
+    if (isNil(children)) {
+      return text;
+    }
+    if (isString(children) && isBlank(children)) {
+      return text;
+    }
+    return children;
+  }, [children, text]);
   return <Element className={clsName}
                   disabled={disabledItem}
                   ref={ref}
                   style={{paddingLeft: paddingLeft}}
                   onClick={(evt) => onClick(evt)}
                   {...otherProps}>
-    {!isNil(text) ? text : children}
+    {displayChildren}
   </Element>;
 });
 
@@ -82,5 +112,18 @@ Item.propsType = {
   disabled: PropTypes.bool, //disable this Menu
   align: PropTypes.oneOf(['left', 'right']), // align this item to left or right position
 };
+
+Item.Left = React.forwardRef((props, ref) =>
+    <Element nativeType="span" className="left"
+             ref={ref} {...props}/>,
+);
+Item.Center = React.forwardRef((props, ref) =>
+    <Element nativeType="span" className="center"
+             ref={ref} {...props}/>,
+);
+Item.Right = React.forwardRef((props, ref) =>
+    <Element nativeType="span" className="right"
+             ref={ref} {...props}/>,
+);
 
 export default Item;

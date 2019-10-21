@@ -14,9 +14,10 @@ const EnabledStyle = {
 
 const Title = React.forwardRef((props, ref) => {
   const {directRef, ...otherProps} = props;
-  const multipleRef = useMultipleRefs(ref, directRef);
+  // const multipleRef = useMultipleRefs(ref, directRef);
+  const multipleRef = ref;
   return useElement({nativeType: 'span', ...otherProps},
-      multipleRef, null, null,
+      multipleRef, 'dropdown-title', null,
       props.disabled ? DisabledStyle : EnabledStyle);
 });
 

@@ -25,6 +25,9 @@ import BreadcrumbIndex from './breadcrumb/BreadcrumbIndex';
 import SelectIndex from './select/SelectIndex';
 import InputIndex from './input/InputIndex';
 import MenuReducer from '../common/MenuReducer';
+import ProgressIndex from './progress/ProgressIndex';
+import LayoutIndex from './layout/LayoutIndex';
+import LayoutA from './layout/LayoutA';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -128,6 +131,11 @@ const getMenu = (match, selectedItem) => {
             {intl.get('main.navbar.popover')}
           </Link>
         </Menu.Item>
+        <Menu.Item id="ProgressItem">
+          <Link to={`${match.url}/components/progress`}>
+            {intl.get('main.navbar.progress')}
+          </Link>
+        </Menu.Item>
         <Menu.Item id="RadioItem">
           <Link to={`${match.url}/components/radio`}>
             {intl.get('main.navbar.radio')}
@@ -155,7 +163,9 @@ const getMenu = (match, selectedItem) => {
           </Link>
         </Menu.Item>
         <Menu.Item id="LayoutItem">
-          Layout 布局
+          <Link to={`${match.url}/components/layout`}>
+            {intl.get('main.navbar.layout')}
+          </Link>
         </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
@@ -217,14 +227,21 @@ const getRoutes = (match) => {
            component={NavbarIndex}/>
     <Route exact={true} path={`${match.url}/components/popover`}
            component={PopoverIndex}/>
+    <Route exact={true} path={`${match.url}/components/progress`}
+           component={ProgressIndex}/>
     <Route exact={true} path={`${match.url}/components/radio`}
            component={RadioIndex}/>
     <Route exact={true} path={`${match.url}/components/select`}
            component={SelectIndex}/>
     <Route exact={true} path={`${match.url}/components/tooltip`}
            component={TooltipIndex}/>
+    <Route exact={true} path={`${match.url}/components/layout`}
+           component={LayoutIndex}/>
     <Route exact={true} path={`${match.url}/components/toggle`}
            component={ToggleIndex}/>
+
+    <Route exact={true} path={`${match.url}/components/layoutA`}
+           component={LayoutA}/>
   </>;
 };
 
