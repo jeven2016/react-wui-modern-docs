@@ -54,8 +54,8 @@ class DateHelper {
 
     switch (month) {
       case 2: {
-        let isLeapYear = (year % 4 == 0 && year % 100 != 0) ||
-            (year % 400 == 0);
+        let isLeapYear = (year % 4 === 0 && year % 100 !== 0) ||
+            (year % 400 === 0);
         //For Feb.
         if (isLeapYear) {
           return 28;
@@ -75,7 +75,7 @@ class DateHelper {
   }
 }
 
-export default class DatePicker extends Component {
+export default class DatePicker2 extends Component {
   /*   static propTypes = {
          defaultDate: PropTypes.object,
          defaultFormat: PropTypes.string,
@@ -212,7 +212,7 @@ export default class DatePicker extends Component {
     //append the days of this month
     for (let i = firstDay; i < numberOfDays + firstDay; i++) {
       dateToProcess = i - firstDay + 1;
-      btnClass = dateToProcess == currentDate ? 'button active' : 'button';
+      btnClass = dateToProcess === currentDate ? 'button active' : 'button';
       key = `${momentDate.month()}-${dateToProcess}`;
 
       td = (<td key={key}>
@@ -257,7 +257,7 @@ export default class DatePicker extends Component {
     return (<input type="text"
                    className="input"
                    style={{width: '9rem'}}
-                   placeholder={DatePicker.defaultProps.defaultFormat}
+                   placeholder={DatePicker2.defaultProps.defaultFormat}
                    key={dateStr}
                    defaultValue={dateStr}
                    readOnly="readOnly"
@@ -351,7 +351,8 @@ export default class DatePicker extends Component {
     if (value) {
       icon =
           <i className="fa fa-remove icon"
-             onClick={this.resetDate.bind(this)}/>;
+             // onClick={resetDate}
+          />;
     }
 
     return (

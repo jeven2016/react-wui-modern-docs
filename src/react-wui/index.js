@@ -1,6 +1,6 @@
 import DateTimePicker from './DateTimePicker';
 import TimePicker from './TimePicker';
-import DatePicker from './DatePicker';
+import DatePicker from './date/DatePicker';
 import Tab from './Tab';
 import Pagination from './Pagination.js';
 //new

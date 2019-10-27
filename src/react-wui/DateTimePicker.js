@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import DatePicker from './DatePicker';
+import DatePicker2 from './DatePicker2';
 import TimePicker from './TimePicker';
 
 export default class DateTimePicker extends PureComponent {
@@ -16,7 +16,7 @@ export default class DateTimePicker extends PureComponent {
     const {defaultDate, value, onDateChange, onTimeChange} = this.props;
     return (
         <div className="date-time-picker">
-          <DatePicker
+          <DatePicker2
               value={value}
               defaultDate={defaultDate}
               isInline={true}

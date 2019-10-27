@@ -28,6 +28,7 @@ import MenuReducer from '../common/MenuReducer';
 import ProgressIndex from './progress/ProgressIndex';
 import LayoutIndex from './layout/LayoutIndex';
 import LayoutA from './layout/LayoutA';
+import DatePickerIndex from './datapicker/DatePickerIndex';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -162,6 +163,11 @@ const getMenu = (match, selectedItem) => {
             {intl.get('main.navbar.tooltip')}
           </Link>
         </Menu.Item>
+        <Menu.Item id="datepickerItem">
+          <Link to={`${match.url}/components/datepicker`}>
+            {intl.get('main.navbar.datepicker')}
+          </Link>
+        </Menu.Item>
         <Menu.Item id="LayoutItem">
           <Link to={`${match.url}/components/layout`}>
             {intl.get('main.navbar.layout')}
@@ -239,6 +245,8 @@ const getRoutes = (match) => {
            component={LayoutIndex}/>
     <Route exact={true} path={`${match.url}/components/toggle`}
            component={ToggleIndex}/>
+    <Route exact={true} path={`${match.url}/components/datepicker`}
+           component={DatePickerIndex}/>
 
     <Route exact={true} path={`${match.url}/components/layoutA`}
            component={LayoutA}/>

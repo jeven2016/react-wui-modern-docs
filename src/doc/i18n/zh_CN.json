@@ -30,6 +30,7 @@
   "main.navbar.input": "Input 输入框",
   "main.navbar.progress": "Progress 进度条",
   "main.navbar.layout": "Layout 布局",
+  "main.navbar.datepicker": "DatePicker 时间选择",
   "content.dropdown.title": "Dropdown 下拉框",
   "content.dropdown.simple.desc": "Dropdown 下拉框示例",
   "content.dropdown.type.click": "点击后显示菜单",
@@ -180,7 +181,10 @@
   "content.progress.sample.A": "普通类型",
   "content.progress.sample.B": "显示进度信息",
   "content.progress.sample.C": "在顶部显示",
-
   "content.layout.title": "Layout 布局",
-  "content.layout.simple.desc": "Layout 布局示例"
+  "content.layout.simple.desc": "Layout 布局示例",
+  "content.datepicker.title": "DatePicker 时间选择",
+  "content.datepicker.simple.desc": "DatePicker 时间选择示例",
+  "content.datepicker.simple.desc": "DatePicker 时间选择示例",
+  "content.datepicker.sample.A": "普通示例"
 }

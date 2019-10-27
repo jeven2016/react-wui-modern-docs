@@ -347,7 +347,7 @@ time, mark, audio, video {
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem; }
 
-.dialog > .dialog-container > .content > .header > .title, .dialog > .dialog-container > .content > .header > .icon, .date-time-picker {
+.dialog > .dialog-container > .content > .header > .title, .dialog > .dialog-container > .content > .header > .icon, .search.select > .content > .tag, .date-time-picker {
   position: relative;
   display: inline-block; }
 
@@ -3844,7 +3844,7 @@ textarea.input {
   padding: 0;
   opacity: .6;
   background-color: transparent; }
-  .alert > .alert-close > .close-btn:hover {
+  .alert > .alert-close > .close-btn:focus, .alert > .alert-close > .close-btn:hover {
     opacity: 1;
     transform: scale(1.2, 1.2);
     transform-origin: center;
@@ -4145,34 +4145,48 @@ textarea.input {
     left: 0;
     top: 0; }
 
-.date-time-picker > .date-container {
-  float: left; }
-  .date-time-picker > .date-container > .input {
-    width: 10rem;
-    border-right-width: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0; }
-    .date-time-picker > .date-container > .input:active ~ .icon, .date-time-picker > .date-container > .input:focus ~ .icon {
-      color: #333; }
-    .date-time-picker > .date-container > .input:active .date-time-picker > .time-container >, .date-time-picker > .date-container > .input:focus .date-time-picker > .time-container > {
-      border: 4rem solid #1f64a5; }
-
-.date-time-picker > .time-container {
-  float: left;
-  margin-left: 0; }
-  .date-time-picker > .time-container > .input {
-    width: 6rem;
-    border-left-width: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0; }
-    .date-time-picker > .time-container > .input:active ~ .icon, .date-time-picker > .time-container > .input:focus ~ .icon {
-      color: #333; }
-    .date-time-picker > .time-container > .input:active .date-time-picker > .date-container > .input, .date-time-picker > .time-container > .input:focus .date-time-picker > .date-container > .input {
-      border-color: #007aff; }
-
 /**
 * Generate add-ons
  */
+.search.select {
+  display: inline-block;
+  position: relative; }
+  .search.select > .content {
+    padding-left: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem; }
+    .search.select > .content .input {
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+      box-shadow: none; }
+    .search.select > .content > .tag {
+      background-color: #eee;
+      padding: 0 0.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid #ccc; }
+      .search.select > .content > .tag > .text {
+        margin-right: 0.25rem; }
+      .search.select > .content > .tag > .icon {
+        color: #999999;
+        cursor: pointer; }
+      .search.select > .content > .tag:not(:last-child) {
+        margin-right: 0.25rem; }
+  .search.select > .menu {
+    position: absolute;
+    height: 20rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    left: 0;
+    top: 100%;
+    display: none;
+    transition: display 0.2s;
+    z-index: 100;
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.24);
+    background-color: #ffffff; }
+    .search.select > .menu > .input-item {
+      padding: 0.5rem .5rem; }
+
 .date-picker {
   display: inline-flex;
   flex-flow: column;
@@ -4229,13 +4243,15 @@ textarea.input {
           padding: 0;
           width: 2rem;
           height: 2rem;
-          transition: background-color .2s; }
-          .date-picker > .body > .data-picker-table td .button:hover {
-            color: #fff;
-            background-color: #73AFFF; }
+          transition: background-color .2s;
+          /*       @include only-focus {
+            color: $white !important;
+            background-color: $datapicker-day-hover-background-color !important;
+          }
+*/ }
           .date-picker > .body > .data-picker-table td .button:active, .date-picker > .body > .data-picker-table td .button.active {
-            color: #fff;
-            background-color: #007aff; }
+            color: #fff !important;
+            background-color: #007aff !important; }
     .date-picker > .body > .footer {
       display: flex;
       flex: 0 1 auto;
@@ -4285,3 +4301,28 @@ textarea.input {
   top: 100%;
   background-color: #ffffff;
   width: 12rem; }
+
+.date-time-picker > .date-container {
+  float: left; }
+  .date-time-picker > .date-container > .input {
+    width: 10rem;
+    border-right-width: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+    .date-time-picker > .date-container > .input:active ~ .icon, .date-time-picker > .date-container > .input:focus ~ .icon {
+      color: #333; }
+    .date-time-picker > .date-container > .input:active .date-time-picker > .time-container >, .date-time-picker > .date-container > .input:focus .date-time-picker > .time-container > {
+      border: 4rem solid #1f64a5; }
+
+.date-time-picker > .time-container {
+  float: left;
+  margin-left: 0; }
+  .date-time-picker > .time-container > .input {
+    width: 6rem;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+    .date-time-picker > .time-container > .input:active ~ .icon, .date-time-picker > .time-container > .input:focus ~ .icon {
+      color: #333; }
+    .date-time-picker > .time-container > .input:active .date-time-picker > .date-container > .input, .date-time-picker > .time-container > .input:focus .date-time-picker > .date-container > .input {
+      border-color: #007aff; }

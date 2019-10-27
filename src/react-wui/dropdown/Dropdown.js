@@ -12,6 +12,7 @@ const Dropdown = React.forwardRef((props, ref) => {
     disabled = false,
     selectable = false,
     type,
+    margin = 0,
     onSelect,
     active,
     autoClose = true,
@@ -84,6 +85,7 @@ const Dropdown = React.forwardRef((props, ref) => {
       ref={dpRef}
       defaultActive={active}
       autoClose={autoClose}
+      margin={margin}
       onAutoClose={handleAutoClose}
       disabled={disabled}
       handleChildren={updateChildren}

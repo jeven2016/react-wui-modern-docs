@@ -8,6 +8,7 @@ import {
   isObject,
   isString,
   random,
+  slice,
   without,
 } from 'lodash';
 
@@ -20,6 +21,7 @@ export {
   isString,
   isBoolean,
   random,
+  slice,
   without,
 };
 

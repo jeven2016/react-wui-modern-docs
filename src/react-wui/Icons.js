@@ -82,7 +82,6 @@ export const IconArrowRight = (props) => {
 
 export const IconArrowDown = (props) => {
   return <svg className="svg icon" xmlns="http://www.w3.org/2000/svg"
-              width="1em" height="1em"
               viewBox="0 0 24 24" {...props}>
     <path opacity=".87" fill="none" d="M24 24H0V0h24v24z"/>
     <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/>
@@ -209,6 +208,26 @@ export const IconHome = (props) => {
               viewBox="0 0 24 24"  {...props}>
     <path fill="none" d="M0 0h24v24H0V0z"/>
     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/>
+  </svg>;
+};
+
+export const IconCalendar = (props) => {
+  return <svg className={useClassNames(props)}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" {...props}>
+    <path fill="none" d="M0 0h24v24H0V0z"/>
+    <path
+        d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V10h16v11zm0-13H4V5h16v3z"/>
+  </svg>;
+};
+
+export const IconTime = (props) => {
+  return <svg className={useClassNames(props)}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" {...props}>
+    <path fill="none" d="M0 0h24v24H0V0z"/>
+    <path
+        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
   </svg>;
 };
 
