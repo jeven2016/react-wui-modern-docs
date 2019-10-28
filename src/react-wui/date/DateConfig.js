@@ -62,6 +62,7 @@ export const validateProps = (props, defaultDate) => {
 export const createDateColumns = (
     momentDate, columnCount, dispatch, state, initialDate, autoClose,
     closePopupCallback) => {
+  console.log("autoClose="+autoClose)
   //for current month
   const currentYear = momentDate.year();
   const currentMonth = momentDate.month();
@@ -119,7 +120,9 @@ export const createDateColumns = (
       },
     });
 
-    closePopupCallback();
+    if (autoClose) {
+      closePopupCallback();
+    }
   };
 
   //--------- append the days of this month
