@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {DatePicker} from '../../../react-wui';
+import {Button, DatePicker, preventEvent} from '../../../react-wui';
 import {DocCol, DocRow} from '../../common/DocComponents';
 
 export const DatePickerA = () => {
@@ -11,6 +11,13 @@ export const DatePickerA = () => {
       </DocCol>
       <DocCol>
         <DatePicker leftTitle/>
+      </DocCol>
+    </DocRow>
+    <DocRow>
+      <DocCol>
+        <DatePicker hasTitle={false} autoClose/>
+      </DocCol>
+      <DocCol>
       </DocCol>
     </DocRow>
     {/*<DateTimePicker/>*/}

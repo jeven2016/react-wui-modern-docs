@@ -1,4 +1,9 @@
-import React, {useLayoutEffect, useRef, useState} from 'react';
+import React, {
+  useLayoutEffect,
+  useRef,
+  useState,
+  useImperativeHandle,
+} from 'react';
 import clsx from 'clsx';
 import {Active, EventListener, PopupCtrlType} from './Constants';
 import useEvent from './UseEvent';
@@ -32,14 +37,24 @@ const PopupController = React.forwardRef((props, ref) => {
     ...otherProps
   } = props;
   const rootElem = useContainer('wui-portals');
+  const internalRef = useRef(null);
   const ctrlRef = useRef(null);
   const isControlledByOther = () => !isNil(defaultActive);
   const canNotTrigger = isControlledByOther() && !autoClose;
+
+  /**
+   * Expose a close method to parent node inorder to close the popup outside this
+   * component.
+   */
+  useImperativeHandle(ref, () => ({
+    close: () => closePopup(),
+  }));
 
   const closePopup = () => setPcState(
       {...pcState, activePopup: Active.disactive});
 
   useEvent(EventListener.click, (e) => {
+    console.log('docuemnt click ' + className);
     // if the active state is maintained by outside and cannot be closed internally
     if (canNotTrigger) {
       return;
@@ -50,6 +65,7 @@ const PopupController = React.forwardRef((props, ref) => {
 
     const isClickPopup = contentRef.current.contains(e.target);
     const isClickCtrl = ctrlRef.current.contains(e.target);
+
     // console.log(`isClickPopup=${isClickPopup}, isClickCtrl=${isClickCtrl}`);
     // console.log(`target=`);
     // console.log(e.target);
@@ -191,7 +207,7 @@ const PopupController = React.forwardRef((props, ref) => {
   };
 
   return <Element
-      ref={ref}
+      ref={internalRef}
       nativeType={nativeType}
       className={className}
       disabled={disabled}

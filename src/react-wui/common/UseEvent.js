@@ -4,7 +4,8 @@ import {isFunction} from '../Utils';
 //Tipcally the handler combined with useCallback would be better
 
 //refer to https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-const useEvent = (name, handler, listenable = true, elem = document) => {
+//using window instead of document to stop propagation
+const useEvent = (name, handler, listenable = true, elem = window) => {
   //a mutable callback variable pointing to the latest interval callback
   //instead of recreating one all the time
   const handlerRef = useRef(null);

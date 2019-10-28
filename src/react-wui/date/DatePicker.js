@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useRef, useMemo} from 'react';
 import PopupController from '../common/PopupController';
 import {Button, Input} from '../index';
 import {IconCalendar} from '../Icons';
@@ -17,35 +17,50 @@ const DatePicker = React.forwardRef((props, ref) => {
   const {
     className,
     extraClassName,
+    hasTitle = true,
     defaultValue,
     leftTitle = false,
+    autoClose = false,
     dateFormat = 'YYYY-MM-DD',
     placeholder = 'Year-Month-Day',
     position = 'bottomLeft',
+    onChange,
+    onClose,
+    onOpen,
     ...otherProps
   } = props;
-  const columnCount = 7 * 6;
+  const columnCount = DataConfig.columnCount;
+  const popupCtrlRef = ref ? ref : useRef(null);
 
   const [state, dispatch] = useReducer(reducer, {
     date: null,
     displayDate: null,
-    active: false,// todo: once month next/pre, need to rerender the panels regardless the date.
   });
   const defaultDate = isNil(defaultValue) ? null : moment(defaultValue);
   const config = DataConfig;
 
   validateProps(props, defaultDate);
 
+  const initialDate = useMemo(() => {
+    if (!isNil(state.date)) {
+      return state.date;
+    }
+    return defaultDate;
+  }, [state.date, defaultDate]);
+
   // get current date
   // clone the origin data and don't change its value
   const getDate = () => {
-    if (!isNil(state.date)) {
-      return state.date.clone();
+    const date = initialDate;
+    if (!isNil(date)) {
+      return date.clone();
     }
-    return isNil(defaultDate) ? moment() : defaultDate.clone();
+    return moment();
   };
 
-  const getFormatDate= ()=> getDate().format(dateFormat);
+  const formattedDate = !isNil(initialDate)
+      ? initialDate.format(dateFormat)
+      : '';
 
   //this date is used to calculate the the date of the next year/next month
   const getDisplayDate = () => !isNil(state.displayDate)
@@ -53,6 +68,9 @@ const DatePicker = React.forwardRef((props, ref) => {
       : getDate();
 
   const generateTtitle = (momentDate) => {
+    if (!hasTitle) {
+      return null;
+    }
     let currentDayOfWeek = config.locale.dayOfWeek[momentDate.day()];
     let currentMonth = config.locale.month[momentDate.month()];
 
@@ -73,8 +91,11 @@ const DatePicker = React.forwardRef((props, ref) => {
     );
   };
 
+  const close = () => popupCtrlRef.current.close();
+
   const generateDays = (momentDate) => {
-    let columns = createDateColumns(momentDate, columnCount, dispatch);
+    let columns = createDateColumns(momentDate, columnCount, dispatch, state,
+        initialDate, autoClose, close);
 
     return (
         <tbody>
@@ -154,8 +175,11 @@ const DatePicker = React.forwardRef((props, ref) => {
             Select Time
           </div>
           <div className="right">
-            <Button type="primary" outline size="small">OK</Button>
-            <Button size="small">Reset</Button>
+            {!autoClose ?
+                <Button type="primary" outline size="small"
+                        onClick={close}>OK</Button>
+                : null
+            }
           </div>
         </div>
       </div>
@@ -164,8 +188,9 @@ const DatePicker = React.forwardRef((props, ref) => {
 
   const updateChildren = () => {
     const ctrl = <Input.IconInput size="medium">
-      <Input placeholder={placeholder} value={getFormatDate()} onChange={(e) => {
-      }}/>
+      <Input placeholder={placeholder} value={formattedDate}
+             onChange={(e) => {
+             }}/>
       <IconCalendar/>
     </Input.IconInput>;
 
@@ -182,7 +207,7 @@ const DatePicker = React.forwardRef((props, ref) => {
   };
 
   return <PopupController
-      ref={ref}
+      ref={popupCtrlRef}
       margin={0}
       position={position}
       setChildDisabled={false}

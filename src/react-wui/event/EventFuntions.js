@@ -21,6 +21,7 @@ const removeWindowEventListener = (type, handler) => {
 
 const preventEvent = (evt) => {
   if (!evt) {
+    console.warn("the evt doesn't exist.")
     return;
   }
   evt.preventDefault();

@@ -1,65 +1,20 @@
 import React from 'react';
-import {validate, isNil} from '../Utils';
 import moment from 'moment';
-import Button from '../button';
 import {DateActionType} from './Reducer';
 import {preventEvent} from '../event';
-import Element from '../common/Element';
+import Button from '../button';
+import {isNil} from 'lodash';
 
-export const DataConfig = {
-  columnCount: 7 * 6,
-  dateFormat: 'YYYY-MM-DD',
-  locale: {
-    days: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    dayOfWeek: {
-      '0': 'Sun',
-      '1': 'Mon',
-      '2': 'Tue',
-      '3': 'Wed',
-      '4': 'Thur',
-      '5': 'Fri',
-      '6': 'Sat',
-    },
-    month: {
-      '0': 'Jan',
-      '1': 'Feb',
-      '2': 'Mar',
-      '3': 'Apr',
-      '4': 'May',
-      '5': 'Jun',
-      '6': 'Jul',
-      '7': 'Aug',
-      '8': 'Sep',
-      '9': 'Oct',
-      '10': 'Nov',
-      '11': 'Dec',
-    },
-    monthDetails: {
-      '0': 'January',
-      '1': 'Febuary',
-      '2': 'March',
-      '3': 'April',
-      '4': 'May',
-      '5': 'June',
-      '6': 'July',
-      '7': 'Auguest',
-      '8': 'September',
-      '9': 'October',
-      '10': 'November',
-      '11': 'December',
-    },
+const DateContent = {
+
+  create: (momentDate, columnCount) => {
+
   },
 };
 
-export const validateProps = (props, defaultDate) => {
-  if (!isNil(defaultDate)) {
-    validate(defaultDate.isValid(),
-        `the defaultValue(${props.defaultValue}) is invalid.`);
-  }
+export default  DateContent;
 
-};
-
-export const createDateColumns = (
+createDateColumns = (
     momentDate, columnCount, dispatch, state, initialDate, autoClose,
     closePopupCallback) => {
   //for current month
