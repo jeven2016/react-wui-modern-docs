@@ -7,15 +7,16 @@ export const DatePickerA = () => {
   let comp = <>
     <DocRow>
       <DocCol>
-        <DatePicker/>
+        <DatePicker onChange={(val) => console.log('value=' + val)}/>
       </DocCol>
       <DocCol>
-        <DatePicker leftTitle/>
+        <DatePicker leftTitle onChange={(val) => console.log('value=' + val)}/>
       </DocCol>
     </DocRow>
     <DocRow>
       <DocCol>
-        <DatePicker hasTitle={false} autoClose/>
+        <DatePicker hasTitle={false} autoClose
+                    onChange={(val) => console.log('value=' + val)}/>
       </DocCol>
       <DocCol>
       </DocCol>

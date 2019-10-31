@@ -40,6 +40,7 @@ export {default as Radio, RadioGroup} from './Radio';
 export {default as Breadcrumb} from './Breadcrumb';
 export {default as Select} from './select';
 export {default as Progress} from './progress';
+export {default as Layout} from './layout';
 export {
   IconInfo,
   IconWarning,

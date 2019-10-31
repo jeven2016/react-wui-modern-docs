@@ -27,7 +27,6 @@ import InputIndex from './input/InputIndex';
 import MenuReducer from '../common/MenuReducer';
 import ProgressIndex from './progress/ProgressIndex';
 import LayoutIndex from './layout/LayoutIndex';
-import LayoutA from './layout/LayoutA';
 import DatePickerIndex from './datapicker/DatePickerIndex';
 
 const getMenu = (match, selectedItem) => {
@@ -247,9 +246,6 @@ const getRoutes = (match) => {
            component={ToggleIndex}/>
     <Route exact={true} path={`${match.url}/components/datepicker`}
            component={DatePickerIndex}/>
-
-    <Route exact={true} path={`${match.url}/components/layoutA`}
-           component={LayoutA}/>
   </>;
 };
 

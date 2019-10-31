@@ -26,6 +26,8 @@ refer to the implementation of NavBar
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp
  * react suspense -> loading test
+ * datepicker-> onChange 无法触发
+ * modal, notification在IE11下的问题
  
  
  *animation -> react-spring  !!

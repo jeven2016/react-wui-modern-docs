@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {NavBarFixedTypes} from '../common/Constants';
+import {FixedTypes} from '../common/Constants';
 import {isNil} from '../Utils';
 import clsx from 'clsx';
 import {NavbarContext} from './NavBarCommon';
@@ -19,7 +19,7 @@ const NavBar = React.forwardRef((props, ref) => {
   const [expandList, setExpandList] = useState(null);
 
   const computeFixedType = (fixed) => {
-    const fixedType = NavBarFixedTypes.filter(type => type === fixed);
+    const fixedType = FixedTypes.filter(type => type === fixed);
     return isNil(fixedType) || fixedType.length === 0 ? '' : 'fixed '
         + fixedType[0];
   };

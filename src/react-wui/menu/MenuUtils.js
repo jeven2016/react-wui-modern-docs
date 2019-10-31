@@ -30,13 +30,13 @@ export const setPadding = (props, menu, index = 0) => {
     for (let elem in menuChildNodes) {
       let childNode = menuChildNodes[elem];
       if (hasClass(childNode, MenuClassName.list)) {
-        updateItem(props, childNode.childNodes, index + 1, index);
+        updateItem(props, childNode.childNodes, index + 1.5, index);
       }
       if (hasClass(childNode, MenuClassName.header)) {
-        updateItem(props, [childNode], index === 0 ? 1 : index, index);
+        updateItem(props, [childNode], index === 0 ? 1.5 : index, index);
       }
       if (hasClass(childNode, MenuClassName.submenu)) {
-        setPadding(props, childNode, index + 1);
+        setPadding(props, childNode, index + 1.5);
       }
     }
   }
