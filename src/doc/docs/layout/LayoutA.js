@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React,{useState} from 'react';
 
 import '../../../style/index.css';
 import '../../../style/wui-bundle-min.css';
@@ -15,7 +15,6 @@ import {
 import DocFrame from './DocFrame';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faList} from '@fortawesome/free-solid-svg-icons';
-import SamplePannel from '../../common/SamplePannel';
 
 export const LayoutA = (props) => {
 
@@ -255,54 +254,55 @@ export const LayoutD = (props) => {
   }
   `;
 
-  let comp = <Layout style={{height: '100%'}}>
-    <Layout.Split style={{marginBottom: '1rem'}}>
-      <Layout.Slider collapse={collapse}
-                     style={{flex: '0 1 200px', background: '#000c17'}}>
-        <div style={{
-          fontSize: '1.5rem', fontWeight: 'bold', color: '#fff',
-          textAlign: 'center',
-          padding: '1rem 0',
-        }}>
-          Title Area
-        </div>
-        <Menu type="dark" block popup direction="vertical">
-          <Menu.SubMenu id="sub1">
-            <Menu.Header><Icon>
-              <FontAwesomeIcon icon={faList}/>
-            </Icon>
-              <span>Menu</span>
-            </Menu.Header>
-            <Menu.List>
-              <Menu.Item id="item1">item1</Menu.Item>
-            </Menu.List>
-          </Menu.SubMenu>
-          <Menu.SubMenu id="sub2">
-            <Menu.Header><Icon>
-              <FontAwesomeIcon icon={faList}/>
-            </Icon>
-              <span>Menu</span>
-            </Menu.Header>
-            <Menu.List>
-              <Menu.Item id="item2">item2</Menu.Item>
-            </Menu.List>
-          </Menu.SubMenu>
-        </Menu>
-      </Layout.Slider>
-      <Layout>
-        <Layout.Header style={{borderBottom: '1px solid #ccc'}}>
-          <Button outline extraClassName="clear-border"
-                  onClick={() => setCollapse(val => !val)}>
-            <IconHome/>
-          </Button>
-        </Layout.Header>
-        <Layout.Content style={{background: '#fff', padding: '1rem'}}>
-          Your Content
-        </Layout.Content>
-      </Layout>
-    </Layout.Split>
-  </Layout>;
-  return <SamplePannel component={comp} code={code}/>;
+  return <DocFrame code={code}>
+    <Layout style={{height: '100%'}}>
+      <Layout.Split style={{marginBottom: '1rem'}}>
+        <Layout.Slider collapse={collapse}
+            style={{flex: '0 1 200px', background: '#000c17'}}>
+          <div style={{
+            fontSize: '1.5rem', fontWeight: 'bold', color: '#fff',
+            textAlign: 'center',
+            padding: '1rem 0',
+          }}>
+            Title Area
+          </div>
+          <Menu type="dark" block>
+            <Menu.SubMenu id="sub1">
+              <Menu.Header><Icon>
+                <FontAwesomeIcon icon={faList}/>
+              </Icon>
+                <span>Menu</span>
+              </Menu.Header>
+              <Menu.List>
+                <Menu.Item id="item1">item1</Menu.Item>
+              </Menu.List>
+            </Menu.SubMenu>
+            <Menu.SubMenu id="sub2">
+              <Menu.Header><Icon>
+                <FontAwesomeIcon icon={faList}/>
+              </Icon>
+                <span>Menu</span>
+              </Menu.Header>
+              <Menu.List>
+                <Menu.Item id="item2">item2</Menu.Item>
+              </Menu.List>
+            </Menu.SubMenu>
+          </Menu>
+        </Layout.Slider>
+        <Layout>
+          <Layout.Header style={{borderBottom: '1px solid #ccc'}}>
+            <Button outline extraClassName="clear-border" onClick={()=>setCollapse(val=>!val)}>
+              <IconHome/>
+            </Button>
+          </Layout.Header>
+          <Layout.Content style={{background: '#fff', padding: '1rem'}}>
+            Your Content
+          </Layout.Content>
+        </Layout>
+      </Layout.Split>
+    </Layout>
+
+  </DocFrame>;
 };
 
 export const LayoutE = (props) => {

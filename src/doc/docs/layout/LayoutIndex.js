@@ -45,7 +45,8 @@ export default class LayoutIndex extends DocComponent {
           <h3 id="layoutD">{intl.get('content.layout.sample.D')}</h3>
           <LayoutD/>
         </section>
-          <section>
+
+         <section>
           <h3 id="layoutE">{intl.get('content.layout.sample.E')}</h3>
           <LayoutE/>
         </section>

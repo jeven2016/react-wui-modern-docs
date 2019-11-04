@@ -247,9 +247,6 @@ const getRoutes = (match) => {
            component={ToggleIndex}/>
     <Route exact={true} path={`${match.url}/components/datepicker`}
            component={DatePickerIndex}/>
-
-    <Route exact={true} path={`${match.url}/components/layoutA`}
-           component={LayoutA}/>
   </>;
 };
 
