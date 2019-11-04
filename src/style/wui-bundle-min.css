@@ -394,9 +394,6 @@ time, mark, audio, video {
 .global-with-box {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14); }
 
-.with-box {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14); }
-
 .clear-fix::after, .dialog > .dialog-container > .content > .header::after {
   content: '';
   display: table;
@@ -2722,59 +2719,6 @@ textarea.input {
   .row .order-12 {
     order: 12; }
 
-.layout, .layout-content, .layout-footer {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  flex: auto; }
-  .layout > .layout-header > .navbar, .layout > .layout-header > .menu, .layout-content > .layout-header > .navbar, .layout-content > .layout-header > .menu, .layout-footer > .layout-header > .navbar, .layout-footer > .layout-header > .menu {
-    border-radius: 0; }
-
-.layout-footer {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #6c757d;
-  font-size: 0.8em;
-  flex: 0 1 3rem; }
-
-.layout-header.fixed, .layout-footer.fixed {
-  position: fixed;
-  z-index: 100;
-  border-radius: 0;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
-  width: 100%; }
-  .layout-header.fixed.top, .popover .layout-header.fixed.popover-arrow.top-left, .tooltip .layout-header.fixed.popover-arrow.top-left, .popover .layout-header.fixed.popover-arrow.top-right, .tooltip .layout-header.fixed.popover-arrow.top-right, .layout-footer.fixed.top, .popover .layout-footer.fixed.popover-arrow.top-left, .tooltip .layout-footer.fixed.popover-arrow.top-left, .popover .layout-footer.fixed.popover-arrow.top-right, .tooltip .layout-footer.fixed.popover-arrow.top-right {
-    top: 0; }
-  .layout-header.fixed.bottom, .popover .layout-header.fixed.popover-arrow.bottom-left, .tooltip .layout-header.fixed.popover-arrow.bottom-left, .popover .layout-header.fixed.popover-arrow.bottom-right, .tooltip .layout-header.fixed.popover-arrow.bottom-right, .layout-footer.fixed.bottom, .popover .layout-footer.fixed.popover-arrow.bottom-left, .tooltip .layout-footer.fixed.popover-arrow.bottom-left, .popover .layout-footer.fixed.popover-arrow.bottom-right, .tooltip .layout-footer.fixed.popover-arrow.bottom-right {
-    bottom: 0; }
-
-.layout-split {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  flex: auto; }
-
-.layout-slider {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  width: 20%;
-  flex-direction: column; }
-  .layout-slider .menu {
-    border-radius: 0; }
-  .layout-slider.collapsed {
-    width: 5rem;
-    max-width: 5rem;
-    transition: all .3s; }
-    .layout-slider.collapsed .menu .icon + span {
-      opacity: 0;
-      max-width: 0; }
-
 .dialog > .dialog-container > .content > .header, .dialog > .dialog-container > .content > .footer {
   min-height: 1rem;
   padding: 0.5rem 1rem; }
@@ -3167,8 +3111,7 @@ textarea.input {
     right: 0.5rem;
     top: calc(50% - 2px); }
   .submenu.block, .block.menu {
-    display: flex;
-    width: 100%; }
+    display: flex; }
 
 .menu {
   display: -ms-inline-flexbox;
@@ -3467,6 +3410,8 @@ textarea.input {
   position: relative;
   list-style: none;
   align-items: center; }
+  .breadcrumb:first-child:not(:last-child), .breadcrumb:not(first-child):not(last-child) {
+    margin-bottom: 1rem; }
   .breadcrumb.with-bg {
     background: #f5f5f5;
     border-radius: 0.25rem; }

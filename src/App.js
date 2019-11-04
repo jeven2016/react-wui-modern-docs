@@ -36,22 +36,17 @@ const App = (props) => {
         dispatch: dispatch,
       }}>
         <Router>
-          {contentA()}
+          <div>
+            <Header/>
+            <div>
+              <Route exact path="/" component={Home}/>
+              <Route path="/main" component={MainPage}/>
+            </div>
+          </div>
         </Router>
       </MenuReducer.context.Provider>
       : '';
 
-};
-
-//上中下，左右
-const contentA = () => {
-  return <div>
-    <Header/>
-    <div>
-      <Route exact path="/" component={Home}/>
-      <Route path="/main" component={MainPage}/>
-    </div>
-  </div>;
 };
 
 export default App;

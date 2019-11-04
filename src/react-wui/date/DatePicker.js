@@ -1,26 +1,29 @@
-import React, {useMemo, useReducer, useRef} from 'react';
+import React, {useReducer, useRef, useMemo} from 'react';
 import PopupController from '../common/PopupController';
 import {Button, Input} from '../index';
 import {IconCalendar} from '../Icons';
-import {invoke, isNil, slice} from '../Utils';
-import DataConfig from './DateConfig';
+import {isNil, slice} from '../Utils';
+import {
+  createDateColumns,
+  DataConfig,
+  validate,
+  validateProps,
+} from './DateConfig';
 import moment from 'moment';
-import {DateActionType, initReducer} from './Reducer';
+import {DateActionType, reducer} from './Reducer';
 import clsx from 'clsx';
-import {createDateColumns, validateProps} from './DatePickerHelper';
 
 const DatePicker = React.forwardRef((props, ref) => {
   const {
     className,
     extraClassName,
-    hasTitle,
+    hasTitle = true,
     defaultValue,
-    leftTitle,
-    autoClose,
-    dateFormat,
-    dateParseFormat,
-    placeholder,
-    position,
+    leftTitle = false,
+    autoClose = false,
+    dateFormat = 'YYYY-MM-DD',
+    placeholder = 'Year-Month-Day',
+    position = 'bottomLeft',
     onChange,
     onClose,
     onOpen,
@@ -29,11 +32,9 @@ const DatePicker = React.forwardRef((props, ref) => {
   const columnCount = DataConfig.columnCount;
   const popupCtrlRef = ref ? ref : useRef(null);
 
-  const [state, dispatch] = useReducer(initReducer(props), {
-    inputValue: null,
+  const [state, dispatch] = useReducer(reducer, {
     date: null,
     displayDate: null,
-    dateFormat: dateFormat,
   });
   const defaultDate = isNil(defaultValue) ? null : moment(defaultValue);
   const config = DataConfig;
@@ -57,16 +58,9 @@ const DatePicker = React.forwardRef((props, ref) => {
     return moment();
   };
 
-  const getFormattedDate = () => {
-    if (!isNil(state.inputValue)) {
-      return state.inputValue;
-    }
-
-    if (!isNil(initialDate)) {
-      return initialDate.format(dateFormat);
-    }
-    return '';
-  };
+  const formattedDate = !isNil(initialDate)
+      ? initialDate.format(dateFormat)
+      : '';
 
   //this date is used to calculate the the date of the next year/next month
   const getDisplayDate = () => !isNil(state.displayDate)
@@ -97,16 +91,11 @@ const DatePicker = React.forwardRef((props, ref) => {
     );
   };
 
-  const close = () => {
-    popupCtrlRef.current.close();
-    if (props.autoClose && !isNil(state.date)) {
-      invoke(props.onChange, state.date.format(props.dateFormat));
-    }
-  };
+  const close = () => popupCtrlRef.current.close();
 
   const generateDays = (momentDate) => {
     let columns = createDateColumns(momentDate, columnCount, dispatch, state,
-        initialDate, props, close);
+        initialDate, autoClose, close);
 
     return (
         <tbody>
@@ -199,20 +188,8 @@ const DatePicker = React.forwardRef((props, ref) => {
 
   const updateChildren = () => {
     const ctrl = <Input.IconInput size="medium">
-      <Input placeholder={placeholder} value={getFormattedDate()}
-             onBlur={() => dispatch({
-               type: DateActionType.inputBlur, data: {
-                 dateParseFormat: dateParseFormat,
-                 dateFormat: dateFormat,
-               },
-             })}
+      <Input placeholder={placeholder} value={formattedDate}
              onChange={(e) => {
-               dispatch({
-                 type: DateActionType.enterValue, data: {
-                   value: e.target.value,
-                   onChange: onChange,
-                 },
-               });
              }}/>
       <IconCalendar/>
     </Input.IconInput>;
@@ -238,15 +215,5 @@ const DatePicker = React.forwardRef((props, ref) => {
       handleChildren={updateChildren}
       {...otherProps}/>;
 });
-
-DatePicker.defaultProps = {
-  hasTitle: true,
-  leftTitle: false,
-  autoClose: false,
-  dateFormat: 'YYYY-MM-DD',
-  dateParseFormat: ['YYYY-MM-DD', 'YYYY-M-D'],
-  placeholder: 'Year-Month-Day',
-  position: 'bottomLeft',
-};
 
 export default DatePicker;

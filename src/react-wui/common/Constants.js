@@ -5,7 +5,7 @@ export const InputBorderType = {
 };
 
 
-export const FixedTypes = ['top', 'bottom'];
+export const NavBarFixedTypes = ['top', 'bottom'];
 
 export const NavBarListAlign = {
   left: 'align-left',

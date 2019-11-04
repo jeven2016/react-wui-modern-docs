@@ -1,19 +1,22 @@
-import Frame from 'react-frame-component';
-import {Template} from './FrameHeader';
-import SamplePannel from '../../common/SamplePannel';
-import React from 'react';
+import React, {Component} from 'react';
+import {Frame} from 'react-frame-component';
 
-const DocFrame = (props) => {
-  const {children, code} = props;
-  let comp = <Frame initialContent={Template} mountTarget='#docRoot'
-                    style={{border: 'none', overflow: 'visible'}}
-                    scrolling="yes"
-                    frameBorder="0"
-                    width="100%" height="500px">
-    {children}
-  </Frame>;
+export default class DocFrame extends Component {
+  render() {
+    const template = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000"/>
+  </head>
+  <body>
+  <div id="docRoot"></div>
+  </body>
+  </html>`;
 
-  return <SamplePannel component={comp} code={code}/>;
-};
-
-export default DocFrame;
+    return <Frame initialContent={template} mountTarget='#docRoot' {...this.props}/>;
+  }
+}
