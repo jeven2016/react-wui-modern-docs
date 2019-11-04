@@ -303,11 +303,14 @@ export const MenuE = () => {
 };
 
 export const MenuFloat = () => {
-  let comp = <Menu type="float" hasBorder={true} onClickItem={(id, evt) => {
-    if (id === 'item1') {
-      return false;
-    }
-  }}>
+  let comp = <Menu type="float" hasBorder={true}
+                   mutiMenu
+                   menuDirection="vertical"
+                   onClickItem={(id, evt) => {
+                     if (id === 'item1') {
+                       return false;
+                     }
+                   }}>
     <Menu.SubMenu disabled>
       <Menu.Header>
         <Icon>

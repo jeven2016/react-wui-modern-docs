@@ -3,15 +3,15 @@ import {
   FloatMenuContext,
   isFloatMenu,
   MenuContext,
-  passHeaderHandler
-} from "./MenuUtils";
-import PropTypes from "prop-types";
-import Menu from "./Menu";
-import useEvent from "../common/UseEvent";
-import {isNil} from "../Utils";
-import {EventListener} from "../common/Constants";
-import clsx from "clsx";
-import {isDefaultOpen, isDisabled, useMenuList} from "./BaseMenu";
+  passHeaderHandler,
+} from './MenuUtils';
+import PropTypes from 'prop-types';
+import Menu from './Menu';
+import useEvent from '../common/UseEvent';
+import {isNil} from '../Utils';
+import {EventListener} from '../common/Constants';
+import clsx from 'clsx';
+import {isDefaultOpen, isDisabled, useMenuList} from './BaseMenu';
 
 /**
  * SubMenu Component
@@ -86,16 +86,19 @@ const SubMenu = React.forwardRef((props, ref) => {
     }
   });
 
+  let directClsName = isDirectChild ? 'direct' : 'non-direct';
+
   // for submenu is direct child of a menu
   if (isDirectChild) {
-    let extra = `${extraClassName ? extraClassName : ""}${activeFloatMenu
-        ? "active" : ""}`;
+    let extra = `${extraClassName ? extraClassName : ''}${activeFloatMenu
+        ? 'show' : ''} ${directClsName}`;
 
     return <FloatMenuContext.Provider value={{
-      clickFloatMenuItem: handleFloatMenuItem
+      clickFloatMenuItem: handleFloatMenuItem,
     }}>
       <Menu ref={forwardRef}
             type="float"
+            menuDirection={null}
             disabled={currentDisabled}
             className={className}
             setItemPaddingLeft={setItemPaddingLeft}
@@ -106,10 +109,10 @@ const SubMenu = React.forwardRef((props, ref) => {
     </FloatMenuContext.Provider>;
   } else {
     //for simple submenu
-    let simpleClsName = clsx(extraClassName, className, {
+    let simpleClsName = clsx(extraClassName, className, directClsName, {
       'close': showMenuList.manualChang ? !showMenuList.show
           : !defaultOpen(),
-      disabled: currentDisabled
+      disabled: currentDisabled,
     });
 
     return <MenuContext.Provider

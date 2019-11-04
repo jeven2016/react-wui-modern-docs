@@ -15,6 +15,11 @@ import {isNil} from '../Utils';
 import {isDefaultOpen, useMenuList} from './BaseMenu';
 import {openMenuType} from '../common/Constants';
 
+const MenuDirection = {
+  horizontal: 'horizontal',
+  vertical: 'vertical',
+};
+
 /**
  * Menu Component
  */
@@ -27,6 +32,8 @@ const Menu = React.forwardRef((props, ref) => {
     selectable = true,
     autoSelectItem = true,
     onClickHeader,
+    mutiMenu = false,
+    menuDirection = MenuDirection.horizontal, // horizontal, vertical
     onClickItem,
     activeItems = [],
     defaultOpenedMenus,
@@ -53,10 +60,11 @@ const Menu = React.forwardRef((props, ref) => {
     setPadding(props, menuRef.current, 0);
   }, []);
 
-  let clsName = clsx(extraClassName, className, {
+  let clsName = clsx(extraClassName, className, menuDirection, {
     'with-border': hasBorder,
     'with-box': hasBox,
     'with-bg': hasBackground,
+    'multi-menu': mutiMenu,
     [type]: type,
     block,
     'close': showMenuList.manualChang ? !showMenuList.show
