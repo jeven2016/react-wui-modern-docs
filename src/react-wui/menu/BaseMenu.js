@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {isNil} from "lodash";
-import {openMenuType} from "../common/Constants";
+import {isNil} from 'lodash';
+import {openMenuType} from '../common/Constants';
 
 export const useMenuList = (props, disabled, defaultOpenFun) => {
+  const defaultState = defaultOpenFun();
+
   //about manualChang, this variable indicates whether this menu is manually changed by clicking header.
   const [showMenuList, setShowMenuList] = useState(
-      {show: true, manualChang: false});
+      {show: defaultState, manualChang: false});
 
   // handle header
   const handleHeader = (headerInfo, evt) => {
@@ -25,23 +27,20 @@ export const useMenuList = (props, disabled, defaultOpenFun) => {
     if (isNil(autoCloseMenu) || autoCloseMenu) {
       let finalState = showMenuList.show;
       //if not changed by user clicking
-      if (!showMenuList.manualChang && defaultOpenFun) {
-        const defaultState = defaultOpenFun();
+      if (!showMenuList.manualChang) {
         if (finalState !== defaultState) {
           finalState = defaultState;
         }
       }
 
-      setShowMenuList(val => {
-        return {show: !finalState, manualChang: true}
-      });
+      setShowMenuList({show: !finalState, manualChang: true});
     }
   };
 
   return {
     showMenuList,
-    handleHeader
-  }
+    handleHeader,
+  };
 };
 
 /**
@@ -65,5 +64,16 @@ export const isDefaultOpen = (defaultOpenedMenus, id) => {
  * @param localDisabled whether the disabled value is set in this component
  * @return {boolean}
  */
-export const isDisabled = (parentDisabled, localDisabled) =>
-    parentDisabled ? parentDisabled : localDisabled;
+export const isDisabledMenu = (
+    disabled, parentSubMenuDisabled, menuDisabled) => {
+
+  let isDisabled = null;
+  let statusArray = [disabled, parentSubMenuDisabled, menuDisabled];
+  for (let e in statusArray) {
+    if (!isNil(statusArray[e])) {
+      isDisabled = statusArray[e];
+      break;
+    }
+  }
+  return isDisabled;
+};

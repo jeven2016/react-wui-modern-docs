@@ -823,11 +823,29 @@ a {
   to {
     top: 2.625rem; } }
 
+@keyframes close-menu-list {
+  from {
+    top: 2.625rem; }
+  to {
+    top: 6rem; } }
+
 @keyframes scale-menu-list {
   from {
-    transform: scaleY(0.5); }
+    transform: scaleY(0.2); }
   to {
-    transform: scaleY(1); } }
+    transform: scaleY(1);
+    opacity: 1; } }
+
+@keyframes scale2-menu-list {
+  0% {
+    max-height: none;
+    transform: scaleY(1); }
+  99% {
+    transform: scaleY(0.2); }
+  100% {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden; } }
 
 @keyframes close-menu {
   from {
@@ -3084,20 +3102,9 @@ textarea.input {
   flex-direction: column;
   align-items: stretch;
   position: relative; }
-  .submenu.with-box, .with-box.menu {
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14); }
-  .submenu.close > .menu-header:after, .close.menu > .menu-header:after {
-    transform: rotate(90deg);
-    transform-origin: center; }
-  .submenu.close > .menu-list, .close.menu > .menu-list {
-    max-height: 0;
-    overflow: hidden; }
-  .submenu.show > .menu-list, .show.menu > .menu-list {
-    max-height: 60rem; }
   .submenu > .menu-list, .menu > .menu-list {
-    transition: max-height 0.3s ease-out;
-    background: #fff;
-    max-height: 60rem; }
+    transition: max-height 0.2s ease-out;
+    background: #fff; }
     .submenu > .menu-list > .menu-item, .menu > .menu-list > .menu-item {
       display: -ms-flexbox;
       display: -webkit-flex;
@@ -3110,21 +3117,13 @@ textarea.input {
       cursor: pointer;
       border: none;
       min-width: 8rem;
-      transition: transition;
-      /*
-            > .icon {
-              @include child-margin($menu-icon-margin-right);
-            }*/ }
+      transition: transition; }
       .submenu > .menu-list > .menu-item:not(.disabled):focus, .menu > .menu-list > .menu-item:not(.disabled):focus, .submenu > .menu-list > .menu-item:not(.disabled):hover, .menu > .menu-list > .menu-item:not(.disabled):hover {
         color: #007aff; }
-        .submenu > .menu-list > .menu-item:not(.disabled):focus.with-box, .menu > .menu-list > .menu-item:not(.disabled):focus.with-box, .submenu > .menu-list > .menu-item:not(.disabled):hover.with-box, .menu > .menu-list > .menu-item:not(.disabled):hover.with-box {
-          font-weight: 500; }
         .submenu > .menu-list > .menu-item:not(.disabled):focus.with-bg, .menu > .menu-list > .menu-item:not(.disabled):focus.with-bg, .submenu > .menu-list > .menu-item:not(.disabled):hover.with-bg, .menu > .menu-list > .menu-item:not(.disabled):hover.with-bg {
           background-color: #fafafa; }
       .submenu > .menu-list > .menu-item:not(.disabled).active, .menu > .menu-list > .menu-item:not(.disabled).active {
         color: #007aff; }
-        .submenu > .menu-list > .menu-item:not(.disabled).active.with-box, .menu > .menu-list > .menu-item:not(.disabled).active.with-box {
-          font-weight: 500; }
         .submenu > .menu-list > .menu-item:not(.disabled).active.with-bg, .menu > .menu-list > .menu-item:not(.disabled).active.with-bg {
           background-color: #fafafa; }
       .submenu > .menu-list > .menu-item:not(.disabled).active.with-bottom-bar:after, .menu > .menu-list > .menu-item:not(.disabled).active.with-bottom-bar:after {
@@ -3164,21 +3163,27 @@ textarea.input {
     .submenu .menu-header:disabled, .menu .menu-header:disabled, .submenu .menu-header.disabled, .menu .menu-header.disabled {
       color: #333;
       background-color: transparent; }
-  .submenu:not(.float) .menu-header:after, .menu:not(.float) .menu-header:after {
-    content: '';
-    width: 0;
-    height: 0;
-    vertical-align: middle;
-    display: inline-block;
-    border: 4px solid transparent;
-    transition: transform .4s ease-in-out;
-    border-top-color: #acacac;
-    position: absolute;
-    right: 0.5rem;
-    top: calc(50% - 2px); }
+    .submenu .menu-header.with-arrow:after, .menu .menu-header.with-arrow:after {
+      content: '';
+      width: 0;
+      height: 0;
+      vertical-align: middle;
+      display: inline-block;
+      border: 4px solid transparent;
+      transition: transform .4s ease-in-out;
+      border-top-color: #acacac;
+      position: absolute;
+      right: 0.5rem;
+      top: calc(50% - 2px); }
   .submenu.block, .block.menu {
-    display: flex;
     width: 100%; }
+  .submenu.normal > .menu-list, .normal.menu > .menu-list {
+    transition: max-height 0.2s ease-out; }
+  .submenu.normal.show > .menu-list, .normal.show.menu > .menu-list {
+    max-height: 60rem; }
+  .submenu.normal.close > .menu-list, .normal.close.menu > .menu-list {
+    max-height: 0;
+    overflow: hidden; }
 
 .menu {
   display: -ms-inline-flexbox;
@@ -3189,94 +3194,6 @@ textarea.input {
   通常的做法就是menu上下留白，不在子item中设置border-radius,如此可以极大地简化实现难度
    */
   padding: 1px 0; }
-  .menu.with-border {
-    border: 1px solid #ccc; }
-  .menu.simple > .divider {
-    display: none; }
-  .menu.float {
-    flex-direction: row;
-    padding: 0; }
-    .menu.float > .submenu .menu-header, .menu.float > .menu .menu-header {
-      flex: 0 0 auto;
-      align-items: center;
-      flex-direction: row;
-      transition: all 0.3s; }
-      .menu.float > .submenu .menu-header:after, .menu.float > .menu .menu-header:after {
-        content: none;
-        border: none; }
-    .menu.float > .submenu > .menu-list, .menu.float > .menu > .menu-list {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      z-index: 100;
-      left: 0;
-      top: 2.625rem;
-      background-color: #fff;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14); }
-    .menu.float > .submenu.show, .menu.float > .show.menu {
-      /* &.direct {
-           &.vertical {
-
-           }
-         }*/ }
-      .menu.float > .submenu.show > .menu-header, .menu.float > .show.menu > .menu-header {
-        color: #007aff; }
-        .menu.float > .submenu.show > .menu-header:after, .menu.float > .show.menu > .menu-header:after {
-          position: absolute;
-          display: block;
-          border-radius: 50%;
-          left: 0;
-          top: calc(100% - 0.1875rem);
-          content: "";
-          height: 0.1875rem;
-          width: 100%;
-          background-color: #007aff;
-          transition: width 0.3s;
-          animation: change-width-smoothly 0.3s; }
-      .menu.float > .submenu.show > .menu-list, .menu.float > .show.menu > .menu-list {
-        display: block;
-        animation: show-menu-list 0.5s; }
-    .menu.float.vertical {
-      flex-direction: column; }
-      .menu.float.vertical .submenu.show > .menu-list, .menu.float.vertical .show.menu > .menu-list {
-        display: block;
-        animation: scale-menu-list 0.3s; }
-    .menu.float.multi-menu .submenu.direct > .menu-list, .menu.float.multi-menu .direct.menu > .menu-list {
-      left: calc(100% + 5px);
-      top: 0; }
-    .menu.float.multi-menu .submenu.non-direct > .menu-list, .menu.float.multi-menu .non-direct.menu > .menu-list {
-      left: calc(100% + 5px);
-      top: 0;
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      z-index: 100;
-      background-color: #fff;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14); }
-    .menu.float > .menu-list {
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      flex: 1 0 100%;
-      border-radius: calc(0.25rem - 1px); }
-      .menu.float > .menu-list > .menu-item {
-        min-width: 4rem; }
-        .menu.float > .menu-list > .menu-item:first-child {
-          border-top-left-radius: calc(0.25rem - 1px);
-          border-bottom-left-radius: calc(0.25rem - 1px); }
-        .menu.float > .menu-list > .menu-item:last-child {
-          border-top-right-radius: calc(0.25rem - 1px);
-          border-bottom-right-radius: calc(0.25rem - 1px); }
-        .menu.float > .menu-list > .menu-item.right {
-          flex-grow: 1;
-          text-align: right;
-          justify-content: flex-end; }
-        .menu.float > .menu-list > .menu-item.left {
-          flex-grow: 1; }
-    .menu.float > .divider {
-      display: none; }
-      .menu.float > .divider + .menu-list > .menu-item {
-        border-left: 1px solid #ccc; }
   .menu.primary .menu-list > .menu-item:not(.disabled):focus, .menu.primary .menu-list > .menu-item:not(.disabled):hover {
     color: #3395ff; }
   .menu.primary .menu-list > .menu-item.active {
@@ -3298,10 +3215,52 @@ textarea.input {
     .menu.dark > .menu-list > .menu-item:not(.disabled):focus, .menu.dark > .menu-list > .menu-item:not(.disabled):hover, .menu.dark .submenu > .menu-list > .menu-item:not(.disabled):focus, .menu.dark .menu > .menu-list > .menu-item:not(.disabled):focus, .menu.dark .submenu > .menu-list > .menu-item:not(.disabled):hover, .menu.dark .menu > .menu-list > .menu-item:not(.disabled):hover {
       color: #fff;
       text-shadow: 1px 1px 2px #333, 0 0 25px #fff, 0 0 5px #007aff; }
-    .menu.dark > .menu-list > .menu-item.show, .menu.dark .submenu > .menu-list > .menu-item.show, .menu.dark .menu > .menu-list > .menu-item.show {
+    .menu.dark > .menu-list > .menu-item.active, .menu.dark .submenu > .menu-list > .menu-item.active, .menu.dark .menu > .menu-list > .menu-item.active {
       background-color: #007aff;
       color: #fff;
       text-shadow: 1px 1px 2px #333, 0 0 25px #fff, 0 0 5px #007aff; }
+  .menu.menu-row {
+    flex-direction: row; }
+    .menu.menu-row > .menu-list {
+      display: flex;
+      flex-direction: row;
+      position: relative; }
+    .menu.menu-row > .direct-child > .menu-list {
+      border-radius: 0.25rem;
+      background: #fff;
+      z-index: 100;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 100%; }
+    .menu.menu-row > .direct-child.show > .menu-list {
+      max-height: 60rem;
+      overflow: visible;
+      animation: show-menu-list 0.5s; }
+    .menu.menu-row > .direct-child.close > .menu-list {
+      max-height: 0;
+      animation: close-menu-list 0.5s; }
+    .menu.menu-row.popup-menu .non-direct-child {
+      background: red; }
+      .menu.menu-row.popup-menu .non-direct-child > .menu-list {
+        border-radius: 0.25rem;
+        background: #fff;
+        z-index: 100;
+        flex-direction: column;
+        max-height: 0;
+        position: absolute;
+        left: calc(100% + 5px);
+        top: 0; }
+      .menu.menu-row.popup-menu .non-direct-child.show > .menu-list {
+        overflow: visible;
+        max-height: 60rem;
+        animation: scale-menu-list 0.5s; }
+      .menu.menu-row.popup-menu .non-direct-child.close > .menu-list {
+        animation: scale2-menu-list 0.5s forwards; }
+  .menu.menu-column {
+    flex-direction: column; }
 
 .divider {
   display: block;

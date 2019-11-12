@@ -1,9 +1,10 @@
 import React, {useContext, useMemo} from 'react';
 import {isBlank, isNil, isString} from '../Utils';
-import {FloatMenuContext, MenuContext} from './MenuUtils';
+import {FloatMenuContext, MenuContext, SubMenuContext} from './MenuUtils';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Element from '../common/Element';
+import {isDisabledMenu} from './BaseMenu';
 
 const Item = React.forwardRef((props, ref) => {
   const {
@@ -25,19 +26,26 @@ const Item = React.forwardRef((props, ref) => {
 
   const menuCtx = useContext(MenuContext);
   const floatMenuCtx = useContext(FloatMenuContext);
-  const disabledItem = isNil(disabled) ? menuCtx.menuDisabled : disabled;
   const activeItems = !isNil(menuCtx.activeItems) ? menuCtx.activeItems : [];
 
+  const parenSubMenuCtx = useContext(SubMenuContext);
+
+  //disable menu from three levels
+  const menuDisabled = menuCtx.menuDisabled;
+  const parentSubMenuDisabled = parenSubMenuCtx.subMenuDisabled;
+
+  let isDisabled = isDisabledMenu(disabled, parentSubMenuDisabled,
+      menuDisabled);
+
+  const disabledItem = isDisabled;
   const isActive = () => {
     if (disabledItem) {
       return false;
     }
 
-    if (!isNil(props.id) && (menuCtx.activeItemId === props.id
-        || activeItems.includes(props.id))) {
+    if (!isNil(props.id) && activeItems.includes(props.id)) {
       return true;
     }
-
     if (!isNil(props.value) && (menuCtx.activeItemId === props.value
         || activeItems.includes(props.value))) {
       return true;
@@ -55,7 +63,7 @@ const Item = React.forwardRef((props, ref) => {
   });
 
   const onClick = (evt) => {
-    if (!menuCtx.autoCloseFloatSubMenu || disabledItem) {
+    if (disabledItem) {
       return;
     }
     const itemInfo = {

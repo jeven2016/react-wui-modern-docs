@@ -8,8 +8,9 @@ import SubMenu from '../../../react-wui/menu/SubMenu';
 
 export const MenuA = () => {
   let comp = <>
-    <Menu style={{width: '15rem'}}>
-      <Menu.Header>用户管理</Menu.Header>
+    <Menu style={{width: '15rem'}} multiSelect={true}
+          onSelect={(val) => console.log(val)}>
+      <Menu.Header>多选</Menu.Header>
       <Menu.List>
         <Menu.Item id="user">用户</Menu.Item>
         <Menu.Item id="role">角色</Menu.Item>
@@ -147,7 +148,15 @@ export const MenuD = () => {
             <Menu.List>
               <Menu.Item id="item1_1" disabled={false}>Not disabled</Menu.Item>
               <Menu.Item id="item2_1" disabled={false}>Not disabled</Menu.Item>
-              <Menu.Item id="item3_1">Disabled</Menu.Item>
+              <Menu.Item id="item3_1_d">Disabled</Menu.Item>
+              <Menu.SubMenu>
+                <Menu.Header>Submenu</Menu.Header>
+                <Menu.List>
+                  <Menu.Item id="item4_1" disabled={false}>Not disabled</Menu.Item>
+                  <Menu.Item id="item4_2" disabled={false}>Not disabled</Menu.Item>
+                  <Menu.Item id="item4_1_d">Disabled</Menu.Item>
+                </Menu.List>
+              </Menu.SubMenu>
             </Menu.List>
           </Menu.SubMenu>
         </Menu.List>
@@ -198,13 +207,14 @@ export const MenuD = () => {
 export const MenuE = () => {
   let comp = <Menu hasBox={true} type="dark"
                    defaultOpenedMenus={['sub1', 'sub2']}
+                   multiSelect
                    style={{width: '15rem'}}>
     <SubMenu id="sub1">
       <Menu.Header>
         <Icon>
           <FontAwesomeIcon icon={faList}/>
         </Icon>
-        <span>用户管理</span>
+        <span>Submenu1</span>
       </Menu.Header>
       <Menu.List>
         <Menu.Item id="user">用户</Menu.Item>
@@ -215,17 +225,17 @@ export const MenuE = () => {
             <Icon>
               <FontAwesomeIcon icon={faList}/>
             </Icon>
-            <span>Submenu2</span>
+            <span>Submenu</span>
           </Menu.Header>
           <Menu.List>
             <Menu.Item id="item1">item1</Menu.Item>
             <Menu.Item id="item2">item2</Menu.Item>
             <Menu.Item id="item3">item3</Menu.Item>
-            <Menu.SubMenu>
+            <Menu.SubMenu id="ttt">
               <Menu.Header><Icon>
                 <FontAwesomeIcon icon={faList}/>
               </Icon>
-                <span>Submenu3</span>
+                <span>Submenu</span>
               </Menu.Header>
               <Menu.List>
                 <Menu.Item id="item1_1">item4</Menu.Item>
@@ -242,7 +252,7 @@ export const MenuE = () => {
       <Menu.Header><Icon>
         <FontAwesomeIcon icon={faList}/>
       </Icon>
-        <span>Submenu3</span>
+        <span>Submenu2</span>
       </Menu.Header>
       <Menu.List>
         <Menu.Item id="item1_2">item4</Menu.Item>
@@ -303,9 +313,10 @@ export const MenuE = () => {
 };
 
 export const MenuFloat = () => {
-  let comp = <Menu type="float" hasBorder={true}
-                   mutiMenu
-                   menuDirection="vertical"
+  let comp = <Menu type="primary" hasBorder={true}
+                   id="hello"
+                   multiMenu
+                   menuDirection="horizontal"
                    onClickItem={(id, evt) => {
                      if (id === 'item1') {
                        return false;

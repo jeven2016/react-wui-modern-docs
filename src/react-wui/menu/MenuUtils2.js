@@ -47,7 +47,6 @@ export const setPadding = (props, menu, index = 0) => {
  * @type {React.Context<{}>}
  */
 export const MenuContext = React.createContext({});
-export const SubMenuContext = React.createContext({});
 
 // https://github.com/facebook/react/issues/13969
 // context should be placed in a individual file
