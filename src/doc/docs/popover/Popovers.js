@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Popover} from '../../../react-wui';
+import {Button, Popover} from 'react-wui-modern';
 import SamplePannel from '../../common/SamplePannel';
 
 export const PopoverA = () => {

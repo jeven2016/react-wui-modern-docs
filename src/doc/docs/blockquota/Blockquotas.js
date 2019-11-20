@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from "../../common/SamplePannel";
-import {Blockquota} from "../../../react-wui";
+import {Blockquota} from "react-wui-modern";
 
 export const BlockquotaA = () => {
   let comp = <>
@@ -116,7 +116,7 @@ export const BlockquotaC = () => {
 export const BlockquotaD = () => {
   let comp = <>
     <Blockquota hasBorder hasBackground hasBox
-                appendClass="bold text color-white bg-color-black">
+                extraClassName="bold text color-white bg-color-black">
       The HTML Element (or HTML Block Quotation Element)
       indicates that the enclosed text is an extended quotation.
       Usually, this is rendered visually by indentation
@@ -126,7 +126,7 @@ export const BlockquotaD = () => {
       the &lt;cite&gt; element.
     </Blockquota>
     <Blockquota type="primary" hasBorder hasBackground hasBox
-                appendClass="bold text color-white bg-color-green">
+                extraClassName="bold text color-white bg-color-green">
       The HTML Element (or HTML Block Quotation Element)
       indicates that the enclosed text is an extended quotation.
       Usually, this is rendered visually by indentation
@@ -165,7 +165,7 @@ export const BlockquotaE = () => {
     </Blockquota>
     <Blockquota type="primary" hasBox type="secondary"
                 hasBackground
-                appendClass="bold text color-white bg-color-purple">
+                extraClassName="bold text color-white bg-color-purple">
       The HTML Element (or HTML Block Quotation Element)
       indicates that the enclosed text is an extended quotation.
       Usually, this is rendered visually by indentation

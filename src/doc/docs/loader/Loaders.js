@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, Card, Checkbox, Loader} from '../../../react-wui';
+import {Button, Card, Checkbox, Loader} from 'react-wui-modern';
 import {DocRow} from '../../common/DocComponents';
 
 export const LoaderA = () => {

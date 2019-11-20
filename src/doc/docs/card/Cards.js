@@ -7,7 +7,7 @@ import {
   Divider,
   Icon,
   Tooltip,
-} from '../../../react-wui';
+} from 'react-wui-modern';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMailBulk, faPhone, faUser} from '@fortawesome/free-solid-svg-icons';
 import pic from '../../../style/back.jpg';

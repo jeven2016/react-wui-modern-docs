@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, Divider, Modal} from '../../../react-wui';
+import {Button, Divider, Modal} from 'react-wui-modern';
 
 export class ModalA extends Component {
   constructor(args) {

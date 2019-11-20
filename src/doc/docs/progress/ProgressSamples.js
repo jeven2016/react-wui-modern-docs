@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, ButtonGroup, Card, Checkbox} from '../../../react-wui';
-import {Progress} from '../../../react-wui';
+import {Button, ButtonGroup, Card, Checkbox, Progress} from 'react-wui-modern';
 import {DocRow} from '../../common/DocComponents';
-import Loader from '../../../react-wui/Loader';
 
 export const ProgressA = () => {
   const [value, setValue] = useState(30);

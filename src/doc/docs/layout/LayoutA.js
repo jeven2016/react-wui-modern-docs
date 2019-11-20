@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 
 import '../../../style/index.css';
 import '../../../style/wui-bundle-min.css';
@@ -11,7 +11,7 @@ import {
   Layout,
   Menu,
   NavBar,
-} from '../../../react-wui';
+} from 'react-wui-modern';
 import DocFrame from './DocFrame';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faList} from '@fortawesome/free-solid-svg-icons';
@@ -254,19 +254,20 @@ export const LayoutD = (props) => {
   }
   `;
 
-  return <DocFrame code={code}>
-    <Layout style={{height: '100%'}}>
+  return <Layout style={{height: '500px'}}>
       <Layout.Split style={{marginBottom: '1rem'}}>
         <Layout.Slider collapse={collapse}
-            style={{flex: '0 1 200px', background: '#000c17'}}>
+                       style={{flex: '0 1 200px', background: '#000c17'}}>
           <div style={{
-            fontSize: '1.5rem', fontWeight: 'bold', color: '#fff',
+            // fontSize: '1.5rem', fontWeight: 'bold',
+
+            color: '#fff',
             textAlign: 'center',
             padding: '1rem 0',
           }}>
-            Title Area
+            Title Area4
           </div>
-          <Menu type="dark" block>
+          <Menu type="dark" block multiLevelMenus menuDirection="vertical" hasBorder>
             <Menu.SubMenu id="sub1">
               <Menu.Header><Icon>
                 <FontAwesomeIcon icon={faList}/>
@@ -291,7 +292,8 @@ export const LayoutD = (props) => {
         </Layout.Slider>
         <Layout>
           <Layout.Header style={{borderBottom: '1px solid #ccc'}}>
-            <Button outline extraClassName="clear-border" onClick={()=>setCollapse(val=>!val)}>
+            <Button outline extraClassName="clear-border"
+                    onClick={() => setCollapse(val => !val)}>
               <IconHome/>
             </Button>
           </Layout.Header>
@@ -301,8 +303,7 @@ export const LayoutD = (props) => {
         </Layout>
       </Layout.Split>
     </Layout>
-
-  </DocFrame>;
+;
 };
 
 export const LayoutE = (props) => {

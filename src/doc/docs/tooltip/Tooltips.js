@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, Col, Dropdown, Menu, Popover, Row} from '../../../react-wui';
+import {Button, Col, Dropdown, Menu, Popover, Row} from 'react-wui-modern';
 import SamplePannel from '../../common/SamplePannel';
-import {Tooltip} from '../../../react-wui';
+import {Tooltip} from 'react-wui-modern';
 import {DocCol, DocRow} from '../../common/DocComponents';
 
 export const TooltipA = () => {

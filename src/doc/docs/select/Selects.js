@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Select} from '../../../react-wui';
+import {Select} from 'react-wui-modern';
 import {DocRow} from '../../common/DocComponents';
 
 export const A = () => {

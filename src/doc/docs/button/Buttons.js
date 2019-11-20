@@ -8,7 +8,7 @@ import {
   Notification,
   Toggle,
   Tooltip
-} from "../../../react-wui";
+} from "react-wui-modern";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlane} from "@fortawesome/free-solid-svg-icons";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Notification, Radio, RadioGroup} from "../../../react-wui";
+import {Notification, Radio, RadioGroup} from "react-wui-modern";
 
 function change(value) {
   Notification.mini(`The value is :${value}`)

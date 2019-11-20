@@ -1,6 +1,6 @@
 import React from 'react';
 import intl from 'react-intl-universal';
-import {Menu} from '../../../react-wui';
+import {Menu} from 'react-wui-modern';
 import DocComponent from '../DocComponent';
 import {
   MenuA,
@@ -12,7 +12,7 @@ import {
   MenuFloatComponents,
   MenuFloatItems,
   MenuFloatLeft,
-  MenuFloatRight, MenuItemDisabled,
+  MenuFloatRight, MenuItemDisabled, MenuSpaceBetween,
 } from './Menus';
 
 export default class MenuIndex extends DocComponent {
@@ -60,7 +60,7 @@ export default class MenuIndex extends DocComponent {
           <h3 id="menuE"> {intl.get('content.menu.sample.menuE')}</h3>
           <MenuE/>
         </section>
-        {/*
+
         <section>
           <h3 id="menuFloat"> {intl.get('content.menu.sample.menuF')}</h3>
           <MenuFloat/>
@@ -100,11 +100,17 @@ export default class MenuIndex extends DocComponent {
           <MenuItemDisabled/>
         </section>
 
+        <section>
+          <h3 id="MenuSpaceBetween"> {intl.get(
+              'content.menu.sample.space.between')}</h3>
+          <MenuSpaceBetween/>
+        </section>
+
 
         <section>
           <h3 id="menuFloatColors"> {intl.get(
               'content.menu.sample.float.colors')}</h3>
-        </section>*/}
+        </section>
 
       </div>
 

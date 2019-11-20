@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {IconList, NavBar} from '../../react-wui';
+import {IconList, NavBar} from 'react-wui-modern';
 import {faBook, faUser} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import intl from 'react-intl-universal';

@@ -8,7 +8,7 @@ import {
   IconClear,
   Form,
   Checkbox,
-} from '../../../react-wui';
+} from 'react-wui-modern';
 
 export const DrawerA = (props) => {
   const [activeLeft, setActiveLeft] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Dropdown, Icon, Input, Menu, NavBar} from '../../../react-wui';
+import {Button, Dropdown, Icon, Input, Menu, NavBar} from 'react-wui-modern';
 import SamplePannel from '../../common/SamplePannel';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {

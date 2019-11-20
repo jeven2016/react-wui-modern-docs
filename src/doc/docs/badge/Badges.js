@@ -7,7 +7,7 @@ import {
   IconArrowDown,
   Menu,
   Toggle
-} from "../../../react-wui";
+} from "react-wui-modern";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMailBulk, faUser} from "@fortawesome/free-solid-svg-icons";
 

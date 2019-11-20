@@ -1,13 +1,14 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Icon, Toggle, Tooltip} from '../../../react-wui';
+import {Icon, Toggle, Tooltip} from 'react-wui-modern';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
-  faArchive,
-  faArrowDown, faCar,
-  faCheck, faPlane, faQuestion, faTimes, faVoteYea,
+  faCar,
+  faCheck,
+  faPlane,
+  faQuestion,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
-import Button from '../../../react-wui/button';
 
 export const ToggleA = () => {
   let comp = <>
