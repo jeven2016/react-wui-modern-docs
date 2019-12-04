@@ -6,7 +6,7 @@ import {
   IconError, IconInfo, IconOk,
   IconWarning,
   Notification, Radio, RadioGroup,
-} from 'react-wui-modern';
+} from '../../../react-wui-modern';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlane} from '@fortawesome/free-solid-svg-icons';
 import {DocRow} from '../../common/DocComponents';

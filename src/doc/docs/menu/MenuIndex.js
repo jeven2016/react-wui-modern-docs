@@ -1,6 +1,6 @@
 import React from 'react';
 import intl from 'react-intl-universal';
-import {Menu} from 'react-wui-modern';
+import {Menu} from '../../../react-wui-modern';
 import DocComponent from '../DocComponent';
 import {
   MenuA,

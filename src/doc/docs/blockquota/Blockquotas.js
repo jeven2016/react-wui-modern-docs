@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from "../../common/SamplePannel";
-import {Blockquota} from "react-wui-modern";
+import {Blockquota} from "../../../react-wui-modern";
 
 export const BlockquotaA = () => {
   let comp = <>

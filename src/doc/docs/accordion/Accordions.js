@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from "../../common/SamplePannel";
-import {Accordion, Card} from "react-wui-modern";
+import {Accordion, Card} from "../../../react-wui-modern";
 
 export const AccordionA = () => {
   let comp = <>

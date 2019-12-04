@@ -10,8 +10,8 @@ import {
   IconClear,
   Menu,
   Notification,
-} from 'react-wui-modern';
-import {IconHome} from 'react-wui-modern';
+} from '../../../react-wui-modern';
+import {IconHome} from '../../../react-wui-modern';
 
 export const BreadA = () => {
   let comp = <>

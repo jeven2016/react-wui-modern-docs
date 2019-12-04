@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Tooltip} from 'react-wui-modern';
+import {Col, Row, Tooltip} from '../../../react-wui-modern';
 import SamplePannel from '../../common/SamplePannel';
 
 export const GridA = () => {

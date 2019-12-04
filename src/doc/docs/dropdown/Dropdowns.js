@@ -1,4 +1,4 @@
-import React ,{useRef}from 'react';
+import React, {useRef, useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {
   Button,
@@ -7,16 +7,24 @@ import {
   Dropdown,
   IconArrowDown,
   Menu, Row, Tooltip,
-} from 'react-wui-modern';
+} from '../../../react-wui-modern';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
 import {faWeibo} from '@fortawesome/free-brands-svg-icons';
 import {DocCol, DocRow} from '../../common/DocComponents';
 
 export const DpA = () => {
+  const [active, setActive] = useState(false);
   let comp = <>
     <DocCol>
-      <Dropdown>
+      <Dropdown active={active}
+                onOpen={() => console.log('open')}
+                onClose={() => console.log('close')}
+                onActiveChange={(newActive, clickInfo) => {
+                  console.log('newActive=' + newActive);
+                  console.log(clickInfo);
+                  setActive(newActive);
+                }}>
         <Dropdown.Title>Selectable</Dropdown.Title>
         <Menu hasBorder>
           <Menu.List>
@@ -92,7 +100,7 @@ export const DpA = () => {
 export const DpB = () => {
   const btnRef = useRef(null);
   let comp = <>
-    <Button onClick={()=> btnRef.current.focus()}>TestRef</Button>
+    <Button onClick={() => btnRef.current.focus()}>TestRef</Button>
     <Dropdown>
       <Dropdown.Title>Click Title</Dropdown.Title>
       <Menu hasBorder>

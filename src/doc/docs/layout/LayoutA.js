@@ -11,7 +11,7 @@ import {
   Layout,
   Menu,
   NavBar,
-} from 'react-wui-modern';
+} from '../../../react-wui-modern';
 import DocFrame from './DocFrame';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faList} from '@fortawesome/free-solid-svg-icons';

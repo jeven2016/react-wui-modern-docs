@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Icon, Toggle, Tooltip} from 'react-wui-modern';
+import {Icon, Toggle, Tooltip} from '../../../react-wui-modern';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faCar,

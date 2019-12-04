@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, ButtonGroup, Card, Checkbox, Progress} from 'react-wui-modern';
+import {Button, ButtonGroup, Card, Checkbox, Progress} from '../../../react-wui-modern';
 import {DocRow} from '../../common/DocComponents';
 
 export const ProgressA = () => {

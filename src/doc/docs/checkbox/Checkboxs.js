@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Checkbox, Notification} from 'react-wui-modern';
+import {Checkbox, Notification} from '../../../react-wui-modern';
 
 function change(value) {
   Notification.mini(`The value is :${value}`)

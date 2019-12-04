@@ -1,6 +1,6 @@
 import React from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, DatePicker, preventEvent} from 'react-wui-modern';
+import {Button, DatePicker, preventEvent} from '../../../react-wui-modern';
 import {DocCol, DocRow} from '../../common/DocComponents';
 
 export const DatePickerA = () => {

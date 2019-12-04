@@ -3,7 +3,7 @@ import {Link, Route} from 'react-router-dom';
 import intl from 'react-intl-universal';
 import ButtonIndex from './button/ButtonIndex';
 import MenuIndex from './menu/MenuIndex';
-import {Button, Drawer, Input, InputGroup, Menu} from 'react-wui-modern';
+import {Button, Drawer, Input, InputGroup, Menu} from '../../react-wui-modern';
 import DropdownIndex from './dropdown/DropdownIndex';
 import NavbarIndex from './navbar/NavbarIndex';
 import PopoverIndex from './popover/PopoverIndex';

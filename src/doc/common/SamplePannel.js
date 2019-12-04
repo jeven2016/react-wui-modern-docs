@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Tooltip} from "react-wui-modern";
+import {Card, Tooltip} from "../../react-wui-modern";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from "@fortawesome/free-solid-svg-icons";
 import CodeTemplate from "./CodeTemplate";
