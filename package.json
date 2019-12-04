@@ -17,7 +17,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-syntax-highlighter": "^10.3.0",
-    "react-wui-modern": "^0.1.10",
+    "react-wui-modern": "^0.1.13",
     "scroll-to-element": "^2.0.3",
     "warning": "^4.0.3",
     "whatwg-fetch": "^3.0.0"
