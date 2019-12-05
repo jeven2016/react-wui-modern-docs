@@ -13,31 +13,34 @@ import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
 import {faWeibo} from '@fortawesome/free-brands-svg-icons';
 import {DocCol, DocRow} from '../../common/DocComponents';
 
-export const DpA = () => {
+const Dp = () => {
   const [active, setActive] = useState(false);
+  return <Dropdown active={active} id="tttt"
+                   onSelect={(val)=>console.log("you select ",val)}
+                   onActiveChange={(newActive, clickInfo) => {
+                     console.log('newActive=' + newActive);
+                     setActive(newActive);
+                   }}>
+    <Dropdown.Title>Selectable</Dropdown.Title>
+    <Menu hasBorder>
+      <Menu.List>
+        <Menu.Item id={1} value={1} text="Action 1"/>
+        <Menu.Item id={2} value={2} text="Action 2"/>
+        <Menu.Item id={3} value={3} text="Action 3"/>
+        <Menu.Item id={4} value={4} text="Action 4"/>
+      </Menu.List>
+    </Menu>
+  </Dropdown>;
+};
+
+export const DpA = () => {
+
   let comp = <>
     <DocCol>
-      <Dropdown active={active}
-                onOpen={() => console.log('open')}
-                onClose={() => console.log('close')}
-                onActiveChange={(newActive, clickInfo) => {
-                  console.log('newActive=' + newActive);
-                  console.log(clickInfo);
-                  setActive(newActive);
-                }}>
-        <Dropdown.Title>Selectable</Dropdown.Title>
-        <Menu hasBorder>
-          <Menu.List>
-            <Menu.Item id={1} value={1} text="Action 1"/>
-            <Menu.Item id={2} value={2} text="Action 2"/>
-            <Menu.Item id={3} value={3} text="Action 3"/>
-            <Menu.Item id={4} value={4} text="Action 4"/>
-          </Menu.List>
-        </Menu>
-      </Dropdown>
+      <Dp/>
     </DocCol>
     <DocCol>
-      <Dropdown selectable disabled>
+      <Dropdown selectable disabled id="22">
         <Dropdown.Title>disabled</Dropdown.Title>
         <Menu hasBorder>
           <Menu.List>
@@ -50,7 +53,7 @@ export const DpA = () => {
       </Dropdown>
     </DocCol>
     <DocCol>
-      <Dropdown triggerBy="click">
+      <Dropdown triggerBy="click" id="33">
         <Dropdown.Title>
           <div key="click">Click Me<IconArrowDown/></div>
         </Dropdown.Title>
@@ -65,7 +68,7 @@ export const DpA = () => {
       </Dropdown>
     </DocCol>
     <DocCol>
-      <Dropdown triggerBy="hover">
+      <Dropdown triggerBy="hover" id="44">
         <Dropdown.Title>Hover</Dropdown.Title>
         <Menu hasBox>
           <Menu.List>

@@ -14,7 +14,6 @@ const Dropdown = React.forwardRef((props, ref) => {
     type,
     margin = 0,
     onSelect,
-    autoClose = true,
     onDropdownAutoClose, //override the dropdown's auto close handler
     bodyClassName = 'dropdown-menu',
     ...otherProps
@@ -82,7 +81,6 @@ const Dropdown = React.forwardRef((props, ref) => {
 
   return <PopupController
       ref={dpRef}
-      autoClose={autoClose}
       margin={margin}
       onAutoClose={handleAutoClose}
       disabled={disabled}

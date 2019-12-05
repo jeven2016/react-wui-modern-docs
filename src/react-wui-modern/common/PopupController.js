@@ -4,7 +4,6 @@ import React, {
   useLayoutEffect,
   useRef,
   useState,
-  useEffect,
 } from 'react';
 import clsx from 'clsx';
 import {Active, EventListener, PopupCtrlType} from './Constants';
@@ -35,6 +34,7 @@ const useCombinedListeners = (
 const PopupController = React.forwardRef((props, ref) => {
   const [pcState, setPcState] = useState({activePopup: Active.na});
   const {
+    id,
     disabled = false,
     setChildDisabled = true,// whether to copy disabled for child node( ctrl )
     position = 'bottomLeft',
@@ -43,7 +43,7 @@ const PopupController = React.forwardRef((props, ref) => {
     active,  //maintain the active state outside, do not change it automatically
     onActiveChange, //a callback used to set the active state
     fireBackgroundClickEvent = true, //whether to fire the close event while clicking the background (document) .
-    onAutoClose, // deprecated: the callback would be invoked while clicking document and trying to close the popup, true : the popup will be closed
+    onAutoClose, //for internal use: the callback would be invoked while clicking document that trying to close the popup, true : the popup will be closed
 
     triggerBy = PopupCtrlType.click,
     bodyOffset = '0.3rem',
@@ -58,23 +58,29 @@ const PopupController = React.forwardRef((props, ref) => {
   const rootElem = useContainer('wui-portals');
   const ctrlRef = useRef(null);
   const bodyRef = useRef(null);
-
-  const hasDefaultValue = !isNil(defaultActive);
-  const isControlledByOutside = !isNil(active) || !isNil(onActiveChange);//TODO
+  const isControlledByOutside = !isNil(active);
 
   //a flag
   const closingRef = useRef(false);
+
+  const changeActive = (nextActive) => {
+
+    //active state changed by internal logic instead of the outside component
+    setPcState({
+      ...pcState,
+      activePopup: nextActive,
+    });
+
+    onActiveChange && onActiveChange(nextActive);
+  };
 
   /**
    * Expose a close method to parent node inorder to close the popup outside this
    * component.
    */
   useImperativeHandle(ref, () => ({
-    close: () => closePopup(),
+    close: () => changeActive(Active.disactive),
   }));
-
-  const closePopup = () => setPcState(
-      {...pcState, activePopup: Active.disactive});
 
   //add listener for document click event
   useEvent(EventListener.click, (e) => {
@@ -86,7 +92,7 @@ const PopupController = React.forwardRef((props, ref) => {
     const isClickCtrl = ctrlRef.current.contains(e.target);
 
     if (isControlledByOutside) {
-      onActiveChange(false, {
+      onActiveChange && onActiveChange(false, {
         isClickCtrl: isClickCtrl,
         isClickPopup: isClickPopup,
         isClickDocument: !isClickCtrl && !isClickPopup,
@@ -95,22 +101,12 @@ const PopupController = React.forwardRef((props, ref) => {
     }
 
     if (!isClickPopup && !isClickCtrl) {
-      closePopup();
-      handleCallback(false);
+      changeActive(Active.disactive);
       return;
     }
 
     if (onAutoClose && onAutoClose(isClickPopup, isClickCtrl)) {
-      closePopup();
-      handleCallback(false);
-    }
-  });
-
-  useEffect(() => {
-    if (isControlledByOutside) {
-      console.log('trigger by use Effect');
-      //need to handle callbacks if the active state is maintained by outside component
-      handleCallback(getCurrentBoolValue());
+      changeActive(Active.disactive);
     }
   });
 
@@ -121,16 +117,19 @@ const PopupController = React.forwardRef((props, ref) => {
   const getCurrentBoolValue = () => {
     if (!isControlledByOutside) {
       const interActive = pcState.activePopup;
-      return Active.isNa(interActive) ? defaultActive : interActive;
+      return Active.isNa(interActive) ? defaultActive : Active.isActive(
+          interActive);
     }
-    return Active.convertBool(active);
+    return Active.isNa(active)
+        ? defaultActive
+        : active;
   };
 
   const isActive = (value) => {
     if (!isNil(value)) {
       return Active.isActive(value);
     }
-    return Active.isActive(getCurrentBoolValue());
+    return getCurrentBoolValue();
   };
 
   const move = () => {
@@ -151,14 +150,10 @@ const PopupController = React.forwardRef((props, ref) => {
       return;
     }
 
-    const changeStatus = () => {
-      setPcState({
-        ...pcState,
-        activePopup: nextActiveState,
-      });
-
-      handleCallback(nextActiveState);
-    };
+    //the hover event should only be fired by controller or popup
+    if (bodyRef.current !== e.target && ctrlRef.current !== e.target) {
+      return;
+    }
 
     //to active
     if (Active.isActive(nextActiveState)) {
@@ -166,9 +161,14 @@ const PopupController = React.forwardRef((props, ref) => {
         closingRef.current = false;
       }
 
+      if (isActive()) {
+        //if current state is active, ignore
+        return;
+      }
+
       //if the popup hasn't been activated
       if (!Active.isActive()) {
-        changeStatus();
+        changeActive(nextActiveState);
         return;
       }
     }
@@ -180,7 +180,7 @@ const PopupController = React.forwardRef((props, ref) => {
       execute(() => {
         if (closingRef.current) {
           closingRef.current = false;
-          changeStatus();
+          changeActive(nextActiveState);
         }
       }, closeDelay);
     }
@@ -205,7 +205,7 @@ const PopupController = React.forwardRef((props, ref) => {
     return ReactDOM.createPortal(popupBodyElem, rootElem);
   };
 
-  const clickCtrl = (e) => {
+  const handleClick = (e) => {
     if (PopupCtrlType.isHover(triggerBy) ||
         isActive()) {
       return;
@@ -218,13 +218,9 @@ const PopupController = React.forwardRef((props, ref) => {
       });
       preventEvent(e);
     } else {
-      const status = getOppositeStatus(pcState.active);
-      setPcState({
-        ...pcState,
-        activePopup: status,
-      });
+      const status = getOppositeStatus(pcState.activePopup);
+      changeActive(status);
 
-      handleCallback(status);
     }
   };
 
@@ -260,7 +256,7 @@ const PopupController = React.forwardRef((props, ref) => {
       childProp.ref = ctrlRef;
     }
     let ctrlProps = {
-      ...childProp, disabled: disabled,
+      ...childProp, ...otherProps, disabled: disabled,
     };
 
     return React.cloneElement(ctrl, ctrlProps);
@@ -268,7 +264,8 @@ const PopupController = React.forwardRef((props, ref) => {
 
   //add listeners for controller
   const ctrlElem = useCallback(() => ctrlRef.current, [triggerBy]);
-  useEvent(EventListener.click, useCallback(clickCtrl, [triggerBy]),
+  useEvent(EventListener.click,
+      useCallback(handleClick, [pcState, triggerBy]),
       true, ctrlElem);
   useCombinedListeners(ctrlElem, (e) => handleHover(e, Active.active),
       (e) => handleHover(e, Active.disactive), [triggerBy]);
