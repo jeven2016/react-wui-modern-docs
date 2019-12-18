@@ -1,6 +1,12 @@
 import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Button, ButtonGroup, Card, Checkbox, Progress} from '../../../react-wui-modern';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Checkbox,
+  Progress,
+} from '../../../react-wui-modern';
 import {DocRow} from '../../common/DocComponents';
 
 export const ProgressA = () => {
@@ -158,6 +164,23 @@ export const ProgressC = () => {
   const decrease = () => setValue(
       val => val - increment <= 0 ? 0 : val - increment);
 
+  const showTop = () => {
+    Progress.showTop({
+      progressStyle: {marginTop: '4rem', zIndex: '1000'},
+      barStyle: {background: 'red'},
+    });
+  };
+
+  const showTop2 = () => {
+    Progress.showTop({
+      progressStyle: {marginTop: '4rem', zIndex: '1000'},
+      barStyle: {background: 'green'},
+    });
+  };
+  const closeTop = () => {
+    Progress.closeTop();
+  };
+
   let comp = <>
     <DocRow>
       <Checkbox onChange={(val) => setActive(val)}>
@@ -179,6 +202,16 @@ export const ProgressC = () => {
               showLoading={loading}
               type="error"
               style={{top: '4rem', height: '3px'}}/>
+    <DocRow>
+      <ButtonGroup>
+        <Button onClick={showTop}>
+          Progress.showTop()
+        </Button>
+        <Button onClick={closeTop}>
+          Progress.closeTop()
+        </Button>
+      </ButtonGroup>
+    </DocRow>
   </>;
 
   let code = `

@@ -29,6 +29,7 @@ import ProgressIndex from './progress/ProgressIndex';
 import LayoutIndex from './layout/LayoutIndex';
 import LayoutA from './layout/LayoutA';
 import DatePickerIndex from './datapicker/DatePickerIndex';
+import SpringIndex from './spring/SpringIndex';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -190,6 +191,11 @@ const getMenu = (match, selectedItem) => {
         <Menu.Item id="IconItem">
           Icon 图标
         </Menu.Item>
+        <Menu.Item id="SpringItem">
+          <Link to={`${match.url}/components/spring`}>
+            Spring测试
+          </Link>
+        </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
   </Menu>;
@@ -247,6 +253,8 @@ const getRoutes = (match) => {
            component={ToggleIndex}/>
     <Route exact={true} path={`${match.url}/components/datepicker`}
            component={DatePickerIndex}/>
+    <Route exact={true} path={`${match.url}/components/spring`}
+           component={SpringIndex}/>
   </>;
 };
 
@@ -257,7 +265,6 @@ const MainPage = (props) => {
   const closeMenu = () => {
     dispatch({type: 'inactive'});
   };
-  console.log('state=' + menuState.active);
   return (
       <>
         {

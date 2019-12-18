@@ -45,8 +45,7 @@ export const TooltipA = () => {
 
         </DocRow>
         <DocRow>
-          <Tooltip position="leftBottom" body="This is a tooltip"
-                   defaultActive={true}>
+          <Tooltip position="leftBottom" body="This is a tooltip" defaultActive>
             <Button outline={true} color="blue">LB</Button>
           </Tooltip>
         </DocRow>

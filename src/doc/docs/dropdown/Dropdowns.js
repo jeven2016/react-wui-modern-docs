@@ -176,7 +176,7 @@ export const DpC = () => {
           </Dropdown>
         </DocCol>
         <DocCol>
-          <Tooltip body="position='top'" position="top">
+          <Tooltip body="position='top'" position="bottom">
             <Dropdown position="top" triggerBy="hover">
               <Button color="green">T</Button>
               <Menu hasBorder>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import '../../../style/index.css';
-import '../../../style/wui-bundle-min.css';
+import '../../../style/wui-modern-0.5.1.min.css';
 import '../../../style/doc.scss';
 import {
   Breadcrumb,
