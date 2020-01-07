@@ -119,7 +119,8 @@ export const PopoverC = () => {
     <Form nativeType="div">
       <Form.Item type="block">
         <label>角色组</label>
-        <Select placeholder="..." block
+        <Select placeholder="..."
+                block={true}
                 active={activeRole}
                 searchable={false}
                 onActiveChange={(nextState) => {

@@ -27,7 +27,7 @@ export default class LayoutIndex extends DocComponent {
         </p>
 
         <span className="grid-sample-col">
-        <section>
+    {/*    <section>
           <h3 id="layoutA">{intl.get('content.layout.sample.A')}</h3>
           <LayoutA/>
         </section>
@@ -40,16 +40,18 @@ export default class LayoutIndex extends DocComponent {
           <section>
           <h3 id="layoutC">{intl.get('content.layout.sample.C')}</h3>
           <LayoutC/>
-        </section>
+        </section>*/}
           <section>
           <h3 id="layoutD">{intl.get('content.layout.sample.D')}</h3>
           <LayoutD/>
         </section>
+{/*
 
          <section>
           <h3 id="layoutE">{intl.get('content.layout.sample.E')}</h3>
           <LayoutE/>
         </section>
+*/}
 
         </span>
 

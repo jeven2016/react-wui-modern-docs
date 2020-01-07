@@ -1,23 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
-import {Icon, Toggle, Tooltip} from '../../../react-wui-modern';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faCar,
-  faCheck,
-  faPlane,
-  faQuestion,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import {IconClear, Toggle, Tooltip} from '../../../react-wui-modern';
+import {IconChecked2} from '../../../react-wui-modern/Icons';
 
 export const ToggleA = () => {
+  const [active, setActive] = useState(true);
   let comp = <>
     <Toggle/>
-    <Toggle active/>
-
-    <Tooltip body="This toggle is disabled.">
-      <Toggle active disabled/>
+    <Tooltip body="switch the active state">
+      <Toggle active={active} onChange={() => setActive(!active)}/>
     </Tooltip>
+
+    <Toggle defaultActive disabled/>
+
   </>;
 
   let code = `
@@ -34,12 +29,14 @@ export const ToggleB = () => {
       let comp = <>
         <div>
           <Toggle type="primary" content={{on: '开', off: '关', showInBar: true}}/>
-          <Toggle type="primary" content={{on: 'ON', off: 'OFF', showInBar: true}}/>
+          <Toggle type="primary" style={{width: '6rem'}}
+                  content={{on: 'ON', off: 'OFF', showInBar: true}}/>
+          <br/>
           <Toggle type="primary" content={{on: '开', off: '关', showInBar: false}}/>
-          <Toggle type="primary" content={{on: 'ON', off: 'OFF'}}/>
+          <Toggle type="primary" content={{on: 'Y', off: 'N'}}/>
         </div>
 
-        <div style={{marginTop: '2rem'}}>
+        {/*<div style={{marginTop: '2rem'}}>
           <Toggle type='primary' content={{
             on: <Icon>
               <FontAwesomeIcon icon={faCheck}/>
@@ -57,7 +54,7 @@ export const ToggleB = () => {
               <FontAwesomeIcon icon={faPlane}/>
             </Icon>,
           }}/>
-        </div>
+        </div>*/}
       </>;
 
       let code = `
@@ -77,28 +74,21 @@ export const ToggleC = () => {
         <div>
           <Toggle type="secondary" content={{on: '开', off: '关', showInBar: true}}/>
           <Toggle type="secondary"
+                  style={{width: '5rem'}}
                   content={{on: 'ON', off: 'OFF', showInBar: true}}/>
           <Toggle type="secondary" content={{on: '开', off: '关', showInBar: false}}/>
-          <Toggle type="secondary" content={{on: 'ON', off: 'OFF'}}/>
+          <Toggle type="secondary" content={{on: 'Y', off: 'N'}}/>
         </div>
 
         <div style={{marginTop: '2rem'}}>
           <Toggle type='secondary' content={{
-            on: <Icon>
-              <FontAwesomeIcon icon={faCheck}/>
-            </Icon>,
-            off: <Icon>
-              <FontAwesomeIcon icon={faTimes}/>
-            </Icon>,
+            on: <IconChecked2/>,
+            off: <IconClear/>,
             showInBar: true,
           }}/>
           <Toggle type="secondary" content={{
-            on: <Icon>
-              <FontAwesomeIcon icon={faCheck}/>
-            </Icon>,
-            off: <Icon>
-              <FontAwesomeIcon icon={faTimes}/>
-            </Icon>,
+            on: <IconChecked2/>,
+            off: <IconClear/>,
           }}/>
         </div>
       </>;

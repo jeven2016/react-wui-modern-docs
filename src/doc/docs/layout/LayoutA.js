@@ -255,9 +255,9 @@ export const LayoutD = (props) => {
   `;
 
   return <Layout style={{height: '500px'}}>
-      <Layout.Split style={{marginBottom: '1rem'}}>
+      <Layout.Split>
         <Layout.Slider collapse={collapse}
-                       style={{flex: '0 1 200px', background: '#000c17'}}>
+                       style={{ background: '#000c17'}}>
           <div style={{
             // fontSize: '1.5rem', fontWeight: 'bold',
 
@@ -267,7 +267,7 @@ export const LayoutD = (props) => {
           }}>
             Title Area4
           </div>
-          <Menu type="dark" block multiLevelMenus menuDirection="vertical" hasBorder>
+          <Menu type="dark" collapse={collapse} block multiLevelMenus={collapse} menuDirection="vertical" hasBorder>
             <Menu.SubMenu id="sub1">
               <Menu.Header><Icon>
                 <FontAwesomeIcon icon={faList}/>

@@ -1,16 +1,20 @@
-import React,{useRef,useCallback} from 'react';
+import React, {useRef, useCallback, useState} from 'react';
 import SamplePannel from '../../common/SamplePannel';
 import {Select, useEvent} from '../../../react-wui-modern';
 import {DocRow} from '../../common/DocComponents';
 import Button from '../../../react-wui-modern/button';
 import {EventListener} from '../../../react-wui-modern/common/Constants';
+import Popover from '../../../react-wui-modern/popover';
 
 export const A = () => {
   const btnRef = useRef();
+  const [show, setShow] = useState(true);
   let comp = <>
     <DocRow>
-      <Select style={{width: '10rem'}} placeholder="Select..." triggerBy="hover"
-          // defaultValue="nanjing"
+      <Button onClick={() => setShow(!show)}>Hide</Button>
+      {show &&
+      <Select style={{width: '10rem'}} triggerBy="hover"
+              defaultValue="nanjing"
               searchable={false}
               onChange={(item) => console.log(item)}>
         <Select.Option value="beijing">
@@ -20,7 +24,7 @@ export const A = () => {
         <Select.Option value="shanghai">Shanghai</Select.Option>
         <Select.Option value="xian">XiAn</Select.Option>
       </Select>
-{/*
+      }
 
       <Select style={{width: '10rem'}} placeholder="Select..." triggerBy="hover"
               defaultValue="nanjing"
@@ -36,9 +40,10 @@ export const A = () => {
 
     <DocRow>
       <Select style={{width: '10rem'}} placeholder="search..."
-              onOpen={()=> { console.log("onOpen...")}}
-              onClose={()=> { console.log("onClose...")}}
-              onSearch={(value)=> { console.log("onSearch..."+value)}}
+              triggerBy="hover"
+              onOpen={() => { console.log('onOpen...');}}
+              onClose={() => { console.log('onClose...');}}
+              onSearch={(value) => { console.log('onSearch...' + value);}}
               onChange={(item) => console.log('onChange=', item)}>
         <Select.Option value="aaa">aaa</Select.Option>
         <Select.Option value="aa">aa</Select.Option>
@@ -62,7 +67,9 @@ export const A = () => {
     </DocRow>
 
     <DocRow>
-      <Select style={{width: '10rem'}} placeholder="Select..." multiple triggerBy="hover"
+
+      <Select style={{width: '10rem'}} placeholder="Select..." multiple
+              triggerBy="click"
               onChange={(items) => console.log(items)}>
         <Select.Option value="beijing">Beijing</Select.Option>
         <Select.Option value="nanjing">Nanjing</Select.Option>
@@ -72,9 +79,7 @@ export const A = () => {
         <Select.Option value="shenZhen">ShenZhen</Select.Option>
         <Select.Option value="guangZhou">GuangZhou</Select.Option>
       </Select>
-      */}
     </DocRow>
-
 
   </>;
 

@@ -36,6 +36,7 @@ export const BaseMenu = React.forwardRef((props, ref) => {
     defaultActiveItems,
     defaultOpenedMenus,
 
+    collapse = false,
     collapsible = true,
     showMenuList,//internal use
     ...otherProps
@@ -45,6 +46,7 @@ export const BaseMenu = React.forwardRef((props, ref) => {
     'global-with-border': hasBorder,
     'global-with-box': hasBox,
     'with-bg': hasBackground,
+    collapse,
     [type]: type,
     block,
     close: collapsible && !showMenuList,

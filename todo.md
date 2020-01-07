@@ -36,3 +36,6 @@ refer to the implementation of NavBar
  
  ** Select 里面调整宽度的逻辑需要监听dropdown的onOpen事件，不需要每次状态变化就更新一次宽度
  * PopupControlloer中开放onFocus,onBlur事件，由Select负责触发时，focus Input. ==> Select 中onFocus, showMenu
+ * onOpen, onClose 不准确
+ 
+* dropdown 的边框阴影都加在menu上，需要跟select保持一致，加在外层wrapper上
