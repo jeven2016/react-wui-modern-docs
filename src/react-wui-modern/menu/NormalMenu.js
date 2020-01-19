@@ -78,6 +78,7 @@ const NormalMenu = React.forwardRef(((props, ref) => {
     onSelect,
     onClickItem,
     multiLevelMenus,
+    subMenuPosition,
     menuDirection,
     hasBox,
     hasBorder,
@@ -91,7 +92,7 @@ const NormalMenu = React.forwardRef(((props, ref) => {
       //set padding-left property to child nodes
       setPadding(props, menuRef.current, 0);
     }
-  }, []);
+  }, [multiLevelMenus, setItemPaddingLeft]);
 
   let collapsible = false;
   React.Children.forEach(props.children, chd => {
@@ -114,6 +115,7 @@ const NormalMenu = React.forwardRef(((props, ref) => {
   let clsName = clsx(extraClassName, className, {
     'normal': !multiLevelMenus,
     'popup-menu': multiLevelMenus,
+    'left': multiLevelMenus && subMenuPosition === 'left',
     'menu-row': MenuDirection.horizontal === menuDirection,
     'menu-column': MenuDirection.vertical === menuDirection,
   });
@@ -157,7 +159,7 @@ NormalMenu.defaultProps = {
   autoSelectItem: true,
   setItemPaddingLeft: true,
   paddingLeftUnit: 'rem',
-  paddingLeftIncrement: 1,
+  paddingLeftIncrement: 1.5,
   defaultActiveItems: [],
   activeItems: null, //when activeItems set, the onClickItem callback will be invoked and the onSelect won't be invoked any more
   defaultOpenedMenus: [],

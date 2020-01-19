@@ -2,7 +2,7 @@ import React, {useEffect, useState, useImperativeHandle} from 'react';
 import clsx from 'clsx';
 import {createContainer, isNil, random, execute, getContainer} from '../Utils';
 import Loader from '../Loader';
-import useUnmounted from '../common/UseUnmounted';
+import useMounted from '../common/UseUnmounted';
 import ReactDOM from 'react-dom';
 
 const ProgressType = {
@@ -76,7 +76,7 @@ const ProgressNotifier = React.forwardRef((props, ref) => {
     progressStyle,
     barStyle,
   } = props;
-  const unMountedRef = useUnmounted();
+  const unMountedRef = useMounted();
   const defaultValue = {
     active: true,
     percentValue: initPercentValue,

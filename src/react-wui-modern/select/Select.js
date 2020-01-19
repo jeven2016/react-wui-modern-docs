@@ -30,7 +30,7 @@ const Select = React.forwardRef((props, ref) => {
     style,
     searchDelay,
     noDataText = 'No Data',
-    onChange,
+    onChange = () => {},
     preRemove, //only works for multi-select, before removing a item
     handleSearch,//a callback to decide what items will display
     onSearch,
@@ -87,6 +87,9 @@ const Select = React.forwardRef((props, ref) => {
   }, [disabled, autoWidth, multiple]);
 
   const handleItemClick = (item, e) => {
+    if (!popupRef.current.isActive()) {
+      return;
+    }
     const data = {
       searchedValue: item.value,
       multiple: multiple,
@@ -157,13 +160,16 @@ const Select = React.forwardRef((props, ref) => {
   };
 
   //only for multi-select
-  const removeItem = (val) => {
+  const removeItem = (val, e) => {
     dispatch({
       type: ActionType.removeItem,
       data: {
         value: val,
-        callback: (val) => {
-          preRemove && preRemove(val);
+        preRemove: (val) => {
+          preRemove && preRemove(val, e);
+        },
+        callback: (items, e) => {
+          onChange(items, e);
         },
       },
     });
@@ -172,7 +178,7 @@ const Select = React.forwardRef((props, ref) => {
   const displayedItems = getSelectedMenuItem().map((val, index) => {
     return <Badge key={val + index} type="tag" color="gray">
       <span>{val}</span>
-      <span className="remove-icon" onClick={() => removeItem(val)}>×</span>
+      <span className="remove-icon" onClick={(e) => removeItem(val, e)}>×</span>
     </Badge>;
   });
 

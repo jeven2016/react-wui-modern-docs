@@ -7,14 +7,13 @@ export const usePopupAnimation = (
   const initFrom = {
     opacity: 0,
     overflow: 'hidden',
-    transformOrigin: transformOrigin,
-    transform: 'scaleY(0.95)',
+    transform: 'translateY(0.5rem)',
   };
 
   const initTo = {
     visibility: 'visible',
     opacity: 1,
-    transform: 'scaleY(1)',
+    transform: 'translateY(0rem)',
   };
 
   const from = active ? initFrom : initTo;

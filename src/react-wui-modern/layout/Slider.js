@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import {Spring} from 'react-spring/renderprops';
+import {isNil} from '../Utils';
 
 const Slider = React.forwardRef((props, ref) => {
   const {
@@ -8,7 +9,8 @@ const Slider = React.forwardRef((props, ref) => {
     hasBox = false,
     extraClassName,
     collapse = false,
-    width = '250px',
+    width = '15rem',
+    minWidth = '5rem',
     style = {},
     ...otherProps
   } = props;
@@ -16,13 +18,15 @@ const Slider = React.forwardRef((props, ref) => {
     'with-box': hasBox,
     // 'collapsed': collapse,
   });
-  console.log(`colla=${collapse}`);
+
+  const {width: styleWidth} = style;
+  const initWidth = isNil(styleWidth) ? width : styleWidth;
   return <Spring
       from={{
-        width: collapse ? width : '80px',
+        width: collapse ? initWidth : minWidth,
       }}
       to={{
-        width: collapse ? '80px' : width,
+        width: collapse ? minWidth : initWidth,
       }}>
     {
       springProps => {

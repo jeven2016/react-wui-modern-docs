@@ -20,10 +20,9 @@ import * as ReactDOM from 'react-dom';
 import Button from '../button';
 import {preventEvent} from '../event';
 import {animated, useSpring} from 'react-spring';
-import {Transition} from 'react-spring/renderprops';
 import {usePopupAnimation} from '../animation/PopupControllerAnimation';
 import useContainer from './UseContainer';
-import useMount from './UseMount';
+import useMounted from './UseMounted';
 
 const useCombinedListeners = (
     element, enterHandler, leaveHandler, dependencies) => {
@@ -123,7 +122,7 @@ const PopupController = React.forwardRef((props, ref) => {
 
   //by default, the popup is hidden,
   //so this variable is defined to stop playing the animation
-  const mountedRef = useMount();
+  const mountedRef = useMounted();
   const shouldRender = defaultActive ? true : mountedRef.current;
 
   //a flag
@@ -141,10 +140,6 @@ const PopupController = React.forwardRef((props, ref) => {
   };
 
   const isCurrentActive = getCurrentBoolValue();
-
-  useEffect(() => {
-    mountedRef.current = true;
-  });
 
   const changeActive = (nextActive) => {
     if (nextActive === pcState.activePopup) {
@@ -174,6 +169,7 @@ const PopupController = React.forwardRef((props, ref) => {
    */
   useImperativeHandle(ref, () => ({
     close: () => changeActive(Active.disactive),
+    isActive: ()=> isCurrentActive
   }));
 
   //add listener for document click event

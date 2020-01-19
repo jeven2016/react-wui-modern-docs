@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import clsx from 'clsx';
 import {isNil} from './Utils';
 import Element from './common/Element';
-import {preventEvent} from './event';
 
 function BaseSwitch(props) {
   const {
@@ -58,4 +57,3 @@ function BaseSwitch(props) {
 }
 
 export default BaseSwitch;
-;

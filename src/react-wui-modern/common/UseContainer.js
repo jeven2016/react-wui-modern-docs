@@ -8,6 +8,7 @@ export function useCreateRootElement(id) {
   if (!rootRef.current) {
     let rootElem = document.querySelector(`#${id}`);
     if (!rootElem) {
+      console.log('create container...');
       rootElem = document.createElement('div');
       rootElem.setAttribute('id', id);
       document.body.insertBefore(
@@ -22,18 +23,7 @@ export function useCreateRootElement(id) {
 
 function useContainer(id) {
   const rootElemRef = useCreateRootElement(id);
-  const current = rootElemRef.current;
-  useEffect(() => {
-    return () => {
-      //remove this node while this node is the last one to remove
-      if (current && current.childNodes.length <= 0) {
-        rootElemRef.current = null;
-        current.remove();
-      }
-    };
-  }, []);
-
-  return current;
+  return rootElemRef.current;
 }
 
 export default useContainer;

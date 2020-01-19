@@ -41,9 +41,10 @@ const reducer = (state, action) => {
 
     case ActionType.removeItem:
       const paramData = action.data;
-      invoke(paramData.callback, paramData.value);
+      invoke(paramData.preRemove, paramData.value);
       const filterItems = state.selectedItems.filter(
           item => item.value !== paramData.value);
+      invoke(paramData.callback, filterItems);
       return {...state, selectedItems: filterItems};
 
     case ActionType.search:
