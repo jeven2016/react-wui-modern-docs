@@ -119,10 +119,14 @@ $header-height: 4rem;
   }
 
   &.home {
-    background-image: url("back2.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    //background-image: url("back2.jpg");
+    //background-repeat: no-repeat;
+    background: radial-gradient(left top, circle cover,
+            rgba(99, 65, 249, 0.9) 15%,
+            rgba(10, 95, 248, 0.9) 50%,
+            rgba(33, 180, 212, 0.9) 85%);
+    //background-position: center;
+    //background-size: cover;
   }
 
   &.link-text {
@@ -218,12 +222,13 @@ $header-height: 4rem;
     text-align: center;
     vertical-align: middle;
     line-height: 4.5rem;
-    border-radius: 50rem;
-    border-top: 0.4rem solid #a57036;
-    border-right: 0.4rem solid #e02c94;
-    border-bottom: 0.4rem solid #9a2ec8;
+    border-radius: 1rem;
+    border-top: 0.4rem solid #9935c8;
+    border-right: 0.4rem solid #f2791a;
+    border-bottom: 0.4rem solid #0ca0ff;
     border-left: 0.4rem solid #06806C;
-    box-shadow: 1px 1px 20px 0 rgb(255, 255, 255), -1px -1px 20px 0 rgb(255, 255, 255);
+    box-shadow: inset 1px 1px 6px 0 rgb(255, 255, 255),
+    -1px -1px 20px 0 #ffffffc9;
     font-style: italic;
   }
 

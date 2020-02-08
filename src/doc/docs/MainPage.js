@@ -30,6 +30,7 @@ import LayoutIndex from './layout/LayoutIndex';
 import LayoutA from './layout/LayoutA';
 import DatePickerIndex from './datapicker/DatePickerIndex';
 import SpringIndex from './spring/SpringIndex';
+import TabsIndex from './tabs/TabsIndex';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -174,26 +175,15 @@ const getMenu = (match, selectedItem) => {
             {intl.get('main.navbar.layout')}
           </Link>
         </Menu.Item>
-      </Menu.List>
-    </Menu.SubMenu>
-    <Menu.SubMenu>
-      <Menu.Header>Common 公共</Menu.Header>
-      <Menu.List>
-        <Menu.Item id="TypefaceItem">
-          Typeface 字体
-        </Menu.Item>
-        <Menu.Item id="colorItem">
-          Color 颜色
-        </Menu.Item>
-        <Menu.Item id="styleItem">
-          Style 样式
-        </Menu.Item>
-        <Menu.Item id="IconItem">
-          Icon 图标
-        </Menu.Item>
+
         <Menu.Item id="SpringItem">
           <Link to={`${match.url}/components/spring`}>
             Spring测试
+          </Link>
+        </Menu.Item>
+        <Menu.Item id="TabsItem">
+          <Link to={`${match.url}/components/tabs`}>
+            Tabs
           </Link>
         </Menu.Item>
       </Menu.List>
@@ -255,6 +245,8 @@ const getRoutes = (match) => {
            component={DatePickerIndex}/>
     <Route exact={true} path={`${match.url}/components/spring`}
            component={SpringIndex}/>
+    <Route exact={true} path={`${match.url}/components/tabs`}
+           component={TabsIndex}/>
   </>;
 };
 

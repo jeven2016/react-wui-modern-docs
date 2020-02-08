@@ -23,6 +23,7 @@ refer to the implementation of NavBar
  *  ReactDOM.render cannot work perfectly with CSSTransition
  * useEvent 反复注册问题,(解决，只关联name的变更)
  * useEvent 没有加载的组件也会触发，　popover在dropdown 界面触发。。
+ * Divider无法覆盖style
  
  * refer to: https://www.w3schools.com/howto/howto_css_image_overlay.asp
  * react suspense -> loading test

@@ -23,7 +23,8 @@ const Toggle = React.forwardRef((props, ref) => {
   } = props;
 
   const isExternalControl = props.hasOwnProperty('active');
-  const {isActive, setActive} = useInternalActive(isExternalControl,
+  const {currentActive: isActive, setActive} = useInternalActive(
+      isExternalControl,
       defaultActive, active);
 
   let isOn = isExternalControl ? active : isActive;

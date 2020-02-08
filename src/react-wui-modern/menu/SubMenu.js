@@ -6,6 +6,7 @@ import {isDisabledMenu, useMenuList} from './BaseMenu';
 import useEvent from '../common/UseEvent';
 import {EventListener} from '../common/Constants';
 import {isNil} from '../Utils';
+import List from './List';
 
 /**
  * SubMenu Component
@@ -16,6 +17,7 @@ const SubMenu = React.forwardRef((props, ref) => {
     className,
     extraClassName,
     isDirectChild,
+    children,
     id, ...otherProps
   } = props;
   const menuCtx = useContext(MenuContext);
@@ -29,17 +31,30 @@ const SubMenu = React.forwardRef((props, ref) => {
       menuCtx.defaultOpenedMenus, disabled, menuCtx.onClickHeader);
 
   //add a window event listener to close the popup submenu if this submenu is
-  //a direct child of menu
-  useEvent(EventListener.click, (evt) => {
-    if (menuCtx.multiLevelMenus) {
-      let inside = subMenuRef.current.contains(evt.target);
+  const closeSubMenu = (e) => {
+    if (showMenuList.show && menuCtx.multiLevelMenus) {
+      let inside = subMenuRef.current.contains(e.target);
       if (inside) {
         return;
       }
       // if the header is one child of current sub-menu, the menu list cannot be closed
       setShowMenuList({show: false, manualChang: true});
     }
+  };
+
+//a direct child of menu
+  useEvent(EventListener.click, (evt) => {
+    closeSubMenu(evt);
   }, menuCtx.multiLevelMenus);
+
+/*  useEvent(EventListener.mouseEnter, () => {
+        if (!showMenuList.show) {
+          setShowMenuList({show: true, manualChang: true});
+        }
+      }, menuCtx.multiLevelMenus,
+      () => subMenuRef.current);
+  useEvent(EventListener.mouseLeave, closeSubMenu, menuCtx.multiLevelMenus,
+      () => subMenuRef.current);*/
 
   const parenSubMenuCtx = useContext(SubMenuContext);
 
@@ -52,6 +67,7 @@ const SubMenu = React.forwardRef((props, ref) => {
   let clsName = className;
   let subMenuMultiSelect = menuCtx.multiSelect;
   let clickItem = menuCtx.clickItem;
+  let childrenElem = children;
 
   if (menuCtx.multiLevelMenus) {
     subMenuMultiSelect = false; //multi-level menus don't support multi-selection
@@ -65,6 +81,14 @@ const SubMenu = React.forwardRef((props, ref) => {
     };
     if (isDirectChild) {
       clsName = 'submenu direct-child';
+
+      //tell the menu list to adjust its position (to fixed)
+      childrenElem = React.Children.map(children, child => {
+        if (child.type === List) {
+          return React.cloneElement(child, {adjustPosition: true});
+        }
+        return child;
+      });
     } else {
       clsName = 'submenu non-direct-child';
     }
@@ -87,7 +111,9 @@ const SubMenu = React.forwardRef((props, ref) => {
                 multiSelect={subMenuMultiSelect}
                 extraClassName={extraClassName} {...otherProps}
                 showMenuList={isShow()}
-                {...otherProps}/>
+                {...otherProps}>
+        {childrenElem}
+      </BaseMenu>
     </SubMenuContext.Provider>
   </MenuContext.Provider>;
 });

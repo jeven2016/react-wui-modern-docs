@@ -4,7 +4,6 @@ export const InputBorderType = {
   error: 'input-error',
 };
 
-
 export const NavBarFixedTypes = ['top', 'bottom'];
 export const FixedTypes = ['top', 'bottom'];
 
@@ -120,6 +119,11 @@ export const Active = {
   convertBool: (boolValue) => boolValue ? Active.active : Active.disactive,
 };
 
+export const Direction = {
+  horizontal: 'horizontal',
+  vertical: 'vertical',
+};
+
 //=================================
 export const EventListener = {
   click: 'click',
@@ -133,5 +137,5 @@ export const EventListener = {
 };
 
 export const ContainerId = {
-  popup: "wui-popup"
+  popup: 'wui-popup',
 };

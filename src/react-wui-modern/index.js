@@ -1,7 +1,6 @@
 import DateTimePicker from './DateTimePicker';
 import TimePicker from './TimePicker';
 import DatePicker from './date/DatePicker';
-import Tab from './Tab';
 import Pagination from './Pagination.js';
 //new
 import Button from './button/Button';
@@ -43,6 +42,8 @@ export {default as Progress} from './progress';
 export {default as Layout} from './layout';
 export {default as RouteLoader} from './RouteLoader';
 export {default as useEvent} from './common/UseEvent'
+export {default as useMediaQuery, Responsive} from './media_query/UseMediaQuery';
+export {default as Tabs} from "./tabs/Tabs";
 
 export {
   IconInfo,
@@ -79,6 +80,5 @@ export {
   DateTimePicker,
   DatePicker,
   TimePicker,
-  Tab,
   Pagination,
 };

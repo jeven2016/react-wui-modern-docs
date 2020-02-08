@@ -120,99 +120,109 @@ export const getTransformOrigin = (type) => {
  * place a component to somewhere
  */
 export const place = (dest, ctrl, type, offset = 0) => {
-  var scrollTop = document.documentElement.scrollTop || window.pageYOffset
-      || document.body.scrollTop;
-  var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset
-      || document.body.scrollLeft;
-  var pos = ctrl.getBoundingClientRect();
+  let scrollTop = 0;
+  let scrollLeft = 0;
+  let pos = ctrl.getBoundingClientRect();
+
+  const destPosition = dest.style.position;
+  if (isNil(destPosition) || destPosition !== 'fixed') {
+    scrollTop = document.documentElement.scrollTop || window.pageYOffset
+        || document.body.scrollTop;
+    scrollLeft = document.documentElement.scrollLeft || window.pageXOffset
+        || document.body.scrollLeft;
+  }
+
+  let left = 0, top = 0;
   if (type === 'bottom') {
-    dest.style.left = scrollLeft + (pos.left
+    left = scrollLeft + (pos.left
         - (dest.offsetWidth
             - ctrl.offsetWidth)
         / 2) + 'px';
-    dest.style.top = (pos.bottom + offset) + scrollTop + 'px';
+    top = (pos.bottom + offset) + scrollTop + 'px';
   }
 
   if (type === 'top') {
-    dest.style.left = scrollLeft + (pos.left
+    left = scrollLeft + (pos.left
         - (dest.offsetWidth
             - ctrl.offsetWidth)
         / 2) + 'px';
-    dest.style.top = (pos.top - dest.offsetHeight
+    top = (pos.top - dest.offsetHeight
         - offset)
         + scrollTop + 'px';
   }
 
   if (type === 'left') {
-    dest.style.left = scrollLeft + pos.left - dest.offsetWidth
+    left = scrollLeft + pos.left - dest.offsetWidth
         - offset + 'px';
-    dest.style.top = pos.top - (dest.offsetHeight
+    top = pos.top - (dest.offsetHeight
         - ctrl.offsetHeight) / 2
         + scrollTop
         + 'px';
   }
 
   if (type === 'leftTop') {
-    dest.style.left = scrollLeft + pos.left - dest.offsetWidth
+    left = scrollLeft + pos.left - dest.offsetWidth
         - offset + 'px';
-    dest.style.top = pos.top + scrollTop - dest.offsetHeight
+    top = pos.top + scrollTop - dest.offsetHeight
         + pos.height + 'px';
   }
 
   if (type === 'leftBottom') {
-    dest.style.left = scrollLeft + pos.left - dest.offsetWidth
+    left = scrollLeft + pos.left - dest.offsetWidth
         - offset + 'px';
-    dest.style.top = pos.top + scrollTop + 'px';
+    top = pos.top + scrollTop + 'px';
   }
 
   if (type === 'right') {
-    dest.style.left = scrollLeft + pos.right + offset + 'px';
-    dest.style.top = pos.top - (dest.offsetHeight
+    left = scrollLeft + pos.right + offset + 'px';
+    top = pos.top - (dest.offsetHeight
         - ctrl.offsetHeight) / 2
         + scrollTop
         + 'px';
   }
 
   if (type === 'rightTop') {
-    dest.style.left = scrollLeft + pos.right + offset + 'px';
-    dest.style.top = pos.top + scrollTop - dest.offsetHeight
+    left = scrollLeft + pos.right + offset + 'px';
+    top = pos.top + scrollTop - dest.offsetHeight
         + pos.height + 'px';
   }
 
   if (type === 'rightBottom') {
-    dest.style.left = scrollLeft + pos.right + offset + 'px';
-    dest.style.top = pos.top + scrollTop + 'px';
+    left = scrollLeft + pos.right + offset + 'px';
+    top = pos.top + scrollTop + 'px';
   }
 
   if (type === 'topLeft') {
-    dest.style.left = scrollLeft + pos.left + 'px';
-    dest.style.top = pos.top - dest.offsetHeight - offset
+    left = scrollLeft + pos.left + 'px';
+    top = pos.top - dest.offsetHeight - offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'topRight') {
-    dest.style.left = scrollLeft + pos.right
+    left = scrollLeft + pos.right
         - dest.offsetWidth + 'px';
-    dest.style.top = pos.top - dest.offsetHeight - offset
+    top = pos.top - dest.offsetHeight - offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'bottomLeft') {
-    dest.style.left = scrollLeft + pos.left + 'px';
-    dest.style.top = pos.bottom + offset
+    left = scrollLeft + pos.left + 'px';
+    top = pos.bottom + offset
         + scrollTop
         + 'px';
   }
 
   if (type === 'bottomRight') {
-    dest.style.left = scrollLeft + pos.right
+    left = scrollLeft + pos.right
         - dest.offsetWidth + 'px';
-    dest.style.top = pos.bottom + offset
+    top = pos.bottom + offset
         + scrollTop
         + 'px';
   }
+  dest.style.left = left;
+  dest.style.top = top;
 };
 
 export const placeCenter = (dest, ctrl) => {

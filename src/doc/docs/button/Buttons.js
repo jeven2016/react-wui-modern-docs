@@ -11,10 +11,12 @@ import {
 } from "../../../react-wui-modern";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlane} from "@fortawesome/free-solid-svg-icons";
+import {CodeForm} from './TestStackBlitz';
 
 export const A = () => {
   let comp = <>
     <div>
+      <CodeForm/>
       <Button>default</Button>
       <Button elementType="a" href="#" onClick={() => void (0)}>Link</Button>
     </div>

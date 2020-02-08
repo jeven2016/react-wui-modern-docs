@@ -7,16 +7,17 @@ import {
   Breadcrumb,
   Button,
   Icon, IconArrowDown,
-  IconHome, IconList,
+  IconHome, IconInfo, IconList,
   Layout,
   Menu,
-  NavBar, Toggle,
+  NavBar, Responsive, Toggle,
 } from '../../../react-wui-modern';
 import DocFrame from './DocFrame';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faList} from '@fortawesome/free-solid-svg-icons';
 import {IconCalendar, IconClear2} from '../../../react-wui-modern/Icons';
 import Tooltip from '../../../react-wui-modern/Tooltip';
+import useMediaQuery from '../../../react-wui-modern/media_query/UseMediaQuery';
 
 export const LayoutA = (props) => {
 
@@ -415,6 +416,15 @@ export const LayoutF = (props) => {
   const [collapse, setCollapse] = useState(false);
   const [leftSlider, setLeftSlider] = useState(true);
 
+  const {match} = useMediaQuery(Responsive.xs,
+      (val) => {console.log('xs=' + val);});
+  console.log("match="+match)
+
+  useMediaQuery(Responsive.sm, (val) => {console.log('sm=' + val);});
+  useMediaQuery(Responsive.md, (val) => {console.log('md=' + val);});
+  useMediaQuery(Responsive.lg, (val) => {console.log('lg=' + val);});
+  useMediaQuery(Responsive.xg, (val) => {console.log('xg=' + val);});
+
   let code = `
   import React, {Component} from "react";
   import {Layout} from "react-wui";
@@ -461,45 +471,77 @@ export const LayoutF = (props) => {
         }}>
           <div style={{
             fontWeight: 'bold',
-            background: '#6c8aea',
             color: '#fff',
             textAlign: 'center',
             padding: '1rem 0',
           }}>
             Title
           </div>
-          <Menu type="dark" collapse={collapse} block
-                onSelect={(itemInfo) => console.log(itemInfo)}
-                multiLevelMenus={collapse}
-                subMenuPosition={leftSlider ? 'right' : 'left'}
-                menuDirection="vertical">
-            <Menu.List>
-              <Tooltip body="菜单1" disabled={!collapse}
-                       position={leftSlider ? 'right' : 'left'}>
-                <Menu.Item id="cd1">
-                  <IconCalendar/>
-                  <span>Add User</span>
-                </Menu.Item>
-              </Tooltip>
-            </Menu.List>
-            <Menu.SubMenu id="sub1">
-              <Menu.Header>
-                <IconCalendar/>
-                <span>系统时间</span>
-              </Menu.Header>
+          <div style={{
+            // overflowY: "auto",
+            // height: "10rem"
+          }}>
+            <Menu type="dark" collapse={collapse} block
+                  onSelect={(itemInfo) => console.log(itemInfo)}
+                  multiLevelMenus={collapse}
+                  defaultOpenedMenus={['sub1']}
+                  subMenuPosition={leftSlider ? 'right' : 'left'}
+                  menuDirection="vertical">
               <Menu.List>
-                <Menu.Item id="item1">时间设置</Menu.Item>
+                <Tooltip body="Add User" disabled={!collapse}
+                         position={leftSlider ? 'right' : 'left'}>
+                  <Menu.Item id="cd1">
+                    <IconCalendar/>
+                    <Tooltip body="Do you wanna add a new user?"
+                             disabled={collapse}
+                             position={leftSlider ? 'right' : 'left'}>
+                      <span>Add User</span>
+                    </Tooltip>
+                  </Menu.Item>
+                </Tooltip>
+                <Menu.Item id="cd2">
+                  <IconList/>
+                  <span>Update User</span>
+                </Menu.Item>
+                <Menu.Item id="cd3">
+                  <IconInfo/>
+                  <span>Delete User</span>
+                </Menu.Item>
+
               </Menu.List>
-            </Menu.SubMenu>
-          </Menu>
+              <Menu.SubMenu id="sub1">
+                <Menu.Header>
+                  <IconCalendar/>
+                  <span>系统时间</span>
+                </Menu.Header>
+                <Menu.List>
+                  <Menu.Item id="item1">时间设置</Menu.Item>
+                  <Menu.Item id="item2">日历设置</Menu.Item>
+                  <Menu.Item id="item3">其他设置</Menu.Item>
+                  <Menu.SubMenu id="sub3">
+                    <Menu.Header>
+                      <IconCalendar/>
+                      <span>系统时间</span>
+                    </Menu.Header>
+                    <Menu.List>
+                      <Menu.Item id="item3_1">设置1</Menu.Item>
+                      <Menu.Item id="item3_2">设置2</Menu.Item>
+                      <Menu.Item id="item3_3">设置3</Menu.Item>
+                      <Menu.Item id="item3_4">设置4</Menu.Item>
+                      <Menu.Item id="item3_5">设置5</Menu.Item>
+                    </Menu.List>
+                  </Menu.SubMenu>
+                </Menu.List>
+              </Menu.SubMenu>
+            </Menu>
+          </div>
         </Layout.Slider>
-        <Layout style={{
-          marginLeft: '250px',
-        }}>
+        <Layout collapse={!collapse}>
           <Layout.Header style={{
             marginTop: '4rem',
             borderBottom: '1px solid #ccc',
             justifyContent: 'flex-end',
+            padding: '0 1rem',
           }}>
             <Button outline extraClassName="clear-border"
                     circle
@@ -509,35 +551,58 @@ export const LayoutF = (props) => {
             </Button>
           </Layout.Header>
           <Layout.Content
-              style={{background: '#fff', padding: '1rem',
-                height: '150rem'}}>
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-            Your Content Your ContentYour ContentYour ContentYour ContentYour Content
-
+              style={{
+                background: '#fff', padding: '1rem',
+                height: '150rem',
+              }}>
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
+            Your Content Your ContentYour ContentYour ContentYour ContentYour
+            Content
 
 
           </Layout.Content>
         </Layout>
       </Layout>
+      
     </DocFrame>
   </>
       ;

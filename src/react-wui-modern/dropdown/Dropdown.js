@@ -74,6 +74,7 @@ const Dropdown = React.forwardRef((props, ref) => {
         childObj.body = child;
         return;
       }
+      debugger
       throw new Error(
           'the children of dropdown can only be Title, Button, Menu or Element.');
     });
