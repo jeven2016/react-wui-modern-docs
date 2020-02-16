@@ -27,7 +27,7 @@ export const AutoPlayCom = () => {
   let comp = <>
         <Carousel active={index}
                   axis='x'
-                  hasIndicators={false}
+                  hasIndicators={true}
                   position="right"
                   indicatorType='circle'
                   onChange={onChangeIndex}>

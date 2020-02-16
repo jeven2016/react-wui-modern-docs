@@ -19,7 +19,8 @@ export default class AffixIndex extends DocComponent {
 
   content() {
     let cnt = <>
-      <div className="doc center-col col-xs-12 col-md-8" style={{height: "1000px"}}>
+      <div className="doc center-col col-xs-12 col-md-8"
+           style={{height: '1000px'}}>
         <h2 id="menu_title">{intl.get('content.alert.title')}</h2>
         <p>
           {intl.get('content.alert.simple.desc')}
@@ -32,25 +33,27 @@ export default class AffixIndex extends DocComponent {
             <Button color="green" style={{marginTop: '100px'}}>Fix top</Button>
           </Affix>
 
-          <NavBar>
-            <NavBar.Title>
-              Navbar
-            </NavBar.Title>
-            <NavBar.List>
-              <NavBar.Item>
-                用户
-              </NavBar.Item>
-              <NavBar.Item>
-                角色
-              </NavBar.Item>
-              <NavBar.Item>
-                权限
-              </NavBar.Item>
-              <NavBar.Item>
-                安全
-              </NavBar.Item>
-            </NavBar.List>
-          </NavBar>
+          <Affix top={'150px'}>
+            <NavBar>
+              <NavBar.Title>
+                Navbar
+              </NavBar.Title>
+              <NavBar.List>
+                <NavBar.Item>
+                  用户
+                </NavBar.Item>
+                <NavBar.Item>
+                  角色
+                </NavBar.Item>
+                <NavBar.Item>
+                  权限
+                </NavBar.Item>
+                <NavBar.Item>
+                  安全
+                </NavBar.Item>
+              </NavBar.List>
+            </NavBar>
+          </Affix>
         </section>
 
 

@@ -121,12 +121,13 @@ $header-height: 4rem;
   &.home {
     //background-image: url("back2.jpg");
     //background-repeat: no-repeat;
-    background: radial-gradient(left top, circle cover,
+    background: radial-gradient(circle at left top,
             rgba(99, 65, 249, 0.9) 15%,
             rgba(10, 95, 248, 0.9) 50%,
             rgba(33, 180, 212, 0.9) 85%);
+    //background: -webkit-radial-gradient(left top, circle cover, rgba(99, 65, 249, 0.9) 15%, rgba(10, 95, 248, 0.9) 50%, rgba(33, 180, 212, 0.9) 85%);
     //background-position: center;
-    //background-size: cover;
+    background-size: cover;
   }
 
   &.link-text {
