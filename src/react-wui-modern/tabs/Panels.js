@@ -8,10 +8,10 @@ const Panels = ((props) => {
     children,
   } = props;
 
+  const count = React.Children.count(children);
   //map-key: value
   //map-value: index
   const mappingMap = useMemo(() => {
-    console.log('Pannels  useMemo....');
     const map = {};
     React.Children.forEach(children, (child, index) => {
       const itemValue = child.props.itemValue;
@@ -21,7 +21,7 @@ const Panels = ((props) => {
       }
     });
     return map;
-  }, children);
+  }, [count]);
 
   const context = useContext(TabsContext);
   const activeIndex = mappingMap[context.active];
@@ -33,7 +33,7 @@ const Panels = ((props) => {
   };
 
   return <SwipeableViews enableMouseEvents
-                         style={{flex: "1"}}
+                         style={{flex: '1'}}
                          index={realIndex}
                          disabled={!context.autoChange}
                          onChangeIndex={onChangeIndex}

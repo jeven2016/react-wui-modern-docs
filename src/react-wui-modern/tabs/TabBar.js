@@ -1,13 +1,12 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useMemo,
-  useImperativeHandle,
-} from 'react';
+import React, {useContext, useEffect, useMemo, useRef, useState} from 'react';
 import clsx from 'clsx';
 import {Spring} from 'react-spring/renderprops';
-import {barAnimationConfig, handleProps, reversePosition} from './TabsCommon';
+import {
+  barAnimationConfig,
+  handleProps,
+  reversePosition,
+  TabsContext,
+} from './TabsCommon';
 
 const CardBorderType = {
   none: 'none',
@@ -27,10 +26,10 @@ const TabBar = React.forwardRef((props, ref) => {
     active,
     cardBorder,
     scrollable,
-    internalBarRef,
     ...otherProps
   } = props;
 
+  const context = useContext(TabsContext);
   const tabBarRef = ref ? ref : useRef(null);
   const [config, setConfig] = useState({});
   const barPosition = useMemo(() => reversePosition(position), [position]);
@@ -47,15 +46,14 @@ const TabBar = React.forwardRef((props, ref) => {
       });
 
   const move = () => {
-    console.log('move now....');
     const parentNode = parentRef.current;
     const activeItemNode = parentNode.getElementsByClassName('tab-item active');
 
     if (activeItemNode.length > 0) {
+      // debugger
       const tabRect = parentNode.getBoundingClientRect();
       const itemRect = activeItemNode[0].getBoundingClientRect();
 
-      console.log(itemRect);
       const newConfig = barAnimationConfig(config, isTabCard,
           itemRect, tabRect,
           barPosition);
@@ -63,13 +61,16 @@ const TabBar = React.forwardRef((props, ref) => {
     }
   };
 
-  useImperativeHandle(internalBarRef, () => ({
-    updatePosition: move,
-  }));
-
   useEffect(() => {
     move();
-  }, [active, barPosition, scrollable, tabType]);
+  }, [
+    active,
+    barPosition,
+    scrollable,
+    tabType,
+    position,
+    context.removable,
+    context.tabItemsCount]);
 
   return <Spring from={config.from} to={config.to}>
     {springProps =>

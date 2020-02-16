@@ -7,6 +7,7 @@ import {
   SimpleBottomTab,
   LeftTab,
   RightTab, CardTab, SecondaryCardTab, NoBorderTab,
+  RemovableTab
 } from './Test';
 
 export default class TabsIndex extends DocComponent {
@@ -42,6 +43,11 @@ export default class TabsIndex extends DocComponent {
         </section>
 
         <section>
+          <h3 id="RemovableTab">Removable</h3>
+          <RemovableTab/>
+        </section>
+{/*
+        <section>
           <h3 id="SimpleTab">NoBorderTab</h3>
           <NoBorderTab/>
         </section>
@@ -55,7 +61,7 @@ export default class TabsIndex extends DocComponent {
         <section>
           <h3>SecondaryCard</h3>
           <SecondaryCardTab/>
-        </section>
+        </section>*/}
 
       </div>
 

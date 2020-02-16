@@ -9,8 +9,9 @@ import {
   Menu,
   Radio,
   Tabs,
-  RadioGroup,
+  RadioGroup, Checkbox,
 } from '../../../react-wui-modern';
+import {Tooltip} from 'react-wui-modern';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -169,14 +170,36 @@ export const SimpleTab = (props) => {
   const [position, setPosition] = useState('top');
   const [scrollable, setScrollable] = useState(true);
   const [type, setType] = useState('normal');
+  const [removable, setRemovable] = useState(false);
+
+  const tabs = [...Array(30).keys()].map(
+      i => ({key: i, value: i, title: `Item-${i}`, content: `Content-${i}`}
+      ));
+  const [tabConfig, setTabConfig] = useState({
+    tabArray: tabs,
+    defaultActive: 29,
+  });
+
   const change = (value) => {
     setPosition(value);
+  };
+
+  const removeItem = (value) => {
+    let nextActive = value === tabConfig.defaultActive
+        ? value - 1
+        : tabConfig.defaultActive;
+    console.log(nextActive);
+
+    setTabConfig(
+        pre => ({
+          tabArray: pre.tabArray.filter(s => s.value !== value),
+          defaultActive: nextActive,
+        }));
   };
 
   return <>
     <div>
       <Dropdown selectable onSelect={itemInfo => {
-        console.log(itemInfo.value)
         setType(itemInfo.value);
       }}>
         <Dropdown.Title>
@@ -205,30 +228,131 @@ export const SimpleTab = (props) => {
       <Radio value={false}>Non-scrollable</Radio>
     </RadioGroup>
     <Tabs position={position}
-          defaultActive={2}
+          defaultActive={tabConfig.defaultActive}
           type={type}
           scrollable={scrollable}
-          style={{maxHeight: '200px'}}
+          style={{maxHeight: '300px'}}
           hasBorder>
       <Tabs.Items>
         {
-          [...Array(30).keys()].map(i =>
-              <Tabs.TabItem value={i} key={i}>
-                Item{i}
+          tabConfig.tabArray.map(tabSetting =>
+              <Tabs.TabItem value={tabSetting.value} key={tabSetting.key}>
+                <Tooltip body={'tttt'}><span>{tabSetting.title}</span></Tooltip>
               </Tabs.TabItem>,
           )
         }
       </Tabs.Items>
       <Tabs.Panels>
         {
-          [...Array(30).keys()].map(i =>
-              <Tabs.TabPanel itemValue={i} key={i}>
+          tabConfig.tabArray.map(tabSetting =>
+              <Tabs.TabPanel itemValue={tabSetting.value}
+                             key={`panel-${tabSetting.value}`}>
                 <Card block>
-                  <Card.Header hasBackground>
-                    card{i}
-                  </Card.Header>
                   <Card.Body>
-                    card{i}
+                    {tabSetting.content}
+                    <div style={{marginTop: '10rem'}}>......</div>
+                  </Card.Body>
+                </Card>
+              </Tabs.TabPanel>,
+          )
+        }
+      </Tabs.Panels>
+    </Tabs>
+  </>;
+};
+
+export const RemovableTab = (props) => {
+  const [position, setPosition] = useState('top');
+  const [scrollable, setScrollable] = useState(true);
+  const [type, setType] = useState('normal');
+  const [removable, setRemovable] = useState(false);
+
+  const tabs = [...Array(30).keys()].map(
+      i => ({key: i, value: i, title: `Item-${i}`, content: `Content-${i}`}
+      ));
+  const [tabConfig, setTabConfig] = useState({
+    tabArray: tabs,
+    active: 29,
+  });
+
+  const change = (value) => {
+    setPosition(value);
+  };
+
+  const changeTab = (tabValue) => {
+    setTabConfig(pre => ({tabArray: pre.tabArray, active: tabValue}));
+  };
+
+  const removeItem = (value) => {
+    let nextActive = value === tabConfig.active
+        ? value - 1
+        : tabConfig.active;
+
+    setTabConfig(
+        pre => ({
+          tabArray: pre.tabArray.filter(s => s.value !== value),
+          active: nextActive,
+        }));
+  };
+
+  return <>
+    <div>
+      <Dropdown selectable onSelect={itemInfo => {
+        setType(itemInfo.value);
+      }}>
+        <Dropdown.Title>
+          <Button type="primary">Tab Type</Button>
+        </Dropdown.Title>
+        <Menu hasBorder>
+          <Menu.List>
+            <Menu.Item value="normal">normal</Menu.Item>
+            <Menu.Item value="card">card</Menu.Item>
+            <Menu.Item value="secondaryCard">secondaryCard</Menu.Item>
+          </Menu.List>
+        </Menu>
+      </Dropdown>
+    </div>
+    <RadioGroup defaultValue={position}
+                onChange={change} style={{marginBottom: '1rem'}}>
+      <Radio value="top">Top</Radio>
+      <Radio value="bottom">Bottom</Radio>
+      <Radio value="left">Left</Radio>
+      <Radio value="right">Right</Radio>
+    </RadioGroup>
+    <RadioGroup defaultValue={scrollable}
+                onChange={(val) => setScrollable(val)}
+                style={{marginBottom: '1rem'}}>
+      <Radio value={true}>Scrollable</Radio>
+      <Radio value={false}>Non-scrollable</Radio>
+    </RadioGroup>
+    <Checkbox onChange={(val) => setRemovable(val)}>Removable</Checkbox>
+    <Tabs position={position}
+          active={tabConfig.active}
+          type={type}
+          scrollable={scrollable}
+          onChange={changeTab}
+          removable={removable}
+          onRemove={removeItem}
+          style={{maxHeight: '300px'}}
+          hasBorder>
+      <Tabs.Items>
+        {
+          tabConfig.tabArray.map(tabSetting =>
+              <Tabs.TabItem value={tabSetting.value} key={tabSetting.key}>
+                <span>{tabSetting.title}</span>
+              </Tabs.TabItem>,
+          )
+        }
+      </Tabs.Items>
+      <Tabs.Panels>
+        {
+          tabConfig.tabArray.map(tabSetting =>
+              <Tabs.TabPanel itemValue={tabSetting.value}
+                             key={`panel-${tabSetting.value}`}>
+                <Card block>
+                  <Card.Body>
+                    {tabSetting.content}
+                    <div style={{marginTop: '10rem'}}>......</div>
                   </Card.Body>
                 </Card>
               </Tabs.TabPanel>,

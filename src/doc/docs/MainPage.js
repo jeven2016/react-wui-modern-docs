@@ -31,6 +31,8 @@ import LayoutA from './layout/LayoutA';
 import DatePickerIndex from './datapicker/DatePickerIndex';
 import SpringIndex from './spring/SpringIndex';
 import TabsIndex from './tabs/TabsIndex';
+import CarouselIndex from './carousel/CarouselIndex';
+import AffixIndex from './affix/AffixIndex';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -44,11 +46,11 @@ const getMenu = (match, selectedItem) => {
     <Menu.SubMenu>
       <Menu.Header>Components</Menu.Header>
       <Menu.List>
-        <Menu.Item id="AccordionItem">
+       {/* <Menu.Item id="AccordionItem">
           <Link to={`${match.url}/components/accordion`}>
             {intl.get('main.navbar.accordion')}
           </Link>
-        </Menu.Item>
+        </Menu.Item>*/}
         <Menu.Item id="AlertItem">
           <Link to={`${match.url}/components/alert`}>
             {intl.get('main.navbar.alert')}
@@ -186,6 +188,16 @@ const getMenu = (match, selectedItem) => {
             Tabs
           </Link>
         </Menu.Item>
+        <Menu.Item id="CarouselItem">
+          <Link to={`${match.url}/components/carousel`}>
+            Carousel 轮播
+          </Link>
+        </Menu.Item>
+        <Menu.Item id="AffixItem">
+          <Link to={`${match.url}/components/affix`}>
+            Affix
+          </Link>
+        </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
   </Menu>;
@@ -247,6 +259,10 @@ const getRoutes = (match) => {
            component={SpringIndex}/>
     <Route exact={true} path={`${match.url}/components/tabs`}
            component={TabsIndex}/>
+    <Route exact={true} path={`${match.url}/components/carousel`}
+           component={CarouselIndex}/>
+    <Route exact={true} path={`${match.url}/components/affix`}
+           component={AffixIndex}/>
   </>;
 };
 

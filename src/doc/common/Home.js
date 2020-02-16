@@ -12,10 +12,10 @@ export default class Home extends Component {
       <div className="banner-container">
         <div className="banner">
           <div className="title text color-white">
-            Wui
+            Smile Fox
           </div>
           <div className="banner-icon">
-            W
+            S
           </div>
           <div className="content">
             <p>{intl.get('briefDescription')}</p>

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {isNil} from '../Utils';
 
 /**
  * Use internal active state
@@ -11,7 +12,7 @@ import React, {useState} from 'react';
 const useInternalActive = (
     isExternalControl, defaultActive, active, backupActive) => {
   let initActive = isExternalControl ? active : defaultActive;
-  if (!initActive) {
+  if (isNil(initActive)) {
     initActive = backupActive;
   }
   const [internalActive, setInternalActive] = useState(initActive);

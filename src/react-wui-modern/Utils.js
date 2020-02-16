@@ -11,6 +11,7 @@ import {
   slice,
   without,
 } from 'lodash';
+import {dom} from '@fortawesome/fontawesome-svg-core';
 
 export {
   isNil,
@@ -305,4 +306,8 @@ export const execute = (handler, timeout) => {
 
 export const invoke = (callback, ...args) => {
   return !isNil(callback) && (callback)(args);
+};
+
+export const getRect = (domNode) => {
+  return domNode ? domNode.getBoundingClientRect() : null;
 };

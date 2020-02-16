@@ -71,20 +71,20 @@ export const handleProps = (isTabCard, barPosition, styleProps) => {
   return styleProps;
 };
 
-export function nextPosition({tabCntRect, scrlRect, against, orientation, axis, setDisabled}) {
-  const rest = scrlRect[against] + scrlRect[axis] - tabCntRect[axis];
+export function nextPosition({tabCntRect, scrlRect, against, orientation, axis}) {
+  // const rest = scrlRect[against] + scrlRect[axis] - tabCntRect[axis];
+  const rest = scrlRect[orientation] - tabCntRect[orientation];
   let to, move = tabCntRect[against];
   if (rest >= move) {
     const offset = scrlRect[orientation] - move;
     if (offset < tabCntRect[orientation]) {
       move -= tabCntRect[orientation] - offset;
-      setDisabled(true);
     }
-    to = scrlRect[axis] - tabCntRect[axis] - move;
+    to = scrlRect[axis] - tabCntRect[axis] - move + 2; //margin-right: 2px
   } else {
-    to = -rest - tabCntRect[against];
+    to = -(scrlRect.width - tabCntRect.width) + 2;
   }
-  return to;
+  return {to};
 }
 
 export function prePosition({tabCntRect, scrlRect, against, axis}) {
@@ -95,5 +95,66 @@ export function prePosition({tabCntRect, scrlRect, against, axis}) {
   } else {
     to = scrlRect[axis] + tabCntRect[against] - tabCntRect[axis];
   }
-  return to;
+  return {to};
 }
+
+export const filterProps = (sty, isHorizontal) => {
+  let transform = sty.transform;
+  if (!transform) {
+    return sty;
+  }
+  if (isHorizontal) {
+    transform = transform.substring(0, transform.indexOf(',')) +
+        ', 0px, 0px';
+  } else {
+    //remove unused X
+    transform = 'translate3d(0px, ' +
+        transform.substring(transform.indexOf(',') + 1);
+  }
+  return {...sty, transform: transform};
+};
+
+export const calcDistance = ({scrlRect, itemRect, tabCntRect, against, begin, end}) => {
+  let distance;
+  if (itemRect[end] <= tabCntRect[end]
+      && itemRect[begin] >= tabCntRect[begin]) {
+    distance = scrlRect[begin] - tabCntRect[begin];
+  } else if (itemRect[end] <= tabCntRect[end]) {
+    distance = scrlRect[begin] - tabCntRect[begin] + tabCntRect[end] -
+        itemRect[end];
+  } else {
+    distance = scrlRect[begin] - tabCntRect[begin] -
+        (itemRect[end] - tabCntRect[end]);
+  }
+
+  return distance;
+};
+
+export const getTranslateValue = (
+    isHorizontal, scrlRect, tabCntRect, itemRect) => {
+  let distance;
+  let to;
+  if (isHorizontal) {
+    distance = calcDistance({
+      scrlRect,
+      tabCntRect,
+      itemRect,
+      against: 'width',
+      begin: 'left',
+      end: 'right',
+    });
+
+    to = `translate3d(${distance}px, 0px, 0px)`;
+  } else {
+    distance = calcDistance({
+      scrlRect,
+      tabCntRect,
+      itemRect,
+      against: 'height',
+      begin: 'top',
+      end: 'bottom',
+    });
+    to = `translate3d(0px, ${distance}px, 0px)`;
+  }
+  return {distance, to};
+};
