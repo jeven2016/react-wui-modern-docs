@@ -9,7 +9,6 @@ import {IconList, NavBar} from '../../react-wui-modern';
 
 const Header = (props) => {
   const context = useContext(MenuReducer.context);
-  console.log('header');
   return <NavBar fixed="top" type="primary" extraClassName="doc header">
     <NavBar.Title>
       <NavBar.Switch onClick={(evt) => {

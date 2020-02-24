@@ -33,6 +33,7 @@ import SpringIndex from './spring/SpringIndex';
 import TabsIndex from './tabs/TabsIndex';
 import CarouselIndex from './carousel/CarouselIndex';
 import AffixIndex from './affix/AffixIndex';
+import CollapseIndex from './collapse/CollapseIndex';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -46,7 +47,7 @@ const getMenu = (match, selectedItem) => {
     <Menu.SubMenu>
       <Menu.Header>Components</Menu.Header>
       <Menu.List>
-       {/* <Menu.Item id="AccordionItem">
+        {/* <Menu.Item id="AccordionItem">
           <Link to={`${match.url}/components/accordion`}>
             {intl.get('main.navbar.accordion')}
           </Link>
@@ -198,6 +199,11 @@ const getMenu = (match, selectedItem) => {
             Affix
           </Link>
         </Menu.Item>
+        <Menu.Item id="CollapseItem">
+          <Link to={`${match.url}/components/collapse`}>
+            Collapse 折叠
+          </Link>
+        </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
   </Menu>;
@@ -263,6 +269,8 @@ const getRoutes = (match) => {
            component={CarouselIndex}/>
     <Route exact={true} path={`${match.url}/components/affix`}
            component={AffixIndex}/>
+    <Route exact={true} path={`${match.url}/components/collapse`}
+           component={CollapseIndex}/>
   </>;
 };
 

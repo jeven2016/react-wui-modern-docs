@@ -2,6 +2,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import DocComponent from '../DocComponent';
 import {NavBar, Affix, Button} from '../../../react-wui-modern';
+import {AffixBtn} from './Affixs';
 
 export default class AffixIndex extends DocComponent {
   constructor(args) {
@@ -25,38 +26,7 @@ export default class AffixIndex extends DocComponent {
         <p>
           {intl.get('content.alert.simple.desc')}
         </p>
-
-        <section>
-          <h3>Affix</h3>
-
-          <Affix top={'30px'}>
-            <Button color="green" style={{marginTop: '100px'}}>Fix top</Button>
-          </Affix>
-
-          <Affix top={'150px'}>
-            <NavBar>
-              <NavBar.Title>
-                Navbar
-              </NavBar.Title>
-              <NavBar.List>
-                <NavBar.Item>
-                  用户
-                </NavBar.Item>
-                <NavBar.Item>
-                  角色
-                </NavBar.Item>
-                <NavBar.Item>
-                  权限
-                </NavBar.Item>
-                <NavBar.Item>
-                  安全
-                </NavBar.Item>
-              </NavBar.List>
-            </NavBar>
-          </Affix>
-        </section>
-
-
+        <AffixBtn/>
       </div>
 
       <div className="doc right-col col-md-2">

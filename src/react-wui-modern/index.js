@@ -41,12 +41,14 @@ export {default as Select} from './select';
 export {default as Progress} from './progress';
 export {default as Layout} from './layout';
 export {default as RouteLoader} from './RouteLoader';
-export {default as useEvent} from './common/UseEvent'
-export {default as useMediaQuery, Responsive} from './media_query/UseMediaQuery';
-export {default as Tabs} from "./tabs/Tabs";
-export {default as Carousel} from "./carousel/Carousel";
-export {default as Affix} from "./Affix";
-
+export {default as useEvent} from './common/UseEvent';
+export {
+  default as useMediaQuery, Responsive,
+} from './media_query/UseMediaQuery';
+export {default as Tabs} from './tabs/Tabs';
+export {default as Carousel} from './carousel/Carousel';
+export {default as Affix} from './Affix';
+export {default as useResizeObserver} from './common/UseResizeObserver';
 
 export {
   IconInfo,

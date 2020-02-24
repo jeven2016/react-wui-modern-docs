@@ -48,6 +48,7 @@
   ],
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
+    "resize-observer-polyfill": "^1.5.1",
     "copy-and-watch": "^0.1.4",
     "lodash": "^4.17.11",
     "node-sass": "^4.12.0",

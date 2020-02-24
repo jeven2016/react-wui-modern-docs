@@ -7,10 +7,16 @@ import useElement from '../common/useElement';
  */
 const Card = React.forwardRef(
     (props, ref) => {
-      const {block = false, autoScale = false, ...otherProps} = props;
+      const {
+        block = false, autoScale = false,
+        hasBorder = true, hasBox = true,
+        ...otherProps
+      } = props;
       return useElement({...otherProps}, ref, 'card',
           {
             block: block,
+            'global-with-border': hasBorder,
+            'global-with-box': hasBox,
             scale: autoScale,
           });
     });
