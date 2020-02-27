@@ -1,6 +1,11 @@
 import React from 'react';
 import DocComponent from '../DocComponent';
-import {SimpleCollapse, CollapseCard, CollapseCard2} from './Collapses';
+import {
+  SimpleCollapse,
+  CollapseCard,
+  CollapseCard2,
+  CollapseCard3, CollapseCard4, CollapseCard5,
+} from './Collapses';
 
 export default class CollapseIndex extends DocComponent {
   constructor(args) {
@@ -35,6 +40,21 @@ export default class CollapseIndex extends DocComponent {
           <h2 id="menu_title">Accordion</h2>
           <p></p>
           <CollapseCard2/>
+        </section>
+
+        <section>
+          <h2 id="menu_title">自定义Icon</h2>
+          <CollapseCard3/>
+        </section>
+
+        <section>
+          <h2 id="menu_title">Add more items</h2>
+          <CollapseCard4/>
+        </section>
+
+        <section>
+          <h2 id="menu_title">自己控制显示</h2>
+          <CollapseCard5/>
         </section>
       </div>
 

@@ -1,21 +1,27 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useMemo} from 'react';
 import CollapsePanel from './CollapsePanel';
 import Card from '../card/Card';
-import {isNil} from '../Utils';
+import {convertToArray, isNil} from '../Utils';
 import CollapseContext from './CollapseContext';
-import {IconArrowRight, IconList} from '../Icons';
+import {IconArrowRight} from '../Icons';
 import clsx from 'clsx';
 
 const Item = React.forwardRef((props, ref) => {
   const {
     children,
     header,
+    disabled = false,
     value,
     hasBackground = false,
+    moreItems = [],
     ...otherProps
   } = props;
   const activeContext = useContext(CollapseContext);
   const currentActive = activeContext.currentActive;
+
+  const items = useMemo(() => {
+    return convertToArray(moreItems);
+  }, [moreItems]);
 
   const isCollapsed = useMemo(() => {
     if (!isNil(currentActive) && !isNil(value)) {
@@ -25,7 +31,7 @@ const Item = React.forwardRef((props, ref) => {
   }, [value, currentActive]);
 
   const clickHeader = () => {
-    if (isNil(value)) {
+    if (disabled || isNil(value)) {
       return;
     }
     activeContext.clickItem(value, !isCollapsed);
@@ -34,7 +40,20 @@ const Item = React.forwardRef((props, ref) => {
   const innerClsName = clsx('inner', {
     'left-icon-column': activeContext.iconPosition === 'left',
     'right-icon-column': activeContext.iconPosition === 'right',
+    disabled,
   });
+
+  let iconContent = null;
+  if (activeContext.hasCollapseIcon) {
+    const icon = isNil(activeContext.collapseIcon)
+        ? <IconArrowRight/>
+        : activeContext.collapseIcon;
+
+    iconContent = <div
+        className={`icon-column ${isCollapsed ? '' : 'expand'}`}>
+      {icon}
+    </div>;
+  }
 
   return <>
     <Card block {...otherProps}
@@ -46,13 +65,17 @@ const Item = React.forwardRef((props, ref) => {
           onClick={clickHeader}>
         <div className="header-row">
           <div className={innerClsName}>
-            <div className={`icon-column ${isCollapsed ? '' : 'expand'}`}>
-              <IconArrowRight/>
-            </div>
+            {iconContent}
             <div className="header-info">
               {header}
             </div>
           </div>
+          {
+            items.map((item, index) =>
+                <div key={`more-${index}`} className={`header-more ${disabled
+                    ? 'disabled'
+                    : ''}`}>{item}</div>)
+          }
         </div>
 
       </Card.Header>

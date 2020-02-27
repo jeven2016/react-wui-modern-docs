@@ -20,6 +20,8 @@ const Collapse = React.forwardRef((props, ref) => {
     accordion = false,
     hasBorder = true,
     hasBox = true,
+    hasCollapseIcon = true,
+    collapseIcon,
     extraClassName,
     children,
     iconPosition = 'left',
@@ -60,7 +62,6 @@ const Collapse = React.forwardRef((props, ref) => {
       }
     }
   };
-  console.log(currentActive);
 
   return <div className={clsName} {...otherProps}>
     <CollapseContext.Provider
@@ -68,6 +69,8 @@ const Collapse = React.forwardRef((props, ref) => {
           accordion,
           isExternalCtrl,
           hasBorder,
+          hasCollapseIcon,
+          collapseIcon,
           currentActive,
           iconPosition,
           clickItem: itemClickHandler,

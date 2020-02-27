@@ -311,3 +311,19 @@ export const invoke = (callback, ...args) => {
 export const getRect = (domNode) => {
   return domNode ? domNode.getBoundingClientRect() : null;
 };
+
+export const convertToArray = (elems) => {
+  if (isNil(elems)) {
+    return [];
+  }
+  let itemArray = elems;
+  if (isFunction(itemArray)) {
+    itemArray = invoke(itemArray);
+  }
+
+  if (Array.isArray(itemArray)) {
+    return itemArray;
+  } else {
+    return [itemArray];
+  }
+};
