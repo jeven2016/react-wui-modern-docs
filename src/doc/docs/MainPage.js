@@ -34,6 +34,7 @@ import TabsIndex from './tabs/TabsIndex';
 import CarouselIndex from './carousel/CarouselIndex';
 import AffixIndex from './affix/AffixIndex';
 import CollapseIndex from './collapse/CollapseIndex';
+import TreeIndex from './tree/TreeIndex';
 
 const getMenu = (match, selectedItem) => {
   return <Menu block type="dark">
@@ -204,6 +205,11 @@ const getMenu = (match, selectedItem) => {
             Collapse 折叠
           </Link>
         </Menu.Item>
+        <Menu.Item id="TreeItem">
+          <Link to={`${match.url}/components/tree`}>
+            Tree
+          </Link>
+        </Menu.Item>
       </Menu.List>
     </Menu.SubMenu>
   </Menu>;
@@ -271,6 +277,8 @@ const getRoutes = (match) => {
            component={AffixIndex}/>
     <Route exact={true} path={`${match.url}/components/collapse`}
            component={CollapseIndex}/>
+    <Route exact={true} path={`${match.url}/components/tree`}
+           component={TreeIndex}/>
   </>;
 };
 

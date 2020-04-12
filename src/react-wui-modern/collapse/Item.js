@@ -2,7 +2,7 @@ import React, {useContext, useMemo} from 'react';
 import CollapsePanel from './CollapsePanel';
 import Card from '../card/Card';
 import {convertToArray, isNil} from '../Utils';
-import CollapseContext from './CollapseContext';
+import {CollapseContext} from '../common/Context';
 import {IconArrowRight} from '../Icons';
 import clsx from 'clsx';
 
@@ -18,7 +18,7 @@ const Item = React.forwardRef((props, ref) => {
   } = props;
   const activeContext = useContext(CollapseContext);
   const currentActive = activeContext.currentActive;
-
+console.log(activeContext)
   const items = useMemo(() => {
     return convertToArray(moreItems);
   }, [moreItems]);

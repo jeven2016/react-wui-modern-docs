@@ -1,21 +1,23 @@
 import React, {useRef, useState} from 'react';
 import clsx from 'clsx';
 import useMounted from '../common/UseMounted';
-import {animated, useSpring} from 'react-spring';
+import {animated, useSpring, useTransition} from 'react-spring';
 
 import useResizeObserver from '../common/UseResizeObserver';
+import usePrevious from '../common/UsePrevious';
 
 function initAnimation(collapse, height) {
   const from = {
-    opacity: 0,
     overflow: 'hidden',
+    visibility: 'hidden',
+    opacity: 0,
     height: 0,
     transform: 'translate3d(0px, 0px, 0px)',
   };
   const to = {
     opacity: collapse ? 0 : 1,
     height: collapse ? 0 : height,
-    transform: collapse? 'translate3d(10px, 0px, 0px)':'translate3d(0px, 0px, 0px)',
+    visibility: collapse ? 'hidden' : 'visible',
   };
   return {from, to};
 }
@@ -30,7 +32,10 @@ const CollapsePanel = React.forwardRef((props, ref) => {
     style,
     ...otherProps
   } = props;
+  //don't display animation until it has been mounted
   const mountRef = useMounted();
+  const preCollapse = usePrevious(collapse);
+
   const clsName = clsx(extraClassName, className);
   const panelRef = useRef(null);
   const [panelRect, setPanelRect] = useState({height: 0});
@@ -38,6 +43,7 @@ const CollapsePanel = React.forwardRef((props, ref) => {
   useResizeObserver(panelRef, rect => setPanelRect({height: rect.height}));
 
   let {from, to} = initAnimation(collapse, panelRect.height);
+
   const {height, opacity} = useSpring({
     from, to, config: {
       tension: 180,

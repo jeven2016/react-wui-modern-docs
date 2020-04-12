@@ -2,15 +2,9 @@ import React from 'react';
 import CollapsePanel from './CollapsePanel';
 import Item from './Item';
 import clsx from 'clsx';
-import CollapseContext from './CollapseContext';
 import useInternalActive from '../common/useInternalActive';
-import {isNil} from '../Utils';
-
-const convertArray = (val) => {
-  return isNil(val)
-      ? []
-      : (Array.isArray(val) ? val : [val]);
-};
+import {isNil, convertToArray} from '../Utils';
+import {CollapseContext} from '../common/Context';
 
 const Collapse = React.forwardRef((props, ref) => {
   const {
@@ -35,7 +29,7 @@ const Collapse = React.forwardRef((props, ref) => {
   });
   const isExternalCtrl = props.hasOwnProperty('active');
   const {currentActive, setActive} = useInternalActive(isExternalCtrl,
-      convertArray(defaultActive), convertArray(active));
+      convertToArray(defaultActive), convertToArray(active));
 
   const itemClickHandler = (value, isCollapsed) => {
     if (isExternalCtrl) {
@@ -70,7 +64,7 @@ const Collapse = React.forwardRef((props, ref) => {
           isExternalCtrl,
           hasBorder,
           hasCollapseIcon,
-          collapseIcon,
+          collapseIcon:null,
           currentActive,
           iconPosition,
           clickItem: itemClickHandler,

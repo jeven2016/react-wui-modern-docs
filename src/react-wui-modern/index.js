@@ -49,6 +49,7 @@ export {default as Tabs} from './tabs/Tabs';
 export {default as Carousel} from './carousel/Carousel';
 export {default as Affix} from './Affix';
 export {default as useResizeObserver} from './common/UseResizeObserver';
+export {default as Tree} from './tree/Tree';
 
 export {
   IconInfo,

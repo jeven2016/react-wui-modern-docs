@@ -2,52 +2,53 @@ import React, {useState} from 'react';
 import clsx from 'clsx';
 import {isNil} from './Utils';
 import Element from './common/Element';
+import useInternalActive from './common/useInternalActive';
 
 function BaseSwitch(props) {
   const {
+    defaultValue,
+    iconIndeterminate, showIndeterminateState = false, iconIndeterminateStyle,
     value, label, baseClassName, inputType, underControlled = false,
     iconChecked, iconUnchecked, canUnchecked = true, disabled = false,
     children, onChange, checked, ...otherProps
   } = props;
-  const [checkState, setCheckState] = useState(false);
-  const [manuallyChanged, setManuallyChanged] = useState(false);
 
-  //update checked state
-  let currentCheckState = checked;
-
-  //if this switch is under controlled by other component, ignore it
-  if (!underControlled && manuallyChanged) {
-    currentCheckState = checkState;
-  }
+  const isExternalControl = props.hasOwnProperty('value');
+  const {currentActive: checkState, setActive: setCheckState} = useInternalActive(
+      isExternalControl,
+      defaultValue, value);
 
   //get the icon
-  const Icon = currentCheckState ? iconChecked : iconUnchecked;
+  let Icon;
+  if (showIndeterminateState) {
+    Icon = iconIndeterminate;
+  } else if (checkState) {
+    Icon = iconChecked;
+  } else {
+    Icon = iconUnchecked;
+  }
 
   let clsName = clsx(baseClassName, {
-    checked: currentCheckState,
-    unchecked: !currentCheckState,
+    checked: checkState,
+    unchecked: !checkState,
   });
 
-  const onClick = (evt) => {
-    if (currentCheckState && !canUnchecked) {
-      console.log('return');
+  const onClick = (e) => {
+    if (checkState && !canUnchecked) {
       return;
     }
-
-    if (!manuallyChanged) {
-      setManuallyChanged(true);
+    let state = !checkState;
+    if (!isExternalControl) {
+      setCheckState(state);
     }
-
-    let state = !currentCheckState;
-    setCheckState(state);
-    !isNil(onChange) && onChange(!isNil(value) ? value : state, evt);
+    !isNil(onChange) && onChange(state, e);
   };
 
   return <>
     <Element className={clsName} disabled={disabled}
              onClick={onClick} {...otherProps}>
       <input type={inputType} value={value} className="hidden-input"/>
-      <Icon/>
+      <Icon style={showIndeterminateState ? iconIndeterminateStyle : null}/>
       <span className="label">
         {label}
         {children}
