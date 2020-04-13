@@ -64,7 +64,7 @@ const Collapse = React.forwardRef((props, ref) => {
           isExternalCtrl,
           hasBorder,
           hasCollapseIcon,
-          collapseIcon:null,
+          collapseIcon: null,
           currentActive,
           iconPosition,
           clickItem: itemClickHandler,

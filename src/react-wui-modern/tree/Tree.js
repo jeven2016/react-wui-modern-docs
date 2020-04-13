@@ -9,7 +9,7 @@ import {
   CheckedStatus,
   getNode,
   mergeChildren,
-  parseChildren,
+  parseChildren, RootId,
   updateChildrenStatus,
   updateParentsStatus,
 } from './TreeCommon';
@@ -67,15 +67,18 @@ const Tree = React.forwardRef((props, ref) => {
       isCheckControl,
       convertToArray(defaultCheckedItems), convertToArray(checkedItems));
 
-  const selectHandler = (id, evt) => {
-    if (isExternalControl) {
-      onSelect && onSelect(id, evt);
-    } else if (selectMultipleItems) {
-      setSelectedItems(pre => [...pre, id]);
-    } else {
-      setSelectedItems([id]);
+  /*
+   * select handler
+   */
+  const selectHandler = useCallback((id, e) => {
+    let selectedIds = selectMultipleItems ? [
+      ...currentSelectedItems.filter(i => i !== id), id] : [id];
+
+    if (!isExternalControl) {
+      setSelectedItems(selectedIds);
     }
-  };
+    onSelect && onSelect(selectedIds, e);
+  }, [currentSelectedItems, onSelect, selectMultipleItems]);
 
   const isChecked = useCallback((id) => {
     const checkedStatus = statusMap.get(id);
@@ -90,12 +93,12 @@ const Tree = React.forwardRef((props, ref) => {
       onExpand && onExpand(id, expand, evt);
       return;
     }
+    let expandedIds;
     if (expand) {
       let parentNode = treeData.treeNodeMap.get(id);
       if (parentNode.isAsyncLoad() && loadJsonData) {
         //Asynchronous loading the data and merge it with the existing json data
         const newIds = [...loadingIds, id];
-        // console.log(newIds)
         setLoadingIds(newIds);
 
         const data = await loadJsonData(id, evt);
@@ -103,7 +106,6 @@ const Tree = React.forwardRef((props, ref) => {
         const newJsonData = {...jsonData};
 
         mergeChildren(newJsonData, data, id);
-
         const newTreeData = parseChildren(true, children, newJsonData);
         setTreeData(newTreeData);
 
@@ -118,19 +120,23 @@ const Tree = React.forwardRef((props, ref) => {
       }
 
       if (expandMultipleItems) {
-        setExpendedItems([...currentExpandedItems, id]);
+        expandedIds = [...currentExpandedItems, id];
       } else {
-        setExpendedItems([id]);
+        expandedIds = [id];
+        // setExpendedItems([id]);
       }
-      return;
+    } else {
+      expandedIds = [...currentExpandedItems.filter(elem => elem !== id)];
     }
-    //remove the id if the item is collapsed
-    setExpendedItems([
-      ...currentExpandedItems.filter(elem => elem !== id)]);
+    onExpand && onExpand(expandedIds);
+
+    if (!isExpendControl) {
+      setExpendedItems(expandedIds);
+    }
+
   };
 
-  const checkHandler = useCallback((id, checked, evt) => {
-    console.log('click handler.....');
+  const checkHandler = useCallback((id, checked, e) => {
     let node = treeData.treeNodeMap.get(id);
     if (isNil(node)) {
       throw new Error('No node exists with this id \'' + id + '\'.');
@@ -157,7 +163,18 @@ const Tree = React.forwardRef((props, ref) => {
           checked ? CheckedStatus.checked : CheckedStatus.unchecked);
     }
 
-    setStatusMap(itemStatusMap);
+    if (!isCheckControl) {
+      setStatusMap(itemStatusMap);
+    }
+
+    const checkedIds = [];
+    for (let [key, value] of itemStatusMap.entries()) {
+      if (key !== RootId && value === CheckedStatus.checked) {
+        checkedIds.push(key);
+      }
+    }
+    onCheck && onCheck(checkedIds);
+
   }, [treeData, statusMap]);
 
   return <TreeContext.Provider value={{

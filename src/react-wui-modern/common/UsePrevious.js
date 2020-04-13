@@ -5,7 +5,7 @@ const usePrevious = (initValue) => {
 
   useEffect(() => {
     ref.current = initValue;
-  }, []);
+  }, [initValue]);
   return ref.current;
 };
 export default usePrevious;

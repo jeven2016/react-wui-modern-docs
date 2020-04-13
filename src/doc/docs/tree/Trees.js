@@ -26,6 +26,9 @@ export const TreeA = () => {
     </div>
     <Tree selectMultipleItems={multipleSelect} onlySelectLeaf={onlySelectLeaf}
           highlightLine={highlightLine}
+          onSelect={(ids, e) => console.log(ids)}
+          onCheck={(ids, e) => console.log(ids)}
+          onExpand={(ids, e) => console.log(ids)}
           checkable={checkable}>
       <Tree.TreeItem id="Parent-1" label="Parent-1">
         <Tree.TreeItem id="Child-1-1" label="Child-1-1"/>

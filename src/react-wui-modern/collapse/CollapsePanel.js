@@ -4,6 +4,7 @@ import useMounted from '../common/UseMounted';
 import {animated, useSpring} from 'react-spring';
 
 import useResizeObserver from '../common/UseResizeObserver';
+import usePrevious from '../common/UsePrevious';
 
 function initAnimation(collapse, height) {
   const from = {
@@ -15,7 +16,9 @@ function initAnimation(collapse, height) {
   const to = {
     opacity: collapse ? 0 : 1,
     height: collapse ? 0 : height,
-    transform: collapse? 'translate3d(10px, 0px, 0px)':'translate3d(0px, 0px, 0px)',
+    transform: collapse
+        ? 'translate3d(10px, 0px, 0px)'
+        : 'translate3d(0px, 0px, 0px)',
   };
   return {from, to};
 }
@@ -30,10 +33,11 @@ const CollapsePanel = React.forwardRef((props, ref) => {
     style,
     ...otherProps
   } = props;
-  const mountRef = useMounted();
   const clsName = clsx(extraClassName, className);
   const panelRef = useRef(null);
   const [panelRect, setPanelRect] = useState({height: 0});
+
+  const preCollapse = usePrevious(collapse);
 
   useResizeObserver(panelRef, rect => setPanelRect({height: rect.height}));
 
@@ -46,10 +50,10 @@ const CollapsePanel = React.forwardRef((props, ref) => {
   });
 
   let realHeight = height;
-  if (!mountRef.current) {
-    if (!collapse) {
-      realHeight = 'auto';
-    }
+  // very important to solve a performance issue :
+  // if the it always expands, no need to update the height
+  if (preCollapse === collapse && !collapse) {
+    realHeight = 'auto';
   }
 
   const newStyle = {

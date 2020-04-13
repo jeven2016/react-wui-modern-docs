@@ -26,12 +26,12 @@ export default class TreeIndex extends DocComponent {
 
         <section>
           <h3> Simple Tree</h3>
-          {/*<TreeA/>*/}
+          <TreeA/>
         </section>
 
         <section>
           <h3>JSON data</h3>
-          {/*<TreeB/>*/}
+          <TreeB/>
         </section>
 
         <section>

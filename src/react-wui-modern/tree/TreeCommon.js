@@ -2,6 +2,8 @@ import React from 'react';
 import {convertToArray, invoke, isArray, isNil} from '../Utils';
 import TreeItem from './TreeItem';
 
+export const RootId = '$$root$$';
+
 export const CheckedStatus = {
   indeterminate: 0,
   checked: 1,
@@ -57,10 +59,9 @@ export const updateChildrenStatus = (map, node, status) => {
 };
 
 function parseChild(child, nodes, chdNode, providedJsonData) {
-
   let id = providedJsonData ? child.id : child.props['id'];
   if (isNil(id)) {
-    console.warn('The tree items should have \'id\' set.');
+    throw new Error('The tree items should have \'id\' set.');
     return;
   }
 
@@ -103,7 +104,7 @@ export const mergeChildren = (jsonData, partialData, id) => {
 export const parseChildren = (providedJsonData, children, jsonData) => {
   var newChildren = providedJsonData ? jsonData : children;
   let root = {
-    id: '$$root$$',
+    id: RootId,
     label: null,
     isLeaf: false,
     children: [newChildren], //react children
@@ -114,13 +115,12 @@ export const parseChildren = (providedJsonData, children, jsonData) => {
   var treeNodeMap = new Map(); //key: id, value: TreeNode
 
   let nodes = [root];
-
   let i = 0;
   while (nodes.length > 0) {
     if (i++ > 10000) {
-      throw new Error('too many loops for parsing the whole tree.');
+      throw new Error('too many loops take to parse the whole tree.');
     }
-    let node = nodes.pop();
+    let node = nodes.shift();
     if (isNil(node)) {
       continue;
     }
