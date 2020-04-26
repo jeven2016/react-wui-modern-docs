@@ -58,7 +58,6 @@ Button.defaultProps = {
   elementType: 'button',
   disabled: false,
   className: 'button',
-  role: null, //only for internal use
   hasMinWidth: false,
 };
 
@@ -66,7 +65,7 @@ Button.propTypes = {
   elementType: PropTypes.oneOf(['a', 'button']), // 'a' or 'button'
   type: PropTypes.string,   //it can only be blank or 'button' and it has nothing to do with native html type
   nativeType: PropTypes.oneOf(['button', 'reset', 'submit', 'a']), //the native html type, like 'button', 'reset' or 'submit'
-  block: PropTypes.bool, //whether the button is a 'block' button whose width is '100%' and occupy the whole row
+  block: PropTypes.bool, //whether the button's width is '100%' and it occupies the whole row
   color: PropTypes.string, //the color, like "primary", "red"
   className: PropTypes.string, //the class name of button
   extraClassName: PropTypes.string, //the customized class need to add
@@ -74,9 +73,9 @@ Button.propTypes = {
   active: PropTypes.bool, // active this button
   onClick: PropTypes.func, //the click callback provided
   size: PropTypes.oneOf(['large', 'medium', 'small', '']), //the size of the button
-  outline: PropTypes.bool,
-  circle: PropTypes.bool,
-  hasMinWidth: PropTypes.bool, // has min-width style
+  outline: PropTypes.bool, //whether to display as outlined button
+  circle: PropTypes.bool, //whether to display as a Circular button
+  hasMinWidth: PropTypes.bool, // whether to set min width of the button
 };
 
 export default Button;

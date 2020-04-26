@@ -1,6 +1,6 @@
-import React from 'react';
+import React ,{useCallback} from 'react';
 import clsx from 'clsx';
-import {preventEvent} from '../event';
+import {preventEvent } from '../event';
 
 const Element = React.forwardRef((props, ref) => {
   const {
@@ -17,12 +17,12 @@ const Element = React.forwardRef((props, ref) => {
     ...otherProps
   } = props;
 
-  const prevent = (e) => {
+  const prevent = useCallback((e) => {
     if (disabled) {
       preventEvent(e);
     }
     return disabled;
-  };
+  },[disabled]);
 
   const handleClick = (e) => {
     if (prevent(e)) return false;
